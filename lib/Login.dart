@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'Registration.dart';
 
-// void main() {
-//   runApp(const MaterialApp(home: Login()));
-// }
+void main() {
+  runApp(const MaterialApp(home: Login()));
+}
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -116,7 +116,8 @@ class _LoginState extends State<Login> {
                       Navigator.of(context).pop();
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Registration()),
+                        MaterialPageRoute(
+                            builder: (context) => const Registration()),
                       );
                     },
                     child: const Text(
@@ -158,10 +159,10 @@ class _LoginState extends State<Login> {
     var password = controllerpassword.text;
     Query dbRef2 = FirebaseDatabase.instance
         .ref()
-        .child('DemoDB/Employee')
+        .child('ArogyaSair/tblUser')
         .orderByChild("Username")
         .equalTo(username);
-    String msg = "";
+    String msg = "Invalid Username or Password..! Please check..!!";
     Map data2;
     await dbRef2.once().then((documentSnapshot) {
       for (var x in documentSnapshot.snapshot.children) {
@@ -173,8 +174,6 @@ class _LoginState extends State<Login> {
           msg = "Sorry..! Wrong Username or Password";
         }
       }
-
-      // Show a Snackbar using the captured context
       _showSnackbar(scaffoldContext, msg);
     });
   }
