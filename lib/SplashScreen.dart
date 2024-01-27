@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'Login.dart';
+import 'Registration.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,16 +36,20 @@ class _SplashScreen extends State<splash> {
         Padding(
           padding: const EdgeInsets.all(10),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Registration()),
+              );
+            },
             style: ElevatedButton.styleFrom(
               fixedSize: const Size(200, 50),
               elevation: 10,
             ),
             child: const Text(
               'Register',
-              style: TextStyle(
-                  fontSize: 19
-              ),
+              style: TextStyle(fontSize: 19),
             ),
           ),
         ),
@@ -55,7 +60,7 @@ class _SplashScreen extends State<splash> {
               Navigator.of(context).pop();
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Login()),
+                MaterialPageRoute(builder: (context) => const Login()),
               );
             },
             style: ElevatedButton.styleFrom(
