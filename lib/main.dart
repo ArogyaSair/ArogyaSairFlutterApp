@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, camel_case_types, library_private_types_in_public_api
 
 import 'package:arogyasair/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,7 +11,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(MaterialApp(home: splash()));
+  runApp(const MaterialApp(home: splash()));
 }
 
 class splash extends StatefulWidget {

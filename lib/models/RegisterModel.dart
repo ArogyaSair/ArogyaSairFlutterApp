@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, file_names
+
 class RegisterModel{
   late String username;
   late String password;
