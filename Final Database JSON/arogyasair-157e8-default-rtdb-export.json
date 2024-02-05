@@ -1,0 +1,3100 @@
+{
+  "ArogyaSair": {
+    "AllDoctor": {
+      "-NoXfRJ0mNWXe8mq_36d": {
+        "DoctorName": "Dr.Sandeep Vaishya - Neurosurgeon"
+      },
+      "-NoXfRKR6Z8UeKbbAQfB": {
+        "DoctorName": "Dr.Naresh Treshan - Chief Cardiac Surgeon"
+      },
+      "-NoXfRNpV8ORRE1lQRSV": {
+        "DoctorName": "Dr.Arun Saroha - Neurosurgeon"
+      },
+      "-NoXfRPN7V6uZKfDtgJt": {
+        "DoctorName": "Dr.Hs Bhatya - Cardiovascular and Cardiothoraic Surgeon"
+      },
+      "-NoXfRQkwLWfY4dH7lkQ": {
+        "DoctorName": "Dr.Vinod Raina - MBBS,MD,FRCP"
+      },
+      "-NoXfRS7FspE88rJ0bim": {
+        "DoctorName": "Dr.Ashok Rajgopal - Musculoskeleton Disorder and Orthopaedic Surgeon"
+      },
+      "-NoXfRTWsb5ESSerH_9k": {
+        "DoctorName": "Dr.Ips Oberoi - MBBS,MS,MCh"
+      },
+      "-NoXfRUrdwpzT-xum-mm": {
+        "DoctorName": "Dr.Subhash Chandra - MBBS,DCH"
+      },
+      "-NoXfRWCUhvjGjlCpMZK": {
+        "DoctorName": "Dr.Vaibhav Mishra - Cardiac Surgeon"
+      },
+      "-NoXfRXYQTjHmlax2Gdy": {
+        "DoctorName": "Dr. Vivek Jawali - Adult Cardiac Surgery and Arterial Bypass Surgery"
+      },
+      "-NoXfRYtKPD8zpEW2Ozl": {
+        "DoctorName": "Aditya Gupta - Neurosurgeon"
+      },
+      "-NoXfR_Eueha200_0Y8C": {
+        "DoctorName": "Dr.Gaurav Shekhar - Head Pediatric Hemato-oncology Immunology & Bone Marrow Transplant"
+      },
+      "-NoXfRacnM4hjaC_ygpB": {
+        "DoctorName": "Dr.Hemant Sharma - Orthopaedic"
+      },
+      "-NoXfRc-od47Ceuse4BO": {
+        "DoctorName": "Dr.Rana Patir - Neurosurgeon"
+      },
+      "-NoXfRdOqfVTanBCElc-": {
+        "DoctorName": "Dr.Abhideep Chaudhary - HPB Surgery and Liver Transplantation"
+      },
+      "-NoXfRejSQPXdu8IgNjD": {
+        "DoctorName": "Dr.Devi Prasad Shetty - Cardiothoraic Surgeon"
+      },
+      "-NoXfRg5AqNoBIDzZS77": {
+        "DoctorName": "Dr.Hitesh Garg - Surgeon Consultant,MBBS,MS"
+      },
+      "-NoXfRi3QmKD-5EIPGH6": {
+        "DoctorName": "Dr.j k Gupta - Cardiologist"
+      },
+      "-NoXfRjQwQCwuXEU5WMm": {
+        "DoctorName": "Dr.Lokesh Kumar - Oncologist"
+      },
+      "-NoXfRkozAUTQV5KWJtP": {
+        "DoctorName": "Dr.Manoj Gupta - Therapy (HBOT)"
+      },
+      "-NoXfRmE9mVimoAnCbx-": {
+        "DoctorName": "Dr.Pawan Kumar - Diabetologist"
+      },
+      "-NoXfRnpztErzVkoop3H": {
+        "DoctorName": "Dr.Ashish Jain - Otolaryngologist,MBBS,DCH,MS"
+      }
+    },
+    "AllServices": {
+      "-NnAGJ0Sskmv9kH_PaxB": {
+        "ServiceName": "Emergency Department"
+      },
+      "-NnAGJ5A_hCCFpedKk8f": {
+        "ServiceName": "Inpatient Care"
+      },
+      "-NnAGJ9lHtwg5s5jwr3r": {
+        "ServiceName": "Outpatient Department (OPD)"
+      },
+      "-NnAGJEMc8_qbvOBfxEM": {
+        "ServiceName": "Diagnostic Services"
+      },
+      "-NnAGJIxjKA_65Ja-MVe": {
+        "ServiceName": "Pharmacy"
+      },
+      "-NnAGJNaa9cylKYsCzJU": {
+        "ServiceName": "Surgery"
+      },
+      "-NnAGJSEnA6lc-G0Fmy0": {
+        "ServiceName": "Intensive Care Unit (ICU)"
+      },
+      "-NnAGJWqP93IaOA17rPf": {
+        "ServiceName": "Maternal and Child Health"
+      },
+      "-NnAGJaSf3mRiKfLo3Zr": {
+        "ServiceName": "Mental Health Services"
+      },
+      "-NnAGJgMGWsvvKONzqXQ": {
+        "ServiceName": "Rehabilitation Services"
+      },
+      "-NnAGJkxJSYlF1saBGcx": {
+        "ServiceName": "Oncology Services"
+      },
+      "-NnAGJp_MO4gQSZdMl2g": {
+        "ServiceName": "Medical Records"
+      },
+      "-NnAGJuFoAgBMAh8oqId": {
+        "ServiceName": "Nutrition Services"
+      },
+      "-NnAGJyqAye7llosOKOC": {
+        "ServiceName": "Social Work Services"
+      },
+      "-NnAGK2Qi_yl1P4rUq2G": {
+        "ServiceName": "Spiritual Support Services"
+      },
+      "-NnAGK71tESBkWnr2_Bb": {
+        "ServiceName": "Administrative Services"
+      }
+    },
+    "AllTreatment": {
+      "-NnJwicvDsPIDP96e_YU": {
+        "TreatmentName": "Surgery"
+      },
+      "-NnJwihLHYbMcSiZ7PIN": {
+        "TreatmentName": "Preoperative Surgery"
+      },
+      "-NnJwilg7JfTpzBxHynu": {
+        "TreatmentName": "Intraoperative Surgery"
+      },
+      "-NnJwiq2HqcNFzhTv-_Z": {
+        "TreatmentName": "Postoperative Care"
+      },
+      "-NnJwiuRkez49V3bb6Bc": {
+        "TreatmentName": "Physical Therapy"
+      },
+      "-NnJwiyrit76YE5l1MGb": {
+        "TreatmentName": "Cognitive Behavioral Therapy"
+      },
+      "-NnJwj2EtFjIXQx9t_1X": {
+        "TreatmentName": "Radiation Therapy"
+      },
+      "-NnJwj6csdLF5h2cYMJa": {
+        "TreatmentName": "Chemotherapy"
+      },
+      "-NnJwjB0xi0e3GmkE4CN": {
+        "TreatmentName": "Psycological Therapy"
+      },
+      "-NnJwjFUifn8Tf9iZHlw": {
+        "TreatmentName": "Intensive Care"
+      },
+      "-NnJwjJr7AGl_MgKNBwH": {
+        "TreatmentName": "Occupational Therapy"
+      },
+      "-NnJwjOBB815cvfl8NkY": {
+        "TreatmentName": "Speech Therapy"
+      },
+      "-NnJwjSZo9c6UQjcI3m0": {
+        "TreatmentName": "Dental Procedures"
+      },
+      "-NnJwjWy8OEaTh4n3FKa": {
+        "TreatmentName": "Medication"
+      },
+      "-NnJwjaJu8BxNBzPVAIo": {
+        "TreatmentName": "Dialysis"
+      },
+      "-NnJwjedQRVpmhJaHKuh": {
+        "TreatmentName": "Palliative Care"
+      },
+      "-NnJwjj1ylLRY6qt3WKl": {
+        "TreatmentName": "Wound Care"
+      },
+      "-NnJwjnRtIE3KKBOpW2a": {
+        "TreatmentName": "Blood Transfusion"
+      },
+      "-NnJwjrngn1Cq2BI5Z9s": {
+        "TreatmentName": "Cardiac Rehabilitation"
+      },
+      "-NnJwjwCCpfPXGYbPihD": {
+        "TreatmentName": "Kidney Transplant"
+      },
+      "-NnJwk-Y26ipX4zvzS-l": {
+        "TreatmentName": "Liver Transplant"
+      },
+      "-NnJwk3v6xCTyv4AI_QP": {
+        "TreatmentName": "Lung Transplant"
+      },
+      "-NnJwk8JeTbglw1-YVzN": {
+        "TreatmentName": "Pancreas Transplant"
+      },
+      "-NnJwkCgm9EKP6-8XCEY": {
+        "TreatmentName": "Intestinal Transplant"
+      },
+      "-NnJwkH3WKSa2V2-vuFr": {
+        "TreatmentName": "Bone Marrow Transplant"
+      },
+      "-NnJwkLSNDv47J0yIiDL": {
+        "TreatmentName": "Corneal Transplant"
+      },
+      "-NnJwkPsOQfPmgN7OH-J": {
+        "TreatmentName": "Coronary Artery Bypass Surgery (CABS)"
+      },
+      "-NnJwkUFsp4YBUJQ11CD": {
+        "TreatmentName": "Implantable Device Surgery"
+      },
+      "-NnJwkYdFKDQ8ovyZvS8": {
+        "TreatmentName": "Heart Valve Repair or Replacement Surgery"
+      },
+      "-NnJwkc0UZH8Wo0rylJn": {
+        "TreatmentName": "Electrophysiology Studies and Ablation"
+      },
+      "-NnJwkgSKJewuzvGcdvu": {
+        "TreatmentName": "Angioplasty and Stenting"
+      },
+      "-NnJwkksxQU1tkLa5jq2": {
+        "TreatmentName": "Routine Dental Check-ups"
+      }
+    },
+    "tblAdmin": {
+      "-Nn7yalh273CqINdB6sz": {
+        "Address": "52, THAKORDHWAR SOC-3, OPP. C.K. PATEL SCHOOL",
+        "Contact": "9016204650",
+        "DateOfBirth": "2004-02-24",
+        "Email": "devmtamakuwala2424@gmail.com",
+        "Gender": "Male",
+        "Name": "Dev",
+        "Password": "$2y$10$DG/Isg8C5JMboXRV3mmxRuU9FGFIDc7sRePMYHUOopAGClj2N1Coi",
+        "Username": "dev@admin"
+      }
+    },
+    "tblCity": {
+      "-NnrOYoMLXWmUmrNMZ6-": {
+        "CityName": "Adoni",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOYpoIboGzLQiNjFM": {
+        "CityName": "Amaravati",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOYrF-E0rworm6PEf": {
+        "CityName": "Anantapur",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOYsdr9FpsG5AoTR0": {
+        "CityName": "Chandragiri",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOYu3Gi4Y2ItXoe4H": {
+        "CityName": "Chittoor",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOYvU8hOO5k4m7qt0": {
+        "CityName": "Dowlaiswaram",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOYwu_fvIC3B0474C": {
+        "CityName": "Eluru",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOYyK4wv_7KMfBwl_": {
+        "CityName": "Guntur",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOYzmqcH07dgBT9KC": {
+        "CityName": "Kadapa",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZ0FnVkUDJ3JbkEq": {
+        "CityName": "Kakinada",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZ1hQadxtxbCSnWq": {
+        "CityName": "Kurnool",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZ3A4iQCElhJmR9c": {
+        "CityName": "Machilipatnam",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZ4c0xkV3aASPt5f": {
+        "CityName": "Nagarjunakoṇḍa",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZ63bhhAD7DmsAHc": {
+        "CityName": "Rajahmundry",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZ7XMuK-ceGDKr3O": {
+        "CityName": "Srikakulam",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZ8x5tDPnZBxE0w4": {
+        "CityName": "Tirupati",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZAM-_wgkCOk6mxe": {
+        "CityName": "Vijayawada",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZBn5IUfGvay5TcT": {
+        "CityName": "Visakhapatnam",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZDBtW8y4GwMLXME": {
+        "CityName": "Vizianagaram",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZEdpVR4ottDJuh5": {
+        "CityName": "Yemmiganur",
+        "StateID": "-NnrNiqd7hcgl08Z6NR4"
+      },
+      "-NnrOZG8VJFITVFAv7ua": {
+        "CityName": "Itanagar",
+        "StateID": "-NnrNis84hyimpKHW7eZ"
+      },
+      "-NnrOZHWxgd5hG2Ya0MM": {
+        "CityName": "Dhuburi",
+        "StateID": "-NnrNitdVsaZC1_LQ0kJ"
+      },
+      "-NnrOZIy-BDETnGjj6vj": {
+        "CityName": "Dibrugarh",
+        "StateID": "-NnrNitdVsaZC1_LQ0kJ"
+      },
+      "-NnrOZKPa8_88QjEImRZ": {
+        "CityName": "Dispur",
+        "StateID": "-NnrNitdVsaZC1_LQ0kJ"
+      },
+      "-NnrOZLo-JuL3EIvMjvN": {
+        "CityName": "Guwahati",
+        "StateID": "-NnrNitdVsaZC1_LQ0kJ"
+      },
+      "-NnrOZNH69tgzclBdD7U": {
+        "CityName": "Jorhat",
+        "StateID": "-NnrNitdVsaZC1_LQ0kJ"
+      },
+      "-NnrOZOh6mlpAbWaLca8": {
+        "CityName": "Nagaon",
+        "StateID": "-NnrNitdVsaZC1_LQ0kJ"
+      },
+      "-NnrOZQ87R3jO7Zwa3hd": {
+        "CityName": "Sivasagar",
+        "StateID": "-NnrNitdVsaZC1_LQ0kJ"
+      },
+      "-NnrOZRa-YMReftosOk-": {
+        "CityName": "Silchar",
+        "StateID": "-NnrNitdVsaZC1_LQ0kJ"
+      },
+      "-NnrOZT0mWvx1-MBnD_v": {
+        "CityName": "Tezpur",
+        "StateID": "-NnrNitdVsaZC1_LQ0kJ"
+      },
+      "-NnrOZUSHG1taOdZp0jd": {
+        "CityName": "Tinsukia",
+        "StateID": "-NnrNitdVsaZC1_LQ0kJ"
+      },
+      "-NnrOZVu9I5sx6koe_zy": {
+        "CityName": "Ara",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZXO_qzSiT8TwM3p": {
+        "CityName": "Barauni",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZYorwwBRcfBKYAH": {
+        "CityName": "Begusarai",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZ_F7pT_u-o4MLJ0": {
+        "CityName": "Bettiah",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZaivCnrZ7uQM3dV": {
+        "CityName": "Bhagalpur",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZcCGkpoJBEBFZg9": {
+        "CityName": "Bihar Sharif",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZdfV4Z986-xEpPo": {
+        "CityName": "Bodh Gaya",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZfBzRePQhyfSEq0": {
+        "CityName": "Buxar",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZgd9PpOZQwfcNg5": {
+        "CityName": "Chapra",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZi31Sq-3vLX1XLD": {
+        "CityName": "Darbhanga",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZjTIHfjskCuZEVo": {
+        "CityName": "Dehri",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZkuKh30Sv_5y1JM": {
+        "CityName": "Dinapur Nizamat",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZmLukssIWuYQHLB": {
+        "CityName": "Gaya",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZnlSAqdJqSJ5Lwp": {
+        "CityName": "Hajipur",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZpBA-qAvDkghrNi": {
+        "CityName": "Jamalpur",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZqd4ZP6BA3jb_-D": {
+        "CityName": "Katihar",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZs33XjjCcTu23w3": {
+        "CityName": "Madhubani",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZtY4lD8ZiTvLuMl": {
+        "CityName": "Motihari",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZuzEjzyLYlpKH7m": {
+        "CityName": "Munger",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZwPnzvkevo6xFWD": {
+        "CityName": "Muzaffarpur",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZxpJrUICLjONH1H": {
+        "CityName": "Patna",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrOZzH3cajuc3fDYkw": {
+        "CityName": "Purnia",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrO_-i2W1_vdxJ-Wt-": {
+        "CityName": "Pusa",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrO_1ULZKVyPfHWSZe": {
+        "CityName": "Saharsa",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrO_2trzTyYlfBh-O5": {
+        "CityName": "Samastipur",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrO_4Ggnu9Jnbbops4": {
+        "CityName": "Sasaram",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrO_5oyrIEXKSRYX6I": {
+        "CityName": "Sitamarhi",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrO_7B0DTkixGbrDIt": {
+        "CityName": "Siwan",
+        "StateID": "-NnrNiv6etqz6VPv0pSF"
+      },
+      "-NnrO_8d8kqQwFhqpLVN": {
+        "CityName": "Chandigarh",
+        "StateID": "-NnrNiwWIZlCka3cK-wC"
+      },
+      "-NnrO_A4AEEc6UxDgCCh": {
+        "CityName": "Ambikapur",
+        "StateID": "-NnrNiy1ppCNv7MXdQF6"
+      },
+      "-NnrO_Bmdaaxqw0_LO2y": {
+        "CityName": "Bhilai",
+        "StateID": "-NnrNiy1ppCNv7MXdQF6"
+      },
+      "-NnrO_DEqIgsDUN1hQwz": {
+        "CityName": "Bilaspur",
+        "StateID": "-NnrNiy1ppCNv7MXdQF6"
+      },
+      "-NnrO_EfVRY_Sn9-tcFU": {
+        "CityName": "Dhamtari",
+        "StateID": "-NnrNiy1ppCNv7MXdQF6"
+      },
+      "-NnrO_G7kir-Ne0scead": {
+        "CityName": "Durg",
+        "StateID": "-NnrNiy1ppCNv7MXdQF6"
+      },
+      "-NnrO_HZzWG1MJ6By534": {
+        "CityName": "Jagdalpur",
+        "StateID": "-NnrNiy1ppCNv7MXdQF6"
+      },
+      "-NnrO_J-5ytI7JmNM3s5": {
+        "CityName": "Raipur",
+        "StateID": "-NnrNiy1ppCNv7MXdQF6"
+      },
+      "-NnrO_KOAhrrQqzyy98k": {
+        "CityName": "Rajnandgaon",
+        "StateID": "-NnrNiy1ppCNv7MXdQF6"
+      },
+      "-NnrO_LpFh9xy0BrtyTd": {
+        "CityName": "Daman",
+        "StateID": "-NnrNizX0rHDTuuCiKZ1"
+      },
+      "-NnrO_NCEuOjeZi1ww_6": {
+        "CityName": "Diu",
+        "StateID": "-NnrNizX0rHDTuuCiKZ1"
+      },
+      "-NnrO_OdnxAZ8Hwyy852": {
+        "CityName": "Silvassa",
+        "StateID": "-NnrNizX0rHDTuuCiKZ1"
+      },
+      "-NnrO_Q04tr89KuQAFb1": {
+        "CityName": "Delhi",
+        "StateID": "-NnrNj-yz7csqoIREvc6"
+      },
+      "-NnrO_RQUCZLVl8ngurH": {
+        "CityName": "New Delhi",
+        "StateID": "-NnrNj-yz7csqoIREvc6"
+      },
+      "-NnrO_SqhR4LqehFUS5K": {
+        "CityName": "Madgaon",
+        "StateID": "-NnrNj1Sesmfq47Q9XXu"
+      },
+      "-NnrO_UK6_yGnwnoW4Tt": {
+        "CityName": "Panaji",
+        "StateID": "-NnrNj1Sesmfq47Q9XXu"
+      },
+      "-NnrO_ViUsoM3nANBtAo": {
+        "CityName": "Ahmadabad",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_X99ChubAqSqfV5": {
+        "CityName": "Amreli",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_YY-C4gHPn-PTQi": {
+        "CityName": "Bharuch",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO__0BlI9vJW8RwrR": {
+        "CityName": "Bhavnagar",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_aTkn9ml3Hhc95-": {
+        "CityName": "Bhuj",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_bteos50caA_E_M": {
+        "CityName": "Dwarka",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_dKlAyGkdyZ8S9p": {
+        "CityName": "Gandhinagar",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_emOrVmT1s96BoN": {
+        "CityName": "Godhra",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_gA0EdhF5_LKFMK": {
+        "CityName": "Jamnagar",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_hbFGPYNxs13nL3": {
+        "CityName": "Junagadh",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_j5Cugh69s1fl1k": {
+        "CityName": "Kandla",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_kjE80MEWes6eET": {
+        "CityName": "Khambhat",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_mAS21pir9XVFCk": {
+        "CityName": "Kheda",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_navSt64W-_Tied": {
+        "CityName": "Mahesana",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_p1bf_iaRCYZg1O": {
+        "CityName": "Morbi",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_qSzFk9DdG9iQek": {
+        "CityName": "Nadiad",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_rsbR9AihMrUh52": {
+        "CityName": "Navsari",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_tL-yXMKCcyctN-": {
+        "CityName": "Okha",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_unqF8tHjYi7mda": {
+        "CityName": "Palanpur",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_wBej4Slh4-BEQS": {
+        "CityName": "Patan",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_xdP75A90p5GI3T": {
+        "CityName": "Porbandar",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrO_z2NS8vI3r7VEh7": {
+        "CityName": "Rajkot",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrOa-UPUHHUx4iu1sw": {
+        "CityName": "Surat",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrOa0s7LXQgbxaev8e": {
+        "CityName": "Surendranagar",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrOa6xtmFHRUHQRlQK": {
+        "CityName": "Valsad",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrOa8KcTM1GxeYATCD": {
+        "CityName": "Veraval",
+        "StateID": "-NnrNj2xbFdM138g0oXE"
+      },
+      "-NnrOa9dWkQu27alW6qg": {
+        "CityName": "Ambala",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaB0idO24g4wfosn": {
+        "CityName": "Bhiwani",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaCKqCjbXiZ5wn6f": {
+        "CityName": "Chandigarh",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaDfgnlWiahAlKBS": {
+        "CityName": "Faridabad",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaF1Upcx2NzkFvyX": {
+        "CityName": "Firozpur Jhirka",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaGOSlSaj2AB97y6": {
+        "CityName": "Gurugram",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaHlyLXTXTBrER7c": {
+        "CityName": "Hansi",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaJ8JtwcdFrN_7UE": {
+        "CityName": "Hisar",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaKTFRISRalDQRbQ": {
+        "CityName": "Jind",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaLnPpG07oYmXva7": {
+        "CityName": "Kaithal",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaN9oHQyw5m5RpfY": {
+        "CityName": "Karnal",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaOWoInKeJIJE4Nn": {
+        "CityName": "Kurukshetra",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaPw-nnrTAPWQZ0e": {
+        "CityName": "Panipat",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaRKhRf4ex3Z-Y2k": {
+        "CityName": "Pehowa",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaSjH-ZBEJEvY5gI": {
+        "CityName": "Rewari",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaUAcQZepwttvySq": {
+        "CityName": "Rohtak",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaVZa3oWIk75x9QD": {
+        "CityName": "Sirsa",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaWxJ_Cpbvpfqyb2": {
+        "CityName": "Sonipat",
+        "StateID": "-NnrNj4RmgxHXeA7qcAU"
+      },
+      "-NnrOaYJgDHFQsvzh4z_": {
+        "CityName": "Bilaspur",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOaZg458fmaJFdvLe": {
+        "CityName": "Chamba",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOaa1aDyPgMzt5iUn": {
+        "CityName": "Dalhousie",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOabPk4sysL6e4jQN": {
+        "CityName": "Dharmshala",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOaclTS08138VzYtr": {
+        "CityName": "Hamirpur",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOaeB3OkfxzUdRLXN": {
+        "CityName": "Kangra",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOafaV2Lc2xwCTW4l": {
+        "CityName": "Kullu",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOagy1BaBiW2vCcDD": {
+        "CityName": "Mandi",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOaiKxhSzOYj9H9FU": {
+        "CityName": "Nahan",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOajhPNMJ9CPPfebh": {
+        "CityName": "Shimla",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOal3qZhqqI4RIIXY": {
+        "CityName": "Una",
+        "StateID": "-NnrNj5s8lmBO6LzNvwn"
+      },
+      "-NnrOamQ-ulk13M1HpQe": {
+        "CityName": "Anantnag",
+        "StateID": "-NnrNj7OQxRr8Bj3qqVm"
+      },
+      "-NnrOanmkGW-eX6cr_Pp": {
+        "CityName": "Baramula",
+        "StateID": "-NnrNj7OQxRr8Bj3qqVm"
+      },
+      "-NnrOap90mSFYZchf6TU": {
+        "CityName": "Doda",
+        "StateID": "-NnrNj7OQxRr8Bj3qqVm"
+      },
+      "-NnrOaqX8DUGSJAi6aiF": {
+        "CityName": "Gulmarg",
+        "StateID": "-NnrNj7OQxRr8Bj3qqVm"
+      },
+      "-NnrOarqL0cw4MuC2ZuD": {
+        "CityName": "Jammu",
+        "StateID": "-NnrNj7OQxRr8Bj3qqVm"
+      },
+      "-NnrOatCQJeqTpuBCESP": {
+        "CityName": "Kathua",
+        "StateID": "-NnrNj7OQxRr8Bj3qqVm"
+      },
+      "-NnrOau_c5VWz0cgupii": {
+        "CityName": "Punch",
+        "StateID": "-NnrNj7OQxRr8Bj3qqVm"
+      },
+      "-NnrOavwnmRxgaxxb1Ds": {
+        "CityName": "Rajouri",
+        "StateID": "-NnrNj7OQxRr8Bj3qqVm"
+      },
+      "-NnrOaxLAiNIJnTpIheR": {
+        "CityName": "Srinagar",
+        "StateID": "-NnrNj7OQxRr8Bj3qqVm"
+      },
+      "-NnrOaygS0YCRNC6Z1mr": {
+        "CityName": "Udhampur",
+        "StateID": "-NnrNj7OQxRr8Bj3qqVm"
+      },
+      "-NnrOb-1veHSrxYzsDGB": {
+        "CityName": "Bokaro",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrOb0Lb2fsQfgr9V0y": {
+        "CityName": "Chaibasa",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrOb1hT8gzOni8UWVI": {
+        "CityName": "Deoghar",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrOb33thGlxghzgMax": {
+        "CityName": "Dhanbad",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrOb4QRzRdDe3AmRmh": {
+        "CityName": "Dumka",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrOb62bVfZJGk9ZO--": {
+        "CityName": "Giridih",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrOb7h-68ZyXA0vAwS": {
+        "CityName": "Hazaribag",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrOb9m95Minar3dOz6": {
+        "CityName": "Jamshedpur",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrObBEsvCvw05mHuf0": {
+        "CityName": "Jharia",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrObCb3A7hcyLmmcmN": {
+        "CityName": "Rajmahal",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrObE-LskpnQHzsriE": {
+        "CityName": "Ranchi",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrObFMjJUqB0iVwJOY": {
+        "CityName": "Saraikela",
+        "StateID": "-NnrNj8srsSJFk0mvuc4"
+      },
+      "-NnrObGgoh5KBuBNi9WL": {
+        "CityName": "Badami",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObI3p0P6gIrX0zkp": {
+        "CityName": "Ballari",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObJOmCOYzK_es8rV": {
+        "CityName": "Bengaluru",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObKk5y2m0bCnwyMl": {
+        "CityName": "Belagavi",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObM4a8sLaj_ghYlG": {
+        "CityName": "Bhadravati",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObNREWLPw00MGAti": {
+        "CityName": "Bidar",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObOnQD60jRu-07nX": {
+        "CityName": "Chikkamagaluru",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObQ8QlJvQVVlfnvN": {
+        "CityName": "Chitradurga",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObRWW1Pk5ajfgzoP": {
+        "CityName": "Davangere",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObSqYeCEzZbyLpVp": {
+        "CityName": "Halebid",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObUBDhP8lyNzaC4S": {
+        "CityName": "Hassan",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObVfzeDx1xSIvxgh": {
+        "CityName": "Hubballi-Dharwad",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObX2ljhEjcML2o9E": {
+        "CityName": "Kalaburagi",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObYQIAo637G6cdLH": {
+        "CityName": "Kolar",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObZohWxYFkqoSy45": {
+        "CityName": "Madikeri",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrOba7RGc1I1087lmg": {
+        "CityName": "Mandya",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObbT8PDF3pqCCiZc": {
+        "CityName": "Mangaluru",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObcq61iJVfwtbz4A": {
+        "CityName": "Mysuru",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObeDElFYyWKoCUAp": {
+        "CityName": "Raichur",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObfaTNWnuVYPn6rn": {
+        "CityName": "Shivamogga",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObgxNAUZq-aibm-e": {
+        "CityName": "Shravanabelagola",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObiKdMGo82jBuRSS": {
+        "CityName": "Shrirangapattana",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObjfCrvkeyhhddQL": {
+        "CityName": "Tumakuru",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObl-BXDHn9H73nzs": {
+        "CityName": "Vijayapura",
+        "StateID": "-NnrNjALVfFq0SRPGOJM"
+      },
+      "-NnrObmLbr3_9urFN8Px": {
+        "CityName": "Alappuzha",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrObnkjFfxLNUQWXLm": {
+        "CityName": "Vatakara",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrObp8u67LyoZroADO": {
+        "CityName": "Idukki",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrObqZDpHTTmPkA_5s": {
+        "CityName": "Kannur",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrObrw2T4DzHZccn77": {
+        "CityName": "Kochi",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrObtFS83Ofsi1D1k_": {
+        "CityName": "Kollam",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrObucEEec5v4ShD5o": {
+        "CityName": "Kottayam",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrObvxzd369s3c8CrO": {
+        "CityName": "Kozhikode",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrObxJ_HyM-YHwX0ly": {
+        "CityName": "Mattancheri",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrObygmk2fQZ1hBu0R": {
+        "CityName": "Palakkad",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrOc-L9c8VNmDsg8_e": {
+        "CityName": "Thalassery",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrOc0jd1H4m_tgj4P8": {
+        "CityName": "Thiruvananthapuram",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrOc27AL4TfkOtewKO": {
+        "CityName": "Thrissur",
+        "StateID": "-NnrNjBqkE6GYuavgorG"
+      },
+      "-NnrOc3YsLB3JJuEbdcE": {
+        "CityName": "Kargil",
+        "StateID": "-NnrNjDJ461t7158AQ39"
+      },
+      "-NnrOc4ulZSVBMgNWGxQ": {
+        "CityName": "Leh",
+        "StateID": "-NnrNjDJ461t7158AQ39"
+      },
+      "-NnrOc6IFRpgrAaJNGlO": {
+        "CityName": "Balaghat",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOc7eu0MvB8stCkYh": {
+        "CityName": "Barwani",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOc912V1riKAuU8o5": {
+        "CityName": "Betul",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcANzLgfgteufeGj": {
+        "CityName": "Bharhut",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcBgKlPCfdgNwRQZ": {
+        "CityName": "Bhind",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcD1eChj2CIwfeak": {
+        "CityName": "Bhojpur",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcEMPauR7aSILwJP": {
+        "CityName": "Bhopal",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcFjNosndtps8jJY": {
+        "CityName": "Burhanpur",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcLoC2pH1MQ5dhmJ": {
+        "CityName": "Chhatarpur",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcNGUcQ9M5SgB57z": {
+        "CityName": "Chhindwara",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcOgQKPVAf8c3Ckx": {
+        "CityName": "Damoh",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcQ2c9bG7c2ZMOBR": {
+        "CityName": "Datia",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcRRtmcoL9wPAcGB": {
+        "CityName": "Dewas",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcSqJPQDV_1tIoHc": {
+        "CityName": "Dhar",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcUNXOjuyfcs65pl": {
+        "CityName": "Dr. Ambedkar Nagar(Mhow)",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcVq5DIKmSjbP06H": {
+        "CityName": "Guna",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcXIER6iMzqDKnyC": {
+        "CityName": "Gwalior",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcYgyc6MgUgU2-JF": {
+        "CityName": "Hoshangabad",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOc_3B3WoypAsCPjJ": {
+        "CityName": "Indore",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcaUfcX5eHlHvK5R": {
+        "CityName": "Itarsi",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcbtv1GUll-6wxKB": {
+        "CityName": "Jabalpur",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcdGDXu4MnGr6bb8": {
+        "CityName": "Jhabua",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcefQNiXEX35oWxU": {
+        "CityName": "Khajuraho",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcg5LtQ-bhSs-LTX": {
+        "CityName": "Khandwa",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOchVLXpbmqY2ZV5w": {
+        "CityName": "Khargone",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOciv7gqBuRYtmvK5": {
+        "CityName": "Maheshwar",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOckKUxGrWPcze1D0": {
+        "CityName": "Mandla",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOclj3uEuL-pAhW59": {
+        "CityName": "Mandsaur",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcn8MWQNSbRD5ts0": {
+        "CityName": "Morena",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcoZiXnTsAOyKR2h": {
+        "CityName": "Murwara",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcpv1wfXzecXjRye": {
+        "CityName": "Narsimhapur",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcrHKDsYcFWtghd5": {
+        "CityName": "Narsinghgarh",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcsiVWy1a8OjpgkR": {
+        "CityName": "Narwar",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcu7paCi9P-NQ2U5": {
+        "CityName": "Neemuch",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcvXVJiisHGUDFtm": {
+        "CityName": "Nowgong",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcwudjd-pikKpKx8": {
+        "CityName": "Orchha",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOcyLEhDmDkY7nJ--": {
+        "CityName": "Panna",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOczlYWhZkZtgjazR": {
+        "CityName": "Raisen",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOd0C6mnV-LshUR9c": {
+        "CityName": "Rajgarh",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOd1Z07XE5_lXAwNq": {
+        "CityName": "Ratlam",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOd2vBbatT0C7qZvb": {
+        "CityName": "Rewa",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOd4IKkx5XC4P_JsW": {
+        "CityName": "Sagar",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOd5iPWDwPqGDOQ_4": {
+        "CityName": "Sarangpur",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOd74wK7LWTTclLlw": {
+        "CityName": "Satna",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOd8TTC9un9gzN2Zd": {
+        "CityName": "Sehore",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOd9qtO9dpvxIo1-d": {
+        "CityName": "Seoni",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOdBHseAF_9Csw_L3": {
+        "CityName": "Shahdol",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOdCgTjFXZA2tP8aY": {
+        "CityName": "Shajapur",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOdE6NVyRWPdR8BMD": {
+        "CityName": "Sheopur",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOdF_wX0uMFoHrWWO": {
+        "CityName": "Shivpuri",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOdGz1ABWpQLF57Ug": {
+        "CityName": "Ujjain",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOdIPHkD9xumvdMFQ": {
+        "CityName": "Vidisha",
+        "StateID": "-NnrNjEltWe5pHsTkEmW"
+      },
+      "-NnrOdJmBpnuRSKGQxMJ": {
+        "CityName": "Ahmadnagar",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdLDY5Cuq8iyMcsO": {
+        "CityName": "Akola",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdMcJYM9KbUEX6OL": {
+        "CityName": "Amravati",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdO1iqOtJ0roL7if": {
+        "CityName": "Aurangabad",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdPSZGAOQxAdX2AV": {
+        "CityName": "Bhandara",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdQpL-3MGYqJhVNm": {
+        "CityName": "Bhusawal",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdSB1355rTbG71vv": {
+        "CityName": "Bid",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdTc2hIW5BNRlO91": {
+        "CityName": "Buldhana",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdV2nfhAKoaS3j4N": {
+        "CityName": "Chandrapur",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdWWiQ5W3IB_FxmM": {
+        "CityName": "Daulatabad",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdXtVR6y8rvjvc57": {
+        "CityName": "Dhule",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdZGozSb9F7dWc0D": {
+        "CityName": "Jalgaon",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOd_fC5Y2LzW4jXPN": {
+        "CityName": "Kalyan",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdb4YhzN8_5VhDTO": {
+        "CityName": "Karli",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdcVlj1I1h0Ba-rd": {
+        "CityName": "Kolhapur",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOddr64LVqR8rawK3": {
+        "CityName": "Mahabaleshwar",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdfGil7qHKT11gTU": {
+        "CityName": "Malegaon",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdggaJax9ZTCIbAR": {
+        "CityName": "Matheran",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdi6SQPB8oCxiS-I": {
+        "CityName": "Mumbai",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdjXkZL_AgiG2tY8": {
+        "CityName": "Nagpur",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdkvd-h66BJhb4LW": {
+        "CityName": "Nanded",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdmL718Lg_iNVk0q": {
+        "CityName": "Nashik",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdnmXXKAlOpNiTl6": {
+        "CityName": "Osmanabad",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdpB67-ajA3c7sfu": {
+        "CityName": "Pandharpur",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdqbjsROS1vfQlds": {
+        "CityName": "Parbhani",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOds2a8LQAtc-mWxa": {
+        "CityName": "Pune",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdtQbsjOrxKu0oz3": {
+        "CityName": "Ratnagiri",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdv8qjcd2V8m88_O": {
+        "CityName": "Sangli",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdwbFHoQ7zodEVOV": {
+        "CityName": "Satara",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdyLaS7GH2IaOBd7": {
+        "CityName": "Sevagram",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOdzmR5njUNV27Ac0": {
+        "CityName": "Solapur",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOe0ADUQE9w_hQDod": {
+        "CityName": "Thane",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOe1a7yl5_7U3RROX": {
+        "CityName": "Ulhasnagar",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOe2y9dXBrzYFOSuj": {
+        "CityName": "Vasai-Virar",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOe4ObGJ1KLajxlLE": {
+        "CityName": "Wardha",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOe5l2-JmpwrVk7No": {
+        "CityName": "Yavatmal",
+        "StateID": "-NnrNjGCcnhAAsvDGkFf"
+      },
+      "-NnrOe7FDnPUZOdDbRmV": {
+        "CityName": "Imphal",
+        "StateID": "-NnrNjHizSR9HtwfEmlY"
+      },
+      "-NnrOe8fSwk-s0ljyqv7": {
+        "CityName": "Cherrapunji",
+        "StateID": "-NnrNjJDAPuk7CkMYKU9"
+      },
+      "-NnrOeA9267lrkk9ZXYS": {
+        "CityName": "Shillong",
+        "StateID": "-NnrNjJDAPuk7CkMYKU9"
+      },
+      "-NnrOeBZXEuRlvEz-PJi": {
+        "CityName": "Aizawl",
+        "StateID": "-NnrNjKeZ14Ll9QaMYJw"
+      },
+      "-NnrOeD0KaUBaQP1YDeo": {
+        "CityName": "Lunglei",
+        "StateID": "-NnrNjKeZ14Ll9QaMYJw"
+      },
+      "-NnrOeEWMbTzcyjy1avC": {
+        "CityName": "Kohima",
+        "StateID": "-NnrNjMCQRpiDqy8b8bq"
+      },
+      "-NnrOeFsb9pxLBBHtCOX": {
+        "CityName": "Mon",
+        "StateID": "-NnrNjMCQRpiDqy8b8bq"
+      },
+      "-NnrOeHEWPDzsnTbQAhT": {
+        "CityName": "Phek",
+        "StateID": "-NnrNjMCQRpiDqy8b8bq"
+      },
+      "-NnrOeIeqdtl4-Adewhg": {
+        "CityName": "Wokha",
+        "StateID": "-NnrNjMCQRpiDqy8b8bq"
+      },
+      "-NnrOeK0CKIyVbfwNBNd": {
+        "CityName": "Zunheboto",
+        "StateID": "-NnrNjMCQRpiDqy8b8bq"
+      },
+      "-NnrOeLM4HMdwQy3OYMI": {
+        "CityName": "Balangir",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOeMl9vQoBWBZ2vzM": {
+        "CityName": "Baleshwar",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOeO8Exbm8CxWEra4": {
+        "CityName": "Baripada",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOePZlOZCj10xrEG2": {
+        "CityName": "Bhubaneshwar",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOeR0ZdhkEFIaOg7u": {
+        "CityName": "Brahmapur",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOeSSqKZRLdVX1LZY": {
+        "CityName": "Cuttack",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOeTs1GgjZaUL6yj8": {
+        "CityName": "Dhenkanal",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOeVGq98Qav1E2j4B": {
+        "CityName": "Kendujhar",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOeWc3wC70l2gPOcA": {
+        "CityName": "Konark",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOeY2myUK7V43WZOR": {
+        "CityName": "Koraput",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOed9O930nDQsMVJl": {
+        "CityName": "Paradip",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOeeTFG5PsjCpPMVK": {
+        "CityName": "Phulabani",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOefqKBmhuj-EzAy9": {
+        "CityName": "Puri",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOehGCz0OkQN6tJig": {
+        "CityName": "Sambalpur",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOeidSXBe5JAjdV6H": {
+        "CityName": "Udayagiri",
+        "StateID": "-NnrNjNhOiZEcfE-SF9W"
+      },
+      "-NnrOejxHWw1OwGoAo--": {
+        "CityName": "Karaikal",
+        "StateID": "-NnrNjPFlgZ_DWWuJjWo"
+      },
+      "-NnrOelH-hTinGz3Si_J": {
+        "CityName": "Mahe",
+        "StateID": "-NnrNjPFlgZ_DWWuJjWo"
+      },
+      "-NnrOemeJCUTPfaZM1q2": {
+        "CityName": "Yanam",
+        "StateID": "-NnrNjPFlgZ_DWWuJjWo"
+      },
+      "-NnrOenyMcoemxAOJt_3": {
+        "CityName": "Abu",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOepIQj7dj3CdrQJa": {
+        "CityName": "Ajmer",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOer-hx9O7dErr-Ca": {
+        "CityName": "Alwar",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOesIk8pv0S6cMPj6": {
+        "CityName": "Amer",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOetdF3VgOfhPN0mL": {
+        "CityName": "Barmer",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOev--7DRCb1wassD": {
+        "CityName": "Beawar",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOewM79313OugJqwn": {
+        "CityName": "Bharatpur",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOexhbjZ4xaxwNDhm": {
+        "CityName": "Bhilwara",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOez8FA9_j62a9C0H": {
+        "CityName": "Bikaner",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOf-VzFUi0gcRRkjK": {
+        "CityName": "Bundi",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOf0sRTdi_4t_aaHj": {
+        "CityName": "Chittaurgarh",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOf2FYRwi7ZPa1o6Y": {
+        "CityName": "Churu",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOf3bEmZeyiJIVMgX": {
+        "CityName": "Dhaulpur",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOf4wd1P-pSM1JJjR": {
+        "CityName": "Dungarpur",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOf6Iye4MAWAZ0-63": {
+        "CityName": "Ganganagar",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOf7ct5vP8i0bUj5m": {
+        "CityName": "Hanumangarh",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOf8wMF3Zmc-5pia6": {
+        "CityName": "Jaipur",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfAICWhKHJViJXrc": {
+        "CityName": "Jaisalmer",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfBdPuHe-o4J8h-N": {
+        "CityName": "Jalor",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfD4XI0n7Q4iqFcy": {
+        "CityName": "Jhalawar",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfEQlG_LRt1dI2y-": {
+        "CityName": "Jhunjhunu",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfFpH4aMq-aa1D7K": {
+        "CityName": "Jodhpur",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfHBq2LWf-X0Ecae": {
+        "CityName": "Kishangarh",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfIXW7qfAhQsiwYh": {
+        "CityName": "Kota",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfJvLvD1Dbxp_JUS": {
+        "CityName": "Merta",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfLFggwtVoJGrmDJ": {
+        "CityName": "Nagaur",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfMbzond20KZQFYq": {
+        "CityName": "Nathdwara",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfNtH0tKJ8IiNLJa": {
+        "CityName": "Pali",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfPFkrpUOhXEgyZF": {
+        "CityName": "Phalodi",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfQbmGipC1QkzGtR": {
+        "CityName": "Pushkar",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfRwaRagqEW5qCcT": {
+        "CityName": "Sawai Madhopur",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfTUeGQ_Hs2RSkl9": {
+        "CityName": "Shahpura",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfUwjtWxLPa5c2GI": {
+        "CityName": "Sikar",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfWGKLuqdM2cjcBi": {
+        "CityName": "Sirohi",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfXc1kygnDQYF-Ou": {
+        "CityName": "Tonk",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOfZ0BVs3hPi34wnC": {
+        "CityName": "Udaipur",
+        "StateID": "-NnrNjSCkX6Tk_rn-ck_"
+      },
+      "-NnrOf_VfJDw1zZEWv2Q": {
+        "CityName": "Gangtok",
+        "StateID": "-NnrNjThzMBXwZc0ftOB"
+      },
+      "-NnrOfasKhEWSJ8e1UEK": {
+        "CityName": "Gyalshing",
+        "StateID": "-NnrNjThzMBXwZc0ftOB"
+      },
+      "-NnrOfcDMGdjF5vp9tjO": {
+        "CityName": "Lachung",
+        "StateID": "-NnrNjThzMBXwZc0ftOB"
+      },
+      "-NnrOfdYZccZKhTawG9J": {
+        "CityName": "Mangan",
+        "StateID": "-NnrNjThzMBXwZc0ftOB"
+      },
+      "-NnrOfes0EIsnyiLdU3k": {
+        "CityName": "Arcot",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfgEJt44jY8tQ2JK": {
+        "CityName": "Chengalpattu",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfh_9eW_w6C8hE9s": {
+        "CityName": "Chennai",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfiwWUmzS9nobqJU": {
+        "CityName": "Chidambaram",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfkIBBN6wBcFFxEM": {
+        "CityName": "Coimbatore",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOflf7h_WxuoIh0X4": {
+        "CityName": "Cuddalore",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfn-Qf8C6xB1bFnM": {
+        "CityName": "Dharmapuri",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfoMua_8ZNwplGGm": {
+        "CityName": "Dindigul",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfpeC_aN0dPWg01q": {
+        "CityName": "Erode",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfr1CevLtKQU4gMO": {
+        "CityName": "Kanchipuram",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfsPLFDB6aXwIzGq": {
+        "CityName": "Kanniyakumari",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOftmMn76Hk5YNkTv": {
+        "CityName": "Kodaikanal",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfv91IfzdudSF__y": {
+        "CityName": "Kumbakonam",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfwXP1QqQbdqGhMN": {
+        "CityName": "Madurai",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfxt2_E2cgqRZv8T": {
+        "CityName": "Mamallapuram",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOfzFAkJueiIWt9b5": {
+        "CityName": "Nagappattinam",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOg-gDf4Ul9mN30Zm": {
+        "CityName": "Nagercoil",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOg1-4FolNJS59bKX": {
+        "CityName": "Palayamkottai",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOg2NudLaDd8qmR92": {
+        "CityName": "Pudukkottai",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOg3fSUJiRzxBVkyE": {
+        "CityName": "Rajapalayam",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOg51PN7IfsOZFLLd": {
+        "CityName": "Ramanathapuram",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOg6OT14pZL_9hLRh": {
+        "CityName": "Salem",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOg7jy65fGBD2bU-r": {
+        "CityName": "Thanjavur",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOg95RSGMLbuQu-Ca": {
+        "CityName": "Tiruchchirappalli",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOgAPdlw8hmoWSXxS": {
+        "CityName": "Tirunelveli",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOgBmUKShYkPoHZig": {
+        "CityName": "Tiruppur",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOgD9dtl0gfkiMSBX": {
+        "CityName": "Thoothukudi",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOgEXqMu8b2yoXXIq": {
+        "CityName": "Udhagamandalam",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOgFsA5qfFAFaZHKL": {
+        "CityName": "Vellore",
+        "StateID": "-NnrNjVBC14JXojEjHq8"
+      },
+      "-NnrOgHF7ZiOxTyWJyEH": {
+        "CityName": "Hyderabad",
+        "StateID": "-NnrNjWbTMBKOFz7WP_Z"
+      },
+      "-NnrOgI_RAls_u_qRi0P": {
+        "CityName": "Karimnagar",
+        "StateID": "-NnrNjWbTMBKOFz7WP_Z"
+      },
+      "-NnrOgJvBA_kdyv0jdCp": {
+        "CityName": "Khammam",
+        "StateID": "-NnrNjWbTMBKOFz7WP_Z"
+      },
+      "-NnrOgLEhj0agu5uDTh0": {
+        "CityName": "Mahbubnagar",
+        "StateID": "-NnrNjWbTMBKOFz7WP_Z"
+      },
+      "-NnrOgM_5OJOKkSGY8D2": {
+        "CityName": "Nizamabad",
+        "StateID": "-NnrNjWbTMBKOFz7WP_Z"
+      },
+      "-NnrOgNwGHgpm4wwAB86": {
+        "CityName": "Sangareddi",
+        "StateID": "-NnrNjWbTMBKOFz7WP_Z"
+      },
+      "-NnrOgPHEsQi0d1pviuX": {
+        "CityName": "Warangal",
+        "StateID": "-NnrNjWbTMBKOFz7WP_Z"
+      },
+      "-NnrOgQjj2t7BQIH7xf_": {
+        "CityName": "Agartala",
+        "StateID": "-NnrNjY5y3fTr4VafA5B"
+      },
+      "-NnrOgS6wgm3oZwnXKDY": {
+        "CityName": "Agra",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgTS6ZXnbO5LFAjv": {
+        "CityName": "Aligarh",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgUn-vKErz4lvkLp": {
+        "CityName": "Amroha",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgW5DCTXEJ1GM7xt": {
+        "CityName": "Ayodhya",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgXR_VHX1JfZdXZu": {
+        "CityName": "Azamgarh",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgYjudzNYPuUe8hX": {
+        "CityName": "Bahraich",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOg_5FhYEV1qOBIfm": {
+        "CityName": "Ballia",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgaRiABgqwHCF7si": {
+        "CityName": "Banda",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgbnuUrmf09Af1xb": {
+        "CityName": "Bara Banki",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgd5guIycj0n-IhC": {
+        "CityName": "Bareilly",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgeVxcA2n78Dy8iA": {
+        "CityName": "Basti",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgftND9Y_cRXl3mi": {
+        "CityName": "Bijnor",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOghJ31gdHG1ghgbr": {
+        "CityName": "Bithur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgifPy6tkscaH5fc": {
+        "CityName": "Budaun",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgk3fMhNo_mb9Xc6": {
+        "CityName": "Bulandshahr",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgq7YmM4Q85YXW1b": {
+        "CityName": "Deoria",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgrUJsEvoCHge8M3": {
+        "CityName": "Etah",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgspa4Wz_k_9dkfr": {
+        "CityName": "Etawah",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOguBuQ_RrOivwXgN": {
+        "CityName": "Faizabad",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgvUrp-nvyaXROwm": {
+        "CityName": "Farrukhabad-cum-Fatehgarh",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgwmPiNmHLM5CvVn": {
+        "CityName": "Fatehpur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgy47lvObax6cI0h": {
+        "CityName": "Fatehpur Sikri",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOgzPEDWhVI5L5pUn": {
+        "CityName": "Ghaziabad",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOh-jgrGD3gUypsNB": {
+        "CityName": "Ghazipur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOh13p4hbPXT2y-Cq": {
+        "CityName": "Gonda",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOh2NbA7RpLjZnWEL": {
+        "CityName": "Gorakhpur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOh3k-JnTMm4Sv_GR": {
+        "CityName": "Hamirpur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOh568b31wyX7cUMq": {
+        "CityName": "Hardoi",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOh6VARY-XLQPWPi8": {
+        "CityName": "Hathras",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOh7rCDnMom1kU2vu": {
+        "CityName": "Jalaun",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOh9AUja6j9RE2E6u": {
+        "CityName": "Jaunpur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhAXJvFRsCNGvVVe": {
+        "CityName": "Jhansi",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhBwVK0qN_RSREJR": {
+        "CityName": "Kannauj",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhDGYzqkSooZ4t1w": {
+        "CityName": "Kanpur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhE_aRUspFzomoKy": {
+        "CityName": "Lakhimpur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhFvB4nJ9dqE3qyY": {
+        "CityName": "Lalitpur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhHFMMk7AFyRADUP": {
+        "CityName": "Lucknow",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhIYxGS97a1GIACw": {
+        "CityName": "Mainpuri",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhJr_3INL8YStdX5": {
+        "CityName": "Mathura",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhLFaP-reoNmdnaq": {
+        "CityName": "Meerut",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhMf1OOhXHFP6HsE": {
+        "CityName": "Mirzapur-Vindhyachal",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhNzGYN31dfeL_G6": {
+        "CityName": "Moradabad",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhPJ1-pEajj4dsi3": {
+        "CityName": "Muzaffarnagar",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhQcHT0oGEFhur0s": {
+        "CityName": "Partapgarh",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhRxTXXnPPE9dr5R": {
+        "CityName": "Pilibhit",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhTGRgvfMOqDlFfz": {
+        "CityName": "Prayagraj",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhUaZZFN4fk0291V": {
+        "CityName": "Rae Bareli",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhVvQiZ2-6KNgQDV": {
+        "CityName": "Rampur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhXFbzr4Kh_TwV27": {
+        "CityName": "Saharanpur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhYZRX_StJ_iOCv7": {
+        "CityName": "Sambhal",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhZvDdvaW7KFv0v8": {
+        "CityName": "Shahjahanpur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhaHS7JVuUzB6xUa": {
+        "CityName": "Sitapur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhbesK61vfuqfLk5": {
+        "CityName": "Sultanpur",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhd1nRE8WSZ5GzfX": {
+        "CityName": "Tehri",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOheQo4P3JCT7NS7I": {
+        "CityName": "Varanasi",
+        "StateID": "-NnrNjZ_vPsnLTCmBFGZ"
+      },
+      "-NnrOhfmmhY7HSwn00MN": {
+        "CityName": "Almora",
+        "StateID": "-NnrNja320DD8cEb-a9c"
+      },
+      "-NnrOhhABVMCOU_vf7ha": {
+        "CityName": "Dehra Dun",
+        "StateID": "-NnrNja320DD8cEb-a9c"
+      },
+      "-NnrOhi__JZPBYdmMKF0": {
+        "CityName": "Haridwar",
+        "StateID": "-NnrNja320DD8cEb-a9c"
+      },
+      "-NnrOhjwxHiu2vltBbdq": {
+        "CityName": "Mussoorie",
+        "StateID": "-NnrNja320DD8cEb-a9c"
+      },
+      "-NnrOhlM0HU0XOeJP7ut": {
+        "CityName": "Nainital",
+        "StateID": "-NnrNja320DD8cEb-a9c"
+      },
+      "-NnrOhmjF_7f26AjllIf": {
+        "CityName": "Pithoragarh",
+        "StateID": "-NnrNja320DD8cEb-a9c"
+      }
+    },
+    "tblDoctor": {
+      "-NoXl75ySZBz0vdHY6Kx": {
+        "Contact": "90162046595",
+        "DateOfBirth": "2004-02-24",
+        "DoctorAddress": "52, THAKORDHWAR SOC-3, OPP. C.K. PATEL SCHOOL",
+        "DoctorName": "Abhishek Kulkarni",
+        "Documents": "Book1.pdf",
+        "Email": "devmtamakuwala2424@gmail.com",
+        "Gender": "Male",
+        "Password": "$2y$10$HnedrS5/jno1vpKovKqhR.tUZWv/JiDTPP3bBZfP9UbGwHPfMRUI2",
+        "Photo": "Screenshot 2023-09-10 120726.png",
+        "Speciality": "-NoXfc_sHMxD4HoLMRpj, ",
+        "Username": "abhishek@doctor"
+      },
+      "-NoXlPHzGHUbo8QQvy5H": {
+        "Contact": "90162046595",
+        "DateOfBirth": "1979-12-13",
+        "DoctorAddress": "52, THAKORDHWAR SOC-3, OPP. C.K. PATEL SCHOOL",
+        "DoctorName": "Sameer Malhotra",
+        "Documents": "Book1.pdf",
+        "Email": "devmtamakuwala2424@gmail.com",
+        "Gender": "Male",
+        "Password": "$2y$10$gaZ65bFzDAHDLvHZR/j5Gu6jG2HDZMO8AsORuCm9.9ecH3y9HzQrC",
+        "Photo": "Screenshot 2023-09-10 120726.png",
+        "Speciality": "-NoXfce6ldR4bHJPvhpA, -NoXfcbKwUUNUkx0tmaR, -NoXfc_sHMxD4HoLMRpj, ",
+        "Username": "sameer@doctor"
+      }
+    },
+    "tblHospital": {
+      "-NnrQBeLjd6xHYWVrgan": {
+        "AvailableDoctors": "Dr.Ashok Rajgopal - Musculoskeleton Disorder and Orthopaedic Surgeon, Dr.Vinod Raina - MBBS,MD,FRCP, Dr.Hs Bhatya - Cardiovascular and Cardiothoraic Surgeon, Dr.Arun Saroha - Neurosurgeon, Dr.Naresh Treshan - Chief Cardiac Surgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Surgery, Pharmacy, Diagnostic Services, Outpatient Department (OPD), Inpatient Care, Emergency Department, ",
+        "AvailableTreatments": "Coronary Artery Bypass Surgery (CABS), Kidney Transplant, Cardiac Rehabilitation, Blood Transfusion, Wound Care, ",
+        "HospitalAddress": "Saket",
+        "HospitalCity": "New Delhi",
+        "HospitalName": "MAX Super Speciality Hospital",
+        "HospitalState": "-NnrNj-yz7csqoIREvc6",
+        "Photo": "IMG-20240111-WA0007.jpg"
+      },
+      "-NnrUBX6sG8_sJs0PCZ3": {
+        "AvailableDoctors": "Dr.Vinod Raina - MBBS,MD,FRCP, Dr.Naresh Treshan - Chief Cardiac Surgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Pharmacy, Diagnostic Services, Outpatient Department (OPD), Inpatient Care, ",
+        "AvailableTreatments": "Cognitive Behavioral Therapy, Postoperative Care, Intraoperative Surgery, Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "Rustom bag, off HAL Ariport Road",
+        "HospitalCity": "Bengaluru",
+        "HospitalName": "Manipal Hospital",
+        "HospitalState": "-NnrNjALVfFq0SRPGOJM",
+        "Photo": "IMG-20240111-WA0006.jpg"
+      },
+      "-NnrXZ4YUml0W00G-zcA": {
+        "AvailableDoctors": " Dr.Sandeep Vaishya - Neurosurgeon,  Dr.Naresh Treshan - Chief Cardiac Surgeon, FRCP, MD, Dr.Vinod Raina - MBBS, ",
+        "AvailableFacilities": " Inpatient Care,  Outpatient Department (OPD), Surgery, ",
+        "AvailableTreatments": " Surgery,  Preoperative Surgery,  Intraoperative Surgery,  Postoperative Care,  Physical Therapy, Cognitive Behavioral Therapy, ",
+        "HospitalAddress": "Indraprastha Apollo Hospital, NH-19, New Delhi, Delhi 110076",
+        "HospitalCity": "New Delhi",
+        "HospitalName": "Apollo",
+        "HospitalState": "Delhi",
+        "Photo": "indraprastha-apollo-hospitals.jpeg"
+      },
+      "-NnrYX78o_M0UqJi5kQv": {
+        "AvailableDoctors": "Dr.Vinod Raina - MBBS,MD,FRCP, Dr.Arun Saroha - Neurosurgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Surgery, Pharmacy, Outpatient Department (OPD), Emergency Department, ",
+        "AvailableTreatments": "Physical Therapy, Postoperative Care, Intraoperative Surgery, Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "Nanavati Max Super Speciality Hospital, LIC Colony, Suresh Colony, Vile Parle West, Mumbai, Maharashtra 400056",
+        "HospitalCity": "Mumbai",
+        "HospitalName": "Nanavati super speciality hospital",
+        "HospitalState": "-NnrNjGCcnhAAsvDGkFf",
+        "Photo": "IMG-20240111-WA0008.jpg"
+      },
+      "-NnwJ1oTJe0FWv6xtEci": {
+        "AvailableDoctors": "Dr.Vinod Raina - MBBS,MD,FRCP, Dr.Arun Saroha - Neurosurgeon, Dr.Naresh Treshan - Chief Cardiac Surgeon, ",
+        "AvailableFacilities": "Outpatient Department (OPD), Inpatient Care, ",
+        "AvailableTreatments": "Physical Therapy, Postoperative Care, Preoperative Surgery, ",
+        "HospitalAddress": "Gurgaon, Haryana",
+        "HospitalCity": "Gurugram",
+        "HospitalName": "Medanta - The Medicity, Gurgaon",
+        "HospitalState": "-NnrNj4RmgxHXeA7qcAU",
+        "Photo": "Medanta_the_medicity_hospital.jpeg"
+      },
+      "-NnwMdHOClXSLmIipsmi": {
+        "AvailableDoctors": "Dr.Hs Bhatya - Cardiovascular and Cardiothoraic Surgeon, Dr.Naresh Treshan - Chief Cardiac Surgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Social Work Services, Pharmacy, Emergency Department, ",
+        "AvailableTreatments": "Postoperative Care, Intraoperative Surgery, Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "4/112, Mount Poonamalle Road Manapakkam, Chennai - 600 089",
+        "HospitalCity": "Chennai",
+        "HospitalName": "MIOT International, Chennai",
+        "HospitalState": "-NnrNjVBC14JXojEjHq8",
+        "Photo": "miot_international_chennai-min.jpeg"
+      },
+      "-NnwUftiSmwIUoJJkq_f": {
+        "AvailableDoctors": "Dr.Manoj Gupta - Therapy (HBOT), Dr.Lokesh Kumar - Oncologist, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Outpatient Department (OPD), Inpatient Care, Emergency Department, ",
+        "AvailableTreatments": "Cognitive Behavioral Therapy, Physical Therapy, Postoperative Care, Surgery, ",
+        "HospitalAddress": "Okhla road, Sukhdev Vihar Metro Station, 110025",
+        "HospitalCity": "New Delhi",
+        "HospitalName": "Fortis Escorts Heart Institute",
+        "HospitalState": "-NnrNj-yz7csqoIREvc6",
+        "Photo": "WhatsApp Image 2024-01-08 at 12.02.43_27a83c5d.jpg"
+      },
+      "-NnzABb4NIxX0IdCqQL8": {
+        "AvailableDoctors": "Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Outpatient Department (OPD), Inpatient Care, ",
+        "AvailableTreatments": "Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "Mithakhali Six Road, Maharashtra Society, Ellisbridge",
+        "HospitalCity": "Ahmadabad",
+        "HospitalName": "Hcg Multi Specialty Hospital",
+        "HospitalState": "-NnrNj2xbFdM138g0oXE",
+        "Photo": "vishakapatnam-chinagadili-arilova-banner.jpeg"
+      },
+      "-NnzBnET6Rt3gk4esF6d": {
+        "AvailableDoctors": "Dr.Naresh Treshan - Chief Cardiac Surgeon, ",
+        "AvailableFacilities": "Outpatient Department (OPD), Inpatient Care, ",
+        "AvailableTreatments": "Intraoperative Surgery, Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "439, Sholinganallur, Cheran Nagar, Perumbakkam, Chennai, Tamil Nadu 600100",
+        "HospitalCity": "Chennai",
+        "HospitalName": "Gleneagles Global Health City",
+        "HospitalState": "-NnrNjVBC14JXojEjHq8",
+        "Photo": "GleneaglesGlobalHealthCity.jpeg"
+      },
+      "-NnzCQec_3cNwxdOD2ZS": {
+        "AvailableDoctors": "Dr.Arun Saroha - Neurosurgeon, Dr.Naresh Treshan - Chief Cardiac Surgeon, ",
+        "AvailableFacilities": "Outpatient Department (OPD), Inpatient Care, Emergency Department, ",
+        "AvailableTreatments": "Postoperative Care, Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "Rao Saheb, Rao Saheb Achutrao Patwardhan Marg, Four Bungalows, Andheri West, Mumbai, Maharashtra 400053",
+        "HospitalCity": "Mumbai",
+        "HospitalName": " Kokilaben Dhirubhai Ambani Hospital",
+        "HospitalState": "-NnrNjGCcnhAAsvDGkFf",
+        "Photo": "KokilabenDhirubhaiAmbaniHospital.jpeg"
+      },
+      "-NnzDDFp8TIt2lTEc-pV": {
+        "AvailableDoctors": "Dr.Arun Saroha - Neurosurgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Medical Records, Outpatient Department (OPD), Emergency Department, ",
+        "AvailableTreatments": "Physical Therapy, Postoperative Care, Preoperative Surgery, ",
+        "HospitalAddress": " Sector 51, Gurugram, Bindapur, Haryana 122001",
+        "HospitalCity": "Gurugram",
+        "HospitalName": "Artemis Hospital",
+        "HospitalState": "-NnrNj4RmgxHXeA7qcAU",
+        "Photo": "Artemis-Hospital.jpeg"
+      },
+      "-NnzDztmR9WsLOQF1CeQ": {
+        "AvailableDoctors": "Dr.Lokesh Kumar - Oncologist, Dr.Arun Saroha - Neurosurgeon, ",
+        "AvailableFacilities": "Medical Records, Oncology Services, Outpatient Department (OPD), ",
+        "AvailableTreatments": "Kidney Transplant, Postoperative Care, Preoperative Surgery, ",
+        "HospitalAddress": "8-12, Swatantryaveer Savarkar Rd, Mahim West, Mahim, Mumbai, Maharashtra 400016",
+        "HospitalCity": "Mumbai",
+        "HospitalName": "P. D. Hinduja National Hospital & Medical Research Centre",
+        "HospitalState": "-NnrNjGCcnhAAsvDGkFf",
+        "Photo": "download.jpeg"
+      },
+      "-NnzEY2GWyv-mR59CEEU": {
+        "AvailableDoctors": "Dr.Manoj Gupta - Therapy (HBOT), Dr.Naresh Treshan - Chief Cardiac Surgeon, ",
+        "AvailableFacilities": "Nutrition Services, Outpatient Department (OPD), Inpatient Care, ",
+        "AvailableTreatments": "Postoperative Care, Intraoperative Surgery, Preoperative Surgery, ",
+        "HospitalAddress": "Acharya Donde Marg, Parel East, Parel, Mumbai, Maharashtra 400012",
+        "HospitalCity": "Mumbai",
+        "HospitalName": "King Edward Memorial Hospital",
+        "HospitalState": "-NnrNjGCcnhAAsvDGkFf",
+        "Photo": "King Edward Memorial Hospital.jpeg"
+      },
+      "-NnzFBBRAo0OvgKfGtJ8": {
+        "AvailableDoctors": "Dr.Hs Bhatya - Cardiovascular and Cardiothoraic Surgeon, Dr.Arun Saroha - Neurosurgeon, Dr.Naresh Treshan - Chief Cardiac Surgeon, ",
+        "AvailableFacilities": "Pharmacy, Diagnostic Services, Outpatient Department (OPD), ",
+        "AvailableTreatments": "Postoperative Care, Intraoperative Surgery, Preoperative Surgery, ",
+        "HospitalAddress": " Alexander Rd, Kummari Guda, Shivaji Nagar, Secunderabad, Telangana 500003",
+        "HospitalCity": "Hyderabad",
+        "HospitalName": "Yashoda Hospital Secunderabad",
+        "HospitalState": "-NnrNjWbTMBKOFz7WP_Z",
+        "Photo": "yashodahospital.jpeg"
+      },
+      "-NnzFxssGC4Dyl2bzNPX": {
+        "AvailableDoctors": "Dr.j k Gupta - Cardiologist, Aditya Gupta - Neurosurgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Nutrition Services, Diagnostic Services, Inpatient Care, ",
+        "AvailableTreatments": "Pancreas Transplant, Intraoperative Surgery, Preoperative Surgery, ",
+        "HospitalAddress": "No. 43/2, New Airport Road NH 7, Outer Ring Rd, Sahakar Nagar, Bengaluru, Karnataka 560092",
+        "HospitalCity": "Bengaluru",
+        "HospitalName": "Aster CMI Hospital",
+        "HospitalState": "-NnrNjALVfFq0SRPGOJM",
+        "Photo": "Aster CMI Hospital.jpeg"
+      },
+      "-NnzIFuV0FMUDgpTXmFV": {
+        "AvailableDoctors": "Dr.Hs Bhatya - Cardiovascular and Cardiothoraic Surgeon, Dr.Arun Saroha - Neurosurgeon, Dr.Naresh Treshan - Chief Cardiac Surgeon, ",
+        "AvailableFacilities": "Pharmacy, Outpatient Department (OPD), Inpatient Care, ",
+        "AvailableTreatments": "Postoperative Care, Intraoperative Surgery, Preoperative Surgery, ",
+        "HospitalAddress": "chennai",
+        "HospitalCity": "Chennai",
+        "HospitalName": "Kauvery Hospital",
+        "HospitalState": "-NnrNjVBC14JXojEjHq8",
+        "Photo": "Kauvery Hospital.jpeg"
+      },
+      "-NnzIx3B-7l7g_fOKOPq": {
+        "AvailableDoctors": "Dr.Hs Bhatya - Cardiovascular and Cardiothoraic Surgeon, Dr.Arun Saroha - Neurosurgeon, ",
+        "AvailableFacilities": "Diagnostic Services, Outpatient Department (OPD), ",
+        "AvailableTreatments": "Postoperative Care, Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "Sri Aurobindo Marg, Ansari Nagar, Ansari Nagar East, New Delhi, Delhi 110029",
+        "HospitalCity": "New Delhi",
+        "HospitalName": "All India Institute of Medical Sciences",
+        "HospitalState": "-NnrNj-yz7csqoIREvc6",
+        "Photo": "aiims.jpeg"
+      },
+      "-NnzJUugZnkwXz0tVnHA": {
+        "AvailableDoctors": "Dr.Hemant Sharma - Orthopaedic, Dr.Arun Saroha - Neurosurgeon, Dr.Naresh Treshan - Chief Cardiac Surgeon, ",
+        "AvailableFacilities": "Pharmacy, Outpatient Department (OPD), Emergency Department, ",
+        "AvailableTreatments": "Electrophysiology Studies and Ablation, Coronary Artery Bypass Surgery (CABS), Intraoperative Surgery, ",
+        "HospitalAddress": " LIC Colony, Suresh Colony, Vile Parle West, Mumbai, Maharashtra 400056",
+        "HospitalCity": "Mumbai",
+        "HospitalName": "Dr. Balabhai Nanavati Hospital",
+        "HospitalState": "-NnrNjGCcnhAAsvDGkFf",
+        "Photo": "balabhainanavati.jpeg"
+      },
+      "-NnzK0r_-e4Dbe4s_sGs": {
+        "AvailableDoctors": "Dr.Hemant Sharma - Orthopaedic, Dr.Hs Bhatya - Cardiovascular and Cardiothoraic Surgeon, Dr.Arun Saroha - Neurosurgeon, ",
+        "AvailableFacilities": "Medical Records, Outpatient Department (OPD), Inpatient Care, ",
+        "AvailableTreatments": "Postoperative Care, Intraoperative Surgery, ",
+        "HospitalAddress": " Saifee Hospital, Maharshi Karve Rd, Charni Road East, Opera House, Girgaon, Mumbai, Maharashtra 400004",
+        "HospitalCity": "Mumbai",
+        "HospitalName": "Saifee Hospital",
+        "HospitalState": "-NnrNjGCcnhAAsvDGkFf",
+        "Photo": "Saifee Hospital.jpeg"
+      },
+      "-NnzKSxhJAYuTCEnprT-": {
+        "AvailableDoctors": "Dr.Arun Saroha - Neurosurgeon, Dr.Naresh Treshan - Chief Cardiac Surgeon, ",
+        "AvailableFacilities": "Emergency Department, ",
+        "AvailableTreatments": "Postoperative Care, Intraoperative Surgery, Preoperative Surgery, ",
+        "HospitalAddress": "Dr L H, Hiranandani Hospital, Hill Side Avenue, Hiranandani Gardens, Ramabai Ambedkar Nagar, Powai, Mumbai, Maharashtra 400076",
+        "HospitalCity": "Mumbai",
+        "HospitalName": "Dr.L.H.Hiranandani Hospital",
+        "HospitalState": "-NnrNjGCcnhAAsvDGkFf",
+        "Photo": "Dr.L.H.Hiranandani Hospital.jpeg"
+      },
+      "-NnzKvZQtjfU63oY0KO-": {
+        "AvailableDoctors": "Dr.Arun Saroha - Neurosurgeon, Dr.Naresh Treshan - Chief Cardiac Surgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Diagnostic Services, Outpatient Department (OPD), Inpatient Care, ",
+        "AvailableTreatments": "Cognitive Behavioral Therapy, Postoperative Care, Preoperative Surgery, ",
+        "HospitalAddress": "4-A, Dr, Mogappair, Chennai, Tamil Nadu 600037",
+        "HospitalCity": "Chennai",
+        "HospitalName": "Madras Medical Mission Hospital",
+        "HospitalState": "-NnrNjVBC14JXojEjHq8",
+        "Photo": "Madras Medical Mission Hospital.jpeg"
+      },
+      "-NnzLIeHc1jnDRktb1WE": {
+        "AvailableDoctors": "Dr.Lokesh Kumar - Oncologist, Dr.Arun Saroha - Neurosurgeon, ",
+        "AvailableFacilities": "Medical Records, Maternal and Child Health, ",
+        "AvailableTreatments": "Intraoperative Surgery, Preoperative Surgery, ",
+        "HospitalAddress": "1 st Floor, Shant Prabha Height, Above IndusInd Bank, Opposite Vallabh Vadi, Bhairavnath Rd, near Jawahar Chowk, Archana Society, Bhairavnath, Maninagar, Ahmedabad, Gujarat 380008",
+        "HospitalCity": "Ahmadabad",
+        "HospitalName": "Care Institute Of Medical Science",
+        "HospitalState": "-NnrNj2xbFdM138g0oXE",
+        "Photo": "cims.jpeg"
+      },
+      "-NnzLlr2plIal6g9Ko5u": {
+        "AvailableDoctors": "Dr.Naresh Treshan - Chief Cardiac Surgeon, ",
+        "AvailableFacilities": "Inpatient Care, ",
+        "AvailableTreatments": "Postoperative Care, Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "Road No.1, Banjara Hills, Hyderabad, Telangana - 500034",
+        "HospitalCity": "Hyderabad",
+        "HospitalName": "Care Hospitals - Banjara Hills",
+        "HospitalState": "-NnrNjWbTMBKOFz7WP_Z",
+        "Photo": "Care Hospitals - Banjara Hills.jpeg"
+      },
+      "-NnzMFWGheiZPwN2loSV": {
+        "AvailableDoctors": "Dr.Arun Saroha - Neurosurgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Inpatient Care, Emergency Department, ",
+        "AvailableTreatments": "Intraoperative Surgery, Preoperative Surgery, ",
+        "HospitalAddress": "Vishwakarma Arcade, 406-7, Mahadev Nagar Society, Majura Gate, Surat, Gujarat 395001",
+        "HospitalCity": "Surat",
+        "HospitalName": "Criticare Super Speciality Hospital & Research Centre",
+        "HospitalState": "-NnrNj2xbFdM138g0oXE",
+        "Photo": "Criticare Super Speciality Hospital & Research Centre.jpeg"
+      },
+      "-NnzN5rPpoCQkoN50o6R": {
+        "AvailableDoctors": "Dr.Ashish Jain - Otolaryngologist,MBBS,DCH,MS, Dr.Arun Saroha - Neurosurgeon, ",
+        "AvailableFacilities": "Emergency Department, ",
+        "AvailableTreatments": "Heart Valve Repair or Replacement Surgery, Surgery, ",
+        "HospitalAddress": " Madhya Marg, Sector 12, Chandigarh, 160012",
+        "HospitalCity": "Chandigarh",
+        "HospitalName": "PGIMER - Postgraduate Institute of Medical Education and Research",
+        "HospitalState": "-NnrNiwWIZlCka3cK-wC",
+        "Photo": "pgimer.jpeg"
+      },
+      "-No0q4TUz4Y68Otgqe9O": {
+        "AvailableDoctors": "Dr.Lokesh Kumar - Oncologist, Dr.Hitesh Garg - Surgeon Consultant,MBBS,MS, Dr.Arun Saroha - Neurosurgeon, ",
+        "AvailableFacilities": "Pharmacy, Outpatient Department (OPD), Emergency Department, ",
+        "AvailableTreatments": "Postoperative Care, Intraoperative Surgery, Preoperative Surgery, ",
+        "HospitalAddress": " Hiranmagri Extension, Manwakhera NH-8 Bypass, Near Eklingpura Chouraha, Rajasthan 313001",
+        "HospitalCity": "Udaipur",
+        "HospitalName": "Geetanjali Hospital",
+        "HospitalState": "-NnrNjSCkX6Tk_rn-ck_",
+        "Photo": "Geetanjali Hospital.jpeg"
+      }
+    },
+    "tblSpe": {
+      "-NoXfcZNMMnrcyuYx_Bk": {
+        "Specilization": "General Internal Medicine"
+      },
+      "-NoXfc_sHMxD4HoLMRpj": {
+        "Specilization": "Cardiology"
+      },
+      "-NoXfcbKwUUNUkx0tmaR": {
+        "Specilization": "Gastroenterology"
+      },
+      "-NoXfcch6BhsjYpL2iDL": {
+        "Specilization": "Nephrology"
+      },
+      "-NoXfce6ldR4bHJPvhpA": {
+        "Specilization": "Pulmonology"
+      }
+    },
+    "tblStates": {
+      "-NnrNiqd7hcgl08Z6NR4": {
+        "StateName": "Andhra Pradesh"
+      },
+      "-NnrNis84hyimpKHW7eZ": {
+        "StateName": "Arunachal Pradesh"
+      },
+      "-NnrNitdVsaZC1_LQ0kJ": {
+        "StateName": "Assam"
+      },
+      "-NnrNiv6etqz6VPv0pSF": {
+        "StateName": "Bihar"
+      },
+      "-NnrNiwWIZlCka3cK-wC": {
+        "StateName": "Chandigarh"
+      },
+      "-NnrNiy1ppCNv7MXdQF6": {
+        "StateName": "Chhattisgarh"
+      },
+      "-NnrNizX0rHDTuuCiKZ1": {
+        "StateName": "Dadra and Nagar Haveli and Daman and Diu"
+      },
+      "-NnrNj-yz7csqoIREvc6": {
+        "StateName": "Delhi"
+      },
+      "-NnrNj1Sesmfq47Q9XXu": {
+        "StateName": "Goa"
+      },
+      "-NnrNj2xbFdM138g0oXE": {
+        "StateName": "Gujarat"
+      },
+      "-NnrNj4RmgxHXeA7qcAU": {
+        "StateName": "Haryana"
+      },
+      "-NnrNj5s8lmBO6LzNvwn": {
+        "StateName": "Himachal Pradesh"
+      },
+      "-NnrNj7OQxRr8Bj3qqVm": {
+        "StateName": "Jammu and Kashmir"
+      },
+      "-NnrNj8srsSJFk0mvuc4": {
+        "StateName": "Jharkhand"
+      },
+      "-NnrNjALVfFq0SRPGOJM": {
+        "StateName": "Karnataka"
+      },
+      "-NnrNjBqkE6GYuavgorG": {
+        "StateName": "Kerala"
+      },
+      "-NnrNjDJ461t7158AQ39": {
+        "StateName": "Ladakh"
+      },
+      "-NnrNjEltWe5pHsTkEmW": {
+        "StateName": "Madhya Pradesh"
+      },
+      "-NnrNjGCcnhAAsvDGkFf": {
+        "StateName": "Maharashtra"
+      },
+      "-NnrNjHizSR9HtwfEmlY": {
+        "StateName": "Manipur"
+      },
+      "-NnrNjJDAPuk7CkMYKU9": {
+        "StateName": "Meghalaya"
+      },
+      "-NnrNjKeZ14Ll9QaMYJw": {
+        "StateName": "Mizoram"
+      },
+      "-NnrNjMCQRpiDqy8b8bq": {
+        "StateName": "Nagaland"
+      },
+      "-NnrNjNhOiZEcfE-SF9W": {
+        "StateName": "Odisha"
+      },
+      "-NnrNjPFlgZ_DWWuJjWo": {
+        "StateName": "Puducherry"
+      },
+      "-NnrNjQg1ZeAysO3uXeb": {
+        "StateName": "Punjab"
+      },
+      "-NnrNjSCkX6Tk_rn-ck_": {
+        "StateName": "Rajasthan"
+      },
+      "-NnrNjThzMBXwZc0ftOB": {
+        "StateName": "Sikkim"
+      },
+      "-NnrNjVBC14JXojEjHq8": {
+        "StateName": "Tamil Nadu"
+      },
+      "-NnrNjWbTMBKOFz7WP_Z": {
+        "StateName": "Telangana"
+      },
+      "-NnrNjY5y3fTr4VafA5B": {
+        "StateName": "Tripura"
+      },
+      "-NnrNjZ_vPsnLTCmBFGZ": {
+        "StateName": "Uttar Pradesh"
+      },
+      "-NnrNja320DD8cEb-a9c": {
+        "StateName": "Uttarakhand"
+      },
+      "-NnrNjbUNgjdQFf9raIw": {
+        "StateName": "West Bengal"
+      },
+      "-NoQf3STafLP7grrLahi": {
+        "StateName": "Gujarat"
+      },
+      "-NoQgEyTJ7WgvBZqR5QH": {
+        "StateName": "dev"
+      }
+    }
+  },
+  "DemoDB": {
+    "AllServices": {
+      "-NoQlyAQrZRagSEdbu_k": {
+        "ServiceName": "OPD"
+      },
+      "-NoQmEeu2fzbBqGplz8m": {
+        "ServiceName": "ICU"
+      }
+    },
+    "Department": {
+      "-Nnh0Rv3LZpsQ7ejvcm2": {
+        "DepartmentName": "IT"
+      },
+      "-Nnh0RwYtu8rlzyKD-pE": {
+        "DepartmentName": "Accounts"
+      },
+      "-Nnh0Rxw9ZRPiGaJ5kkc": {
+        "DepartmentName": "HR"
+      },
+      "-Nnh0RzHNfBtk7p08lX2": {
+        "DepartmentName": "Service"
+      }
+    },
+    "Employee": {
+      "-NnhBMR7I3l3Xvh9WAxj": {
+        "DepartmentName": "IT",
+        "EmployeeName": "Dev",
+        "Password": 123,
+        "Username": "dev@admin"
+      },
+      "-NnhC11PbpyxlXFQKS7L": {
+        "DepartmentName": "IT",
+        "EmployeeName": "Dev"
+      },
+      "-NnoJkXlz5IQ1sZfvWa-": {
+        "DepartmentName": "-Nnh0Rxw9ZRPiGaJ5kkc",
+        "EmployeeName": "Dev"
+      },
+      "-NozqHIpbjxyvTCJAoCs": {
+        "Name": "Shubham",
+        "Password": "123",
+        "Username": "shubham"
+      },
+      "-Np0stFsveUyZqtvaDPC": {
+        "Name": "dev",
+        "Password": "123",
+        "Username": "dev"
+      }
+    },
+    "allTreatments": {
+      "-NoQTu5-cpiXQgtvO62I": {
+        "TreatmentName": "surgery"
+      },
+      "-NoQUBKDyv24c9SNlHIl": {
+        "TreatmentName": "heart surgery"
+      },
+      "-NoQUDTUdC1jJQAYMf-F": {
+        "TreatmentName": "heart surgery"
+      },
+      "-NoQURBMR0-bdUKqrBcK": {
+        "TreatmentName": "heart surgery"
+      }
+    }
+  },
+  "MyProject": {
+    "AllDoctor": {
+      "-NnD5tRuEyspLKbDDztB": {
+        "AllDoctors": "Dr.Sandeep Vaishya - Neurosurgeon"
+      },
+      "-NnD5tWl3f0jmC3edVL_": {
+        "AllDoctors": "Dr.Naresh Treshan - Chief Cardiac Surgeon"
+      },
+      "-NnD5taSvIj_O4D7cr_I": {
+        "AllDoctors": "Dr.Arun Saroha - Neurosurgeon"
+      },
+      "-NnD5tfJWKqDLjbSQf3Q": {
+        "AllDoctors": "Dr.Hs Bhatya - Cardiovascular and Cardiothoraic Surgeon"
+      },
+      "-NnD5tk11zld8dVftOBp": {
+        "AllDoctors": "Dr.Vinod Raina - MBBS,MD,FRCP"
+      },
+      "-NnD5tos-8f7Viz3F0w4": {
+        "AllDoctors": "Dr.Ashok Rajgopal - Musculoskeleton Disorder and Orthopaedic Surgeon"
+      },
+      "-NnD5ttdmbCEMUsZhy8C": {
+        "AllDoctors": "Dr.Ips Oberoi - MBBS,MS,MCh"
+      },
+      "-NnD5tyVs3liaSgw8agb": {
+        "AllDoctors": "Dr.Subhash Chandra - MBBS,DCH"
+      },
+      "-NnD5u2F3EW1IuJOzHgB": {
+        "AllDoctors": "Dr.Vaibhav Mishra - Cardiac Surgeon"
+      },
+      "-NnD5u71bYFZN7PZLgp0": {
+        "AllDoctors": "Dr. Vivek Jawali - Adult Cardiac Surgery and Arterial Bypass Surgery"
+      },
+      "-NnD5uBrUh-haFDsM7lG": {
+        "AllDoctors": "Aditya Gupta - Neurosurgeon"
+      },
+      "-NnD5uGoPrpQBOHrWIoK": {
+        "AllDoctors": "Dr.Gaurav Shekhar - Head Pediatric Hemato-oncology Immunology & Bone Marrow Transplant"
+      },
+      "-NnD5uN2vqmz8IXa7KEd": {
+        "AllDoctors": "Dr.Hemant Sharma - Orthopaedic"
+      },
+      "-NnD5uRaL5jxAsq4X4L7": {
+        "AllDoctors": "Dr.Rana Patir - Neurosurgeon"
+      },
+      "-NnD5uWcgn3tiCzH2cBP": {
+        "AllDoctors": "Dr.Abhideep Chaudhary - HPB Surgery and Liver Transplantation"
+      },
+      "-NnD5uaTci37levWAwii": {
+        "AllDoctors": "Dr.Devi Prasad Shetty - Cardiothoraic Surgeon"
+      },
+      "-NnD5ufhz0i9juWtp7mE": {
+        "AllDoctors": "Dr.Hitesh Garg - Surgeon Consultant,MBBS,MS"
+      },
+      "-NnD5ulrx6ifXSI7JLu1": {
+        "AllDoctors": "Dr.j k Gupta - Cardiologist"
+      },
+      "-NnD5urSX5QKXUVOIpsk": {
+        "AllDoctors": "Dr.Lokesh Kumar - Oncologist"
+      },
+      "-NnD5uxP3o1_pyi72_a4": {
+        "AllDoctors": "Dr.Manoj Gupta - Therapy (HBOT)"
+      },
+      "-NnD5v2OdqdY310ghLnL": {
+        "AllDoctors": "Dr.Pawan Kumar - Diabetologist"
+      },
+      "-NnD5v7EN_dDNHh5Yqom": {
+        "AllDoctors": "Dr.Ashish Jain - Otolaryngologist,MBBS,DCH,MS"
+      }
+    },
+    "AllServices": {
+      "-NnAG5D7ZHt9ldNql7kY": {
+        "ServiceName": "Emergency Department"
+      },
+      "-NnAG5HsGlD5tqF005Rw": {
+        "ServiceName": "Inpatient Care"
+      },
+      "-NnAG5MYcWcoJESOq5EB": {
+        "ServiceName": "Outpatient Department (OPD)"
+      },
+      "-NnAG5RITOiUknQKfOGF": {
+        "ServiceName": "Diagnostic Services"
+      },
+      "-NnAG5Vxy6A181oIvYRb": {
+        "ServiceName": "Pharmacy"
+      },
+      "-NnAG5_bA51ltLzPnEQd": {
+        "ServiceName": "Surgery"
+      },
+      "-NnAG5eHX2j2GWNVztI0": {
+        "ServiceName": "Intensive Care Unit (ICU)"
+      },
+      "-NnAG5iwNg9A52MVzO9J": {
+        "ServiceName": "Maternal and Child Health"
+      },
+      "-NnAG5naZsE_Ihq87vM1": {
+        "ServiceName": "Mental Health Services"
+      },
+      "-NnAG5sJUHvhzfsBFgwA": {
+        "ServiceName": "Rehabilitation Services"
+      },
+      "-NnAG5wyyhSEN0UlrUvz": {
+        "ServiceName": "Oncology Services"
+      },
+      "-NnAG60eelDU01OHtj0e": {
+        "ServiceName": "Medical Records"
+      },
+      "-NnAG65MLEEnh7CkK-Ed": {
+        "ServiceName": "Nutrition Services"
+      },
+      "-NnAG6A1JIFCjrdbCAxi": {
+        "ServiceName": "Social Work Services"
+      },
+      "-NnAG6Ei63v9bCBnozxa": {
+        "ServiceName": "Spiritual Support Services"
+      },
+      "-NnAG6JOByT4k2Ey3R02": {
+        "ServiceName": "Administrative Services"
+      }
+    },
+    "AllStates": {
+      "-NnCrjHeBNLwfFcXV8Wt": {
+        "StateName": "Andhra Pradesh"
+      },
+      "-NnCrjO30b9TaFeSwFmC": {
+        "StateName": "Arunachal Pradesh"
+      },
+      "-NnCrjUQuL3CIAgBK6bE": {
+        "StateName": "Assam"
+      },
+      "-NnCrj_qMtOlbBwB1SmP": {
+        "StateName": "Bihar"
+      },
+      "-NnCrjgDRevfVkkLFa-S": {
+        "StateName": "Chhattisgarh"
+      },
+      "-NnCrjmc1pPd4vTuB5oW": {
+        "StateName": "Goa"
+      },
+      "-NnCrjt-_O2WkaMpcodP": {
+        "StateName": "Gujarat"
+      },
+      "-NnCrjzP3aY0VpzmnCzE": {
+        "StateName": "Haryana"
+      },
+      "-NnCrk4o0gwObKrjxKBt": {
+        "StateName": "Himachal Pradesh"
+      },
+      "-NnCrkBEhy07Mtzll84p": {
+        "StateName": "Jharkhand"
+      },
+      "-NnCrkG1y6jpd613h5H5": {
+        "StateName": "Karnataka"
+      },
+      "-NnCrkKnCvlQ_mJL_J0z": {
+        "StateName": "Kerala"
+      },
+      "-NnCrkPctbCQjB_oV1Xd": {
+        "StateName": "Madhya Pradesh"
+      },
+      "-NnCrkU9aSOmRPmINKVl": {
+        "StateName": "Maharashtra"
+      },
+      "-NnCrkZGxbonyfUCHYGJ": {
+        "StateName": "Manipur"
+      },
+      "-NnCrkd0UGjOqMnQKFxT": {
+        "StateName": "Meghalaya"
+      },
+      "-NnCrkhoL93eM7MTPnsk": {
+        "StateName": "Mizoram"
+      },
+      "-NnCrkmbr5iZiwwJVN4D": {
+        "StateName": "Nagaland"
+      },
+      "-NnCrkrO1G_aiG0OUZu2": {
+        "StateName": "Odisha"
+      },
+      "-NnCrkwCPFOSR42sBLYS": {
+        "StateName": "Punjab"
+      },
+      "-NnCrl-zKOIk5G4v7mqv": {
+        "StateName": "Rajasthan"
+      },
+      "-NnCrl4nWrVn24DpvAwv": {
+        "StateName": "Sikkim"
+      },
+      "-NnCrl9bvTXbR1OmcdZW": {
+        "StateName": "Tamil Nadu"
+      },
+      "-NnCrlEOGveG0lSksS86": {
+        "StateName": "Telangana"
+      },
+      "-NnCrlJB5yxW0_pyVfhp": {
+        "StateName": "Tripura"
+      },
+      "-NnCrlNhmYAxYUUAHd5y": {
+        "StateName": "Uttar Pradesh"
+      },
+      "-NnCrlSD95U1qVwxW8ND": {
+        "StateName": "Uttarakhand"
+      },
+      "-NnCrlXbIYCspk5zehoy": {
+        "StateName": "West Bengal"
+      },
+      "-NnDNmY-FPFv8Tue_xuA": {
+        "StateName": [
+          "Adoni",
+          "Amaravati",
+          "Anantapur",
+          "Chandragiri",
+          "Chittoor",
+          "Dowlaiswaram",
+          "Eluru",
+          "Guntur",
+          "Kadapa",
+          "Kakinada",
+          "Kurnool",
+          "Machilipatnam",
+          "Nagarjunakoṇḍa",
+          "Rajahmundry",
+          "Srikakulam",
+          "Tirupati",
+          "Vijayawada",
+          "Visakhapatnam",
+          "Vizianagaram",
+          "Yemmiganur"
+        ]
+      },
+      "-NnDNmbebA6JL6K8fF9Z": {
+        "StateName": [
+          "Itanagar"
+        ]
+      },
+      "-NnDNmgC444pr4TBcCR0": {
+        "StateName": [
+          "Dhuburi",
+          "Dibrugarh",
+          "Dispur",
+          "Guwahati",
+          "Jorhat",
+          "Nagaon",
+          "Sivasagar",
+          "Silchar",
+          "Tezpur",
+          "Tinsukia"
+        ]
+      },
+      "-NnDNmkj041hxBJr7DNe": {
+        "StateName": [
+          "Ara",
+          "Barauni",
+          "Begusarai",
+          "Bettiah",
+          "Bhagalpur",
+          "Bihar Sharif",
+          "Bodh Gaya",
+          "Buxar",
+          "Chapra",
+          "Darbhanga",
+          "Dehri",
+          "Dinapur Nizamat",
+          "Gaya",
+          "Hajipur",
+          "Jamalpur",
+          "Katihar",
+          "Madhubani",
+          "Motihari",
+          "Munger",
+          "Muzaffarpur",
+          "Patna",
+          "Purnia",
+          "Pusa",
+          "Saharsa",
+          "Samastipur",
+          "Sasaram",
+          "Sitamarhi",
+          "Siwan"
+        ]
+      },
+      "-NnDNmpfRGupYb6V0hKw": {
+        "StateName": [
+          "Chandigarh"
+        ]
+      },
+      "-NnDNmuF3VNOkgk_3waH": {
+        "StateName": [
+          "Ambikapur",
+          "Bhilai",
+          "Bilaspur",
+          "Dhamtari",
+          "Durg",
+          "Jagdalpur",
+          "Raipur",
+          "Rajnandgaon"
+        ]
+      },
+      "-NnDNmyolvmSmP4avsbW": {
+        "StateName": [
+          "Daman",
+          "Diu",
+          "Silvassa"
+        ]
+      },
+      "-NnDNn2MWHO75TR4HzYX": {
+        "StateName": [
+          "Delhi",
+          "New Delhi"
+        ]
+      },
+      "-NnDNn85SC-O_l5cankd": {
+        "StateName": [
+          "Madgaon",
+          "Panaji"
+        ]
+      },
+      "-NnDNnCgJGPrzPuNx1LD": {
+        "StateName": [
+          "Ahmadabad",
+          "Amreli",
+          "Bharuch",
+          "Bhavnagar",
+          "Bhuj",
+          "Dwarka",
+          "Gandhinagar",
+          "Godhra",
+          "Jamnagar",
+          "Junagadh",
+          "Kandla",
+          "Khambhat",
+          "Kheda",
+          "Mahesana",
+          "Morbi",
+          "Nadiad",
+          "Navsari",
+          "Okha",
+          "Palanpur",
+          "Patan",
+          "Porbandar",
+          "Rajkot",
+          "Surat",
+          "Surendranagar",
+          "Valsad",
+          "Veraval"
+        ]
+      },
+      "-NnDNnHFugAzXYpC196_": {
+        "StateName": [
+          "Ambala",
+          "Bhiwani",
+          "Chandigarh",
+          "Faridabad",
+          "Firozpur Jhirka",
+          "Gurugram",
+          "Hansi",
+          "Hisar",
+          "Jind",
+          "Kaithal",
+          "Karnal",
+          "Kurukshetra",
+          "Panipat",
+          "Pehowa",
+          "Rewari",
+          "Rohtak",
+          "Sirsa",
+          "Sonipat"
+        ]
+      },
+      "-NnDNnLnnEiaCxArdiHb": {
+        "StateName": [
+          "Bilaspur",
+          "Chamba",
+          "Dalhousie",
+          "Dharmshala",
+          "Hamirpur",
+          "Kangra",
+          "Kullu",
+          "Mandi",
+          "Nahan",
+          "Shimla",
+          "Una"
+        ]
+      }
+    },
+    "AllTreatment": {
+      "-NnAGUGly6q_HnDaWqTy": {
+        "TreatmentName": "Surgery"
+      },
+      "-NnAGULgIKa45PzvA4t6": {
+        "TreatmentName": "Preoperative Surgery"
+      },
+      "-NnAGUQf6WvcBmflI2al": {
+        "TreatmentName": "Intraoperative Surgery"
+      },
+      "-NnAGUVU7gMYQQ6Wzq1h": {
+        "TreatmentName": "Postoperative Care"
+      },
+      "-NnAGU_Jf9BLxAj8KRlv": {
+        "TreatmentName": "Physical Therapy"
+      },
+      "-NnAGUeAW6NVbiEw69bV": {
+        "TreatmentName": "Cognitive Behavioral Therapy"
+      },
+      "-NnAGUj2XGcr9OOHvSBk": {
+        "TreatmentName": "Radiation Therapy"
+      },
+      "-NnAGUnssAvxUXGsLQMG": {
+        "TreatmentName": "Chemotherapy"
+      },
+      "-NnAGUsh0Q5e-cczUKXn": {
+        "TreatmentName": "Psycological Therapy"
+      },
+      "-NnAGUxWfEHZ3XRoYmz3": {
+        "TreatmentName": "Intensive Care"
+      },
+      "-NnAGV1Ns4SSzAuk_XfU": {
+        "TreatmentName": "Occupational Therapy"
+      },
+      "-NnAGV6Av733aPOhPufM": {
+        "TreatmentName": "Speech Therapy"
+      },
+      "-NnAGVB0VqZYvR3Pqk5q": {
+        "TreatmentName": "Dental Procedures"
+      },
+      "-NnAGVFrHsQkz5xPXSwD": {
+        "TreatmentName": "Medication"
+      },
+      "-NnAGVKhCSKGQu9QMrsm": {
+        "TreatmentName": "Dialysis"
+      },
+      "-NnAGVQb_qfcwmZF9X6j": {
+        "TreatmentName": "Palliative Care"
+      },
+      "-NnAGVVR9Yj-XeKv9SHU": {
+        "TreatmentName": "Wound Care"
+      },
+      "-NnAGV_PiBsy565dTB0L": {
+        "TreatmentName": "Blood Transfusion"
+      },
+      "-NnAGVeFbXuKUFszUjoS": {
+        "TreatmentName": "Cardiac Rehabilitation"
+      },
+      "-NnAGVj6w_d2dpdOfg_L": {
+        "TreatmentName": "Kidney Transplant"
+      },
+      "-NnAGVnz70VW4hUNBp8r": {
+        "TreatmentName": "Liver Transplant"
+      },
+      "-NnAGVsp7X5qEKZpPVaa": {
+        "TreatmentName": "Lung Transplant"
+      },
+      "-NnAGVxfZGVfUwTWOtUK": {
+        "TreatmentName": "Pancreas Transplant"
+      },
+      "-NnAGW1VXmHeqcEz3HXY": {
+        "TreatmentName": "Intestinal Transplant"
+      },
+      "-NnAGW6N9VexyQIpWKcI": {
+        "TreatmentName": "Bone Marrow Transplant"
+      },
+      "-NnAGWBDtP1OhdEg4kgj": {
+        "TreatmentName": "Corneal Transplant"
+      },
+      "-NnAGWG16i7x5MMhlAqW": {
+        "TreatmentName": "Coronary Artery Bypass Surgery [CABS]"
+      },
+      "-NnAGWKqSiFy8HwccKOY": {
+        "TreatmentName": "Implantable Device Surgery"
+      },
+      "-NnAGWPgo67jGqRIz0hd": {
+        "TreatmentName": "Heart Valve Repair or Replacement Surgery"
+      },
+      "-NnAGWUYn4uTllohp26g": {
+        "TreatmentName": "Electrophysiology Studies and Ablation"
+      },
+      "-NnAGWZOBg26egUfUPlz": {
+        "TreatmentName": "Angioplasty and Stenting"
+      },
+      "-NnAGWdFT8dZy8Lyg_L0": {
+        "TreatmentName": "Routine Dental Check-ups"
+      },
+      "-NnAGWiGJUP-jWUe58Di": {
+        "TreatmentName": "Dental Cleanings"
+      },
+      "-NnAGWn5Y8Ii6Ei80GBi": {
+        "TreatmentName": "Fillings"
+      },
+      "-NnAGWs-9HLk66UhX4oB": {
+        "TreatmentName": "Root Canal Therapy"
+      },
+      "-NnAGWwrtTC1caiLfI15": {
+        "TreatmentName": "Tooth Extraction"
+      },
+      "-NnAGX0iLdgn7d2J5Ngr": {
+        "TreatmentName": "Dental Crowns and Bridges"
+      },
+      "-NnAGX5_rkGcW5aaBKYA": {
+        "TreatmentName": "Dental Implants"
+      },
+      "-NnAGXAO4l37YpQ5CrGa": {
+        "TreatmentName": "Orthodontic Treatment"
+      },
+      "-NnAGXFEba-3Fl8174O3": {
+        "TreatmentName": "Dental Bonding"
+      },
+      "-NnAGXK2L4fHha6Sna22": {
+        "TreatmentName": "Teeth Whitening"
+      },
+      "-NnAGXOwSlgyRFyUF4ED": {
+        "TreatmentName": "Gum Treatments"
+      },
+      "-NnAGXTo-yzQwEOFWHVD": {
+        "TreatmentName": "Cosmetic Dentistry"
+      },
+      "-NnAGXYfZkU1hkBRBERm": {
+        "TreatmentName": "Orthopedic Interventions"
+      }
+    },
+    "Category": {
+      "-NnbIlYSgphuFn7yQLxb": {
+        "catname": "Test",
+        "description": "this is test file upload",
+        "photo": "wallpaper3.jpg"
+      },
+      "-NnbPhu_w_gxvZFC9eN0": {
+        "catname": "Test 2",
+        "description": "this is 2nd test",
+        "photo": "wallpaper4.jpg"
+      },
+      "-NnbTVdsIm3CoqNiImxQ": {
+        "photo": "wallpaper2.jpg"
+      },
+      "-NnbTaEVB2jDp9KTSEej": {
+        "photo": "wallpaper2.jpg"
+      },
+      "-NnbU12tbB3YTLeT_LHi": {
+        "photo": "wallpaper2.jpg"
+      }
+    },
+    "tblHospital": {
+      "-NnrQBeLjd6xHYWVrgan": {
+        "AvailableDoctors": "Dr.Ashok Rajgopal - Musculoskeleton Disorder and Orthopaedic Surgeon, Dr.Vinod Raina - MBBS,MD,FRCP, Dr.Hs Bhatya - Cardiovascular and Cardiothoraic Surgeon, Dr.Arun Saroha - Neurosurgeon, Dr.Naresh Treshan - Chief Cardiac Surgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Surgery, Pharmacy, Diagnostic Services, Outpatient Department (OPD), Inpatient Care, Emergency Department, ",
+        "AvailableTreatments": "Coronary Artery Bypass Surgery (CABS), Kidney Transplant, Cardiac Rehabilitation, Blood Transfusion, Wound Care, ",
+        "HospitalAddress": "Saket",
+        "HospitalCity": "New Delhi",
+        "HospitalName": "MAX Super Speciality Hospital",
+        "HospitalState": "-NnrNj-yz7csqoIREvc6",
+        "Photo": "IMG-20240111-WA0007.jpg"
+      },
+      "-NnrUBX6sG8_sJs0PCZ3": {
+        "AvailableDoctors": "Dr.Vinod Raina - MBBS,MD,FRCP, Dr.Naresh Treshan - Chief Cardiac Surgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Pharmacy, Diagnostic Services, Outpatient Department (OPD), Inpatient Care, ",
+        "AvailableTreatments": "Cognitive Behavioral Therapy, Postoperative Care, Intraoperative Surgery, Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "Rustom bag, off HAL Ariport Road",
+        "HospitalCity": "Bengaluru",
+        "HospitalName": "Manipal Hospital",
+        "HospitalState": "-NnrNjALVfFq0SRPGOJM",
+        "Photo": "IMG-20240111-WA0006.jpg"
+      },
+      "-NnrXZ4YUml0W00G-zcA": {
+        "AvailableDoctors": "Dr.Vinod Raina - MBBS,MD,FRCP, Dr.Naresh Treshan - Chief Cardiac Surgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Surgery, Outpatient Department (OPD), Inpatient Care, ",
+        "AvailableTreatments": "Cognitive Behavioral Therapy, Physical Therapy, Postoperative Care, Intraoperative Surgery, Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "Indraprastha Apollo Hospital, NH-19, New Delhi, Delhi 110076",
+        "HospitalCity": "New Delhi",
+        "HospitalName": "Apollo",
+        "HospitalState": "-NnrNj-yz7csqoIREvc6",
+        "Photo": "IMG-20240111-WA0009.jpg"
+      },
+      "-NnrYX78o_M0UqJi5kQv": {
+        "AvailableDoctors": "Dr.Vinod Raina - MBBS,MD,FRCP, Dr.Arun Saroha - Neurosurgeon, Dr.Sandeep Vaishya - Neurosurgeon, ",
+        "AvailableFacilities": "Surgery, Pharmacy, Outpatient Department (OPD), Emergency Department, ",
+        "AvailableTreatments": "Physical Therapy, Postoperative Care, Intraoperative Surgery, Preoperative Surgery, Surgery, ",
+        "HospitalAddress": "Nanavati Max Super Speciality Hospital, LIC Colony, Suresh Colony, Vile Parle West, Mumbai, Maharashtra 400056",
+        "HospitalCity": "Mumbai",
+        "HospitalName": "Nanavati super speciality hospital",
+        "HospitalState": "-NnrNjGCcnhAAsvDGkFf",
+        "Photo": "IMG-20240111-WA0008.jpg"
+      },
+      "-NntxhtgjqTkaopi2HJY": {
+        "HospitalCity": "Surat",
+        "HospitalName": "MAX Super Speciality Hospital"
+      }
+    },
+    "tblUser": {
+      "-NmoZygQubGPR6xOSoRu": {
+        "Address": "52, THAKORDHWAR SOC-3, OPP. C.K. PATEL SCHOOL",
+        "ContactNo": "9016204659",
+        "Email": "devmtamakuwala2424@gmail.com",
+        "Username": "Dev"
+      },
+      "-NmogZowapV1fmp118qM": {
+        "Address": "52, THAKORDHWAR SOC-3, OPP. C.K. PATEL SCHOOL",
+        "ContactNo": "9825353001",
+        "Email": "devmtamakuwala2424@gmail.com",
+        "Username": "Dev"
+      },
+      "-NmogenVP8xY6qb62rBM": {
+        "Address": "52, THAKORDHWAR SOC-3, OPP. C.K. PATEL SCHOOL",
+        "ContactNo": "8511196617",
+        "Email": "devmtamakuwala2424@gmail.com",
+        "Username": "Dev"
+      }
+    }
+  }
+}

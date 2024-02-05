@@ -41,6 +41,7 @@ dependencies:
   flutter_holo_date_picker: ^1.1.3
   crypto: any
   fluttertoast: ^8.0.7
+  shared_preferences: ^2.0.0
 
 
 dev_dependencies:
