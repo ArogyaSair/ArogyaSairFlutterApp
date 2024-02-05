@@ -16,36 +16,53 @@ class DrawerCode extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(color: Colors.blue),
-            child: Column(
+            decoration: const BoxDecoration(color: Colors.white),
+            child: Row(
               children: <Widget>[
                 Flexible(
                   child: Container(
                     width: 100,
                     height: 100,
                     margin: const EdgeInsets.only(bottom: 5),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          // image: AssetImage('assets/demo.png'),
-                          image: AssetImage('assets/ArogyaSair.png'),
-                          fit: BoxFit.fill),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      // Set your desired border radius
+                      child: Image.asset(
+                        'assets/Logo/ArogyaSair.png',
+                        width: 300,
+                        height: 300,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-                const Text(
-                  'Arogya Sair',
-                  style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                const Text(
-                  'Admin',
-                  style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white70),
+                const SizedBox(width: 10),
+                const Expanded(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Arogya Sair',
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Text(
+                          'Admin',
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -95,24 +112,6 @@ class DrawerCode extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const radio()));
             },
           ),
-          // ListTile(
-          //   leading: const Icon(Icons.tab),
-          //   title: const Text("Test 1(Radio Button)"),
-          //   onTap: () {
-          //     Navigator.pop(context);
-          //     Navigator.push(
-          //         context, MaterialPageRoute(builder: (context) => test1()));
-          //   },
-          // ),
-          // ListTile(
-          //   leading: const Icon(Icons.tab),
-          //   title: const Text("Test 2(CheckBox)"),
-          //   onTap: () {
-          //     Navigator.pop(context);
-          //     Navigator.push(
-          //         context, MaterialPageRoute(builder: (context) => checkSample()));
-          //   },
-          // ),
         ],
       ),
     );

@@ -8,9 +8,5 @@ Future<void> saveData(key, value) async {
 Future<String?> getData(key) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? value = prefs.getString(key);
-  if (value != null) {
-    return "Guest";
-  } else {
-    return value;
-  }
+  return value;
 }

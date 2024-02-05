@@ -186,12 +186,12 @@ class _LoginState extends State<Login> {
         .equalTo(username);
     String msg = "Invalid Username or Password..! Please check..!!";
     Map data;
-    await dbRef2.once().then((documentSnapshot) {
+    await dbRef2.once().then((documentSnapshot) async {
       for (var x in documentSnapshot.snapshot.children) {
         data = x.value as Map;
         if (data["Username"] == username &&
             data["Password"].toString() == encPassword) {
-          saveData('username', data["Username"]);
+          await saveData('username', data["Username"]);
           Navigator.pop(context);
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const HomePage()));
