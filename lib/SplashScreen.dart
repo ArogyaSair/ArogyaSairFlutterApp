@@ -1,23 +1,47 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, library_private_types_in_public_api, use_key_in_widget_constructors, use_build_context_synchronously
 
+import 'package:arogyasair/HomePage.dart';
 import 'package:arogyasair/Login.dart';
 import 'package:arogyasair/Registration.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'firebase_options.dart';
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+//
+//   runApp(MaterialApp(
+//     home: MyApp(),
+//   ));
+// }
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  runApp(const MaterialApp(
-    home: MyApp(),
-  ));
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class _MyAppState extends State<MyApp> {
+  String data = "";
+  final key = 'username';
+  late bool containsKey;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkIfLoggedIn();
+  }
+
+  Future<void> _checkIfLoggedIn() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    containsKey = prefs.containsKey(key);
+
+    if (containsKey) {
+      // If the key exists, navigate to HomePage
+      Navigator.pop(context);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,43 +53,51 @@ class MyApp extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(5),
             child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Registration()));
-                },
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(200, 50),
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12))),
-                child: const Text(
-                  "Register",
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                )),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Registration()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 50),
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: const Text(
+                "Register",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Login()));
-                },
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(200, 50),
-                    elevation: 10,
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12))),
-                child: const Text(
-                  "Login",
-                  style: TextStyle(fontSize: 20, color: Colors.blue),
-                )),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Login()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 50),
+                elevation: 10,
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: const Text(
+                "Login",
+                style: TextStyle(fontSize: 20, color: Colors.blue),
+              ),
+            ),
           ),
         ],
       ),

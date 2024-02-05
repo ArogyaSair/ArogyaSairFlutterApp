@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api, prefer_const_constructors
+
 import 'package:arogyasair/drawerSideNavigation.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,6 @@ class _HomePage extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // Call your asynchronous function here
     _loadUserData();
   }
 
@@ -29,10 +30,17 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home Page')),
-      endDrawer: const DrawerCode(),
-      body: Text(data),
+    return SafeArea(
+      minimum: const EdgeInsets.only(top: 16.0),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          automaticallyImplyLeading: false,
+          title: const Text('Arogya Sair'),
+        ),
+        endDrawer: DrawerCode(),
+        body: Text(data),
+      ),
     );
   }
 }

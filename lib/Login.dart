@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, library_private_types_in_public_api
+// ignore_for_file: file_names, library_private_types_in_public_api, use_build_context_synchronously, avoid_print
 
 import 'dart:convert';
 
@@ -192,6 +192,8 @@ class _LoginState extends State<Login> {
         if (data["Username"] == username &&
             data["Password"].toString() == encPassword) {
           await saveData('username', data["Username"]);
+          await saveData('email', data["Email"]);
+          print(x.value);
           Navigator.pop(context);
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const HomePage()));
