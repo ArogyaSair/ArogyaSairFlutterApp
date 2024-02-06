@@ -5,7 +5,7 @@ import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePage createState() => _HomePage();
@@ -36,7 +36,13 @@ class _HomePage extends State<HomePage> {
         appBar: AppBar(
           backgroundColor: Colors.blue,
           automaticallyImplyLeading: false,
-          title: const Text('Arogya Sair'),
+          title: const Text(
+            'Arogya Sair',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         endDrawer: DrawerCode(),
         body: Text(data),

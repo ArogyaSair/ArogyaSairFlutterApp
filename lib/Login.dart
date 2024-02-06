@@ -15,7 +15,7 @@ void main() {
 }
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({Key? key}) : super(key: key);
 
   @override
   _LoginState createState() => _LoginState();
@@ -102,14 +102,12 @@ class _LoginState extends State<Login> {
                             _performLogin(context);
                           },
                           style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(200, 50),
-                            elevation: 10,
-                          ),
+                              minimumSize: const Size(200, 50),
+                              elevation: 10,
+                              backgroundColor: Colors.blue),
                           child: const Text(
                             'Login',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
+                            style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
                         ),
                         const SizedBox(
@@ -143,6 +141,7 @@ class _LoginState extends State<Login> {
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontStyle: FontStyle.italic,
+                                      color: Colors.blue,
                                       decoration: TextDecoration.underline),
                                 ),
                               ),

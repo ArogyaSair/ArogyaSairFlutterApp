@@ -12,11 +12,11 @@ void main(){
 }
 
 class Registration extends StatefulWidget {
-  const Registration({super.key});
+  const Registration({Key? key}) : super(key: key);
+
   @override
   _Registration createState() => _Registration();
 }
-
 
 class _Registration extends State<Registration> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

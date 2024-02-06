@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class contact extends StatelessWidget {
-  const contact({super.key});
+  const contact({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
