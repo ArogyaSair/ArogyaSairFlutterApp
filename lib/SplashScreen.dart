@@ -1,106 +1,53 @@
-// ignore_for_file: file_names, library_private_types_in_public_api, use_key_in_widget_constructors, use_build_context_synchronously
-
-import 'package:arogyasair/HomePage.dart';
-import 'package:arogyasair/Login.dart';
-import 'package:arogyasair/Registration.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:splashscreen/splashscreen.dart';
 
-// Future<void> main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-//
-//   runApp(MaterialApp(
-//     home: MyApp(),
-//   ));
-// }
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
+void main() {
+  runApp(MyApp());
 }
 
-class _MyAppState extends State<MyApp> {
-  String data = "";
-  final key = 'username';
-  late bool containsKey;
-
+class MyApp extends StatelessWidget {
   @override
-  void initState() {
-    super.initState();
-    _checkIfLoggedIn();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Splash Screen',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      home: Splash2(),
+      debugShowCheckedModeBanner: false,
+    );
   }
+}
 
-  Future<void> _checkIfLoggedIn() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    containsKey = prefs.containsKey(key);
-
-    if (containsKey) {
-      // If the key exists, navigate to HomePage
-      Navigator.pop(context);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
-    }
+class Splash2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen(
+      seconds: 6,
+      navigateAfterSeconds: new SecondScreen(),
+      title: new Text(
+        'GeeksForGeeks',
+        textScaleFactor: 2,
+      ),
+      image: new Image.network(
+          'https://www.geeksforgeeks.org/wp-content/uploads/gfg_200X200.png'),
+      loadingText: Text("Loading"),
+      photoSize: 100.0,
+      loaderColor: Colors.blue,
+    );
   }
+}
 
+class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Image.asset("assets/Logo/ArogyaSair.png"),
-          Padding(
-            padding: const EdgeInsets.all(5),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Registration()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(200, 50),
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: const Text(
-                "Register",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Login()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(200, 50),
-                elevation: 10,
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: const Text(
-                "Login",
-                style: TextStyle(fontSize: 20, color: Colors.blue),
-              ),
-            ),
-          ),
-        ],
-      ),
+      appBar: AppBar(title: Text("GeeksForGeeks")),
+      body: Center(
+          child: Text(
+        "Home page",
+        textScaleFactor: 2,
+      )),
     );
   }
 }

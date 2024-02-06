@@ -31,10 +31,10 @@ class _DrawerCode extends State<DrawerCode> {
 
   Future<void> _loadUserData() async {
     String? userData = await getData(key);
-    String? userEamil = await getData(key1);
+    String? userEmail = await getData(key1);
     setState(() {
       username = userData!;
-      email = userEamil!;
+      email = userEmail!;
     });
   }
 
