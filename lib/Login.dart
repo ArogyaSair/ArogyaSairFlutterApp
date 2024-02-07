@@ -7,7 +7,8 @@ import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+// import 'package:flutter/services.dart';
 
 import 'Registration.dart';
 
@@ -19,21 +20,18 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController controlleruname = TextEditingController();
   TextEditingController controllerpassword = TextEditingController();
   bool isPasswordVisible = false;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-  // }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         minimum: const EdgeInsets.only(top: 16.0),
         child: Scaffold(
+            key: _formKey,
             backgroundColor: Colors.white,
             body: SingleChildScrollView(
               child: Column(
@@ -52,11 +50,18 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Form(
+                      key: _formKey,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             TextFormField(
                               controller: controlleruname,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter username';
+                                }
+                                return null;
+                              },
                               decoration: const InputDecoration(
                                 prefixIcon: Icon(Icons.email_outlined),
                                 prefixIconColor: Colors.blue,
@@ -75,6 +80,12 @@ class _LoginState extends State<Login> {
                             TextFormField(
                               controller: controllerpassword,
                               obscureText: !isPasswordVisible,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter password';
+                                }
+                                return null;
+                              },
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(Icons.lock),
                                 suffixIcon: IconButton(
@@ -90,7 +101,7 @@ class _LoginState extends State<Login> {
                                 prefixIconColor: Colors.blue,
                                 border: const OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(8)),
+                                  BorderRadius.all(Radius.circular(8)),
                                   borderSide: BorderSide(color: Colors.black),
                                 ),
                                 filled: true,
@@ -104,7 +115,9 @@ class _LoginState extends State<Login> {
                             ),
                             ElevatedButton(
                               onPressed: () async {
-                                _performLogin(context);
+                                if (_formKey.currentState!.validate()) {
+                                  _performLogin(context);
+                                }
                               },
                               style: ElevatedButton.styleFrom(
                                   minimumSize: const Size(200, 50),
@@ -139,7 +152,7 @@ class _LoginState extends State<Login> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const Registration()),
+                                            const Registration()),
                                       );
                                     },
                                     child: const Text(

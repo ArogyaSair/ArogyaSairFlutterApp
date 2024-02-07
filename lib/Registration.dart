@@ -68,7 +68,7 @@ class _Registration extends State<Registration> {
                       controller: controllername,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter your name';
                         }
                         return null;
                       },
@@ -92,7 +92,7 @@ class _Registration extends State<Registration> {
                       controller: controlleruname,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter username';
                         }
                         return null;
                       },
@@ -116,7 +116,7 @@ class _Registration extends State<Registration> {
                       controller: controllerpassword,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter password';
                         }
                         return null;
                       },
@@ -151,7 +151,7 @@ class _Registration extends State<Registration> {
                       controller: controllerconfirmpassword,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter re-enter password';
                         }
                         return null;
                       },
@@ -186,7 +186,7 @@ class _Registration extends State<Registration> {
                       controller: controllermail,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter email';
                         }
                         return null;
                       },
@@ -207,7 +207,7 @@ class _Registration extends State<Registration> {
                     const SizedBox(
                       height: 10,
                     ),
-                    TextField(
+                    TextFormField(
                       controller: controllerDateOfBirth,
                       readOnly: true, // Make the text input read-only
                       decoration: InputDecoration(

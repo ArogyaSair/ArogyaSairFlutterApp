@@ -1,117 +1,49 @@
-// ignore_for_file: non_constant_identifier_names, camel_case_types, library_private_types_in_public_api, use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, file_names, camel_case_types
 
-import 'package:arogyasair/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'HomePage.dart';
-import 'Login.dart';
-import 'Registration.dart';
+import 'SplashScreen.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  await Future.delayed(const Duration(seconds: 2));
-  FlutterNativeSplash.remove();
-
-  runApp(const MaterialApp(
-    home: MyApp(),
-  ));
+  runApp(const MaterialApp(home: Splash()));
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Splash extends StatefulWidget {
+  const Splash({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  splash createState() => splash();
 }
 
-class _MyAppState extends State<MyApp> {
-  String data = "";
-  final key = 'username';
-  late bool containsKey;
-
+class splash extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    _checkIfLoggedIn();
+    {
+      navigateToHome();
+    }
   }
 
-  Future<void> _checkIfLoggedIn() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    containsKey = prefs.containsKey(key);
-
-    if (containsKey) {
-      // If the key exists, navigate to HomePage
-      Navigator.pop(context);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
-    }
+  navigateToHome() async {
+    await Future.delayed(const Duration(seconds: 5));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset("assets/Logo/ArogyaSair.png"),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Registration()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(200, 50),
-                    elevation: 10,
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text(
-                    "Register",
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Login()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(200, 50),
-                    elevation: 10,
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(fontSize: 20, color: Colors.blue),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ));
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Image.asset("assets/Logo/ArogyaSair.gif")],
+        ),
+      ),
+    );
   }
 }
