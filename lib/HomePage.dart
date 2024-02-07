@@ -2,6 +2,8 @@
 
 import 'package:arogyasair/drawerSideNavigation.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,8 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
+  Query dbRef2 =
+      FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
   late String data;
   final key = 'username';
+  late bool containsKey;
 
   @override
   void initState() {
@@ -45,7 +50,31 @@ class _HomePage extends State<HomePage> {
           iconTheme: IconThemeData(color: Colors.white),
         ),
         endDrawer: DrawerCode(),
-        body: Text(data),
+        body: Column(
+          children: [
+            Flexible(
+              child: FirebaseAnimatedList(
+                query: dbRef2,
+                itemBuilder: (BuildContext context, DataSnapshot snapshot,
+                    Animation<double> animation, int index) {
+                  Map data1 = snapshot.value as Map;
+                  var imageName = "HospitalImage%2F${data1['Photo']}";
+                  var imagePath =
+                      "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
+
+                  return ListTile(
+                    contentPadding: EdgeInsets.all(1),
+                    // leading: Icon(Icons.query_builder),
+                    leading: Image.network(imagePath),
+                    // leading: Image.network("https://firebasestorage.googleapis.com/v0/b/ethnicelegance-71357.appspot.com/o/CategoryImage%2Fblouse.jpg?alt=media"),
+                    title: Text(data1['HospitalName'].toString()),
+                    subtitle: Text(data1['HospitalCity'].toString()),
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

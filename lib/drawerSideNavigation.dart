@@ -169,6 +169,7 @@ class _DrawerCode extends State<DrawerCode> {
               SharedPreferences prefs = await SharedPreferences.getInstance();
               prefs.clear();
               Navigator.pop(context);
+              Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const Login()));
             },
