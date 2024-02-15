@@ -29,152 +29,153 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        minimum: const EdgeInsets.only(top: 16.0),
-        child: Scaffold(
-            key: _formKey,
-            backgroundColor: Colors.white,
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(1),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/Logo/ArogyaSair.png',
-                        width: 300,
-                        height: 300,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+      minimum: const EdgeInsets.only(top: 16.0),
+      child: Scaffold(
+        key: _formKey,
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(1),
+                child: Center(
+                  child: Image.asset(
+                    'assets/Logo/ArogyaSair.png',
+                    width: 300,
+                    height: 300,
+                    fit: BoxFit.cover,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Form(
-                      key: _formKey,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              controller: controlleruname,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Please enter username';
-                                }
-                                return null;
-                              },
-                              decoration: const InputDecoration(
-                                prefixIcon: Icon(Icons.email_outlined),
-                                prefixIconColor: Colors.blue,
-                                border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8))),
-                                labelText: 'Username',
-                                filled: true,
-                                fillColor: Color(0xffE0E3E7),
-                                hintText: 'Enter Username',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Form(
+                  key: _formKey,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: controlleruname,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter username';
+                            }
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.email_outlined),
+                            prefixIconColor: Colors.blue,
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            labelText: 'Username',
+                            filled: true,
+                            fillColor: Color(0xffE0E3E7),
+                            hintText: 'Enter Username',
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: controllerpassword,
+                          obscureText: !isPasswordVisible,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter password';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                isPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
                               ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              controller: controllerpassword,
-                              obscureText: !isPasswordVisible,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Please enter password';
-                                }
-                                return null;
+                              onPressed: () {
+                                _togglePasswordVisibility(context);
                               },
-                              decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.lock),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    isPasswordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                  ),
-                                  onPressed: () {
-                                    _togglePasswordVisibility(context);
-                                  },
-                                ),
-                                prefixIconColor: Colors.blue,
-                                border: const OutlineInputBorder(
-                                  borderRadius:
+                            ),
+                            prefixIconColor: Colors.blue,
+                            border: const OutlineInputBorder(
+                              borderRadius:
                                   BorderRadius.all(Radius.circular(8)),
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                                filled: true,
-                                fillColor: const Color(0xffE0E3E7),
-                                labelText: 'Password',
-                                hintText: 'Enter Password',
+                              borderSide: BorderSide(color: Colors.black),
+                            ),
+                            filled: true,
+                            fillColor: const Color(0xffE0E3E7),
+                            labelText: 'Password',
+                            hintText: 'Enter Password',
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              _performLogin(context);
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(200, 50),
+                              elevation: 10,
+                              backgroundColor: Colors.blue),
+                          child: const Text(
+                            'Login',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(0),
+                              child: Text(
+                                "Don't have account yet..?",
+                                style:
+                                    TextStyle(color: Colors.blue, fontSize: 16),
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                if (_formKey.currentState!.validate()) {
-                                  _performLogin(context);
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(200, 50),
-                                  elevation: 10,
-                                  backgroundColor: Colors.blue),
-                              child: const Text(
-                                'Login',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.all(0),
-                                  child: Text(
-                                    "Don't have account yet..?",
-                                    style: TextStyle(
-                                        color: Colors.blue, fontSize: 16),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(0),
-                                  child: TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
+                            Padding(
+                              padding: const EdgeInsets.all(0),
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
                                             const Registration()),
-                                      );
-                                    },
-                                    child: const Text(
-                                      "Register here",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontStyle: FontStyle.italic,
-                                          color: Colors.blue,
-                                          decoration: TextDecoration.underline),
-                                    ),
-                                  ),
+                                  );
+                                },
+                                child: const Text(
+                                  "Register here",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontStyle: FontStyle.italic,
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline),
                                 ),
-                              ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
-            )));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   void _showSnackbar(BuildContext context, String message) {

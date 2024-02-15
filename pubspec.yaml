@@ -40,6 +40,9 @@ dependencies:
   crypto: any
   fluttertoast: ^8.0.7
   shared_preferences: ^2.0.0
+  shimmer: ^2.0.0
+  transparent_image: ^2.0.0
+  image_picker: any
 
 
 dev_dependencies:
