@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, non_constant_identifier_names, depend_on_referenced_packages
+// ignore_for_file: file_names, non_constant_identifier_names, depend_on_referenced_packages, prefer_typing_uninitialized_variables
 
 // import 'dart:html';
 import 'dart:io';
@@ -21,7 +21,7 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   var imagePath =
-      "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2Faiims.jpeg?alt=media";
+      "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/UserImage%2FDefaultProfileImage.png?alt=media";
   late Query Ref;
   late Map data;
   late TextEditingController controllerUsername;
@@ -31,10 +31,11 @@ class _EditProfileState extends State<EditProfile> {
   late TextEditingController controllerBloodGroup;
   var birthDate = "Select Birthdate";
   var selectedValue = 0;
-  String selectedGender = '';
+  var selectedGender;
   late String username;
   late String userKey;
   late String fileName;
+  String imageName = "";
   late String email;
   final key = 'username';
   final key1 = 'email';
@@ -51,19 +52,6 @@ class _EditProfileState extends State<EditProfile> {
         fileName = basename(_image!.path);
       }
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _loadUserData();
-  }
-
-  Future uploadImage() async {
-    fileName = basename(_image!.path);
-    Reference firebaseStorageRef =
-    FirebaseStorage.instance.ref().child("UserImage/$fileName");
-    firebaseStorageRef.putFile(_image!);
   }
 
   @override
@@ -112,12 +100,12 @@ class _EditProfileState extends State<EditProfile> {
                           borderRadius: BorderRadius.circular(100),
                           child: _image != null
                               ? Image.file(_image!,
-                              height: 110, width: 110, fit: BoxFit.cover)
+                                  height: 110, width: 110, fit: BoxFit.cover)
                               : Image.network(
-                            imagePath,
-                            height: 110,
-                            width: 110,
-                          ),
+                                  imagePath,
+                                  height: 110,
+                                  width: 110,
+                                ),
                         ),
                         const SizedBox(width: 10),
                         ElevatedButton.icon(
@@ -147,7 +135,7 @@ class _EditProfileState extends State<EditProfile> {
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(15))),
+                                BorderRadius.all(Radius.circular(15))),
                       ),
                     ),
                   ),
@@ -174,10 +162,11 @@ class _EditProfileState extends State<EditProfile> {
                         prefixIcon: Icon(Icons.mail),
                         border: OutlineInputBorder(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(15))),
+                                BorderRadius.all(Radius.circular(15))),
                       ),
                     ),
                   ),
+                  // Gender
                   Padding(
                     padding: const EdgeInsets.all(15),
                     child: Column(
@@ -191,11 +180,11 @@ class _EditProfileState extends State<EditProfile> {
                               style: TextStyle(fontSize: 18),
                             ),
                             Radio(
-                              value: 'Male',
+                              value: "Male",
                               groupValue: selectedGender,
                               onChanged: (value) {
                                 setState(() {
-                                  selectedGender = value as String;
+                                  selectedGender = value;
                                 });
                               },
                             ),
@@ -204,11 +193,11 @@ class _EditProfileState extends State<EditProfile> {
                               style: TextStyle(fontSize: 18),
                             ),
                             Radio(
-                              value: 'Female',
+                              value: "Female",
                               groupValue: selectedGender,
                               onChanged: (value) {
                                 setState(() {
-                                  selectedGender = value as String;
+                                  selectedGender = value;
                                 });
                               },
                             ),
@@ -217,11 +206,11 @@ class _EditProfileState extends State<EditProfile> {
                               style: TextStyle(fontSize: 18),
                             ),
                             Radio(
-                              value: 'Other',
+                              value: "Other",
                               groupValue: selectedGender,
                               onChanged: (value) {
                                 setState(() {
-                                  selectedGender = value as String;
+                                  selectedGender = value;
                                 });
                               },
                             ),
@@ -243,7 +232,7 @@ class _EditProfileState extends State<EditProfile> {
                         prefixIcon: Icon(Icons.bloodtype),
                         border: OutlineInputBorder(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(15))),
+                                BorderRadius.all(Radius.circular(15))),
                       ),
                     ),
                   ),
@@ -297,7 +286,7 @@ class _EditProfileState extends State<EditProfile> {
             );
           }
         },
-        future: null,
+        future: _loadUserData(),
       ),
     );
   }
@@ -352,15 +341,21 @@ class _EditProfileState extends State<EditProfile> {
         controllerMail = TextEditingController(text: data["Email"]);
         controllerDateOfBirth = TextEditingController(text: data["DOB"]);
         controllerBloodGroup = TextEditingController(text: data["BloodGroup"]);
-        // Set selectedGender based on the value from data
-        if (data.containsKey("Gender")) {
-          selectedGender = data["Gender"] as String;
-        } else {
-          // Handle potential lack of "Gender" field in database
-          selectedGender = ""; // Or set a default value based on your logic
+        selectedGender ??= data["Gender"];
+        if (data["Photo"] != null) {
+          imagePath =
+              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/UserImage%2F${data["Photo"]}?alt=media";
+          imageName = data["Photo"];
         }
       }
     });
+  }
+
+  Future uploadImage() async {
+    fileName = basename(_image!.path);
+    Reference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child("UserImage/$fileName");
+    firebaseStorageRef.putFile(_image!);
   }
 
   void updateData(String userkey) async {
@@ -375,8 +370,14 @@ class _EditProfileState extends State<EditProfile> {
         "Photo": fileName,
       };
       uploadImage();
-      final userRef = FirebaseDatabase.instance.ref().child(
-          "ArogyaSair/tblUser").child(userkey);
+      if (imageName != "") {
+        final desertRef = FirebaseStorage.instance.ref("UserImage/$imageName");
+        await desertRef.delete();
+      }
+      final userRef = FirebaseDatabase.instance
+          .ref()
+          .child("ArogyaSair/tblUser")
+          .child(userkey);
       await userRef.update(updatedData);
     } else {
       final updatedData = {
@@ -387,17 +388,11 @@ class _EditProfileState extends State<EditProfile> {
         "Gender": selectedGender,
         "BloodGroup": controllerBloodGroup.text,
       };
-      final userRef = FirebaseDatabase.instance.ref().child(
-          "ArogyaSair/tblUser").child(userkey);
+      final userRef = FirebaseDatabase.instance
+          .ref()
+          .child("ArogyaSair/tblUser")
+          .child(userkey);
       await userRef.update(updatedData);
     }
-
-
-    // // If image upload is successful, update the image URL in the database
-    // if (_image != null) {
-    //   final imageURL = await uploadImage(); // Get the image URL from the upload function
-    //   await userRef.update({"Image": imageURL});
-    // }
   }
-
 }
