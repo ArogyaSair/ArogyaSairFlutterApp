@@ -208,11 +208,13 @@ class _LoginState extends State<Login> {
     var count = 0;
     await dbRef2.once().then((documentSnapshot) async {
       for (var x in documentSnapshot.snapshot.children) {
+        String? key = x.key;
         data = x.value as Map;
         if (data["Username"] == username &&
             data["Password"].toString() == encPassword) {
           await saveData('username', data["Username"]);
           await saveData('email', data["Email"]);
+          await saveData('key', key);
           count = count + 1;
           Navigator.pop(context);
           Navigator.push(context,

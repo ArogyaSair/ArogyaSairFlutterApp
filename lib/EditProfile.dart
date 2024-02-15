@@ -1,10 +1,16 @@
-// ignore_for_file: file_names, non_constant_identifier_names
+// ignore_for_file: file_names, non_constant_identifier_names, depend_on_referenced_packages
+
+// import 'dart:html';
+import 'dart:io';
 
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -27,33 +33,37 @@ class _EditProfileState extends State<EditProfile> {
   var selectedValue = 0;
   String selectedGender = '';
   late String username;
+  late String userKey;
+  late String fileName;
   late String email;
   final key = 'username';
   final key1 = 'email';
+  File? _image; // Make _image nullable
 
-  Future<void> _loadUserData() async {
-    String? userData = await getData(key);
-    String? userEmail = await getData(key1);
+  final picker = ImagePicker();
 
-    username = userData!;
-    email = userEmail!;
+  Future getImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
-    Ref = FirebaseDatabase.instance
-        .ref()
-        .child("ArogyaSair/tblUser")
-        .orderByChild("Username")
-        .equalTo(username);
-
-    await Ref.once().then((documentSnapshot) async {
-      for (var x in documentSnapshot.snapshot.children) {
-        data = x.value as Map;
-        controllerUsername = TextEditingController(text: data["Username"]);
-        controllerName = TextEditingController(text: data["Name"]);
-        controllerMail = TextEditingController(text: data["Email"]);
-        controllerDateOfBirth = TextEditingController(text: data["DOB"]);
-        controllerBloodGroup = TextEditingController(text: "");
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+        fileName = basename(_image!.path);
       }
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future uploadImage() async {
+    fileName = basename(_image!.path);
+    Reference firebaseStorageRef =
+    FirebaseStorage.instance.ref().child("UserImage/$fileName");
+    firebaseStorageRef.putFile(_image!);
   }
 
   @override
@@ -75,7 +85,6 @@ class _EditProfileState extends State<EditProfile> {
         ),
       ),
       body: FutureBuilder(
-        future: _loadUserData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -101,11 +110,13 @@ class _EditProfileState extends State<EditProfile> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(100),
-                          // Set your desired border radius
-                          child: Image.network(
+                          child: _image != null
+                              ? Image.file(_image!,
+                              height: 110, width: 110, fit: BoxFit.cover)
+                              : Image.network(
                             imagePath,
-                            height: 150,
-                            width: 150,
+                            height: 110,
+                            width: 110,
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -120,7 +131,9 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue),
-                          onPressed: () {},
+                          onPressed: () {
+                            getImage();
+                          },
                         ),
                       ],
                     ),
@@ -134,7 +147,7 @@ class _EditProfileState extends State<EditProfile> {
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
+                            BorderRadius.all(Radius.circular(15))),
                       ),
                     ),
                   ),
@@ -147,7 +160,7 @@ class _EditProfileState extends State<EditProfile> {
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
+                                BorderRadius.all(Radius.circular(15))),
                       ),
                     ),
                   ),
@@ -161,7 +174,7 @@ class _EditProfileState extends State<EditProfile> {
                         prefixIcon: Icon(Icons.mail),
                         border: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
+                            BorderRadius.all(Radius.circular(15))),
                       ),
                     ),
                   ),
@@ -230,7 +243,7 @@ class _EditProfileState extends State<EditProfile> {
                         prefixIcon: Icon(Icons.bloodtype),
                         border: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
+                            BorderRadius.all(Radius.circular(15))),
                       ),
                     ),
                   ),
@@ -251,7 +264,7 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                         ),
                         border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
                         ),
                         filled: true,
                         fillColor: const Color(0xffE0E3E7),
@@ -261,7 +274,9 @@ class _EditProfileState extends State<EditProfile> {
                   const SizedBox(height: 10),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        updateData(userKey);
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         shape: RoundedRectangleBorder(
@@ -282,6 +297,7 @@ class _EditProfileState extends State<EditProfile> {
             );
           }
         },
+        future: null,
       ),
     );
   }
@@ -312,4 +328,76 @@ class _EditProfileState extends State<EditProfile> {
     controllerBloodGroup.dispose();
     super.dispose();
   }
+
+  Future<void> _loadUserData() async {
+    String? userData = await getData(key);
+    String? userEmail = await getData(key1);
+    String? userkey = await getKey();
+
+    username = userData!;
+    email = userEmail!;
+    userKey = userkey!;
+
+    Ref = FirebaseDatabase.instance
+        .ref()
+        .child("ArogyaSair/tblUser")
+        .orderByChild("Username")
+        .equalTo(username);
+
+    await Ref.once().then((documentSnapshot) async {
+      for (var x in documentSnapshot.snapshot.children) {
+        data = x.value as Map;
+        controllerUsername = TextEditingController(text: data["Username"]);
+        controllerName = TextEditingController(text: data["Name"]);
+        controllerMail = TextEditingController(text: data["Email"]);
+        controllerDateOfBirth = TextEditingController(text: data["DOB"]);
+        controllerBloodGroup = TextEditingController(text: data["BloodGroup"]);
+        // Set selectedGender based on the value from data
+        if (data.containsKey("Gender")) {
+          selectedGender = data["Gender"] as String;
+        } else {
+          // Handle potential lack of "Gender" field in database
+          selectedGender = ""; // Or set a default value based on your logic
+        }
+      }
+    });
+  }
+
+  void updateData(String userkey) async {
+    if (_image != null) {
+      final updatedData = {
+        "Username": controllerUsername.text,
+        "Name": controllerName.text,
+        "Email": controllerMail.text,
+        "DOB": controllerDateOfBirth.text,
+        "Gender": selectedGender,
+        "BloodGroup": controllerBloodGroup.text,
+        "Photo": fileName,
+      };
+      uploadImage();
+      final userRef = FirebaseDatabase.instance.ref().child(
+          "ArogyaSair/tblUser").child(userkey);
+      await userRef.update(updatedData);
+    } else {
+      final updatedData = {
+        "Username": controllerUsername.text,
+        "Name": controllerName.text,
+        "Email": controllerMail.text,
+        "DOB": controllerDateOfBirth.text,
+        "Gender": selectedGender,
+        "BloodGroup": controllerBloodGroup.text,
+      };
+      final userRef = FirebaseDatabase.instance.ref().child(
+          "ArogyaSair/tblUser").child(userkey);
+      await userRef.update(updatedData);
+    }
+
+
+    // // If image upload is successful, update the image URL in the database
+    // if (_image != null) {
+    //   final imageURL = await uploadImage(); // Get the image URL from the upload function
+    //   await userRef.update({"Image": imageURL});
+    // }
+  }
+
 }

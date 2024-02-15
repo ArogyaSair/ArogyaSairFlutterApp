@@ -12,3 +12,9 @@ Future<String?> getData(key) async {
   String? value = prefs.getString(key);
   return value;
 }
+
+Future<String?> getKey() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? value = prefs.getString("key");
+  return value;
+}
