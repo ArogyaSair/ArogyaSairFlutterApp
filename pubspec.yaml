@@ -43,6 +43,7 @@ dependencies:
   shimmer: ^2.0.0
   transparent_image: ^2.0.0
   image_picker: any
+  email_otp: ^2.1.2
 
 
 dev_dependencies:
