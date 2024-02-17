@@ -2,9 +2,9 @@
 
 import 'package:arogyasair/BottomNavigation.dart';
 import 'package:arogyasair/drawerSideNavigation.dart';
+import 'package:arogyasair/get_home_data.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
-// import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
 import 'SearchPage.dart';
@@ -141,67 +141,7 @@ class _HomePage extends State<HomePage> {
               ),
             ),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Row(
-                children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    margin: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFD4ECF7),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 4,
-                          spreadRadius: 2,
-                        ),
-                      ],
-                    ),
-                    child: Image.network(imagePath),
-                  )
-                ],
-              ),
-            ),
-          )
-          //
-          // FirebaseAnimatedList(
-          //   query: dbRef2,
-          //   itemBuilder: (BuildContext context, DataSnapshot snapshot,
-          //       Animation<double> animation, int index) {
-          //     Map data1 = snapshot.value as Map;
-          //     var imageName = "HospitalImage%2F${data1['Photo']}";
-          //     var imagePath =
-          //         "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
-          //     return ;
-          //   },
-          // )
-          // Flexible(
-          //   child: FirebaseAnimatedList(
-          //     query: dbRef2,
-          //     itemBuilder: (BuildContext context, DataSnapshot snapshot,
-          //         Animation<double> animation, int index) {
-          //       Map data1 = snapshot.value as Map;
-          //       var imageName = "HospitalImage%2F${data1['Photo']}";
-          //       var imagePath =
-          //           "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
-          //       return ListTile(
-          //         contentPadding: EdgeInsets.all(1),
-          //         leading: Image.network(
-          //           imagePath,
-          //           height: 500,
-          //           width: 150,
-          //         ),
-          //         title: Text(data1['HospitalName'].toString()),
-          //         subtitle: Text(data1['HospitalCity'].toString()),
-          //       );
-          //     },
-          //   ),
-          // )
+          get_home_data()
         ],
       ),
     );

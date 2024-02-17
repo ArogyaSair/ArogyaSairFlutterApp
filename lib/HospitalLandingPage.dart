@@ -1,27 +1,22 @@
 // ignore_for_file: non_constant_identifier_names, camel_case_types, library_private_types_in_public_api, use_build_context_synchronously, file_names
 
-import 'package:arogyasair/HospitalHomePage.dart';
-import 'package:arogyasair/HospitalLandingPage.dart';
+import 'package:arogyasair/HomePage.dart';
+import 'package:arogyasair/HospitalEmailVerification.dart';
+import 'package:arogyasair/HospitalLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'HomePage.dart';
-import 'Login.dart';
-import 'Registration.dart';
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class HospitalLandingPage extends StatefulWidget {
+  const HospitalLandingPage({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<HospitalLandingPage> {
   String data = "";
   final key = 'username';
-  final key1 = 'HospitalEmail';
   late bool containsKey;
-  late bool containsKey1;
 
   @override
   void initState() {
@@ -32,19 +27,12 @@ class _MyAppState extends State<MyApp> {
   Future<void> _checkIfLoggedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     containsKey = prefs.containsKey(key);
-    containsKey1 = prefs.containsKey(key1);
 
     if (containsKey) {
       // If the key exists, navigate to HomePage
       Navigator.pop(context);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
-    }
-    if (containsKey1) {
-      // If the key exists, navigate to HomePage
-      Navigator.pop(context);
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const HospitalHomePage()));
     }
   }
 
@@ -65,7 +53,8 @@ class _MyAppState extends State<MyApp> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const Registration()),
+                        builder: (context) =>
+                            const HospitalEmailVerification()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -83,13 +72,14 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.all(20),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Login()),
+                    MaterialPageRoute(
+                        builder: (context) => const HospitalLogin()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -103,26 +93,6 @@ class _MyAppState extends State<MyApp> {
                 child: const Text(
                   "Login",
                   style: TextStyle(fontSize: 20, color: Colors.blue),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(1),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const HospitalLandingPage()),
-                  );
-                },
-                child: const Text(
-                  "For Hospital",
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),

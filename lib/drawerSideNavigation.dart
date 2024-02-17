@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, file_names
 
-import 'package:arogyasair/Login.dart';
+import 'package:arogyasair/LandingPage.dart';
 import 'package:arogyasair/profile.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
@@ -171,7 +171,7 @@ class _DrawerCode extends State<DrawerCode> {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Login()));
+                  MaterialPageRoute(builder: (context) => const MyApp()));
             },
           ),
         ],
