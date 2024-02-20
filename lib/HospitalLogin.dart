@@ -9,6 +9,8 @@ import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
+import 'HospitalFirstPasswordChange.dart';
+
 class HospitalLogin extends StatefulWidget {
   const HospitalLogin({Key? key}) : super(key: key);
 
@@ -208,9 +210,20 @@ class _HospitalLoginState extends State<HospitalLogin> {
         String? key = x.key;
         data = x.value as Map;
         if (data["Email"] == email &&
+            data["Password"].toString() == password.toString()) {
+          print("asdfg is ${data["Email"]}");
+
+          await saveData('HospitalEmail', data["Email"]);
+          await saveData('HospitalName', data["HospitalName"]);
+          await saveData('key', key);
+          count = count + 1;
+          Navigator.pop(context);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const HospitalFirstChangePassword()));
+        } else if (data["Email"] == email &&
             data["Password"].toString() == encPassword) {
-          print("Email is ");
-          print(data["Email"]);
           await saveData('HospitalEmail', data["Email"]);
           await saveData('HospitalName', data["HospitalName"]);
           await saveData('key', key);

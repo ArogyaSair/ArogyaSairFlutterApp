@@ -2,22 +2,20 @@
 
 import 'dart:convert';
 
+import 'package:arogyasair/HospitalHomePage.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'LandingPage.dart';
-
-class HospitalNewPassword extends StatefulWidget {
-  const HospitalNewPassword({Key? key}) : super(key: key);
+class HospitalFirstNewPassword extends StatefulWidget {
+  const HospitalFirstNewPassword({Key? key}) : super(key: key);
 
   @override
-  State<HospitalNewPassword> createState() => _HospitalNewPasswordState();
+  State<HospitalFirstNewPassword> createState() => _HospitalNewPasswordState();
 }
 
-class _HospitalNewPasswordState extends State<HospitalNewPassword> {
+class _HospitalNewPasswordState extends State<HospitalFirstNewPassword> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController controllerNewPassword = TextEditingController();
   TextEditingController controllerNewConfirmPasswordPassword =
@@ -139,15 +137,13 @@ class _HospitalNewPasswordState extends State<HospitalNewPassword> {
                                     controllerNewConfirmPasswordPassword.text;
                                 if (newPassword == newConfirmPassword) {
                                   updateData(userKey);
-                                  SharedPreferences prefs =
-                                      await SharedPreferences.getInstance();
-                                  prefs.clear();
                                   // Navigator.pop(context);
                                   Navigator.pop(context);
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const MyApp()));
+                                          builder: (context) =>
+                                              const HospitalHomePage()));
                                 } else {
                                   showDialog(
                                     context: context,
