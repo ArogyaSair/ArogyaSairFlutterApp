@@ -105,11 +105,13 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
                         true) {
                       Navigator.pop(context);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HospitalRegistration(
-                                    Email: controllerEmail.text,
-                                  )));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HospitalRegistration(
+                            Email: controllerEmail.text,
+                          ),
+                        ),
+                      );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
