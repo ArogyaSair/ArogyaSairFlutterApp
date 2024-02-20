@@ -203,8 +203,8 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                             var encPassword = encryptString(password);
                             if (password == confirmPassword) {
                               HospitalRegisterModel regobj =
-                                  HospitalRegisterModel(
-                                      encPassword, email, name);
+                                  HospitalRegisterModel(encPassword, email,
+                                      name, "", "", "", "", "", "", "");
                               dbRef2.push().set(regobj.toJson());
                               Navigator.of(context).pop();
                               Navigator.push(
