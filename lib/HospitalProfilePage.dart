@@ -1,25 +1,24 @@
 // ignore_for_file: file_names, library_private_types_in_public_api, use_build_context_synchronously
 
-import 'package:arogyasair/EditProfile.dart';
-import 'package:arogyasair/UserChangePassword.dart';
+import 'package:arogyasair/HospitalPasswordChange.dart';
+import 'package:arogyasair/HospitalSideDrawer.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
 
-import 'BottomNavigation.dart';
-import 'drawerSideNavigation.dart';
+import 'HospitalEditProfile.dart';
 
-class MyProfile extends StatefulWidget {
-  const MyProfile({Key? key}) : super(key: key);
+class HospitalProfile extends StatefulWidget {
+  const HospitalProfile({Key? key}) : super(key: key);
 
   @override
-  _MyProfileState createState() => _MyProfileState();
+  _HospitalProfileState createState() => _HospitalProfileState();
 }
 
-class _MyProfileState extends State<MyProfile> {
+class _HospitalProfileState extends State<HospitalProfile> {
   late String username;
   late String email;
-  final key = 'username';
-  final key1 = 'email';
+  final key = 'HospitalName';
+  final key1 = 'HospitalEmail';
 
   @override
   void initState() {
@@ -43,15 +42,14 @@ class _MyProfileState extends State<MyProfile> {
         backgroundColor: Colors.blue,
         automaticallyImplyLeading: false,
         title: const Text(
-          'Arogya Sair',
+          'AS Hospital',
           style: TextStyle(
             color: Colors.white,
           ),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      endDrawer: const DrawerCode(),
-      bottomNavigationBar: const bottomBar(),
+      endDrawer: const HospitalDrawerCode(),
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -78,7 +76,7 @@ class _MyProfileState extends State<MyProfile> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const EditProfile()));
+                        builder: (context) => const HospitalEditProfile()));
               },
               child: const Row(
                 children: [
@@ -108,7 +106,7 @@ class _MyProfileState extends State<MyProfile> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const UserChangePassword()));
+                      builder: (context) => const HospitalChangePassword()));
             },
             child: const Row(
               mainAxisSize: MainAxisSize.max,

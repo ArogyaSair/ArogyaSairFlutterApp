@@ -1,39 +1,37 @@
-// ignore_for_file: file_names, non_constant_identifier_names
-
 import 'dart:convert';
 
-import 'package:arogyasair/HospitalLogin.dart';
+// import 'package:arogyasair/HospitalHomePage.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-// import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'HospitalLogin.dart';
+// import 'models/HospitalRegisterModel.dart';
 
-import 'HospitalAddressDetails.dart';
-import 'models/HospitalRegisterModel.dart';
-
-class HospitalRegistration extends StatefulWidget {
+class HospitalAddressDetails extends StatefulWidget {
   final String Email;
+  final String Name;
 
-  const HospitalRegistration({Key? key, required this.Email}) : super(key: key);
+  const HospitalAddressDetails(
+      {Key? key, required this.Email, required this.Name})
+      : super(key: key);
 
   @override
-  State<HospitalRegistration> createState() => _HospitalRegistrationState();
+  State<HospitalAddressDetails> createState() => _HospitalAddressDetailsState();
 }
 
-class _HospitalRegistrationState extends State<HospitalRegistration> {
+class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // var email = Email;
   DatabaseReference dbRef2 =
       FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
 
   TextEditingController controlleruname = TextEditingController();
-  TextEditingController controllerpassword = TextEditingController();
-  TextEditingController controllerconfirmpassword = TextEditingController();
   TextEditingController controllername = TextEditingController();
   TextEditingController controllermail = TextEditingController();
-  TextEditingController controllerDateOfBirth = TextEditingController();
+  TextEditingController controllerAddress = TextEditingController();
+  TextEditingController controllerCity = TextEditingController();
+  TextEditingController controllerState = TextEditingController();
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
 
@@ -41,6 +39,7 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
   void initState() {
     super.initState();
     controllermail = TextEditingController(text: widget.Email);
+    controllername = TextEditingController(text: widget.Name);
   }
 
   @override
@@ -70,6 +69,7 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                   children: [
                     TextFormField(
                       controller: controllername,
+                      enabled: false,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter your name';
@@ -119,74 +119,76 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                       height: 10,
                     ),
                     TextFormField(
-                      controller: controllerpassword,
+                      controller: controllerAddress,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter password';
+                          return 'Please enter Address';
                         }
                         return null;
                       },
-                      obscureText: !isPasswordVisible,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            isPasswordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          ),
-                          onPressed: () {
-                            _togglePasswordVisibility(context);
-                          },
-                        ),
+                      keyboardType: TextInputType.streetAddress,
+                      decoration: const InputDecoration(
                         prefixIconColor: Colors.blue,
-                        border: const OutlineInputBorder(
+                        prefixIcon: Icon(Icons.pin_drop),
+                        border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
                         ),
+                        labelText: 'Address',
+                        hintText: 'Enter Address',
                         filled: true,
-                        fillColor: const Color(0xffE0E3E7),
-                        labelText: 'Password',
-                        hintText: 'Enter Password',
+                        fillColor: Color(0xffE0E3E7),
                       ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
-                      controller: controllerconfirmpassword,
+                      controller: controllerCity,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter re-enter password';
+                          return 'Please enter City';
                         }
                         return null;
                       },
-                      obscureText: !isConfirmPasswordVisible,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            isConfirmPasswordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          ),
-                          onPressed: () {
-                            _toggleConfirmPasswordVisibility(context);
-                          },
-                        ),
+                      keyboardType: TextInputType.streetAddress,
+                      decoration: const InputDecoration(
                         prefixIconColor: Colors.blue,
-                        border: const OutlineInputBorder(
+                        prefixIcon: Icon(Icons.pin_drop),
+                        border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
                         ),
+                        labelText: 'City',
+                        hintText: 'Enter City',
                         filled: true,
-                        fillColor: const Color(0xffE0E3E7),
-                        labelText: 'Confirm Password',
-                        hintText: 'Re-Enter Password',
+                        fillColor: Color(0xffE0E3E7),
                       ),
                     ),
                     const SizedBox(
                       height: 10,
+                    ),
+                    TextFormField(
+                      controller: controllerState,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter State';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.streetAddress,
+                      decoration: const InputDecoration(
+                        prefixIconColor: Colors.blue,
+                        prefixIcon: Icon(Icons.pin_drop),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                        labelText: 'State',
+                        hintText: 'Enter State',
+                        filled: true,
+                        fillColor: Color(0xffE0E3E7),
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -194,37 +196,42 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          var name = controllername.text;
-                          var password = controllerpassword.text;
-                          var confirmPassword = controllerconfirmpassword.text;
+                          var address = controllerAddress.text;
+                          var city = controllerCity.text;
+                          var state = controllerState.text;
                           var email = controllermail.text;
-                          var encPassword = encryptString(password);
-                          if (password == confirmPassword) {
-                            HospitalRegisterModel regobj =
-                                HospitalRegisterModel(encPassword, email, name,
-                                    "", "", "", "", "", "", "");
-                            dbRef2.push().set(regobj.toJson());
-                            Navigator.of(context).pop();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HospitalAddressDetails(
-                                  Email: controllermail.text,
-                                  Name: controllername.text,
-                                ),
-                              ),
-                            );
-                          } else {
-                            const snackBar = SnackBar(
-                              content: Text("Password does not match..!!"),
-                              duration: Duration(seconds: 2),
-                            );
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
-                          }
+                          var name = controllername.text;
+
+                          print(address);
+                          print(city);
+                          print(state);
+                          print(email);
+                          print(name);
+
+                          // var name = controllername.text;
+                          // var email = controllermail.text;
+                          // if (password == confirmPassword) {
+                          //   HospitalRegisterModel regobj =
+                          //   HospitalRegisterModel(encPassword, email,
+                          //       name, "", "", "", "", "", "", "");
+                          //   dbRef2.push().set(regobj.toJson());
+                          //   Navigator.of(context).pop();
+                          //   Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) =>
+                          //           const HospitalHomePage()));
+                          // } else {
+                          //   const snackBar = SnackBar(
+                          //     content: Text("Password does not match..!!"),
+                          //     duration: Duration(seconds: 2),
+                          //   );
+                          //   ScaffoldMessenger.of(context)
+                          //       .showSnackBar(snackBar);
+                          // }
                         }
                       },
-                      child: const Text("Sign up"),
+                      child: const Text("Add Details"),
                     ),
                     const SizedBox(
                       height: 10,
@@ -271,18 +278,17 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
       ),
     );
   }
-
-  void _toggleConfirmPasswordVisibility(BuildContext context) {
-    setState(() {
-      isConfirmPasswordVisible = !isConfirmPasswordVisible;
-    });
-  }
-
-  void _togglePasswordVisibility(BuildContext context) {
-    setState(() {
-      isPasswordVisible = !isPasswordVisible;
-    });
-  }
+// void _toggleConfirmPasswordVisibility(BuildContext context) {
+//   setState(() {
+//     isConfirmPasswordVisible = !isConfirmPasswordVisible;
+//   });
+// }
+//
+// void _togglePasswordVisibility(BuildContext context) {
+//   setState(() {
+//     isPasswordVisible = !isPasswordVisible;
+//   });
+// }
 }
 
 String encryptString(String originalString) {

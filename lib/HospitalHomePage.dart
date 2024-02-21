@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, use_build_context_synchronously
 
 import 'package:arogyasair/HospitalPasswordChange.dart';
+import 'package:arogyasair/HospitalSideDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,6 +29,7 @@ class _HospitalHomePageState extends State<HospitalHomePage> {
         ),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
+      endDrawer: const HospitalDrawerCode(),
       body: Column(
         children: [
           ElevatedButton(

@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, file_names
 
+import 'package:arogyasair/HospitalLogin.dart';
 import 'package:arogyasair/HospitalRegistration.dart';
 import 'package:email_otp/email_otp.dart';
 // import 'package:firebase_database/firebase_database.dart';
@@ -122,15 +123,42 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
                 child: const Text("Verify OTP"),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(0),
+                  child: Text(
+                    "Already registered..?",
+                    style: TextStyle(color: Colors.blue, fontSize: 16),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(0),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HospitalLogin()),
+                      );
+                    },
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
     );
   }
-
-// void _toggleConfirmPasswordVisibility(BuildContext context) {
-//   setState(() {
-//     isConfirmPasswordVisible = !isConfirmPasswordVisible;
-//   });
-// }
 }

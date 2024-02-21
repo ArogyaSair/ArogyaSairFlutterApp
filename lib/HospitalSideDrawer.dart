@@ -1,27 +1,28 @@
 // ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, file_names
 
+import 'package:arogyasair/HospitalProfilePage.dart';
 import 'package:arogyasair/LandingPage.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'ProfilePage.dart';
 import 'about.dart';
 import 'contact.dart';
 import 'order.dart';
 
-class DrawerCode extends StatefulWidget {
-  const DrawerCode({Key? key}) : super(key: key);
+class HospitalDrawerCode extends StatefulWidget {
+  const HospitalDrawerCode({Key? key}) : super(key: key);
 
   @override
   _DrawerCode createState() => _DrawerCode();
 }
 
-class _DrawerCode extends State<DrawerCode> {
+class _DrawerCode extends State<HospitalDrawerCode> {
   late String username;
   late String email;
-  final key = 'username';
-  final key1 = 'email';
+
+  final key1 = 'HospitalEmail';
+  final key = 'HospitalName';
 
   @override
   void initState() {
@@ -100,11 +101,15 @@ class _DrawerCode extends State<DrawerCode> {
               Icons.account_circle_outlined,
               color: Colors.black,
             ),
-            title: const Text("My Account"),
+            title: const Text("My Profile"),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MyProfile()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HospitalProfile(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -114,9 +119,13 @@ class _DrawerCode extends State<DrawerCode> {
             ),
             title: const Text("Settings"),
             onTap: () {
-              // Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const about()));
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const about(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -124,11 +133,15 @@ class _DrawerCode extends State<DrawerCode> {
               Icons.medical_services,
               color: Colors.black,
             ),
-            title: const Text("My Treatments"),
+            title: const Text("Doctors"),
             onTap: () {
-              // Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const contact()));
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const contact(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -138,9 +151,13 @@ class _DrawerCode extends State<DrawerCode> {
             ),
             title: const Text("About us"),
             onTap: () {
-              // Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const order()));
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const order(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -150,9 +167,13 @@ class _DrawerCode extends State<DrawerCode> {
             ),
             title: const Text("Contact us"),
             onTap: () {
-              // Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const order()));
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const order(),
+                ),
+              );
             },
           ),
           const Divider(
@@ -170,8 +191,12 @@ class _DrawerCode extends State<DrawerCode> {
               prefs.clear();
               Navigator.pop(context);
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MyApp()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MyApp(),
+                ),
+              );
             },
           ),
         ],

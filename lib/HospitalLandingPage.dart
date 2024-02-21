@@ -66,7 +66,7 @@ class _MyAppState extends State<HospitalLandingPage> {
                   ),
                 ),
                 child: const Text(
-                  "Register",
+                  "Hospital Register",
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
@@ -91,7 +91,7 @@ class _MyAppState extends State<HospitalLandingPage> {
                   ),
                 ),
                 child: const Text(
-                  "Login",
+                  "Hospital Login",
                   style: TextStyle(fontSize: 20, color: Colors.blue),
                 ),
               ),
