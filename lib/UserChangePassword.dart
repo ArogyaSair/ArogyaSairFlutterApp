@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_build_context_synchronously
+
 import 'package:arogyasair/UserNewPassword.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:email_otp/email_otp.dart';
