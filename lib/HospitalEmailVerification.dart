@@ -98,30 +98,30 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
               ),
             ),
             Padding(
-                padding: const EdgeInsets.all(10),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    if (await myauth.verifyOTP(otp: controllerOTP.text) ==
-                        true) {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HospitalRegistration(
-                            Email: controllerEmail.text,
-                          ),
+              padding: const EdgeInsets.all(10),
+              child: ElevatedButton(
+                onPressed: () async {
+                  if (await myauth.verifyOTP(otp: controllerOTP.text) == true) {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HospitalRegistration(
+                          Email: controllerEmail.text,
                         ),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Invalid OTP"),
-                        ),
-                      );
-                    }
-                  },
-                  child: const Text("Verify OTP"),
-                )),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Invalid OTP"),
+                      ),
+                    );
+                  }
+                },
+                child: const Text("Verify OTP"),
+              ),
+            ),
           ],
         ),
       ),

@@ -28,13 +28,22 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void _updateList(String query) {
-    Query filteredQuery = dbRef.orderByChild("HospitalName").equalTo(query);
-    filteredQuery.onValue.listen((event) {
+    // Convert the query to lowercase for case-insensitive search
+    String lowercaseQuery = query.toLowerCase();
+
+    dbRef.orderByChild("HospitalName").onValue.listen((event) {
       Map<dynamic, dynamic>? values = event.snapshot.value as Map?;
       List<Map> hospitals = [];
       if (values != null) {
         values.forEach((key, value) {
-          hospitals.add(Map.from(value));
+          // Convert the HospitalName to lowercase for case-insensitive comparison
+          String hospitalNameLowerCase =
+              (value['HospitalName'] as String?)?.toLowerCase() ?? '';
+
+          // Check if the lowercase version of HospitalName contains the lowercase query
+          if (hospitalNameLowerCase.contains(lowercaseQuery)) {
+            hospitals.add(Map.from(value));
+          }
         });
       }
       _streamController.add(hospitals);

@@ -26,8 +26,8 @@ class HospitalRegisterModel {
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
         'Password': password,
-        'HospitalName': name,
         'Email': email,
+        'HospitalName': name,
         'AvailableDoctors': doctors,
         'AvailableFacilities': facilities,
         'AvailableTreatments': treatments,

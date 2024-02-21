@@ -3,6 +3,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
+import 'PackageInformation.dart';
 import 'models/HomePageModel.dart';
 
 class get_home_data extends StatefulWidget {
@@ -51,7 +52,15 @@ class _get_home_dataState extends State<get_home_data> {
                         "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${hospitalList[index].hospitalImage}?alt=media";
                   }
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      final key = hospitalList[index].id;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PackageInformation(key1: key),
+                        ),
+                      );
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Container(
