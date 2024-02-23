@@ -1,12 +1,11 @@
-import 'dart:convert';
+// ignore_for_file: file_names, non_constant_identifier_names, avoid_print
 
-// import 'package:arogyasair/HospitalHomePage.dart';
-import 'package:crypto/crypto.dart';
+import 'package:arogyasair/HospitalServices.dart';
+import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'HospitalLogin.dart';
-// import 'models/HospitalRegisterModel.dart';
 
 class HospitalAddressDetails extends StatefulWidget {
   final String Email;
@@ -22,6 +21,25 @@ class HospitalAddressDetails extends StatefulWidget {
 
 class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String? Key;
+
+  Future<void> loadData() async {
+    Query dbRef = FirebaseDatabase.instance
+        .ref()
+        .child("ArogyaSair/tblHospital")
+        .orderByChild("HospitalName")
+        .equalTo(widget.Name);
+    Map data;
+    await dbRef.once().then((documentSnapshot) async {
+      for (var x in documentSnapshot.snapshot.children) {
+        Key = x.key;
+        data = x.value as Map;
+        await saveData("HospitalName", data["HospitalName"]);
+        await saveData("HospitalEmail", data["Email"]);
+        await saveData("Key", Key);
+      }
+    });
+  }
 
   DatabaseReference dbRef2 =
       FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
@@ -40,6 +58,7 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
     super.initState();
     controllermail = TextEditingController(text: widget.Email);
     controllername = TextEditingController(text: widget.Name);
+    loadData();
   }
 
   @override
@@ -194,42 +213,31 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
                       height: 10,
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          var address = controllerAddress.text;
-                          var city = controllerCity.text;
-                          var state = controllerState.text;
-                          var email = controllermail.text;
-                          var name = controllername.text;
+                      onPressed: () async {
+                        var address = controllerAddress.text;
+                        var city = controllerCity.text;
+                        var state = controllerState.text;
+                        var email = controllermail.text;
+                        var name = controllername.text;
+                        final updateData = {
+                          "HospitalAddress": address,
+                          "HospitalCity": city,
+                          "HospitalState": state,
+                          "HospitalName": name,
+                          "Email": email,
+                        };
 
-                          print(address);
-                          print(city);
-                          print(state);
-                          print(email);
-                          print(name);
-
-                          // var name = controllername.text;
-                          // var email = controllermail.text;
-                          // if (password == confirmPassword) {
-                          //   HospitalRegisterModel regobj =
-                          //   HospitalRegisterModel(encPassword, email,
-                          //       name, "", "", "", "", "", "", "");
-                          //   dbRef2.push().set(regobj.toJson());
-                          //   Navigator.of(context).pop();
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) =>
-                          //           const HospitalHomePage()));
-                          // } else {
-                          //   const snackBar = SnackBar(
-                          //     content: Text("Password does not match..!!"),
-                          //     duration: Duration(seconds: 2),
-                          //   );
-                          //   ScaffoldMessenger.of(context)
-                          //       .showSnackBar(snackBar);
-                          // }
-                        }
+                        final hospitalRef = FirebaseDatabase.instance
+                            .ref()
+                            .child("ArogyaSair/tblHospital")
+                            .child(Key!);
+                        await hospitalRef.update(updateData);
+                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const HospitalServices()));
                       },
                       child: const Text("Add Details"),
                     ),
@@ -278,21 +286,4 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
       ),
     );
   }
-// void _toggleConfirmPasswordVisibility(BuildContext context) {
-//   setState(() {
-//     isConfirmPasswordVisible = !isConfirmPasswordVisible;
-//   });
-// }
-//
-// void _togglePasswordVisibility(BuildContext context) {
-//   setState(() {
-//     isPasswordVisible = !isPasswordVisible;
-//   });
-// }
-}
-
-String encryptString(String originalString) {
-  var bytes = utf8.encode(originalString); // Convert string to bytes
-  var digest = sha256.convert(bytes); // Apply SHA-256 hash function
-  return digest.toString(); // Return the hashed string
 }

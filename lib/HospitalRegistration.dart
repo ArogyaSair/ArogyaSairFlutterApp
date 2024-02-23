@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:arogyasair/HospitalLogin.dart';
+import 'package:arogyasair/HospitalT&C.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
   TextEditingController controllerDateOfBirth = TextEditingController();
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
+  var value = false;
 
   @override
   void initState() {
@@ -188,6 +190,38 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                     const SizedBox(
                       height: 10,
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: value,
+                            onChanged: (newValue) {
+                              setState(() {
+                                value = newValue!;
+                              });
+                            },
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const TermsAndConditionsPage()));
+                            },
+                            child: const Text(
+                              "Agree to T&C",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue,
+                                fontSize: 17,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                     const SizedBox(
                       height: 10,
                     ),
@@ -201,7 +235,7 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                           var encPassword = encryptString(password);
                           if (password == confirmPassword) {
                             HospitalRegisterModel regobj =
-                                HospitalRegisterModel(encPassword, email, name,
+                            HospitalRegisterModel(encPassword, name, email,
                                     "", "", "", "", "", "", "");
                             dbRef2.push().set(regobj.toJson());
                             Navigator.of(context).pop();

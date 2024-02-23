@@ -130,6 +130,9 @@ class _HospitalLoginState extends State<HospitalLogin> {
                         const SizedBox(
                           height: 10,
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
