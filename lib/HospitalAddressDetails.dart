@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, non_constant_identifier_names, avoid_print
+// ignore_for_file: file_names, non_constant_identifier_names, avoid_print, use_build_context_synchronously
 
 import 'package:arogyasair/HospitalServices.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
@@ -36,7 +36,7 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
         data = x.value as Map;
         await saveData("HospitalName", data["HospitalName"]);
         await saveData("HospitalEmail", data["Email"]);
-        await saveData("Key", Key);
+        await saveKey(Key);
       }
     });
   }

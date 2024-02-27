@@ -12,4 +12,9 @@ class FacilityData {
       map["ServiceName"] ?? '',
     );
   }
+
+  @override
+  String toString() {
+    return 'Facilities: $facilities';
+  }
 }

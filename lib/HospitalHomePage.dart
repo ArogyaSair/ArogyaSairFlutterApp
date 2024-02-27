@@ -3,10 +3,10 @@ import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
+import 'HospitalPackageInformation.dart';
 import 'HospitalSideDrawer.dart';
-import 'PackageInformation.dart';
-import 'models/HomePageModel.dart';
 import 'models/HospitalDoctorModel.dart';
+import 'models/PackageDataModel.dart';
 
 class HospitalHomePage extends StatefulWidget {
   const HospitalHomePage({Key? key}) : super(key: key);
@@ -18,8 +18,8 @@ class HospitalHomePage extends StatefulWidget {
 class _HospitalHomePage extends State<HospitalHomePage> {
   Query dbRef2 =
       FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
-  late String data;
-  final key = 'username';
+  late String hospitalName;
+  final key = 'HospitalName';
   late bool containsKey;
 
   @override
@@ -31,7 +31,7 @@ class _HospitalHomePage extends State<HospitalHomePage> {
   Future<void> _loadUserData() async {
     String? userData = await getData(key);
     setState(() {
-      data = userData!;
+      hospitalName = userData!;
     });
   }
 
@@ -47,7 +47,7 @@ class _HospitalHomePage extends State<HospitalHomePage> {
         backgroundColor: Colors.blue,
         automaticallyImplyLeading: false,
         title: const Text(
-          'Arogya Sair',
+          'AS Hospital',
           style: TextStyle(
             color: Colors.white,
           ),
@@ -56,60 +56,52 @@ class _HospitalHomePage extends State<HospitalHomePage> {
       ),
       endDrawer: HospitalDrawerCode(),
       body: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
-          // Generated code for this Container Widget..
           Padding(
             padding: const EdgeInsets.all(10),
             child: SizedBox(
-              height: 150,
+              height: 170,
               width: 400,
               child: StreamBuilder(
                 stream: FirebaseDatabase.instance
                     .ref()
-                    .child("ArogyaSair/tblHospital")
+                    .child("ArogyaSair/tblPackages")
                     .onValue,
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                   if (snapshot.hasData &&
                       snapshot.data!.snapshot.value != null) {
                     Map<dynamic, dynamic> map = snapshot.data!.snapshot.value;
-                    List<HomeData> hospitalList = [];
-                    hospitalList.clear();
+                    List<PackageData> packageList = [];
+                    packageList.clear();
                     map.forEach((key, value) {
-                      hospitalList.add(HomeData.fromMap(value, key));
+                      packageList.add(PackageData.fromMap(value, key));
                     });
                     return GridView.builder(
                       scrollDirection: Axis.horizontal,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                              // childAspectRatio: 10,
                               crossAxisCount: 1),
-                      itemCount: hospitalList.length,
+                      itemCount: packageList.length,
                       padding: const EdgeInsets.all(2.0),
                       itemBuilder: (BuildContext context, int index) {
-                        if (hospitalList[index].hospitalImage == null) {
-                          imagePath =
-                              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FArogyaSair.png?alt=media";
-                        } else {
-                          imagePath =
-                              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${hospitalList[index].hospitalImage}?alt=media";
-                        }
                         return GestureDetector(
                           onTap: () {
-                            final key = hospitalList[index].id;
+                            final key = packageList[index].id;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    PackageInformation(key1: key),
+                                    // work
+                                    PackageInformation(hospitalName, key),
                               ),
                             );
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(5),
                             child: Container(
-                              width:
-                                  (MediaQuery.of(context).size.width / 2) - 15,
+                              width: 200,
                               height: 100,
                               decoration: BoxDecoration(
                                   shape: BoxShape.rectangle,
@@ -121,12 +113,11 @@ class _HospitalHomePage extends State<HospitalHomePage> {
                                   )),
                               child: Padding(
                                 padding: const EdgeInsets.all(0),
-                                // child: Text(hospitalList[index].pname),
                                 child: Container(
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.rectangle,
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(15.0)),
+                                    BorderRadius.all(Radius.circular(15.0)),
                                     gradient: LinearGradient(
                                         colors: [
                                           Colors.blue,
@@ -141,17 +132,17 @@ class _HospitalHomePage extends State<HospitalHomePage> {
                                     padding: const EdgeInsets.all(10),
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Text(
-                                          hospitalList[index].hospitalName,
+                                          packageList[index].packagename,
                                           style: const TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.w500,
                                             color: Colors.white,
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -177,7 +168,7 @@ class _HospitalHomePage extends State<HospitalHomePage> {
             padding: const EdgeInsets.all(10),
             child: SizedBox(
               height: 150,
-              width: 400,
+              width: 500,
               child: StreamBuilder(
                 stream: FirebaseDatabase.instance
                     .ref()
@@ -196,34 +187,32 @@ class _HospitalHomePage extends State<HospitalHomePage> {
                     return GridView.builder(
                       scrollDirection: Axis.horizontal,
                       gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1),
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1),
                       itemCount: doctorList.length,
                       padding: const EdgeInsets.all(2.0),
                       itemBuilder: (BuildContext context, int index) {
                         if (doctorList[index].doctorImage == null) {
                           imagePath =
-                              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2FArogyaSair.png?alt=media";
+                          "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2FArogyaSair.png?alt=media";
                         } else {
                           imagePath =
-                              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2F${doctorList[index].doctorImage}?alt=media";
+                          "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2F${doctorList[index].doctorImage}?alt=media";
                         }
                         return GestureDetector(
                           onTap: () {
-                            final key = doctorList[index].id;
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    PackageInformation(key1: key),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) =>
+                            //         // PackageInformation(key1: key, HospitlName: '',),
+                            //   ),
+                            // );
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(5),
                             child: Container(
-                              width:
-                                  (MediaQuery.of(context).size.width / 2) - 15,
+                              width: (MediaQuery.of(context).size.width),
                               height: 100,
                               decoration: BoxDecoration(
                                   shape: BoxShape.rectangle,
@@ -240,7 +229,7 @@ class _HospitalHomePage extends State<HospitalHomePage> {
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.rectangle,
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(15.0)),
+                                    BorderRadius.all(Radius.circular(15.0)),
                                     gradient: LinearGradient(
                                         colors: [
                                           Colors.blue,
@@ -255,7 +244,7 @@ class _HospitalHomePage extends State<HospitalHomePage> {
                                     padding: const EdgeInsets.all(10),
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Text(
@@ -287,6 +276,109 @@ class _HospitalHomePage extends State<HospitalHomePage> {
               ),
             ),
           ),
+          Padding(
+              padding: const EdgeInsets.all(10),
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  height: 200,
+                  width: 400,
+                  child: StreamBuilder(
+                    stream: FirebaseDatabase.instance
+                        .ref()
+                        .child("ArogyaSair/tblDoctor")
+                        .onValue,
+                    builder: (BuildContext context,
+                        AsyncSnapshot<dynamic> snapshot) {
+                      if (snapshot.hasData &&
+                          snapshot.data!.snapshot.value != null) {
+                        Map<dynamic, dynamic> map =
+                            snapshot.data!.snapshot.value;
+                        List<HospitalDoctorData> doctorList = [];
+                        doctorList.clear();
+                        map.forEach((key, value) {
+                          doctorList
+                              .add(HospitalDoctorData.fromMap(value, key));
+                        });
+                        return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: doctorList.length,
+                          padding: const EdgeInsets.all(2.0),
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                              onTap: () {
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     // builder: (context) => PackageInformation(key1: key, HospitlName: '',),
+                                //   ),
+                                // );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Row(
+                                  children: [
+                                    // Display doctor image if available
+
+                                    const SizedBox(width: 10.0), // Add spacing
+
+                                    // Column for doctor details and buttons
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          // Doctor name
+                                          Text(
+                                            doctorList[index].doctorName,
+                                            style: const TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 5.0),
+                                          // Add spacing
+
+                                          // Row for buttons
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              // Button 1
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  // Add functionality for Button 1
+                                                },
+                                                child: const Text("Button 1"),
+                                              ),
+                                              // Button 2
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  // Add functionality for Button 2
+                                                },
+                                                child: const Text("Button 2"),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      } else {
+                        return const CircularProgressIndicator(
+                          backgroundColor: Colors.redAccent,
+                          valueColor: AlwaysStoppedAnimation(Colors.green),
+                          strokeWidth: 1.5,
+                        );
+                      }
+                    },
+                  ),
+                ),
+              ))
         ],
       ),
     );

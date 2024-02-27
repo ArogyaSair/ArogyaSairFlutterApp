@@ -2,7 +2,10 @@
 
 import 'package:arogyasair/HospitalHomePage.dart';
 import 'package:arogyasair/HospitalLandingPage.dart';
+import 'package:arogyasair/saveSharePreferences.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'HomePage.dart';
@@ -22,6 +25,9 @@ class _MyAppState extends State<MyApp> {
   final key1 = 'HospitalEmail';
   late bool containsKey;
   late bool containsKey1;
+  late String KeyToCheck;
+
+  var logger = Logger();
 
   @override
   void initState() {
@@ -33,18 +39,30 @@ class _MyAppState extends State<MyApp> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     containsKey = prefs.containsKey(key);
     containsKey1 = prefs.containsKey(key1);
+    KeyToCheck = (await getKey())!;
+    DatabaseReference dbUserRef =
+        FirebaseDatabase.instance.ref().child("ArogyaSair/tblUser/$KeyToCheck");
 
-    if (containsKey) {
-      // If the key exists, navigate to HomePage
-      Navigator.pop(context);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
+    DatabaseEvent databaseEvent = await dbUserRef.once();
+    DataSnapshot dataSnapshot = databaseEvent.snapshot;
+
+    if (dataSnapshot.value == null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.clear();
     }
-    if (containsKey1) {
-      // If the key exists, navigate to HomePage
-      Navigator.pop(context);
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const HospitalHomePage()));
+
+    if (dataSnapshot.value != null) {
+      logger.d("Has Data");
+      if (containsKey) {
+        Navigator.pop(context);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
+      }
+      if (containsKey1) {
+        Navigator.pop(context);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HospitalHomePage()));
+      }
     }
   }
 

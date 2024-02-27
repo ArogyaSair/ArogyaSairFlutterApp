@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'about.dart';
-import 'contact.dart';
+import 'hospitalPackagesAdd.dart';
 import 'order.dart';
 
 class HospitalDrawerCode extends StatefulWidget {
@@ -20,6 +20,7 @@ class HospitalDrawerCode extends StatefulWidget {
 class _DrawerCode extends State<HospitalDrawerCode> {
   late String username;
   late String email;
+  late String userKey;
 
   final key1 = 'HospitalEmail';
   final key = 'HospitalName';
@@ -33,9 +34,11 @@ class _DrawerCode extends State<HospitalDrawerCode> {
   Future<void> _loadUserData() async {
     String? userData = await getData(key);
     String? userEmail = await getData(key1);
+    String? userkey = await getKey();
     setState(() {
       username = userData!;
       email = userEmail!;
+      userKey = userkey!;
     });
   }
 
@@ -133,13 +136,14 @@ class _DrawerCode extends State<HospitalDrawerCode> {
               Icons.medical_services,
               color: Colors.black,
             ),
-            title: const Text("Doctors"),
+            title: const Text("Packages"),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const contact(),
+                  builder: (context) =>
+                      HospitalPackageAdd(hospitalKey: userKey.toString()),
                 ),
               );
             },

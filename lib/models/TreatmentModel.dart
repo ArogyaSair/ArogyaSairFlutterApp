@@ -12,4 +12,9 @@ class TreatmentModel {
       map["TreatmentName"] ?? '',
     );
   }
+
+  @override
+  String toString() {
+    return 'Treatment: $treatment';
+  }
 }

@@ -45,6 +45,7 @@ dependencies:
   image_picker: any
   email_otp: ^2.1.2
   multi_select_flutter: any
+  logger: any
 
 
 dev_dependencies:
