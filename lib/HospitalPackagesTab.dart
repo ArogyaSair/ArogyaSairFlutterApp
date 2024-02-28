@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:async';
 
 import 'package:arogyasair/hospitalPackagesAdd.dart';
@@ -50,8 +52,7 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
       logger.d(hospitals);
       if (values != null) {
         values.forEach((key, value) {
-          if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
-          } else {
+          if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {} else {
             hospitals.add({
               'PackageName': value['PackageName'],
               'Duration': value['Duration'],

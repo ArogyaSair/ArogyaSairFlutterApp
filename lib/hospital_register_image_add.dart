@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names
+
 import 'dart:io';
 
 import 'package:arogyasair/HospitalHomePage.dart';
@@ -70,12 +72,12 @@ class _HospitalRegisterImageAddState extends State<HospitalRegisterImageAdd> {
                   borderRadius: BorderRadius.circular(10),
                   child: _image != null
                       ? Image.file(_image!,
-                          height: 150, width: 150, fit: BoxFit.cover)
+                      height: 150, width: 150, fit: BoxFit.cover)
                       : Image.network(
-                          imagePath,
-                          height: 150,
-                          width: 150,
-                        ),
+                    imagePath,
+                    height: 150,
+                    width: 150,
+                  ),
                 ),
                 const SizedBox(width: 10),
                 ElevatedButton.icon(
@@ -117,7 +119,7 @@ class _HospitalRegisterImageAddState extends State<HospitalRegisterImageAdd> {
   Future uploadImage() async {
     fileName = basename(_image!.path);
     Reference firebaseStorageRef =
-        FirebaseStorage.instance.ref().child("HospitalImage/$fileName");
+    FirebaseStorage.instance.ref().child("HospitalImage/$fileName");
     firebaseStorageRef.putFile(_image!);
   }
 
@@ -133,7 +135,7 @@ class _HospitalRegisterImageAddState extends State<HospitalRegisterImageAdd> {
       };
       if (imageName != "") {
         final desertRef =
-            FirebaseStorage.instance.ref("HospitalImage/$imageName");
+        FirebaseStorage.instance.ref("HospitalImage/$imageName");
         await desertRef.delete();
       }
       uploadImage();

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, depend_on_referenced_packages, non_constant_identifier_names, unused_local_variable
+
 import 'dart:io';
 
 import 'package:arogyasair/saveSharePreferences.dart';
@@ -8,9 +10,9 @@ import 'package:logger/logger.dart';
 import 'package:path/path.dart';
 
 class HospitalPackageEdit extends StatefulWidget {
-  late String hospitalName;
+  final String hospitalName;
 
-  HospitalPackageEdit(this.hospitalName, {Key? key}) : super(key: key);
+  const HospitalPackageEdit(this.hospitalName, {Key? key}) : super(key: key);
 
   @override
   State<HospitalPackageEdit> createState() => _HospitalPackageEditState();
@@ -95,7 +97,7 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 20, left: 10, right: 10),
+                      const EdgeInsets.only(top: 20, left: 10, right: 10),
                       child: Center(
                         child: Image.asset(
                           'assets/Logo/ArogyaSair.png',
@@ -117,12 +119,12 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
                             borderRadius: BorderRadius.circular(100),
                             child: _image != null
                                 ? Image.file(_image!,
-                                    height: 110, width: 110, fit: BoxFit.cover)
+                                height: 110, width: 110, fit: BoxFit.cover)
                                 : Image.network(
-                                    imagePath,
-                                    height: 110,
-                                    width: 110,
-                                  ),
+                              imagePath,
+                              height: 110,
+                              width: 110,
+                            ),
                           ),
                           const SizedBox(width: 10),
                           ElevatedButton.icon(
@@ -310,7 +312,7 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
             TextEditingController(text: data["Duration"]);
         if (data["Photo"] != null) {
           imagePath =
-              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/UserImage%2F${data["Photo"]}?alt=media";
+          "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/UserImage%2F${data["Photo"]}?alt=media";
           imageName = data["Photo"];
         }
       }

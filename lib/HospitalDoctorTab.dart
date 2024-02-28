@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
@@ -33,8 +35,7 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
       logger.d(hospitals);
       if (values != null) {
         values.forEach((key, value) {
-          if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
-          } else {
+          if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {} else {
             hospitals.add({
               'DoctorName': value['DoctorName'],
               'Email': value['Email'],

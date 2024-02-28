@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, library_private_types_in_public_api, prefer_const_constructors
+// ignore_for_file: file_names, library_private_types_in_public_api, prefer_const_constructors, use_build_context_synchronously
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
