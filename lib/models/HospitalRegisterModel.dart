@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, file_names
 
 class HospitalRegisterModel {
+  late String key;
   late String password;
   late String name;
   late String email;
@@ -12,8 +13,7 @@ class HospitalRegisterModel {
   late String state;
   late String photo;
 
-  HospitalRegisterModel(
-      this.password,
+  HospitalRegisterModel(this.password,
       this.name,
       this.email,
       this.doctors,
@@ -25,20 +25,21 @@ class HospitalRegisterModel {
       this.photo);
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
-        'Password': password,
-        'Email': email,
-        'HospitalName': name,
-        'AvailableDoctors': doctors,
-        'AvailableFacilities': facilities,
-        'AvailableTreatments': treatments,
-        'HospitalAddress': address,
-        'HospitalCity': city,
-        'HospitalState': state,
-        'Photo': photo,
-      };
+    'Password': password,
+    'Email': email,
+    'HospitalName': name,
+    'AvailableDoctors': doctors,
+    'AvailableFacilities': facilities,
+    'AvailableTreatments': treatments,
+    'HospitalAddress': address,
+    'HospitalCity': city,
+    'HospitalState': state,
+    'Photo': photo,
+  };
 
   factory HospitalRegisterModel.fromJson(Map<String, dynamic> v) {
     return HospitalRegisterModel(
+      // v["key"],
         v["password"],
         v["email"],
         v["name"],

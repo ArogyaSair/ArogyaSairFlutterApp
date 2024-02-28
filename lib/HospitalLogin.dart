@@ -230,6 +230,8 @@ class _HospitalLoginState extends State<HospitalLogin> {
           await saveData('HospitalEmail', data["Email"]);
           await saveData('HospitalName', data["HospitalName"]);
           await saveData('key', key);
+          print("key is  $key");
+          // print("shared key is ${getKey()}");
           count = count + 1;
           Navigator.pop(context);
           Navigator.push(

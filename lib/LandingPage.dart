@@ -46,12 +46,14 @@ class _MyAppState extends State<MyApp> {
     DatabaseEvent databaseEvent = await dbUserRef.once();
     DataSnapshot dataSnapshot = databaseEvent.snapshot;
 
-    if (dataSnapshot.value == null) {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.clear();
-    }
+    DatabaseReference dbHospitalRef = FirebaseDatabase.instance
+        .ref()
+        .child("ArogyaSair/tblHospital/$KeyToCheck");
 
-    if (dataSnapshot.value != null) {
+    DatabaseEvent databaseEventHospital = await dbHospitalRef.once();
+    DataSnapshot dataSnapshotHospital = databaseEventHospital.snapshot;
+
+    if (dataSnapshot.value != null || dataSnapshotHospital.value != null) {
       logger.d("Has Data");
       if (containsKey) {
         Navigator.pop(context);
@@ -63,6 +65,9 @@ class _MyAppState extends State<MyApp> {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const HospitalHomePage()));
       }
+    } else {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.clear();
     }
   }
 

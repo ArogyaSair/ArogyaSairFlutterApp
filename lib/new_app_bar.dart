@@ -1,6 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyTab());
 }
 
@@ -30,9 +35,9 @@ class _MyTabPageState extends State<MyTabPage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey[700],
+          backgroundColor: Colors.blue,
           title: const Text(
-            "Arogya Sair",
+            "AS Hospital",
             style: TextStyle(color: Colors.white),
           ),
           actions: [
@@ -81,30 +86,33 @@ class _MyTabPageState extends State<MyTabPage> {
                   // Handle Settings
                 }
               },
-              icon: const Icon(Icons.more_vert, color: Colors.white),
+              icon: const Icon(
+                Icons.more_vert,
+                color: Colors.white,
+              ),
             ),
           ],
           bottom: const TabBar(
-            labelColor: Colors.greenAccent,
+            labelColor: Colors.white,
             unselectedLabelColor: Colors.white,
             tabs: [
-              Tab(text: 'CHATS'),
-              Tab(text: 'STATUS'),
-              Tab(text: 'CALLS'),
+              Tab(text: 'PACKAGES'),
+              Tab(text: 'DOCTORS'),
+              Tab(text: 'APPOINTMENTS'),
             ],
           ),
         ),
         body: const TabBarView(
           children: [
             Center(
-              child: Text("Chats"),
-            ),
+                // child: HospitalPackagesTab(),
+                ),
             Center(
-              child: Text("Status"),
-            ),
+                // child: HospitalDoctorTab(),
+                ),
             Center(
-              child: Text("Calls"),
-            ),
+                // child: HospitalAppointmentTab(),
+                ),
           ],
         ),
       ),

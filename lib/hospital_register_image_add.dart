@@ -117,7 +117,7 @@ class _HospitalRegisterImageAddState extends State<HospitalRegisterImageAdd> {
   Future uploadImage() async {
     fileName = basename(_image!.path);
     Reference firebaseStorageRef =
-        FirebaseStorage.instance.ref().child("UserImage/$fileName");
+        FirebaseStorage.instance.ref().child("HospitalImage/$fileName");
     firebaseStorageRef.putFile(_image!);
   }
 
@@ -133,7 +133,7 @@ class _HospitalRegisterImageAddState extends State<HospitalRegisterImageAdd> {
       };
       if (imageName != "") {
         final desertRef =
-            FirebaseStorage.instance.ref("hospitalImage/$imageName");
+            FirebaseStorage.instance.ref("HospitalImage/$imageName");
         await desertRef.delete();
       }
       uploadImage();
