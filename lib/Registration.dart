@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, non_constant_identifier_names, library_private_types_in_public_api
+// ignore_for_file: file_names, non_constant_identifier_names, library_private_types_in_public_api, use_build_context_synchronously
 
 import 'dart:convert';
 
@@ -241,7 +241,6 @@ class _Registration extends State<Registration> {
                               .child('ArogyaSair/tblUser')
                               .orderByChild("Username")
                               .equalTo(controlleruname.text);
-                          print("anything");
                           DatabaseEvent databaseEvent = await dbRef.once();
                           DataSnapshot dataSnapshot = databaseEvent.snapshot;
                           if (dataSnapshot.value != null) {

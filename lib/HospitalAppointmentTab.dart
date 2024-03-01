@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables
 
 import 'dart:async';
 
@@ -57,7 +57,6 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
             "Disease": value["Disease"]
           });
           await fetchUserData(userId, appointment.length - 1);
-          print(userName);
         });
       }
       _streamController.add(appointment);
