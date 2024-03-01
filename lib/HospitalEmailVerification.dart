@@ -44,8 +44,7 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
             Padding(
               padding: const EdgeInsets.all(10),
               child: TextFormField(
-                controller: controllerEmail,
-                // enabled: false,
+                controller: controllerEmail, // enabled: false,
                 decoration: InputDecoration(
                   hintText: "Email",
                   prefixIcon: const Icon(Icons.mail),

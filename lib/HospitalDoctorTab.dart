@@ -74,9 +74,6 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
                     itemCount: hospitals.length,
                     itemBuilder: (context, index) {
                       Map data1 = hospitals[index];
-                      // var imagePath = data1['Photo'] == 'noimage'
-                      //     ? 'https://via.placeholder.com/150' // Placeholder image URL
-                      //     : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
                       var time = "${data1["TimeFrom"]} - ${data1["TimeTo"]}";
                       return ListTile(
                         contentPadding: const EdgeInsets.all(12),

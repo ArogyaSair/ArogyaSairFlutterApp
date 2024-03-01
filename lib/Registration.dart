@@ -3,12 +3,13 @@
 import 'dart:convert';
 
 import 'package:arogyasair/Login.dart';
-import 'package:arogyasair/models/RegisterModel.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
+
+import 'models/RegisterModel.dart';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -31,6 +32,7 @@ class _Registration extends State<Registration> {
   var birthDate = "Select Birthdate";
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
+  late Map data;
 
   @override
   void initState() {
@@ -231,31 +233,59 @@ class _Registration extends State<Registration> {
                       height: 10,
                     ),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          var name = controllername.text;
-                          var password = controllerpassword.text;
-                          var confirmPassword = controllerconfirmpassword.text;
-                          var username = controlleruname.text;
-                          var email = controllermail.text;
-                          var DOB = birthDate;
-                          var encPassword = encryptString(password);
-                          if (password == confirmPassword) {
-                            RegisterModel regobj = RegisterModel(
-                                username, encPassword, email, name, DOB);
-                            dbRef2.push().set(regobj.toJson());
-                            Navigator.of(context).pop();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Login()));
-                          } else {
-                            const snackBar = SnackBar(
-                              content: Text("Password does not match..!!"),
-                              duration: Duration(seconds: 2),
-                            );
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
+                          if (controlleruname.text.isNotEmpty) {
+                            Query dbRef = FirebaseDatabase.instance
+                                .ref()
+                                .child('ArogyaSair/tblUser')
+                                .orderByChild("Username")
+                                .equalTo(controlleruname.text);
+                            await dbRef.once().then((documentSnapshot) async {
+                              for (var x
+                                  in documentSnapshot.snapshot.children) {
+                                data = x.value as Map;
+                                if (!data.containsValue(controlleruname.text)) {
+                                  var name = controllername.text;
+                                  var password = controllerpassword.text;
+                                  var confirmPassword =
+                                      controllerconfirmpassword.text;
+                                  var username = controlleruname.text;
+                                  var email = controllermail.text;
+                                  var DOB = birthDate;
+                                  var encPassword = encryptString(password);
+                                  if (password == confirmPassword) {
+                                    RegisterModel regobj = RegisterModel(
+                                        username,
+                                        encPassword,
+                                        email,
+                                        name,
+                                        DOB);
+                                    dbRef2.push().set(regobj.toJson());
+                                    Navigator.of(context).pop();
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const Login()));
+                                  } else {
+                                    const snackBar = SnackBar(
+                                      content:
+                                          Text("Password does not match..!!"),
+                                      duration: Duration(seconds: 2),
+                                    );
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                  }
+                                } else {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text(
+                                        "This Username is already taken. Please chose another..!"),
+                                  ));
+                                }
+                              }
+                            });
                           }
                         }
                       },

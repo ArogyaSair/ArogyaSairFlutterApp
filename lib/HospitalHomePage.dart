@@ -49,7 +49,7 @@ class _HospitalHomePage extends State<HospitalHomePage> {
         appBar: AppBar(
           backgroundColor: Colors.blue,
           title: Text(
-            "AS Hospital",
+            "$hospitalName $hospitalKey",
             style: TextStyle(color: Colors.white),
           ),
           actions: [
