@@ -123,7 +123,7 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
                             var Disease = widget.item;
                             var Date = birthDate;
                             var User = UserKey;
-                            var Status = 0.toString();
+                            var Status = "Pending";
 
                             AppointmentDateSelectionModel regobj =
                                 AppointmentDateSelectionModel(

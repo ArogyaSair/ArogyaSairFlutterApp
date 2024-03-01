@@ -210,7 +210,8 @@ class _Registration extends State<Registration> {
                     ),
                     TextFormField(
                       controller: controllerDateOfBirth,
-                      readOnly: true, // Make the text input read-only
+                      readOnly: true,
+                      // Make the text input read-only
                       decoration: InputDecoration(
                         prefixIcon: GestureDetector(
                           onTap: () {
@@ -235,57 +236,48 @@ class _Registration extends State<Registration> {
                     ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          if (controlleruname.text.isNotEmpty) {
-                            Query dbRef = FirebaseDatabase.instance
-                                .ref()
-                                .child('ArogyaSair/tblUser')
-                                .orderByChild("Username")
-                                .equalTo(controlleruname.text);
-                            await dbRef.once().then((documentSnapshot) async {
-                              for (var x
-                                  in documentSnapshot.snapshot.children) {
-                                data = x.value as Map;
-                                if (!data.containsValue(controlleruname.text)) {
-                                  var name = controllername.text;
-                                  var password = controllerpassword.text;
-                                  var confirmPassword =
-                                      controllerconfirmpassword.text;
-                                  var username = controlleruname.text;
-                                  var email = controllermail.text;
-                                  var DOB = birthDate;
-                                  var encPassword = encryptString(password);
-                                  if (password == confirmPassword) {
-                                    RegisterModel regobj = RegisterModel(
-                                        username,
-                                        encPassword,
-                                        email,
-                                        name,
-                                        DOB);
-                                    dbRef2.push().set(regobj.toJson());
-                                    Navigator.of(context).pop();
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Login()));
-                                  } else {
-                                    const snackBar = SnackBar(
-                                      content:
-                                          Text("Password does not match..!!"),
-                                      duration: Duration(seconds: 2),
-                                    );
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(snackBar);
-                                  }
-                                } else {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(const SnackBar(
-                                    content: Text(
-                                        "This Username is already taken. Please chose another..!"),
-                                  ));
-                                }
-                              }
-                            });
+                          Query dbRef = FirebaseDatabase.instance
+                              .ref()
+                              .child('ArogyaSair/tblUser')
+                              .orderByChild("Username")
+                              .equalTo(controlleruname.text);
+                          print("anything");
+                          DatabaseEvent databaseEvent = await dbRef.once();
+                          DataSnapshot dataSnapshot = databaseEvent.snapshot;
+                          if (dataSnapshot.value != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  "This Username is already taken. Please chose another..!",
+                                ),
+                              ),
+                            );
+                          } else {
+                            var name = controllername.text;
+                            var password = controllerpassword.text;
+                            var confirmPassword =
+                                controllerconfirmpassword.text;
+                            var username = controlleruname.text;
+                            var email = controllermail.text;
+                            var DOB = birthDate;
+                            var encPassword = encryptString(password);
+                            if (password == confirmPassword) {
+                              RegisterModel regobj = RegisterModel(
+                                  username, encPassword, email, name, DOB);
+                              dbRef2.push().set(regobj.toJson());
+                              Navigator.of(context).pop();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Login()));
+                            } else {
+                              const snackBar = SnackBar(
+                                content: Text("Password does not match..!!"),
+                                duration: Duration(seconds: 2),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            }
                           }
                         }
                       },

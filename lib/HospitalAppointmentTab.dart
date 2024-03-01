@@ -20,7 +20,10 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
   late Query dbRefUser;
   late StreamController<List<Map>> _streamController;
   Map<dynamic, dynamic>? userData;
+  Map<int, Map> userMap = {};
   late Map data1;
+  late Map data2;
+  late List<Map> userName = [];
 
   var logger = Logger();
   List<Map> appointment = [];
@@ -31,7 +34,6 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
   void initState() {
     super.initState();
     getHospitalData();
-    // fetchUserData(data1["UserId"]);
   }
 
   void getHospitalData() {
@@ -41,16 +43,21 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
         .orderByChild("HospitalId")
         .equalTo(widget.hospitalKey)
         .onValue
-        .listen((event) {
+        .listen((event) async {
       Map<dynamic, dynamic>? values = event.snapshot.value as Map?;
       if (values != null) {
-        values.forEach((key, value) {
+        var userId;
+        values.forEach((key, value) async {
+          userId = value["UserId"];
           appointment.add({
             'AppointmentDate': value['AppointmentDate'],
             'HospitalID': value['HospitalID'],
             "Status": value["Status"],
-            "UserId": value["UserId"]
+            "UserId": value["UserId"],
+            "Disease": value["Disease"]
           });
+          await fetchUserData(userId, appointment.length - 1);
+          print(userName);
         });
       }
       _streamController.add(appointment);
@@ -74,22 +81,25 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
                     itemCount: appointment.length,
                     itemBuilder: (context, index) {
                       data1 = appointment[index];
-                      print(data1["UserId"]);
-                      var time = "${data1["AppointmentDate"]}";
-                      logger.d(userData?["Name"]);
-                      var userName = fetchUserData(data1["UserId"]);
-                      logger.d(userName);
-                      return ListTile(
-                        contentPadding: const EdgeInsets.all(12),
-                        title: Row(
-                          children: [
-                            Text(data1['Status'].toString()),
-                            const SizedBox(width: 10),
-                            Text(userName as String),
-                          ],
+                      data2 = userMap[index] ?? {};
+                      var date = "${data1["AppointmentDate"]}";
+                      return Card(
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(12),
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Patient Name : ${data2['UserName']}"),
+                              const SizedBox(width: 10),
+                              Text("Requested date of visit : $date"),
+                              const SizedBox(width: 10),
+                              Text("For : ${data1["Disease"]}"),
+                              const SizedBox(width: 10),
+                              Text("Request status : ${data1["Status"]}"),
+                            ],
+                          ),
+                          onTap: () {},
                         ),
-                        subtitle: Text(time),
-                        onTap: () {},
                       );
                     },
                   );
@@ -104,12 +114,15 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
     );
   }
 
-  Future<String> fetchUserData(String key) async {
+  Future<void> fetchUserData(String key, int index) async {
     DatabaseReference dbUserData =
         FirebaseDatabase.instance.ref().child("ArogyaSair/tblUser").child(key);
     DatabaseEvent userDataEvent = await dbUserData.once();
     DataSnapshot userDataSnapshot = userDataEvent.snapshot;
     userData = userDataSnapshot.value as Map?;
-    return userData!["Name"];
+    userMap[index] = {
+      "UserName": userData!["Name"],
+    };
+    _streamController.add(appointment); // Update the stream with new data
   }
 }
