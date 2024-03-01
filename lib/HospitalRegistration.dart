@@ -38,6 +38,7 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
   var value = false;
+  late Map data;
 
   @override
   void initState() {

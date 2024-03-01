@@ -1,21 +1,41 @@
-// ignore_for_file: file_names
+// ignore_for_file: non_constant_identifier_names, file_names, prefer_typing_uninitialized_variables
 
-class HospitalDoctorData {
-  final String id;
-  final String? doctorImage;
-  final String doctorName;
+class HospitalDoctor {
+  late var doctor;
+  late String hospital_ID;
+  late String status;
+  late String timeFrom;
+  late String timeTo;
 
-  // final String doctorName;
+  HospitalDoctor(
+      this.doctor, this.hospital_ID, this.status, this.timeFrom, this.timeTo);
 
-  HospitalDoctorData(this.id, this.doctorName, this.doctorImage);
+  Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
+        'Doctor': doctor,
+        'Hospital_ID': hospital_ID,
+        'Doctor_Status': status,
+        'TimeFrom': timeFrom,
+        'TimeTo': timeTo,
+      };
 
-  // Add a factory constructor to create an instance from a Map
-  factory HospitalDoctorData.fromMap(Map<dynamic, dynamic> map, String id) {
-    return HospitalDoctorData(
-      id,
-      // map["ServiceName"] ?? '', // Use an empty string if it's null
-      map["DoctorName"] ?? '', // Use an empty string if it's null
-      map["Photo"],
+  factory HospitalDoctor.fromJson(Map<String, dynamic> v) {
+    return HospitalDoctor(v["Doctor"], v["Hospital_ID"], v["Doctor_Status"],
+        v["TimeFrom"], v["TimeTo"]);
+  }
+
+  factory HospitalDoctor.fromMap(Map<dynamic, dynamic> map, String id) {
+    return HospitalDoctor(
+      // id,
+      map["Doctor"] ?? '',
+      map["Hospital_ID"] ?? '',
+      map["Doctor_Status"] ?? '',
+      map["TimeFrom"] ?? '',
+      map["TimeTo"] ?? '',
     );
+  }
+
+  @override
+  String toString() {
+    return 'Doctor: $doctor';
   }
 }

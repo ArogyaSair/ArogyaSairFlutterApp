@@ -19,7 +19,6 @@ class HospitalServices extends StatefulWidget {
 
 class _HospitalServicesState extends State<HospitalServices> {
   List<MultiSelectItem<String>> items = [];
-  List<MultiSelectItem<String>> items2 = [];
   List<TreatmentModel> selectedItems = [];
   List<FacilityData> selectedItems2 = [];
   String? Key;

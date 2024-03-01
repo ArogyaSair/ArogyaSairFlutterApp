@@ -8,6 +8,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
+import 'HospitalPackageInformation.dart';
+
 class HospitalPackagesTab extends StatefulWidget {
   final String hospitalKey;
 
@@ -22,6 +24,7 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
   late StreamController<List<Map>> _streamController;
   var logger = Logger();
   late String hospitalKey;
+  late String hospitalName;
   late bool containsKey;
 
   @override
@@ -33,8 +36,10 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
 
   Future<void> _loadUserData() async {
     String? userData = await getKey();
+    String? userName = await getData("HospitalName");
     setState(() {
       hospitalKey = userData!;
+      hospitalName = userName!;
       logger.d(hospitalKey);
     });
   }
@@ -49,16 +54,18 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
         .listen((event) {
       Map<dynamic, dynamic>? values = event.snapshot.value as Map?;
       List<Map> hospitals = [];
-      logger.d(hospitals);
       if (values != null) {
         values.forEach((key, value) {
-          if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {} else {
+          if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
+          } else {
             hospitals.add({
+              'ID': key,
               'PackageName': value['PackageName'],
               'Duration': value['Duration'],
               'Photo': 'ArogyaSair.png',
             });
             // logger.d(hospitals);
+            logger.d("hospitals are  $hospitals");
           }
         });
       }
@@ -82,7 +89,9 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
                   return ListView.builder(
                     itemCount: hospitals.length,
                     itemBuilder: (context, index) {
+                      logger.d("hospital ID is ${hospitals[index]}");
                       Map data1 = hospitals[index];
+                      logger.d(hospitals);
                       var imageName = data1['Photo'] == 'noimage'
                           ? 'noimage'
                           : "HospitalImage%2F${data1['Photo']}";
@@ -94,7 +103,17 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
                         leading: Image.network(imagePath),
                         title: Text(data1['PackageName'].toString()),
                         subtitle: Text("${data1['Duration'].toString()} weeks"),
-                        onTap: () {},
+                        onTap: () {
+                          // logger.d("ID is ${}, and name is ${hospitals[index]["PackageName"]}");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PackageInformation(
+                                  hospitalName,
+                                  hospitals[index]["ID"].toString()),
+                            ),
+                          );
+                        },
                       );
                     },
                   );

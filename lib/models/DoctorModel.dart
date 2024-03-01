@@ -2,14 +2,19 @@
 
 class DoctorData {
   final String id;
-  final String facilities;
+  final String doctors;
 
-  DoctorData(this.id, this.facilities);
+  DoctorData(this.id, this.doctors);
 
   factory DoctorData.fromMap(Map<dynamic, dynamic> map, String id) {
     return DoctorData(
       id,
-      map["DoctorName"] ?? '',
+      map["DoctorName"]!.toString(),
     );
+  }
+
+  @override
+  String toString() {
+    return 'Doctors: $doctors';
   }
 }

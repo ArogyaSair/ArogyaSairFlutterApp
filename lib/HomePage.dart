@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, library_private_types_in_public_api, prefer_const_constructors
 
 import 'package:arogyasair/BottomNavigation.dart';
+import 'package:arogyasair/DisplayDisease.dart';
 import 'package:arogyasair/drawerSideNavigation.dart';
 import 'package:arogyasair/get_home_data.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
@@ -141,7 +142,18 @@ class _HomePage extends State<HomePage> {
               ),
             ),
           ),
-          get_home_data()
+          get_home_data(),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DisplayDisease(),
+                ),
+              );
+            },
+            child: Text("Request For Treatment"),
+          )
         ],
       ),
     );

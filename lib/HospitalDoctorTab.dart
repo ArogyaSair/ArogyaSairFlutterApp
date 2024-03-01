@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:arogyasair/hospitalDoctorAdd.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -28,18 +29,25 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
 
   void getHospitalData() {
     _streamController = StreamController<List<Map>>();
-    dbRef = FirebaseDatabase.instance.ref().child('ArogyaSair/tblDoctor');
-    dbRef.orderByChild("DoctorName").onValue.listen((event) {
+    dbRef =
+        FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospitalDoctor');
+    dbRef
+        .orderByChild("Hospital_ID")
+        .equalTo(widget.hospitalKey)
+        .onValue
+        .listen((event) {
       Map<dynamic, dynamic>? values = event.snapshot.value as Map?;
       List<Map> hospitals = [];
       logger.d(hospitals);
       if (values != null) {
         values.forEach((key, value) {
-          if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {} else {
+          if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
+          } else {
             hospitals.add({
-              'DoctorName': value['DoctorName'],
-              'Email': value['Email'],
-              'Photo': 'ArogyaSair.png',
+              'DoctorName': value['Doctor'],
+              'Hospital_ID': value['Hospital_ID'],
+              "TimeFrom": value["TimeFrom"],
+              "TimeTo": value["TimeTo"]
             });
           }
         });
@@ -66,17 +74,15 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
                     itemCount: hospitals.length,
                     itemBuilder: (context, index) {
                       Map data1 = hospitals[index];
-                      var imageName = data1['Photo'] == 'noimage'
-                          ? 'noimage'
-                          : "DoctorImage%2F${data1['Photo']}";
-                      var imagePath = data1['Photo'] == 'noimage'
-                          ? 'https://via.placeholder.com/150' // Placeholder image URL
-                          : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
+                      // var imagePath = data1['Photo'] == 'noimage'
+                      //     ? 'https://via.placeholder.com/150' // Placeholder image URL
+                      //     : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
+                      var time = "${data1["TimeFrom"]} - ${data1["TimeTo"]}";
                       return ListTile(
-                        contentPadding: const EdgeInsets.all(1),
-                        leading: Image.network(imagePath),
+                        contentPadding: const EdgeInsets.all(12),
+                        // leading: Image.network(imagePath),
                         title: Text(data1['DoctorName'].toString()),
-                        subtitle: Text(data1['Email'].toString()),
+                        subtitle: Text(time),
                         onTap: () {},
                       );
                     },
@@ -93,7 +99,14 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
         height: 50,
         width: 50,
         child: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HospitalDoctorAdd(),
+              ),
+            );
+          },
           icon: const Icon(
             Icons.add,
             color: Colors.white,

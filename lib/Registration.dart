@@ -41,7 +41,6 @@ class _Registration extends State<Registration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _formKey,
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(

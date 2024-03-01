@@ -3,7 +3,7 @@
 import 'package:arogyasair/HospitalLogin.dart';
 import 'package:arogyasair/HospitalRegistration.dart';
 import 'package:email_otp/email_otp.dart';
-// import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class HospitalEmailVerification extends StatefulWidget {
@@ -16,8 +16,7 @@ class HospitalEmailVerification extends StatefulWidget {
 class _HospitalRegisterState extends State<HospitalEmailVerification> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var key1 = 'email';
-
-  // var email = await getData(key1);
+  late Map data;
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerOTP = TextEditingController();
   EmailOTP myauth = EmailOTP();
@@ -52,25 +51,43 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
                   prefixIcon: const Icon(Icons.mail),
                   suffixIcon: TextButton(
                     onPressed: () async {
-                      myauth.setConfig(
-                        appEmail: "arogyasair@gmail.com",
-                        appName: "Arogya Sair",
-                        userEmail: controllerEmail.text,
-                        otpLength: 6,
-                        otpType: OTPType.mixed,
-                      );
-                      myauth.setTheme(theme: "v2");
-                      if (await myauth.sendOTP() == true) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text("OTP has been sent"),
-                        ));
-                      } else {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text("Oops, OTP send failed"),
-                        ));
-                      }
+                      Query dbRef2 = FirebaseDatabase.instance
+                          .ref()
+                          .child('ArogyaSair/tblHospital')
+                          .orderByChild("Email")
+                          .equalTo(controllerEmail.text);
+                      await dbRef2.once().then((documentSnapshot) async {
+                        for (var x in documentSnapshot.snapshot.children) {
+                          data = x.value as Map;
+                          if (!data.containsValue(controllerEmail.text)) {
+                            myauth.setConfig(
+                              appEmail: "arogyasair@gmail.com",
+                              appName: "Arogya Sair",
+                              userEmail: controllerEmail.text,
+                              otpLength: 6,
+                              otpType: OTPType.mixed,
+                            );
+                            myauth.setTheme(theme: "v2");
+                            if (await myauth.sendOTP() == true) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("OTP has been sent"),
+                              ));
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Oops, OTP send failed"),
+                              ));
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text(
+                                  "This Email is already registered with us. Please try to login..!"),
+                            ));
+                          }
+                        }
+                      });
                     },
                     child: const Text("Send OTP"),
                   ),
