@@ -11,7 +11,9 @@ import 'HospitalPackagesTab.dart';
 import 'LandingPage.dart';
 
 class HospitalHomePage extends StatefulWidget {
-  const HospitalHomePage({Key? key}) : super(key: key);
+  final int indexPage;
+
+  const HospitalHomePage(this.indexPage, {Key? key}) : super(key: key);
 
   @override
   _HospitalHomePage createState() => _HospitalHomePage();
@@ -44,12 +46,13 @@ class _HospitalHomePage extends State<HospitalHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: widget.indexPage,
       length: 3,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          title: Text(
-            "$hospitalName $hospitalKey",
+          title: const Text(
+            "AS Hospital",
             style: TextStyle(color: Colors.white),
           ),
           actions: [

@@ -75,12 +75,14 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
                     itemBuilder: (context, index) {
                       Map data1 = hospitals[index];
                       var time = "${data1["TimeFrom"]} - ${data1["TimeTo"]}";
-                      return ListTile(
-                        contentPadding: const EdgeInsets.all(12),
-                        // leading: Image.network(imagePath),
-                        title: Text(data1['DoctorName'].toString()),
-                        subtitle: Text(time),
-                        onTap: () {},
+                      return Card(
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(12),
+                          // leading: Image.network(imagePath),
+                          title: Text(data1['DoctorName'].toString()),
+                          subtitle: Text(time),
+                          onTap: () {},
+                        ),
                       );
                     },
                   );

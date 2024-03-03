@@ -143,7 +143,7 @@ class _HospitalNewPasswordState extends State<HospitalFirstNewPassword> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const HospitalHomePage()));
+                                              const HospitalHomePage(0)));
                                 } else {
                                   showDialog(
                                     context: context,

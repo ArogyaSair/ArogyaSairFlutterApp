@@ -28,7 +28,7 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
   late String hospitalKey;
   String timeFrom = "From";
   String timeTo = "To";
-  String status = "0";
+  String status = "Available";
 
   @override
   void initState() {

@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:arogyasair/HospitalAppointmentDetail.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -36,7 +37,7 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
     getHospitalData();
   }
 
-  void getHospitalData() {
+  Future<void> getHospitalData() async {
     _streamController = StreamController<List<Map>>();
     dbRef = FirebaseDatabase.instance.ref().child('ArogyaSair/tblAppointment');
     dbRef
@@ -50,8 +51,9 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
         values.forEach((key, value) async {
           userId = value["UserId"];
           appointment.add({
+            'Key': key,
             'AppointmentDate': value['AppointmentDate'],
-            'HospitalID': value['HospitalID'],
+            'HospitalID': value['HospitalId'],
             "Status": value["Status"],
             "UserId": value["UserId"],
             "Disease": value["Disease"]
@@ -82,6 +84,14 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
                       data1 = appointment[index];
                       data2 = userMap[index] ?? {};
                       var date = "${data1["AppointmentDate"]}";
+                      print(appointment[1]);
+                      // for (var i = 0; i < data1.length; i++) {
+                      //   if (data1["Status"] != "Pending") {
+                      //     data1 = appointment[i];
+                      //     print(i);
+                      //     print(data1["Status"]);
+                      //   }
+                      // }
                       return Card(
                         child: ListTile(
                           contentPadding: const EdgeInsets.all(12),
@@ -97,7 +107,18 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
                               Text("Request status : ${data1["Status"]}"),
                             ],
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HospitalAppointmentDetail(
+                                  appointment[index],
+                                  userMap[index],
+                                  widget.hospitalKey,
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       );
                     },
@@ -108,6 +129,60 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
               }
             },
           ),
+          // FutureBuilder<void>(
+          //   future: getHospitalData(),
+          //   builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+          //     if (snapshot.connectionState == ConnectionState.done) {
+          //       return ListView.builder(
+          //         itemCount: appointment.length,
+          //         itemBuilder: (context, index) {
+          //           data1 = appointment[index];
+          //           data2 = userMap[index] ?? {};
+          //           var date = "${data1["AppointmentDate"]}";
+          //           // print(appointment[1]);
+          //           // for (var i = 0; i < data1.length; i++) {
+          //           //   if (data1["Status"] != "Pending") {
+          //           //     data1 = appointment[i];
+          //           //     print(i);
+          //           //     print(data1["Status"]);
+          //           //   }
+          //           // }
+          //           return Card(
+          //             child: ListTile(
+          //               contentPadding: const EdgeInsets.all(12),
+          //               title: Column(
+          //                 crossAxisAlignment: CrossAxisAlignment.start,
+          //                 children: [
+          //                   Text("Patient Name : ${data2['UserName']}"),
+          //                   const SizedBox(width: 10),
+          //                   Text("Requested date of visit : $date"),
+          //                   const SizedBox(width: 10),
+          //                   Text("For : ${data1["Disease"]}"),
+          //                   const SizedBox(width: 10),
+          //                   Text("Request status : ${data1["Status"]}"),
+          //                 ],
+          //               ),
+          //               onTap: () {
+          //                 Navigator.push(
+          //                   context,
+          //                   MaterialPageRoute(
+          //                     builder: (context) => HospitalAppointmentDetail(
+          //                       appointment[index],
+          //                       userMap[index],
+          //                       widget.hospitalKey,
+          //                     ),
+          //                   ),
+          //                 );
+          //               },
+          //             ),
+          //           );
+          //         },
+          //       );
+          //     } else {
+          //       return const CircularProgressIndicator();
+          //     }
+          //   },
+          // )
         ],
       ),
     );
@@ -120,7 +195,13 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
     DataSnapshot userDataSnapshot = userDataEvent.snapshot;
     userData = userDataSnapshot.value as Map?;
     userMap[index] = {
+      "Key": userDataSnapshot.key,
       "UserName": userData!["Name"],
+      "BloodGroup": userData!["BloodGroup"],
+      "DateOfBirth": userData!["DOB"],
+      "Gender": userData!["Gender"],
+      "Email": userData!["Email"],
+      "ContactNumber": userData!["ContactNumber"],
     };
     _streamController.add(appointment); // Update the stream with new data
   }

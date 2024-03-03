@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
       if (containsKey1) {
         Navigator.pop(context);
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HospitalHomePage()));
+            MaterialPageRoute(builder: (context) => const HospitalHomePage(0)));
       }
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();

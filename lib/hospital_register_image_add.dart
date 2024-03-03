@@ -106,7 +106,7 @@ class _HospitalRegisterImageAddState extends State<HospitalRegisterImageAdd> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const HospitalHomePage()));
+                        builder: (context) => const HospitalHomePage(0)));
               },
               child: const Text("Add Image"),
             ),

@@ -195,7 +195,8 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HospitalHomePage()),
+                                builder: (context) =>
+                                    const HospitalHomePage(0)),
                           );
                         }
                       },

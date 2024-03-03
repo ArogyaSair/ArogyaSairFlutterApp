@@ -98,22 +98,25 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
                       var imagePath = data1['Photo'] == 'noimage'
                           ? 'https://via.placeholder.com/150' // Placeholder image URL
                           : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
-                      return ListTile(
-                        contentPadding: const EdgeInsets.all(1),
-                        leading: Image.network(imagePath),
-                        title: Text(data1['PackageName'].toString()),
-                        subtitle: Text("${data1['Duration'].toString()} weeks"),
-                        onTap: () {
-                          // logger.d("ID is ${}, and name is ${hospitals[index]["PackageName"]}");
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PackageInformation(
-                                  hospitalName,
-                                  hospitals[index]["ID"].toString()),
-                            ),
-                          );
-                        },
+                      return Card(
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(1),
+                          leading: Image.network(imagePath),
+                          title: Text(data1['PackageName'].toString()),
+                          subtitle:
+                              Text("${data1['Duration'].toString()} weeks"),
+                          onTap: () {
+                            // logger.d("ID is ${}, and name is ${hospitals[index]["PackageName"]}");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PackageInformation(
+                                    hospitalName,
+                                    hospitals[index]["ID"].toString()),
+                              ),
+                            );
+                          },
+                        ),
                       );
                     },
                   );

@@ -235,7 +235,7 @@ class _HospitalLoginState extends State<HospitalLogin> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const HospitalHomePage()));
+                  builder: (context) => const HospitalHomePage(0)));
         } else {
           msg = "Sorry..! Wrong Username or Password";
           _showSnackbar(scaffoldContext, msg);
