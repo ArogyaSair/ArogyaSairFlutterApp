@@ -20,13 +20,11 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
   DatabaseReference dbRef2 =
       FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospitalDoctor');
   List<String> items = [];
-  late String selectedDoctors;
+  late String selectedDoctors = 'Select Doctor';
   late String hospitalKey;
   String timeFrom = "From";
   String timeTo = "To";
   String status = "Available";
-
-  // string hos
 
   @override
   void initState() {
@@ -43,7 +41,6 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
 
   Future<void> getHospitalData() async {
     items = ['Select Doctor'];
-    selectedDoctors = 'Select Doctor';
     hospitalKey = hospitalKey;
     Query dbRef =
         FirebaseDatabase.instance.ref().child("ArogyaSair/tblHospitalDoctor");

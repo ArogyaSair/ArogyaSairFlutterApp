@@ -35,11 +35,13 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
   List<String> hospitals = [];
   List<Map> appointment = [];
   late List<String> listOfValuesForKey1;
-  late String? selectedDoctor;
+  late String? selectedDoctor = 'Select Doctor';
 
   Future<void> getHospitalData() async {
     listOfValuesForKey1 = ['Select Doctor'];
-    selectedDoctor = 'Select Doctor';
+    print("Select Doctor $selectedDoctor");
+    // selectedDoctor ;
+    // print("Select Doctor $selectedDoctor");
     hospitalKey = widget.hospitalKey;
     Query dbRef =
         FirebaseDatabase.instance.ref().child("ArogyaSair/tblHospitalDoctor");
@@ -64,7 +66,7 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
       appBar: AppBar(
         title: const Text("Appointment Detail"),
       ),
-      body: SingleChildScrollView(
+      body: Center(
         child: FutureBuilder<void>(
           future: getHospitalData(),
           builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
