@@ -1,16 +1,10 @@
 // ignore_for_file: file_names, use_build_context_synchronously
 
-// import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/HospitalFirstNewPassword.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 
-// void main() {
-//   runApp(const MaterialApp(
-//     home: HospitalChangePassword(),
-//   ));
-// }
 
 class HospitalFirstChangePassword extends StatefulWidget {
   const HospitalFirstChangePassword({Key? key}) : super(key: key);

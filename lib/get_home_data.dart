@@ -18,10 +18,10 @@ class _get_home_dataState extends State<get_home_data> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(1),
       child: SizedBox(
-        height: 150,
-        width: 400,
+        height: 140,
+        width: double.infinity,
         child: StreamBuilder(
           stream: FirebaseDatabase.instance
               .ref()
@@ -38,76 +38,47 @@ class _get_home_dataState extends State<get_home_data> {
               return GridView.builder(
                 scrollDirection: Axis.horizontal,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    // childAspectRatio: 10,
-                    crossAxisCount: 1),
+                    crossAxisCount: 1, childAspectRatio: 0.35),
                 itemCount: hospitalList.length,
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(2),
                 itemBuilder: (BuildContext context, int index) {
-                  if (hospitalList[index].hospitalImage == null) {
+                  if (hospitalList[index].hospitalImage == "") {
                     imagePath =
                         "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FArogyaSair.png?alt=media";
                   } else {
                     imagePath =
                         "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${hospitalList[index].hospitalImage}?alt=media";
                   }
-                  return GestureDetector(
-                    onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => PackageInformation(key1: key),
-                      //   ),
-                      // );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: Container(
-                        width: (MediaQuery.of(context).size.width / 2) - 15,
-                        height: 100,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(15.0)),
-                            image: DecorationImage(
-                              image: NetworkImage(imagePath),
-                              fit: BoxFit.cover,
-                            )),
-                        child: Padding(
-                          padding: const EdgeInsets.all(0),
-                          // child: Text(hospitalList[index].pname),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                              gradient: LinearGradient(
-                                  colors: [Colors.blue, Color(0x19000000)],
-                                  begin: FractionalOffset(0.0, 1.0),
-                                  end: FractionalOffset(0.0, 0.0),
-                                  stops: [0.0, 1.0],
-                                  tileMode: TileMode.clamp),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    hospitalList[index].hospitalName,
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ),
+                  return Card(
+                      child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.network(
+                              imagePath,
+                              height: 120,
+                              width: 120,
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ),
-                  );
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(hospitalList[index].hospitalName),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(hospitalList[index].hospitalEmail),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ));
                 },
               );
             } else {

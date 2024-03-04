@@ -42,17 +42,14 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
   Future<void> getHospitalData() async {
     items = ['Select Doctor'];
     hospitalKey = hospitalKey;
-    Query dbRef =
-        FirebaseDatabase.instance.ref().child("ArogyaSair/tblHospitalDoctor");
+    Query dbRef = FirebaseDatabase.instance.ref().child("ArogyaSair/tblDoctor");
     dbRef
-        .orderByChild("Hospital_ID")
-        .equalTo(hospitalKey)
         .onValue
         .listen((event) {
       Map<dynamic, dynamic>? values = event.snapshot.value as Map?;
       if (values != null) {
         values.forEach((key, value) {
-          items.add(value['Doctor']);
+          items.add(value['DoctorName']);
         });
       }
     });

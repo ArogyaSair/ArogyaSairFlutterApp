@@ -1,14 +1,9 @@
 // ignore_for_file: non_constant_identifier_names, camel_case_types, library_private_types_in_public_api, use_build_context_synchronously, file_names
 
-import 'package:arogyasair/HospitalHomePage.dart';
 import 'package:arogyasair/HospitalLandingPage.dart';
-import 'package:arogyasair/saveSharePreferences.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'HomePage.dart';
 import 'Login.dart';
 import 'Registration.dart';
 
@@ -29,47 +24,47 @@ class _MyAppState extends State<MyApp> {
 
   var logger = Logger();
 
-  @override
-  void initState() {
-    super.initState();
-    _checkIfLoggedIn();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _checkIfLoggedIn();
+  // }
 
-  Future<void> _checkIfLoggedIn() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    containsKey = prefs.containsKey(key);
-    containsKey1 = prefs.containsKey(key1);
-    KeyToCheck = (await getKey())!;
-    DatabaseReference dbUserRef =
-        FirebaseDatabase.instance.ref().child("ArogyaSair/tblUser/$KeyToCheck");
-
-    DatabaseEvent databaseEvent = await dbUserRef.once();
-    DataSnapshot dataSnapshot = databaseEvent.snapshot;
-
-    DatabaseReference dbHospitalRef = FirebaseDatabase.instance
-        .ref()
-        .child("ArogyaSair/tblHospital/$KeyToCheck");
-
-    DatabaseEvent databaseEventHospital = await dbHospitalRef.once();
-    DataSnapshot dataSnapshotHospital = databaseEventHospital.snapshot;
-
-    if (dataSnapshot.value != null || dataSnapshotHospital.value != null) {
-      logger.d("Has Data");
-      if (containsKey) {
-        Navigator.pop(context);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
-      }
-      if (containsKey1) {
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HospitalHomePage(0)));
-      }
-    } else {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.clear();
-    }
-  }
+  // Future<void> _checkIfLoggedIn() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   containsKey = prefs.containsKey(key);
+  //   containsKey1 = prefs.containsKey(key1);
+  //   KeyToCheck = (await getKey())!;
+  //   DatabaseReference dbUserRef =
+  //       FirebaseDatabase.instance.ref().child("ArogyaSair/tblUser/$KeyToCheck");
+  //
+  //   DatabaseEvent databaseEvent = await dbUserRef.once();
+  //   DataSnapshot dataSnapshot = databaseEvent.snapshot;
+  //
+  //   DatabaseReference dbHospitalRef = FirebaseDatabase.instance
+  //       .ref()
+  //       .child("ArogyaSair/tblHospital/$KeyToCheck");
+  //
+  //   DatabaseEvent databaseEventHospital = await dbHospitalRef.once();
+  //   DataSnapshot dataSnapshotHospital = databaseEventHospital.snapshot;
+  //
+  //   if (dataSnapshot.value != null || dataSnapshotHospital.value != null) {
+  //     logger.d("Has Data");
+  //     if (containsKey) {
+  //       Navigator.pop(context);
+  //       Navigator.push(
+  //           context, MaterialPageRoute(builder: (context) => const HomePage()));
+  //     }
+  //     if (containsKey1) {
+  //       Navigator.pop(context);
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => const HospitalHomePage(0)));
+  //     }
+  //   } else {
+  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     prefs.clear();
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

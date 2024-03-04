@@ -46,12 +46,12 @@ class _AppointmentBookingState extends State<DisplayDisease> {
             return ListTile(
               title: Text(items[index]),
               onTap: () {
-                // Navigate to a new page on item click
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => HospitalPackagesTab(
-                        item: items[index]), // Pass data to the new page
+                      item: items[index],
+                    ),
                   ),
                 );
               },

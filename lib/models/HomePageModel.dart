@@ -12,7 +12,7 @@ class HomeData {
   factory HomeData.fromMap(Map<dynamic, dynamic> map, String id) {
     return HomeData(
       id,
-      map["HospitalEmail"] ?? '', // Use an empty string if it's null
+      map["Email"] ?? '', // Use an empty string if it's null
       map["Photo"],
       map["HospitalName"] ?? '', // Use an empty string if it's null
     );

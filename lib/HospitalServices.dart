@@ -74,11 +74,16 @@ class _HospitalServicesState extends State<HospitalServices> {
                               snapshot.data!.snapshot.value;
                           List<MultiSelectItem<TreatmentModel>> items = [];
                           items.clear();
-                          facilitiesMap.forEach((key, value) {
-                            items.add(MultiSelectItem<TreatmentModel>(
-                                TreatmentModel.fromMap(value, key),
-                                value["TreatmentName"]));
-                          });
+                          facilitiesMap.forEach(
+                            (key, value) {
+                              items.add(
+                                MultiSelectItem<TreatmentModel>(
+                                  TreatmentModel.fromMap(value, key),
+                                  value["TreatmentName"],
+                                ),
+                              );
+                            },
+                          );
                           return Column(
                             children: <Widget>[
                               MultiSelectBottomSheetField(
@@ -93,9 +98,11 @@ class _HospitalServicesState extends State<HospitalServices> {
                                 },
                                 chipDisplay: MultiSelectChipDisplay(
                                   onTap: (value) {
-                                    setState(() {
-                                      selectedItems.remove(value);
-                                    });
+                                    setState(
+                                      () {
+                                        selectedItems.remove(value);
+                                      },
+                                    );
                                   },
                                 ),
                               ),
@@ -106,7 +113,8 @@ class _HospitalServicesState extends State<HospitalServices> {
                                       child: const Text(
                                         "None selected",
                                         style: TextStyle(color: Colors.black54),
-                                      ))
+                                      ),
+                                    )
                                   : Container(),
                             ],
                           );
@@ -141,11 +149,16 @@ class _HospitalServicesState extends State<HospitalServices> {
                               snapshot.data!.snapshot.value;
                           List<MultiSelectItem<FacilityData>> items2 = [];
                           items2.clear();
-                          facilitiesMap.forEach((key, value) {
-                            items2.add(MultiSelectItem<FacilityData>(
-                                FacilityData.fromMap(value, key),
-                                value["ServiceName"]));
-                          });
+                          facilitiesMap.forEach(
+                            (key, value) {
+                              items2.add(
+                                MultiSelectItem<FacilityData>(
+                                  FacilityData.fromMap(value, key),
+                                  value["ServiceName"],
+                                ),
+                              );
+                            },
+                          );
                           return Column(
                             children: <Widget>[
                               MultiSelectBottomSheetField(
@@ -160,9 +173,11 @@ class _HospitalServicesState extends State<HospitalServices> {
                                 },
                                 chipDisplay: MultiSelectChipDisplay(
                                   onTap: (value2) {
-                                    setState(() {
-                                      selectedItems2.remove(value2);
-                                    });
+                                    setState(
+                                      () {
+                                        selectedItems2.remove(value2);
+                                      },
+                                    );
                                   },
                                 ),
                               ),
@@ -173,8 +188,9 @@ class _HospitalServicesState extends State<HospitalServices> {
                                       child: const Text(
                                         "None selected",
                                         style: TextStyle(color: Colors.black54),
-                                      ))
-                                  : Container(),
+                                      ),
+                                    )
+                                  : MultiSelectChipDisplay(),
                             ],
                           );
                         } else {
@@ -207,10 +223,11 @@ class _HospitalServicesState extends State<HospitalServices> {
                     await hospitalRef.update(updateData);
                     Navigator.pop(context);
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const HospitalRegisterImageAdd()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HospitalRegisterImageAdd(),
+                      ),
+                    );
                   },
                   child: const Text(
                     "Next",
