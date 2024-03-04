@@ -48,21 +48,43 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
       Map<dynamic, dynamic>? values = event.snapshot.value as Map?;
       if (values != null) {
         var userId;
+        appointment.clear();
+        userMap.clear();
         values.forEach((key, value) async {
           userId = value["UserId"];
-          appointment.add({
-            'Key': key,
-            'AppointmentDate': value['AppointmentDate'],
-            'HospitalID': value['HospitalId'],
-            "Status": value["Status"],
-            "UserId": value["UserId"],
-            "Disease": value["Disease"]
-          });
-          await fetchUserData(userId, appointment.length - 1);
+          if (value['Status'] == 'Pending') {
+            appointment.add({
+              'Key': key,
+              'AppointmentDate': value['AppointmentDate'],
+              'HospitalID': value['HospitalId'],
+              "Status": value["Status"],
+              "UserId": value["UserId"],
+              "Disease": value["Disease"]
+            });
+            await fetchUserData(userId, appointment.length - 1);
+          }
         });
       }
       _streamController.add(appointment);
     });
+  }
+
+  Future<void> fetchUserData(String key, int index) async {
+    DatabaseReference dbUserData =
+        FirebaseDatabase.instance.ref().child("ArogyaSair/tblUser").child(key);
+    DatabaseEvent userDataEvent = await dbUserData.once();
+    DataSnapshot userDataSnapshot = userDataEvent.snapshot;
+    userData = userDataSnapshot.value as Map?;
+    userMap[index] = {
+      "Key": userDataSnapshot.key,
+      "UserName": userData!["Name"],
+      "BloodGroup": userData!["BloodGroup"],
+      "DateOfBirth": userData!["DOB"],
+      "Gender": userData!["Gender"],
+      "Email": userData!["Email"],
+      "ContactNumber": userData!["ContactNumber"],
+    };
+    _streamController.add(appointment); // Update the stream with new data
   }
 
   @override
@@ -84,14 +106,6 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
                       data1 = appointment[index];
                       data2 = userMap[index] ?? {};
                       var date = "${data1["AppointmentDate"]}";
-                      print(appointment[1]);
-                      // for (var i = 0; i < data1.length; i++) {
-                      //   if (data1["Status"] != "Pending") {
-                      //     data1 = appointment[i];
-                      //     print(i);
-                      //     print(data1["Status"]);
-                      //   }
-                      // }
                       return Card(
                         child: ListTile(
                           contentPadding: const EdgeInsets.all(12),
@@ -124,7 +138,8 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
                     },
                   );
                 } else {
-                  return const Center(child: Text('No appointment found'));
+                  return const Center(
+                      child: Text('No Pending Appointments Available'));
                 }
               }
             },
@@ -186,23 +201,5 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
         ],
       ),
     );
-  }
-
-  Future<void> fetchUserData(String key, int index) async {
-    DatabaseReference dbUserData =
-        FirebaseDatabase.instance.ref().child("ArogyaSair/tblUser").child(key);
-    DatabaseEvent userDataEvent = await dbUserData.once();
-    DataSnapshot userDataSnapshot = userDataEvent.snapshot;
-    userData = userDataSnapshot.value as Map?;
-    userMap[index] = {
-      "Key": userDataSnapshot.key,
-      "UserName": userData!["Name"],
-      "BloodGroup": userData!["BloodGroup"],
-      "DateOfBirth": userData!["DOB"],
-      "Gender": userData!["Gender"],
-      "Email": userData!["Email"],
-      "ContactNumber": userData!["ContactNumber"],
-    };
-    _streamController.add(appointment); // Update the stream with new data
   }
 }

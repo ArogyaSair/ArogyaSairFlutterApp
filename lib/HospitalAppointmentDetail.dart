@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_typing_uninitialized_variables, avoid_print, use_build_context_synchronously
 
 import 'package:arogyasair/HospitalHomePage.dart';
+import 'package:arogyasair/models/HospitalAppointmentDelayedModel.dart';
 import 'package:arogyasair/models/HospitalTreatmentModel.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -176,8 +177,6 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
                                         onPressed: () {
                                           if (_formKey.currentState!
                                               .validate()) {
-                                            if (widget.appointments["Status"] ==
-                                                "Pending") {}
                                             approveAppointment();
                                           }
                                         },
@@ -205,7 +204,10 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
                                               Radius.circular(20))),
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          _getDate(context);
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            _getDate(context);
+                                          }
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.transparent,
@@ -262,7 +264,6 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
     );
     tblTreatment.push().set(treatmentModelObject.toJson());
     Navigator.pop(context);
-    Navigator.pop(context);
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -284,6 +285,14 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
         .child("ArogyaSair/tblAppointment")
         .child(appointmentKey);
     await userRef.update(updatedData);
+
+    DatabaseReference tblDelayedAppointment = FirebaseDatabase.instance
+        .ref()
+        .child("ArogyaSair/tblDelayedAppointment");
+    HospitalAppointmentDelayedModel hospitalAppointmentDelayedModel =
+        HospitalAppointmentDelayedModel(
+            widget.appointments['Key'], date, newDate.text, hospitalKey);
+    tblDelayedAppointment.push().set(hospitalAppointmentDelayedModel.toJson());
   }
 
   Future<void> _getDate(BuildContext context) async {

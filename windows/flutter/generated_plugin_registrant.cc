@@ -11,10 +11,10 @@
 #include <firebase_storage/firebase_storage_plugin_c_api.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
-    FileSelectorWindowsRegisterWithRegistrar(
-            registry->GetRegistrarForPlugin("FileSelectorWindows"));
-    FirebaseCorePluginCApiRegisterWithRegistrar(
-            registry->GetRegistrarForPlugin("FirebaseCorePluginCApi"));
-    FirebaseStoragePluginCApiRegisterWithRegistrar(
-            registry->GetRegistrarForPlugin("FirebaseStoragePluginCApi"));
+  FileSelectorWindowsRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("FileSelectorWindows"));
+  FirebaseCorePluginCApiRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("FirebaseCorePluginCApi"));
+  FirebaseStoragePluginCApiRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("FirebaseStoragePluginCApi"));
 }
