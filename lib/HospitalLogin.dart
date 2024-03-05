@@ -2,23 +2,25 @@
 
 import 'dart:convert';
 
-import 'package:arogyasair/HospitalEmailVerification.dart';
-import 'package:arogyasair/HospitalHomePage.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
+// import 'package:flutter/services.dart';
+
+import 'HospitalEmailVerification.dart';
 import 'HospitalFirstPasswordChange.dart';
+import 'HospitalHomePage.dart';
 
 class HospitalLogin extends StatefulWidget {
   const HospitalLogin({Key? key}) : super(key: key);
 
   @override
-  _HospitalLoginState createState() => _HospitalLoginState();
+  _LoginState createState() => _LoginState();
 }
 
-class _HospitalLoginState extends State<HospitalLogin> {
+class _LoginState extends State<HospitalLogin> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   TextEditingController controlleremail = TextEditingController();
@@ -32,150 +34,192 @@ class _HospitalLoginState extends State<HospitalLogin> {
       child: Scaffold(
         key: _formKey,
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(1),
-                child: Center(
-                  child: Image.asset(
-                    'assets/Logo/ArogyaSair.png',
-                    width: 300,
-                    height: 300,
-                    fit: BoxFit.cover,
-                  ),
+        body: Stack(
+          children: [
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Color(0xFF0D47A1), Colors.lightBlue])),
+              child: const Padding(
+                padding: EdgeInsets.only(top: 60, left: 22),
+                child: Text(
+                  "Login",
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Form(
-                  key: _formKey,
-                  child: SingleChildScrollView(
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 200),
+              child: Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40)),
+                    color: Colors.white,
+                  ),
+                  height: double.maxFinite,
+                  width: double.infinity,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 150, right: 20, left: 20),
                     child: Column(
                       children: [
-                        TextFormField(
-                          controller: controlleremail,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter Email';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.email_outlined),
-                            prefixIconColor: Colors.blue,
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            labelText: 'Email',
-                            filled: true,
-                            fillColor: Color(0xffE0E3E7),
-                            hintText: 'Enter Email',
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          controller: controllerpassword,
-                          obscureText: !isPasswordVisible,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter password';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
+                        // Padding(
+                        //   padding: const EdgeInsets.all(1),
+                        //   child: Center(
+                        //     child: Image.asset(
+                        //       'assets/Logo/ArogyaSair.png',
+                        //       width: 300,
+                        //       height: 300,
+                        //       fit: BoxFit.cover,
+                        //     ),
+                        //   ),
+                        // ),
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Form(
+                            key: _formKey,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  TextFormField(
+                                    controller: controlleremail,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please enter Email';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: const InputDecoration(
+                                      prefixIcon: Icon(Icons.email_outlined),
+                                      prefixIconColor: Colors.blue,
+
+                                      labelText: 'Email',
+                                      filled: false,
+                                      // fillColor: Color(0xffE0E3E7),
+                                      hintText: 'Enter Email',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  TextFormField(
+                                    controller: controllerpassword,
+                                    obscureText: !isPasswordVisible,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please enter password';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      prefixIcon: const Icon(Icons.lock),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          isPasswordVisible
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                        ),
+                                        onPressed: () {
+                                          _togglePasswordVisibility(context);
+                                        },
+                                      ),
+                                      prefixIconColor: Colors.blue,
+
+                                      filled: false,
+                                      // fillColor: const Color(0xffE0E3E7),
+                                      labelText: 'Password',
+                                      hintText: 'Enter Password',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        _performLogin(context);
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 300,
+                                      decoration: BoxDecoration(
+                                          gradient: const LinearGradient(
+                                              colors: [
+                                                Color(0xFF0D47A1),
+                                                Colors.lightBlue
+                                              ]),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: const Center(
+                                        child: Text("LOG IN",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold)),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.all(0),
+                                        child: Text(
+                                          "Don't registered..?",
+                                          style: TextStyle(
+                                              color: Colors.blue, fontSize: 16),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(0),
+                                        child: TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const HospitalEmailVerification()),
+                                            );
+                                          },
+                                          child: const Text(
+                                            "Register",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontStyle: FontStyle.italic,
+                                                color: Colors.blue,
+                                                decoration:
+                                                    TextDecoration.underline),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                              onPressed: () {
-                                _togglePasswordVisibility(context);
-                              },
                             ),
-                            prefixIconColor: Colors.blue,
-                            border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide: BorderSide(color: Colors.black),
-                            ),
-                            filled: true,
-                            fillColor: const Color(0xffE0E3E7),
-                            labelText: 'Password',
-                            hintText: 'Enter Password',
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        ElevatedButton(
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              _performLogin(context);
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(200, 50),
-                              elevation: 10,
-                              backgroundColor: Colors.blue),
-                          child: const Text(
-                            'Login',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(0),
-                              child: Text(
-                                "Don't registered..?",
-                                style:
-                                    TextStyle(color: Colors.blue, fontSize: 16),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(0),
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const HospitalEmailVerification()),
-                                  );
-                                },
-                                child: const Text(
-                                  "Register",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontStyle: FontStyle.italic,
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline),
-                                ),
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+                  )),
+            ),
+          ],
         ),
+        // body: SingleChildScrollView(
+        //   // ),
       ),
     );
   }
@@ -214,8 +258,6 @@ class _HospitalLoginState extends State<HospitalLogin> {
         data = x.value as Map;
         if (data["Email"] == email &&
             data["Password"].toString() == password.toString()) {
-          print("asdfg is ${data["Email"]}");
-
           await saveData('HospitalEmail', data["Email"]);
           await saveData('HospitalName', data["HospitalName"]);
           await saveData('key', key);
