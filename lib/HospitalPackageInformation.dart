@@ -20,6 +20,9 @@ class _packageInformation extends State<PackageInformation> {
   @override
   Widget build(BuildContext context) {
     final key = widget.key1;
+    late Map data;
+    var imagePath =
+        "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2FDefaultProfileImage.png?alt=media";
 
     return Scaffold(
       appBar: AppBar(
@@ -42,10 +45,12 @@ class _packageInformation extends State<PackageInformation> {
           IconButton(
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            HospitalPackageEdit(widget.HospitalName)));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HospitalPackageEdit(
+                        widget.HospitalName, widget.key1, data),
+                  ),
+                );
               },
               icon: const Icon(
                 Icons.edit,
@@ -63,44 +68,51 @@ class _packageInformation extends State<PackageInformation> {
                   .onValue,
               builder: (context, snapshot) {
                 if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
-                  final data =
-                      snapshot.data!.snapshot.value as Map<dynamic, dynamic>;
-
-                  // Handle null check and property existence:
-                  if (data.containsKey('Include')) {
-                    final PackageString = data['Include'].toString();
-
-                    // Split into a list with proper handling:
-                    final PackgeList = PackageString.isNotEmpty
-                        ? PackageString.split(', ')
-                        : [];
-
-                    return Column(
-                      children: [
-                        ListTile(
-                          title: Text("Hospital Name : ${widget.HospitalName}"),
-                        ),
-                        if (PackgeList.isNotEmpty) ...[
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: PackgeList.length,
-                            itemBuilder: (context, index) {
-                              final doctorName = PackgeList[index];
-                              return Text(
-                                  "What includes in this packages : $doctorName");
-                            },
-                          ),
-                        ] else ...[
-                          // Handle the case when no doctors are available
-                          const Text('No doctors available'),
-                        ],
-                      ],
-                    );
-                  } else {
-                    return const Text(
-                        'Hospital data is missing or incomplete.');
+                  print("snapshot is $key");
+                  data = snapshot.data!.snapshot.value as Map<dynamic, dynamic>;
+                  if (data["Photo"] != null) {
+                    imagePath =
+                        "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${data["Photo"]}?alt=media";
                   }
+                  return Column(
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.HospitalName,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("Package name : ${data["PackageName"]}"),
+                                Text(
+                                    "This package includes : ${data["Include"]}"),
+                                Text("Price is : ${data["Price"]}"),
+                                Text("Duration : ${data["Duration"]} weeks"),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(25),
+                                  child: Image.network(
+                                    imagePath,
+                                    height: 100,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  );
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {

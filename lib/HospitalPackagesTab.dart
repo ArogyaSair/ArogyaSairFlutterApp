@@ -6,7 +6,6 @@ import 'package:arogyasair/hospitalPackagesAdd.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 
 import 'HospitalPackageInformation.dart';
 
@@ -22,7 +21,6 @@ class HospitalPackagesTab extends StatefulWidget {
 class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
   late Query dbRef;
   late StreamController<List<Map>> _streamController;
-  var logger = Logger();
   late String hospitalKey;
   late String hospitalName;
   late bool containsKey;
@@ -40,7 +38,6 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
     setState(() {
       hospitalKey = userData!;
       hospitalName = userName!;
-      logger.d(hospitalKey);
     });
   }
 
@@ -57,15 +54,19 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
       if (values != null) {
         values.forEach((key, value) {
           if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
+            hospitals.add({
+              'ID': key,
+              'PackageName': value['PackageName'],
+              'Duration': value['Duration'],
+              'Photo': value["Photo"],
+            });
           } else {
             hospitals.add({
               'ID': key,
               'PackageName': value['PackageName'],
               'Duration': value['Duration'],
-              'Photo': 'ArogyaSair.png',
+              'Photo': 'DefaultProfileImage.png',
             });
-            // logger.d(hospitals);
-            logger.d("hospitals are  $hospitals");
           }
         });
       }
@@ -89,24 +90,28 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
                   return ListView.builder(
                     itemCount: hospitals.length,
                     itemBuilder: (context, index) {
-                      logger.d("hospital ID is ${hospitals[index]}");
                       Map data1 = hospitals[index];
-                      logger.d(hospitals);
-                      var imageName = data1['Photo'] == 'noimage'
-                          ? 'noimage'
-                          : "HospitalImage%2F${data1['Photo']}";
-                      var imagePath = data1['Photo'] == 'noimage'
-                          ? 'https://via.placeholder.com/150' // Placeholder image URL
+                      var imageName = data1['Photo'] == ''
+                          ? 'DefaultProfileImage.png'
+                          : "PackageImage%2F${data1['Photo']}";
+                      var imagePath = data1['Photo'] == 'noImage'
+                          ? 'https://via.placeholder.com/150'
                           : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
                       return Card(
                         child: ListTile(
-                          contentPadding: const EdgeInsets.all(1),
-                          leading: Image.network(imagePath),
+                          contentPadding: const EdgeInsets.all(0),
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
+                            child: Image.network(
+                              imagePath,
+                              height: 100,
+                              width: 100,
+                            ),
+                          ),
                           title: Text(data1['PackageName'].toString()),
                           subtitle:
                               Text("${data1['Duration'].toString()} weeks"),
                           onTap: () {
-                            // logger.d("ID is ${}, and name is ${hospitals[index]["PackageName"]}");
                             Navigator.push(
                               context,
                               MaterialPageRoute(

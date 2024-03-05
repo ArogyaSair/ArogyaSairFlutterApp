@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
-import 'package:arogyasair/HospitalHomePage.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -97,6 +96,7 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                         }
                         return null;
                       },
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         prefixIconColor: Colors.blue,
                         prefixIcon: Icon(Icons.person),
@@ -164,6 +164,7 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                         }
                         return null;
                       },
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         prefixIconColor: Colors.blue,
                         prefixIcon: Icon(Icons.person),
@@ -172,7 +173,7 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                           borderSide: BorderSide(color: Colors.black),
                         ),
                         labelText: 'Duration In Weeks',
-                        hintText: 'Enter Durationn in Weeks',
+                        hintText: 'Enter Duration in Weeks',
                         filled: true,
                         fillColor: Color(0xffE0E3E7),
                       ),
@@ -192,12 +193,6 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                               name, price, hospitalname, includes, duartion);
                           dbRef2.push().set(regobj.toJson());
                           Navigator.of(context).pop();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const HospitalHomePage(0)),
-                          );
                         }
                       },
                       child: const Text("Add"),

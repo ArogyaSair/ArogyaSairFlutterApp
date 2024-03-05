@@ -1,6 +1,8 @@
 // ignore_for_file: use_build_context_synchronously, file_names, camel_case_types, prefer_typing_uninitialized_variables
 
+import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -40,64 +42,45 @@ class splash extends State<Splash> {
   }
 
   navigateToHome() async {
-    // page = _checkIfLoggedIn();
-    await _checkIfLoggedIn();
     await Future.delayed(const Duration(seconds: 5));
-    // print(page);
+    await _checkIfLoggedIn();
     if (page != null) {
       Navigator.pop(context);
       Navigator.push(context, MaterialPageRoute(builder: (context) => page));
     }
-    // Navigator.pushReplacement(
-    //     context, MaterialPageRoute(builder: (context) => const MyApp()));
   }
 
   Future<void> _checkIfLoggedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     containsKey = prefs.containsKey(key);
     containsKey1 = prefs.containsKey(key1);
-    // keyToCheck = (await getKey())!;
-    // DatabaseReference dbUserRef =
-    //     FirebaseDatabase.instance.ref().child("ArogyaSair/tblUser/$keyToCheck");
 
-    // DatabaseEvent databaseEvent = await dbUserRef.once();
-    // DataSnapshot dataSnapshot = databaseEvent.snapshot;
-
-    // DatabaseReference dbHospitalRef = FirebaseDatabase.instance
-    //     .ref()
-    //     .child("ArogyaSair/tblHospital/$keyToCheck");
-
-    // DatabaseEvent databaseEventHospital = await dbHospitalRef.once();
-    // DataSnapshot dataSnapshotHospital = databaseEventHospital.snapshot;
-
-    // if (dataSnapshot.value != null || dataSnapshotHospital.value != null) {
-    // print("before checking");
     if (containsKey) {
-      // Navigator.pop(context);
-      page = const HomePage();
+      keyToCheck = (await getKey())!;
+      DatabaseReference dbUserRef = FirebaseDatabase.instance
+          .ref()
+          .child("ArogyaSair/tblUser/$keyToCheck");
+
+      DatabaseEvent databaseEvent = await dbUserRef.once();
+      DataSnapshot dataSnapshot = databaseEvent.snapshot;
+      if (dataSnapshot.value != null) {
+        page = const HomePage();
+      }
       return;
-      // Navigator.push(context,
-      //     MaterialPageRoute(builder: (context) => const HomePage()));
     }
-    // print("user checked");
     if (containsKey1) {
-      // Navigator.pop(context);
-      page = const HospitalHomePage(0);
+      keyToCheck = (await getKey())!;
+      DatabaseReference dbHospitalRef = FirebaseDatabase.instance
+          .ref()
+          .child("ArogyaSair/tblHospital/$keyToCheck");
+
+      DatabaseEvent databaseEventHospital = await dbHospitalRef.once();
+      DataSnapshot dataSnapshotHospital = databaseEventHospital.snapshot;
+      if (dataSnapshotHospital.value != null) {
+        page = const HospitalHomePage(0);
+      }
       return;
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (context) => const HospitalHomePage(0)));
     }
-    // print("hospital checked");
-    // }
-    // else {
-    //   SharedPreferences prefs = await SharedPreferences.getInstance();
-    //   prefs.clear();
-    //   page = const MyApp();
-    //   print("else part");
-    // }
-    // print("after checking");
     page = const MyApp();
   }
 
