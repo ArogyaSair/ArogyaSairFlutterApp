@@ -6,7 +6,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'HomePage.dart';
+import 'BottomNavigation.dart';
 import 'HospitalHomePage.dart';
 import 'LandingPage.dart';
 import 'firebase_options.dart';
@@ -64,7 +64,7 @@ class splash extends State<Splash> {
       DatabaseEvent databaseEvent = await dbUserRef.once();
       DataSnapshot dataSnapshot = databaseEvent.snapshot;
       if (dataSnapshot.value != null) {
-        page = const HomePage();
+        page = const bottomBar();
       }
       return;
     }

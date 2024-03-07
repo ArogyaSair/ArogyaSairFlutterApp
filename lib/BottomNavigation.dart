@@ -5,113 +5,100 @@ import 'package:arogyasair/HistoryPage.dart';
 import 'package:arogyasair/HomePage.dart';
 import 'package:arogyasair/ProfilePage.dart';
 import 'package:arogyasair/UpdatesPage.dart';
+import 'package:arogyasair/saveSharePreferences.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 class bottomBar extends StatefulWidget {
   const bottomBar({Key? key}) : super(key: key);
 
   @override
-  _bottomBarState createState() => _bottomBarState();
+  _BottomBarState createState() => _BottomBarState();
 }
 
-class _bottomBarState extends State<bottomBar> {
+class _BottomBarState extends State<bottomBar> {
   static int _selectedIndex = 0;
+  late String username;
+  late String email;
+  final key = 'username';
+  final key1 = 'email';
+  late String userKey;
+  List<Widget> _widgetOptions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    String? userData = await getData(key);
+    String? userEmail = await getData(key1);
+    String? userkey = await getKey();
+    setState(() {
+      username = userData!;
+      email = userEmail!;
+      userKey = userkey!;
+    });
+    _widgetOptions = <Widget>[
+      const Scaffold(
+        body: HomePage(),
+      ),
+      Scaffold(
+        body: MyUpdates(username, userKey),
+      ),
+      const Scaffold(
+        body: MyHistory(),
+      ),
+      Scaffold(
+        body: MyHelpDesk(),
+      ),
+      Scaffold(
+        body: MyProfile(username, email),
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
-        child: GNav(
-          backgroundColor: Colors.blue,
-          color: Colors.white,
-          activeColor: Colors.blue,
-          tabBackgroundColor: Colors.white,
-          tabs: [
-            GButton(
-              icon: Icons.home,
-              text: 'Home',
-              gap: 8,
-              padding: const EdgeInsets.all(14),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomePage(),
-                  ),
-                );
-              },
-            ),
-            GButton(
-              icon: Icons.update_rounded,
-              text: 'Updates',
-              gap: 8,
-              padding: const EdgeInsets.all(14),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MyUpdates(),
-                  ),
-                );
-              },
-            ),
-            GButton(
-              icon: Icons.history_rounded,
-              text: 'History',
-              gap: 8,
-              padding: const EdgeInsets.all(14),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MyHistory(),
-                  ),
-                );
-              },
-            ),
-            GButton(
-              icon: Icons.support,
-              text: 'Help',
-              gap: 8,
-              padding: const EdgeInsets.all(14),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHelpDesk(),
-                  ),
-                );
-              },
-            ),
-            GButton(
-              icon: Icons.person_outline,
-              text: 'My Profile',
-              gap: 8,
-              padding: const EdgeInsets.all(14),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MyProfile(),
-                  ),
-                );
-              },
-            ),
-          ],
-          selectedIndex: _selectedIndex,
-          onTabChange: (index) {
+    return Scaffold(
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        child: CurvedNavigationBar(
+          backgroundColor: Colors.white,
+          color: Colors.blue.shade500,
+          animationDuration: const Duration(milliseconds: 500),
+          onTap: (index) {
             setState(() {
               _selectedIndex = index;
             });
           },
+          items: const [
+            Icon(
+              Icons.home,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.update,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.history,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.support,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+          ],
+          index: _selectedIndex, // Use 'index' instead of 'currentIndex'
         ),
       ),
     );

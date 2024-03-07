@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, library_private_types_in_public_api, prefer_const_constructors
 
-import 'package:arogyasair/BottomNavigation.dart';
 import 'package:arogyasair/DisplayDisease.dart';
 import 'package:arogyasair/drawerSideNavigation.dart';
 import 'package:arogyasair/get_home_data.dart';
@@ -55,7 +54,6 @@ class _HomePage extends State<HomePage> {
         iconTheme: IconThemeData(color: Colors.white),
       ),
       endDrawer: DrawerCode(),
-      bottomNavigationBar: bottomBar(),
       body: Column(
         children: [
           // Generated code for this Container Widget...

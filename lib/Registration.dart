@@ -27,6 +27,7 @@ class _Registration extends State<Registration> {
   TextEditingController controllerconfirmpassword = TextEditingController();
   TextEditingController controllername = TextEditingController();
   TextEditingController controllermail = TextEditingController();
+  TextEditingController controllcontact = TextEditingController();
   TextEditingController controllerDateOfBirth = TextEditingController();
   var birthDate = "Select Birthdate";
   bool isPasswordVisible = false;
@@ -41,7 +42,6 @@ class _Registration extends State<Registration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _formKey,
       backgroundColor: Colors.white,
       body: Stack(children: [
         Container(
@@ -64,236 +64,261 @@ class _Registration extends State<Registration> {
         ),
         Padding(
           padding: const EdgeInsets.only(top: 200),
-          child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40)),
-                color: Colors.white,
-              ),
-              height: double.maxFinite,
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 150, right: 20, left: 20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: controllername,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter your name';
-                          }
-                          return null;
-                        },
-                        decoration: const InputDecoration(
-                          prefixIconColor: Colors.blue,
-                          prefixIcon: Icon(Icons.person),
-                          labelText: 'Full Name',
-                          hintText: 'Enter Name',
-                          filled: true,
-                          fillColor: Color(0xffE0E3E7),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        controller: controlleruname,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter username';
-                          }
-                          return null;
-                        },
-                        decoration: const InputDecoration(
-                          prefixIconColor: Colors.blue,
-                          prefixIcon: Icon(Icons.account_box),
-                          labelText: 'Username',
-                          hintText: 'Enter Username',
-                          filled: true,
-                          fillColor: Color(0xffE0E3E7),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        controller: controllerpassword,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter password';
-                          }
-                          return null;
-                        },
-                        obscureText: !isPasswordVisible,
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              isPasswordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              _togglePasswordVisibility(context);
-                            },
-                          ),
-                          prefixIconColor: Colors.blue,
-                          labelText: 'Password',
-                          hintText: 'Enter Password',
-                          filled: true,
-                          fillColor: const Color(0xffE0E3E7),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        controller: controllerconfirmpassword,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter re-enter password';
-                          }
-                          return null;
-                        },
-                        obscureText: !isConfirmPasswordVisible,
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.lock),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              isConfirmPasswordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              _toggleConfirmPasswordVisibility(context);
-                            },
-                          ),
-                          prefixIconColor: Colors.blue,
-                          labelText: 'Confirm Password',
-                          hintText: 'Re-Enter Password',
-                          filled: true,
-                          fillColor: const Color(0xffE0E3E7),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        controller: controllermail,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter email';
-                          }
-                          return null;
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                          prefixIconColor: Colors.blue,
-                          prefixIcon: Icon(Icons.email),
-                          labelText: 'Email',
-                          hintText: 'Enter Email',
-                          filled: true,
-                          fillColor: Color(0xffE0E3E7),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        controller: controllerDateOfBirth,
-                        readOnly: true,
-                        // Make the text input read-only
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: const Color(0xffE0E3E7),
-                          prefixIcon: GestureDetector(
-                            onTap: () {
-                              _getDate(context);
-                            },
-                            child: const Icon(
-                              Icons.date_range,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            var name = controllername.text;
-                            var password = controllerpassword.text;
-                            var confirmPassword =
-                                controllerconfirmpassword.text;
-                            var username = controlleruname.text;
-                            var email = controllermail.text;
-                            var DOB = birthDate;
-                            var encPassword = encryptString(password);
-                            if (password == confirmPassword) {
-                              RegisterModel regobj = RegisterModel(
-                                  username, encPassword, email, name, DOB);
-                              dbRef2.push().set(regobj.toJson());
-                              Navigator.of(context).pop();
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Login()));
-                            } else {
-                              const snackBar = SnackBar(
-                                content: Text("Password does not match..!!"),
-                                duration: Duration(seconds: 2),
-                              );
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
+          child: Form(
+            key: _formKey,
+            child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40)),
+                  color: Colors.white,
+                ),
+                height: double.maxFinite,
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 150, right: 20, left: 20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: controllername,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your name';
                             }
-                          }
-                        },
-                        child: const Text("Sign up"),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.all(0),
-                            child: Text(
-                              "Already have an account..?",
-                              style:
-                                  TextStyle(color: Colors.blue, fontSize: 16),
-                            ),
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                            prefixIconColor: Colors.blue,
+                            prefixIcon: Icon(Icons.person),
+                            labelText: 'Full Name',
+                            hintText: 'Enter Name',
+                            filled: true,
+                            fillColor: Color(0xffE0E3E7),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(0),
-                            child: TextButton(
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: controlleruname,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter username';
+                            }
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                            prefixIconColor: Colors.blue,
+                            prefixIcon: Icon(Icons.account_box),
+                            labelText: 'Username',
+                            hintText: 'Enter Username',
+                            filled: true,
+                            fillColor: Color(0xffE0E3E7),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: controllerpassword,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter password';
+                            }
+                            return null;
+                          },
+                          obscureText: !isPasswordVisible,
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                isPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
                               onPressed: () {
-                                Navigator.of(context).pop();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Login()),
-                                );
+                                _togglePasswordVisibility(context);
                               },
-                              child: const Text(
-                                "Login here",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontStyle: FontStyle.italic,
-                                    decoration: TextDecoration.underline),
+                            ),
+                            prefixIconColor: Colors.blue,
+                            labelText: 'Password',
+                            hintText: 'Enter Password',
+                            filled: true,
+                            fillColor: const Color(0xffE0E3E7),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: controllerconfirmpassword,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter re-enter password';
+                            }
+                            return null;
+                          },
+                          obscureText: !isConfirmPasswordVisible,
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                isConfirmPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                _toggleConfirmPasswordVisibility(context);
+                              },
+                            ),
+                            prefixIconColor: Colors.blue,
+                            labelText: 'Confirm Password',
+                            hintText: 'Re-Enter Password',
+                            filled: true,
+                            fillColor: const Color(0xffE0E3E7),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: controllermail,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter email';
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: const InputDecoration(
+                            prefixIconColor: Colors.blue,
+                            prefixIcon: Icon(Icons.email),
+                            labelText: 'Email',
+                            hintText: 'Enter Email',
+                            filled: true,
+                            fillColor: Color(0xffE0E3E7),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: controllcontact,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter Contact number';
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                            prefixIconColor: Colors.blue,
+                            prefixIcon: Icon(Icons.call),
+                            labelText: 'Contact Number',
+                            hintText: 'Enter Contact',
+                            filled: true,
+                            fillColor: Color(0xffE0E3E7),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: controllerDateOfBirth,
+                          readOnly: true,
+                          // Make the text input read-only
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xffE0E3E7),
+                            prefixIcon: GestureDetector(
+                              onTap: () {
+                                _getDate(context);
+                              },
+                              child: const Icon(
+                                Icons.date_range,
+                                color: Colors.blue,
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              var name = controllername.text;
+                              var password = controllerpassword.text;
+                              var confirmPassword =
+                                  controllerconfirmpassword.text;
+                              var username = controlleruname.text;
+                              var email = controllermail.text;
+                              var contact = controllcontact.text;
+                              var DOB = birthDate;
+                              var encPassword = encryptString(password);
+                              if (password == confirmPassword) {
+                                RegisterModel regobj = RegisterModel(username,
+                                    encPassword, email, name, DOB, contact);
+                                dbRef2.push().set(regobj.toJson());
+                                Navigator.of(context).pop();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Login()));
+                              } else {
+                                const snackBar = SnackBar(
+                                  content: Text("Password does not match..!!"),
+                                  duration: Duration(seconds: 2),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+                            }
+                          },
+                          child: const Text("Sign up"),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(0),
+                              child: Text(
+                                "Already have an account..?",
+                                style:
+                                    TextStyle(color: Colors.blue, fontSize: 16),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(0),
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Login()),
+                                  );
+                                },
+                                child: const Text(
+                                  "Login here",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontStyle: FontStyle.italic,
+                                      decoration: TextDecoration.underline),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              )),
+                )),
+          ),
         ),
       ]),
     );

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'BottomNavigation.dart';
 import 'drawerSideNavigation.dart';
 
 class MyHistory extends StatefulWidget {
@@ -28,7 +27,6 @@ class _MyHistoryState extends State<MyHistory> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       endDrawer: const DrawerCode(),
-      bottomNavigationBar: const bottomBar(),
       body: const Center(
         child: Text("Your History"),
       ),

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'BottomNavigation.dart';
 import 'drawerSideNavigation.dart';
 
 class MyHelpDesk extends StatefulWidget {
@@ -26,7 +25,6 @@ class _MyHelpDeskState extends State<MyHelpDesk> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       endDrawer: const DrawerCode(),
-      bottomNavigationBar: const bottomBar(),
       body: const Center(
         child: Text("How Can I Help You ?"),
       ),

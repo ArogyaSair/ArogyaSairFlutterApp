@@ -104,7 +104,8 @@ class _DrawerCode extends State<DrawerCode> {
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MyProfile()));
+                  MaterialPageRoute(
+                      builder: (context) => MyProfile(username, email)));
             },
           ),
           ListTile(

@@ -2,12 +2,12 @@
 
 import 'dart:convert';
 
-import 'package:arogyasair/HomePage.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
+import 'BottomNavigation.dart';
 import 'Registration.dart';
 
 class Login extends StatefulWidget {
@@ -256,7 +256,7 @@ class _LoginState extends State<Login> {
           count = count + 1;
           Navigator.pop(context);
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
+              MaterialPageRoute(builder: (context) => const bottomBar()));
         } else {
           msg = "Sorry..! Wrong Username or Password";
           _showSnackbar(scaffoldContext, msg);

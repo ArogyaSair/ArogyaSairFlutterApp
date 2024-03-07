@@ -68,7 +68,6 @@ class _packageInformation extends State<PackageInformation> {
                   .onValue,
               builder: (context, snapshot) {
                 if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
-                  print("snapshot is $key");
                   data = snapshot.data!.snapshot.value as Map<dynamic, dynamic>;
                   if (data["Photo"] != null) {
                     imagePath =
