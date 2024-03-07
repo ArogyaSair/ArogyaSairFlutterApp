@@ -46,6 +46,7 @@ dependencies:
   email_otp: ^2.1.2
   multi_select_flutter: any
   logger: any
+  google_nav_bar: any
 
 
 dev_dependencies:

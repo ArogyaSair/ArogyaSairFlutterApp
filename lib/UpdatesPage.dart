@@ -30,7 +30,7 @@ class _MyUpdatesState extends State<MyUpdates> {
       endDrawer: const DrawerCode(),
       bottomNavigationBar: const bottomBar(),
       body: const Center(
-        child: Text("Your Updates"),
+        child: Card(child: Text("Your Updates")),
       ),
     );
   }

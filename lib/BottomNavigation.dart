@@ -6,6 +6,7 @@ import 'package:arogyasair/HomePage.dart';
 import 'package:arogyasair/ProfilePage.dart';
 import 'package:arogyasair/UpdatesPage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class bottomBar extends StatefulWidget {
   const bottomBar({Key? key}) : super(key: key);
@@ -17,80 +18,102 @@ class bottomBar extends StatefulWidget {
 class _bottomBarState extends State<bottomBar> {
   static int _selectedIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    if (index == 0) {
-      Navigator.of(context).pop();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
-    } else if (index == 1) {
-      Navigator.of(context).pop();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const MyUpdates()));
-    } else if (index == 2) {
-      Navigator.of(context).pop();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const MyHistory()));
-    } else if (index == 3) {
-      Navigator.of(context).pop();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyHelpDesk()));
-    } else if (index == 4) {
-      Navigator.of(context).pop();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const MyProfile()));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 30,
+    return Container(
+      color: Colors.blue,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
+        child: GNav(
+          backgroundColor: Colors.blue,
+          color: Colors.white,
+          activeColor: Colors.blue,
+          tabBackgroundColor: Colors.white,
+          tabs: [
+            GButton(
+              icon: Icons.home,
+              text: 'Home',
+              gap: 8,
+              padding: const EdgeInsets.all(14),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ),
+                );
+              },
             ),
-            label: 'Home',
-            backgroundColor: Colors.blue),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.update_rounded,
-            size: 30,
-          ),
-          label: 'Updates',
-          backgroundColor: Colors.blue,
+            GButton(
+              icon: Icons.update_rounded,
+              text: 'Updates',
+              gap: 8,
+              padding: const EdgeInsets.all(14),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyUpdates(),
+                  ),
+                );
+              },
+            ),
+            GButton(
+              icon: Icons.history_rounded,
+              text: 'History',
+              gap: 8,
+              padding: const EdgeInsets.all(14),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyHistory(),
+                  ),
+                );
+              },
+            ),
+            GButton(
+              icon: Icons.support,
+              text: 'Help',
+              gap: 8,
+              padding: const EdgeInsets.all(14),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyHelpDesk(),
+                  ),
+                );
+              },
+            ),
+            GButton(
+              icon: Icons.person_outline,
+              text: 'My Profile',
+              gap: 8,
+              padding: const EdgeInsets.all(14),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyProfile(),
+                  ),
+                );
+              },
+            ),
+          ],
+          selectedIndex: _selectedIndex,
+          onTabChange: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
         ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.history_rounded,
-            size: 30,
-          ),
-          label: 'History',
-          backgroundColor: Colors.blue,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.support,
-            size: 30,
-          ),
-          label: 'Help Desk',
-          backgroundColor: Colors.blue,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.person_outline,
-            size: 30,
-          ),
-          label: 'Profile',
-          backgroundColor: Colors.blue,
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.white,
-      onTap: _onItemTapped,
+      ),
     );
   }
 }
