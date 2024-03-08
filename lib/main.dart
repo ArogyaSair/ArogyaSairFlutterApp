@@ -91,7 +91,9 @@ class splash extends State<Splash> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Image.asset("assets/Logo/ArogyaSair.gif")],
+          children: [
+            Image.asset("assets/Logo/ArogyaSair.gif"),
+          ],
         ),
       ),
     );

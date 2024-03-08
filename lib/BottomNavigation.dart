@@ -42,18 +42,23 @@ class _BottomBarState extends State<bottomBar> {
     });
     _widgetOptions = <Widget>[
       const Scaffold(
+        backgroundColor: Colors.white,
         body: HomePage(),
       ),
       Scaffold(
+        backgroundColor: Colors.white,
         body: MyUpdates(username, userKey),
       ),
       const Scaffold(
+        backgroundColor: Colors.white,
         body: MyHistory(),
       ),
       Scaffold(
+        backgroundColor: Colors.white,
         body: MyHelpDesk(),
       ),
       Scaffold(
+        backgroundColor: Colors.white,
         body: MyProfile(username, email),
       ),
     ];
@@ -62,6 +67,7 @@ class _BottomBarState extends State<bottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

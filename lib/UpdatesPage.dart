@@ -24,6 +24,7 @@ class _MyUpdatesState extends State<MyUpdates> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.blue,
           automaticallyImplyLeading: false,

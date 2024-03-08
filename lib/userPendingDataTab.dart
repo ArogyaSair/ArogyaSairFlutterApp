@@ -41,71 +41,77 @@ class _UserPendingDataState extends State<UserPendingData> {
                   }
                 }
               });
-              return ListView.builder(
-                itemCount: hospitalList.length,
-                padding: const EdgeInsets.all(2),
-                itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Text(
-                                  "Appointment for : ${hospitalList[index].disease}",
-                                  style: const TextStyle(fontSize: 17),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Text(
-                                  "Hospital Name : ${hospitalList[index].hospitalId}",
-                                  style: const TextStyle(fontSize: 17),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Text(
-                                  "User Name : ${widget.userName}",
-                                  style: const TextStyle(fontSize: 17),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Text(
-                                  "Appointment Date : ${hospitalList[index].appointmentDate}",
-                                  style: const TextStyle(fontSize: 17),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.amber,
+              if (hospitalList.isNotEmpty) {
+                return ListView.builder(
+                  itemCount: hospitalList.length,
+                  padding: const EdgeInsets.all(2),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Card(
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    "Appointment for : ${hospitalList[index].disease}",
+                                    style: const TextStyle(fontSize: 17),
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Text(
-                                      hospitalList[index].status,
-                                      style:
-                                          const TextStyle(color: Colors.white),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    "Hospital Name : ${hospitalList[index].hospitalId}",
+                                    style: const TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    "User Name : ${widget.userName}",
+                                    style: const TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    "Appointment Date : ${hospitalList[index].appointmentDate}",
+                                    style: const TextStyle(fontSize: 17),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.amber,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child: Text(
+                                        hospitalList[index].status,
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
+                        ],
+                      ),
+                    );
+                  },
+                );
+              } else {
+                return const Center(
+                  child: Text("No Pending Appointments."),
+                );
+              }
             } else {
               return const Center(
                 child: CircularProgressIndicator(),

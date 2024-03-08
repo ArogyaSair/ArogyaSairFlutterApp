@@ -131,14 +131,16 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
                             dbRef2.push().set(regobj.toJson());
                             Navigator.of(context).pop();
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        AppointmentInformation(
-                                            HospitalName: HospitalName1,
-                                            item: widget.item,
-                                            Date: Date.toString(),
-                                            Status: Status)));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AppointmentInformation(
+                                  HospitalName: HospitalName1,
+                                  item: widget.item,
+                                  Date: Date.toString(),
+                                  Status: Status,
+                                ),
+                              ),
+                            );
                           }
                         },
                         child: const Text("Submit"),
@@ -154,7 +156,7 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
     var datePicked = await DatePicker.showSimpleDatePicker(
       context,
       firstDate: DateTime.now(),
-      lastDate: DateTime(2090),
+      lastDate: DateTime.now().add(const Duration(days: 7)),
       dateFormat: "dd-MM-yyyy",
       locale: DateTimePickerLocale.en_us,
       looping: true,

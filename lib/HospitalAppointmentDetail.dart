@@ -40,8 +40,6 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
   Future<void> getHospitalData() async {
     listOfValuesForKey1 = ['Select Doctor'];
     print("Select Doctor $selectedDoctor");
-    // selectedDoctor ;
-    // print("Select Doctor $selectedDoctor");
     hospitalKey = widget.hospitalKey;
     Query dbRef =
         FirebaseDatabase.instance.ref().child("ArogyaSair/tblHospitalDoctor");
@@ -266,6 +264,7 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
     );
     tblTreatment.push().set(treatmentModelObject.toJson());
     Navigator.pop(context);
+    Navigator.pop(context);
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -291,17 +290,19 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
     DatabaseReference tblDelayedAppointment = FirebaseDatabase.instance
         .ref()
         .child("ArogyaSair/tblDelayedAppointment");
+    var oldDate = widget.appointments['AppointmentDate'];
+    var userKey = widget.userData['Key'];
     HospitalAppointmentDelayedModel hospitalAppointmentDelayedModel =
-        HospitalAppointmentDelayedModel(
-            widget.appointments['Key'], date, newDate.text, hospitalKey);
+        HospitalAppointmentDelayedModel(widget.appointments['Key'], date,
+            newDate.text, hospitalKey, oldDate, userKey, "Delayed");
     tblDelayedAppointment.push().set(hospitalAppointmentDelayedModel.toJson());
   }
 
   Future<void> _getDate(BuildContext context) async {
     var datePicked = await DatePicker.showSimpleDatePicker(
       context,
-      firstDate: DateTime(1900),
-      lastDate: DateTime(2090),
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 14)),
       dateFormat: "dd-MM-yyyy",
       locale: DateTimePickerLocale.en_us,
       looping: true,
@@ -309,14 +310,14 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
     setState(() {
       if (datePicked != null) {
         date = "${datePicked.day}-${datePicked.month}-${datePicked.year}";
-        newDate =
-            TextEditingController(text: "New date for this patient is $date");
+        // newDate =
+        //     TextEditingController(text: "New date for this patient is $date");
         showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
               title: const Text("Alert Message"),
-              content: Text(newDate.text),
+              content: Text("New will be $date"),
               actions: <Widget>[
                 TextButton(
                   child: const Text('OK'),
