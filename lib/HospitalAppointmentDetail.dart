@@ -307,11 +307,10 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
       locale: DateTimePickerLocale.en_us,
       looping: true,
     );
+    print(DateTime.tryParse(widget.appointments["AppointmentDate"]));
     setState(() {
       if (datePicked != null) {
         date = "${datePicked.day}-${datePicked.month}-${datePicked.year}";
-        // newDate =
-        //     TextEditingController(text: "New date for this patient is $date");
         showDialog(
           context: context,
           builder: (context) {

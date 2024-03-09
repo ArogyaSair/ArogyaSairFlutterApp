@@ -87,7 +87,8 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
                         style: const TextStyle(
                             fontSize: 16.0, fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 8.0), // Add some vertical spacing
+                      const SizedBox(height: 8.0),
+                      // Add some vertical spacing
                       Text(
                         widget.HospitalName,
                         style: const TextStyle(
@@ -95,7 +96,8 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
                       ),
                       TextFormField(
                         controller: controllerDateOfBirth,
-                        readOnly: true, // Make the text input read-only
+                        readOnly: true,
+                        // Make the text input read-only
                         decoration: InputDecoration(
                           prefixIcon: GestureDetector(
                             onTap: () {

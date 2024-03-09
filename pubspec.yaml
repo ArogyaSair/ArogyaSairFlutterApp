@@ -47,7 +47,8 @@ dependencies:
   multi_select_flutter: any
   logger: any
   curved_navigation_bar: any
-
+  marquee: any
+  font_awesome_flutter: any
 
 dev_dependencies:
   flutter_test:

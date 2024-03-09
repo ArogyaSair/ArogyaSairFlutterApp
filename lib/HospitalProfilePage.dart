@@ -4,6 +4,7 @@ import 'package:arogyasair/HospitalPasswordChange.dart';
 import 'package:arogyasair/HospitalSideDrawer.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
+import 'package:marquee/marquee.dart';
 
 import 'HospitalEditProfile.dart';
 
@@ -19,6 +20,7 @@ class _HospitalProfileState extends State<HospitalProfile> {
   late String email;
   final key = 'HospitalName';
   final key1 = 'HospitalEmail';
+  late String displayName;
 
   @override
   void initState() {
@@ -32,6 +34,11 @@ class _HospitalProfileState extends State<HospitalProfile> {
     setState(() {
       username = userData!;
       email = userEmail!;
+      if (username.contains("Hospital") || username.contains("hospital")) {
+        displayName = "AS $username";
+      } else {
+        displayName = "AS $username Hospital";
+      }
     });
   }
 
@@ -40,11 +47,27 @@ class _HospitalProfileState extends State<HospitalProfile> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        automaticallyImplyLeading: false,
-        title: const Text(
-          'AS Hospital',
-          style: TextStyle(
+        // automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
             color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: SizedBox(
+          width: double.infinity,
+          height: 30,
+          child: Marquee(
+            text: displayName,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
+            scrollAxis: Axis.horizontal,
+            blankSpace: 10.0,
+            velocity: 30.0,
+            pauseAfterRound: const Duration(seconds: 3),
           ),
         ),
         iconTheme: const IconThemeData(color: Colors.white),

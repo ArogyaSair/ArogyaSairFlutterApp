@@ -1,8 +1,11 @@
-// ignore_for_file: file_names, library_private_types_in_public_api
+// ignore_for_file: file_names, library_private_types_in_public_api, non_constant_identifier_names
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_holo_date_picker/date_picker.dart';
+import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 
+import 'models/AppointmentDateSelectionModel.dart';
 import 'models/HospitalTreatmentModel.dart';
 import 'models/user_delayed_appointment_show.dart';
 
@@ -19,6 +22,7 @@ class UserDelayedData extends StatefulWidget {
 
 class _UserDelayedDataState extends State<UserDelayedData> {
   late String imagePath;
+  late String date;
 
   @override
   Widget build(BuildContext context) {
@@ -89,19 +93,123 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.orange,
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          backgroundColor: Colors.orange,
                                         ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(5),
-                                          child: Text(
-                                            hospitalList[index].status,
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                          ),
+                                        onPressed: () async {
+                                          var datePicked = await DatePicker
+                                              .showSimpleDatePicker(
+                                            context,
+                                            firstDate: DateTime.now(),
+                                            lastDate: DateTime.now()
+                                                .add(const Duration(days: 14)),
+                                            dateFormat: "dd-MM-yyyy",
+                                            locale: DateTimePickerLocale.en_us,
+                                            looping: true,
+                                          );
+                                          setState(() {
+                                            if (datePicked != null) {
+                                              date =
+                                                  "${datePicked.day}-${datePicked.month}-${datePicked.year}";
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                        "Alert Message"),
+                                                    content: Text(
+                                                        "New will be $date"),
+                                                    actions: <Widget>[
+                                                      TextButton(
+                                                        child: const Text('OK'),
+                                                        onPressed: () async {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                          DatabaseReference
+                                                              dbAppointmentRef =
+                                                              FirebaseDatabase
+                                                                  .instance
+                                                                  .ref()
+                                                                  .child(
+                                                                      "ArogyaSair/tblAppointment/${hospitalList[index].appointmentId}");
+                                                          DatabaseEvent
+                                                              databaseAppointmentEvent =
+                                                              await dbAppointmentRef
+                                                                  .once();
+                                                          DataSnapshot
+                                                              dataAppointmentSnapshot =
+                                                              databaseAppointmentEvent
+                                                                  .snapshot;
+                                                          // print(dataAppointmentSnapshot);
+                                                          Map dataAppointment =
+                                                              dataAppointmentSnapshot
+                                                                  .value as Map;
+                                                          var hospitalkey =
+                                                              hospitalList[
+                                                                      index]
+                                                                  .hospitalId;
+                                                          var disease =
+                                                              dataAppointment[
+                                                                  "Disease"];
+                                                          var Date = date;
+                                                          var user =
+                                                              hospitalList[
+                                                                      index]
+                                                                  .userId;
+                                                          var status =
+                                                              "Pending";
+
+                                                          AppointmentDateSelectionModel
+                                                              regobj =
+                                                              AppointmentDateSelectionModel(
+                                                                  hospitalkey,
+                                                                  disease,
+                                                                  Date,
+                                                                  user,
+                                                                  status);
+                                                          DatabaseReference
+                                                              dbRef2 =
+                                                              FirebaseDatabase
+                                                                  .instance
+                                                                  .ref()
+                                                                  .child(
+                                                                      'ArogyaSair/tblAppointment');
+                                                          dbRef2.push().set(
+                                                              regobj.toJson());
+                                                          var delayedAppointmentId =
+                                                              hospitalList[
+                                                                      index]
+                                                                  .id;
+                                                          DatabaseReference
+                                                              dbDelayedAppointmentRef =
+                                                              FirebaseDatabase
+                                                                  .instance
+                                                                  .ref()
+                                                                  .child(
+                                                                      "ArogyaSair/tblDelayedAppointment/$delayedAppointmentId");
+                                                          dbDelayedAppointmentRef
+                                                              .remove();
+                                                        },
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: const Text(
+                                                            "Cancel"),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }
+                                          });
+                                        },
+                                        child: const Text(
+                                          "Delay",
+                                          style: TextStyle(color: Colors.white),
                                         ),
                                       ),
                                     ),
@@ -171,7 +279,6 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                         },
                                         style: TextButton.styleFrom(
                                           backgroundColor: Colors.orange,
-                                          // fixedSize: const Size(100,30 ),
                                         ),
                                         child: const Text(
                                           "Confirm",

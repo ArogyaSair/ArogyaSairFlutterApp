@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, non_constant_identifier_names, depend_on_referenced_packages, prefer_typing_uninitialized_variables  import 'dart:html';
+// ignore_for_file: file_names, non_constant_identifier_names, depend_on_referenced_packages, prefer_typing_uninitialized_variables  import 'dart:html';, use_build_context_synchronously
 import 'dart:io';
 
 import 'package:arogyasair/saveSharePreferences.dart';
@@ -86,7 +86,7 @@ class _HospitalEditProfileState extends State<HospitalEditProfile> {
                   const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      "Update Account Information",
+                      "Update Hospital Information",
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -197,33 +197,6 @@ class _HospitalEditProfileState extends State<HospitalEditProfile> {
     );
   }
 
-  // Future<void> _getDate(BuildContext context) async {
-  //   var datePicked = await DatePicker.showSimpleDatePicker(
-  //     context,
-  //     firstDate: DateTime(1900),
-  //     lastDate: DateTime(2090),
-  //     dateFormat: "dd-MM-yyyy",
-  //     locale: DateTimePickerLocale.en_us,
-  //     looping: true,
-  //   );
-  //   setState(() {
-  //     if (datePicked != null) {
-  //       birthDate = "${datePicked.day}-${datePicked.month}-${datePicked.year}";
-  //       controllerDateOfBirth = TextEditingController(text: birthDate);
-  //     }
-  //   });
-  // }
-
-  // @override
-  // void dispose() {
-  //   controllerUsername.dispose();
-  //   controllerName.dispose();
-  //   controllerMail.dispose();
-  //   controllerDateOfBirth.dispose();
-  //   controllerBloodGroup.dispose();
-  //   super.dispose();
-  // }
-
   Future<void> _loadUserData() async {
     String? userData = await getData(key);
     String? userEmail = await getData(key1);
@@ -248,7 +221,6 @@ class _HospitalEditProfileState extends State<HospitalEditProfile> {
         controllerMail = TextEditingController(text: data["Email"]);
         controllerDateOfBirth = TextEditingController();
         controllerBloodGroup = TextEditingController();
-        // selectedGender ??= data["Gender"];
         if (data["Photo"] != null) {
           imagePath =
               "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${data["Photo"]}?alt=media";
@@ -268,38 +240,34 @@ class _HospitalEditProfileState extends State<HospitalEditProfile> {
   void updateData(String userkey) async {
     if (_image != null) {
       final updatedData = {
-        // "Username": controllerUsername.text,
-        "Name": controllerName.text,
+        "HospitalName": controllerName.text,
         "Email": controllerMail.text,
-        // "DOB": controllerDateOfBirth.text,
-        // "Gender": selectedGender,
-        // "BloodGroup": controllerBloodGroup.text,
         "Photo": fileName,
       };
       uploadImage();
       if (imageName != "") {
-        final desertRef = FirebaseStorage.instance.ref("UserImage/$imageName");
+        final desertRef =
+            FirebaseStorage.instance.ref("HospitalImage/$imageName");
         await desertRef.delete();
       }
       final userRef = FirebaseDatabase.instance
           .ref()
-          .child("ArogyaSair/tblUser")
+          .child("ArogyaSair/tblHospital")
           .child(userkey);
       await userRef.update(updatedData);
+      saveData(key, controllerName.text);
     } else {
       final updatedData = {
-        // "Username": controllerUsername.text,
-        "Name": controllerName.text,
+        "HospitalName": controllerName.text,
         "Email": controllerMail.text,
-        // "DOB": controllerDateOfBirth.text,
-        // "Gender": selectedGender,
-        // "BloodGroup": controllerBloodGroup.text,
       };
       final userRef = FirebaseDatabase.instance
           .ref()
-          .child("ArogyaSair/tblUser")
+          .child("ArogyaSair/tblHospital")
           .child(userkey);
       await userRef.update(updatedData);
     }
+    saveData(key, controllerName.text);
+    Navigator.pop(this.context);
   }
 }

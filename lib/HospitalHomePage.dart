@@ -1,4 +1,5 @@
 // ignore_for_file: file_names, library_private_types_in_public_api, prefer_const_constructors, use_build_context_synchronously
+import 'package:arogyasair/HospitalProfilePage.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class _HospitalHomePage extends State<HospitalHomePage> {
   final key = 'HospitalName';
   late bool containsKey;
   var logger = Logger();
+  late String displayName;
 
   @override
   void initState() {
@@ -40,6 +42,12 @@ class _HospitalHomePage extends State<HospitalHomePage> {
     setState(() {
       hospitalName = userData!;
       hospitalKey = userKey!;
+      if (hospitalName.contains("Hospital") ||
+          hospitalName.contains("hospital")) {
+        displayName = "AS $hospitalName";
+      } else {
+        displayName = "AS $hospitalName Hospital";
+      }
     });
   }
 
@@ -51,8 +59,8 @@ class _HospitalHomePage extends State<HospitalHomePage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          title: const Text(
-            "AS Hospital",
+          title: Text(
+            displayName,
             style: TextStyle(color: Colors.white),
           ),
           actions: [
@@ -76,7 +84,10 @@ class _HospitalHomePage extends State<HospitalHomePage> {
               onSelected: (value) async {
                 // Handle menu item selection here
                 if (value == 'my_account') {
-                  // Handle My Account
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HospitalProfile()));
                 } else if (value == 'settings') {
                   // Handle Settings
                 } else if (value == 'logout') {

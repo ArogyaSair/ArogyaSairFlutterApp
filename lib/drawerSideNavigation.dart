@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'ProfilePage.dart';
 import 'about.dart';
-import 'contact.dart';
 import 'order.dart';
 
 class DrawerCode extends StatefulWidget {
@@ -103,7 +102,8 @@ class _DrawerCode extends State<DrawerCode> {
             title: const Text("My Account"),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context,
+              Navigator.push(
+                  context,
                   MaterialPageRoute(
                       builder: (context) => MyProfile(username, email)));
             },
@@ -118,18 +118,6 @@ class _DrawerCode extends State<DrawerCode> {
               // Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const about()));
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.medical_services,
-              color: Colors.black,
-            ),
-            title: const Text("My Treatments"),
-            onTap: () {
-              // Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const contact()));
             },
           ),
           ListTile(
