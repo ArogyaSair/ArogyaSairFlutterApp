@@ -1,13 +1,8 @@
-// ignore_for_file: file_names, non_constant_identifier_names
-
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/src/fill_image_card.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-import 'BookedPackageInformation.dart';
-import 'contact.dart';
-// import 'models/BookedPackageInformation.dart';
+import 'PackageBookingDateSelection.dart';
 
 class PackageDetails extends StatefulWidget {
   final String PackageName;
@@ -33,8 +28,6 @@ class PackageDetails extends StatefulWidget {
 
 class _PackageBookingDetailsState extends State<PackageDetails> {
   late String imagePath;
-  DatabaseReference dbRef2 =
-      FirebaseDatabase.instance.ref().child('ArogyaSair/tblBookedPackages');
 
   late String UserKey;
   final key = 'userKey';
@@ -42,7 +35,6 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
   @override
   void initState() {
     super.initState();
-    // controllerDateOfBirth = TextEditingController(text: birthDate);
     _loadUserData();
   }
 
@@ -55,77 +47,13 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
 
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //   body: Center(
-    //     child: Card(
-    //       child: Row(
-    //         children: [
-    //           Expanded(
-    //             child: Column(
-    //               children: [
-    //                 Column(
-    //                   children: [
-    //                     ClipRRect(
-    //                       borderRadius: BorderRadius.circular(50),
-    //                       child: Image.network(
-    //                         imagePath = widget.Image,
-    //                         height: 120,
-    //                         width: 120,
-    //                       ),
-    //                     ),
-    //                   ],
-    //                 ),
-    //                 Column(
-    //                   crossAxisAlignment: CrossAxisAlignment.start,
-    //                   children: [
-    //                     Padding(
-    //                       padding: const EdgeInsets.only(left: 10),
-    //                       child: Text(widget.PackageName),
-    //                     ),
-    //                     Padding(
-    //                       padding: const EdgeInsets.only(left: 10),
-    //                       child: Text(widget.Price),
-    //                     ),
-    //                     Padding(
-    //                       padding: const EdgeInsets.only(left: 10),
-    //                       child: Text(widget.Duration),
-    //                     ),
-    //                     Padding(
-    //                       padding: const EdgeInsets.only(left: 10),
-    //                       child: Text(widget.HospitalName),
-    //                     ),
-    //                     Padding(
-    //                       padding: const EdgeInsets.only(left: 10),
-    //                       child: Text(widget.Incude),
-    //                     ),
-    //                     Padding(
-    //                         padding: EdgeInsets.only(top: 30),
-    //                         child: Container(
-    //                           height: 44.0,
-    //                           decoration: const BoxDecoration(
-    //                               gradient: LinearGradient(colors: [
-    //                                 Color(0xFF0D47A1),
-    //                                 Colors.lightBlue
-    //                               ]),
-    //                               borderRadius: BorderRadius.all(
-    //                                   Radius.circular(20))),
-    //                           child: ,
-    //                         ),),
-    //                   ],
-    //                 ),
-    //               ],
-    //             ),
-    //           )
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    // );
+    print(widget.Image);
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(100),
+        padding: EdgeInsets.all(20),
         child: FillImageCard(
-          width: 200,
+          width: double.infinity,
+          height: double.infinity,
           imageProvider: NetworkImage(
             imagePath = widget.Image,
           ),
@@ -134,23 +62,14 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
           tags: [
             Text(widget.HospitalName),
             Text("${widget.Price} Rs./-"),
-            Text("${widget.Duration} weeks")
+            Text("${widget.Duration} weeks"),
           ],
           footer: ElevatedButton(
             onPressed: () {
-              BookingPackagesInformationModel regobj =
-                  BookingPackagesInformationModel(
-                      widget.PackageName,
-                      widget.Price,
-                      widget.HospitalName,
-                      widget.Duration,
-                      widget.Incude,
-                      UserKey);
-              dbRef2.push().set(regobj.toJson());
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => contact(
+                  builder: (context) => PackageBookingDateSelection(
                     PackageName: widget.PackageName,
                     Price: widget.Price,
                     HospitalName: widget.HospitalName,
