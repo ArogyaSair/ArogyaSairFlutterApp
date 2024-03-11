@@ -4,6 +4,7 @@ import 'package:arogyasair/DisplayDisease.dart';
 import 'package:arogyasair/drawerSideNavigation.dart';
 import 'package:arogyasair/get_home_data.dart';
 import 'package:arogyasair/models/HomePageModel.dart';
+import 'package:arogyasair/paymentMain.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -242,6 +243,16 @@ class _HomePage extends State<HomePage> {
             ),
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PayMaterialApp(),
+            ),
+          );
+        },
       ),
     );
   }
