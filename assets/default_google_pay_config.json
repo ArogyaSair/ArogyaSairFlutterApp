@@ -15,8 +15,15 @@
           }
         },
         "parameters": {
-          "allowedCardNetworks": ["VISA", "MASTERCARD", "RuPay"],
-          "allowedAuthMethods": ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+          "allowedCardNetworks": [
+            "VISA",
+            "MASTERCARD",
+            "RuPay"
+          ],
+          "allowedAuthMethods": [
+            "PAN_ONLY",
+            "CRYPTOGRAM_3DS"
+          ],
           "billingAddressRequired": true,
           "billingAddressParameters": {
             "format": "FULL",
