@@ -18,7 +18,7 @@ Future<void> main() async {
 }
 
 class Splash extends StatefulWidget {
-  const Splash({Key? key}) : super(key: key);
+  const Splash({super.key});
 
   @override
   splash createState() => splash();
@@ -44,10 +44,8 @@ class splash extends State<Splash> {
   navigateToHome() async {
     await Future.delayed(const Duration(seconds: 5));
     await _checkIfLoggedIn();
-    if (page != null) {
-      Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => page));
-    }
+    Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context) => page));
   }
 
   Future<void> _checkIfLoggedIn() async {

@@ -50,6 +50,8 @@ class _PaySampleAppState extends State<PaySampleApp> {
   }
 
   void onGooglePayResult(paymentResult) {
+    debugPrint("Payment Complete");
+    debugPrint(paymentResult.toString());
     debugPrint(paymentResult.toString());
   }
 

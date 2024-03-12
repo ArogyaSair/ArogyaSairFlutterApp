@@ -1,12 +1,10 @@
-import 'package:arogyasair/contact.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/src/fill_image_card.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
-
-import 'models/BookedPackageInformation.dart';
+import 'package:pay/pay.dart';
 
 class PackageBookingDateSelection extends StatefulWidget {
   final String PackageName;
@@ -45,7 +43,19 @@ class _PackageBookingDateSelectionState
   void initState() {
     super.initState();
     controllerDateOfBirth = TextEditingController(text: birthDate);
+    _googlePayConfigFuture =
+        PaymentConfiguration.fromAsset('default_google_pay_config.json');
     _loadUserData();
+  }
+
+  late final Future<PaymentConfiguration> _googlePayConfigFuture;
+
+  void onGooglePayResult(paymentResult) {
+    debugPrint(paymentResult.toString());
+  }
+
+  void onApplePayResult(paymentResult) {
+    debugPrint(paymentResult.toString());
   }
 
   Future<void> _loadUserData() async {
@@ -60,7 +70,7 @@ class _PackageBookingDateSelectionState
     print(widget.Image);
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: FillImageCard(
           width: double.infinity,
           height: double.infinity,
@@ -75,7 +85,8 @@ class _PackageBookingDateSelectionState
             Text("${widget.Duration} weeks"),
             TextFormField(
               controller: controllerDateOfBirth,
-              readOnly: true, // Make the text input read-only
+              readOnly: true,
+              // Make the text input read-only
               decoration: InputDecoration(
                 prefixIcon: GestureDetector(
                   onTap: () {
@@ -97,30 +108,31 @@ class _PackageBookingDateSelectionState
           ],
           footer: ElevatedButton(
             onPressed: () {
-              var Date = birthDate;
-              BookingPackagesInformationModel regobj =
-                  BookingPackagesInformationModel(
-                      widget.PackageName,
-                      widget.Price,
-                      widget.HospitalName,
-                      widget.Duration,
-                      widget.Incude,
-                      Date,
-                      UserKey);
-              dbRef2.push().set(regobj.toJson());
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => contact(
-                    PackageName: widget.PackageName,
-                    Price: widget.Price,
-                    HospitalName: widget.HospitalName,
-                    Duration: widget.Duration,
-                    Incude: widget.Incude,
-                    Image: widget.Image,
-                  ),
-                ),
-              );
+              // var Date = birthDate;
+              // BookingPackagesInformationModel regobj =
+              //     BookingPackagesInformationModel(
+              //         widget.PackageName,
+              //         widget.Price,
+              //         widget.HospitalName,
+              //         widget.Duration,
+              //         widget.Incude,
+              //         Date,
+              //         UserKey);
+              // dbRef2.push().set(regobj.toJson());
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => contact(
+              //       PackageName: widget.PackageName,
+              //       Price: widget.Price,
+              //       HospitalName: widget.HospitalName,
+              //       Duration: widget.Duration,
+              //       Incude: widget.Incude,
+              //       Image: widget.Image,
+              //     ),
+              //   ),
+              // );
+
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blueAccent,
