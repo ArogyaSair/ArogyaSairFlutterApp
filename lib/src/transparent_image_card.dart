@@ -4,7 +4,7 @@ import 'image_card_content.dart';
 
 class TransparentImageCard extends StatelessWidget {
   const TransparentImageCard({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     this.contentMarginTop,
@@ -19,7 +19,7 @@ class TransparentImageCard extends StatelessWidget {
     this.endColor,
     this.tagSpacing,
     this.tagRunSpacing,
-  }) : super(key: key);
+  });
 
   /// card width
   final double? width;

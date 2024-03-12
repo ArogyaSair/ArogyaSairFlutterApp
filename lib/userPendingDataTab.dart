@@ -8,8 +8,7 @@ class UserPendingData extends StatefulWidget {
   final String userKey;
   final String userName;
 
-  const UserPendingData(this.userKey, this.userName, {Key? key})
-      : super(key: key);
+  const UserPendingData(this.userKey, this.userName, {super.key});
 
   @override
   _UserPendingDataState createState() => _UserPendingDataState();

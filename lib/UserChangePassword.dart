@@ -6,7 +6,7 @@ import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 
 class UserChangePassword extends StatefulWidget {
-  const UserChangePassword({Key? key}) : super(key: key);
+  const UserChangePassword({super.key});
 
   @override
   State<UserChangePassword> createState() => _HospitalChangePasswordState();

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'PackageDetails.dart';
 
 class get_home_data extends StatefulWidget {
-  const get_home_data({Key? key}) : super(key: key);
+  const get_home_data({super.key});
 
   @override
   State<get_home_data> createState() => _get_home_dataState();

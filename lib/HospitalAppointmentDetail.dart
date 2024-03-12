@@ -15,8 +15,7 @@ class HospitalAppointmentDetail extends StatefulWidget {
 
   const HospitalAppointmentDetail(
       this.appointments, this.userData, this.hospitalKey,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   @override
   State<HospitalAppointmentDetail> createState() =>
@@ -332,7 +331,13 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
                       ),
                     );
                   },
-                )
+                ),
+                TextButton(
+                  child: const Text('CANCEL'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ],
             );
           },

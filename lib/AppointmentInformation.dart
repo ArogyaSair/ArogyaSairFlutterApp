@@ -8,13 +8,11 @@ class AppointmentInformation extends StatefulWidget {
   final String Date;
   final String Status;
 
-  const AppointmentInformation(
-      {Key? key,
+  const AppointmentInformation({super.key,
       required this.item,
       required this.HospitalName,
       required this.Date,
-      required this.Status})
-      : super(key: key);
+      required this.Status});
 
   @override
   State<AppointmentInformation> createState() => _AppointmentInformationState();

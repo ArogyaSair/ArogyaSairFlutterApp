@@ -14,12 +14,10 @@ class AppointmentDateSelection extends StatefulWidget {
   final String HospitalName;
   final String HospitalKey;
 
-  const AppointmentDateSelection(
-      {Key? key,
+  const AppointmentDateSelection({super.key,
       required this.item,
       required this.HospitalName,
-      required this.HospitalKey})
-      : super(key: key);
+      required this.HospitalKey});
 
   @override
   State<AppointmentDateSelection> createState() =>

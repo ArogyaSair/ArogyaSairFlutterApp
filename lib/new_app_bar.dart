@@ -10,7 +10,7 @@ Future<void> main() async {
 }
 
 class MyTab extends StatelessWidget {
-  const MyTab({Key? key}) : super(key: key);
+  const MyTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class MyTab extends StatelessWidget {
 }
 
 class MyTabPage extends StatefulWidget {
-  const MyTabPage({Key? key}) : super(key: key);
+  const MyTabPage({super.key});
 
   @override
   State<MyTabPage> createState() => _MyTabPageState();

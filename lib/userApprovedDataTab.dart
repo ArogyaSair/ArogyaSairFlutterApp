@@ -8,8 +8,7 @@ class UserApprovedData extends StatefulWidget {
   final String userKey;
   final String userName;
 
-  const UserApprovedData(this.userKey, this.userName, {Key? key})
-      : super(key: key);
+  const UserApprovedData(this.userKey, this.userName, {super.key});
 
   @override
   _UserApprovedDataState createState() => _UserApprovedDataState();

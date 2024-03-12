@@ -13,8 +13,7 @@ class UserDelayedData extends StatefulWidget {
   final String userKey;
   final String userName;
 
-  const UserDelayedData(this.userKey, this.userName, {Key? key})
-      : super(key: key);
+  const UserDelayedData(this.userKey, this.userName, {super.key});
 
   @override
   _UserDelayedDataState createState() => _UserDelayedDataState();

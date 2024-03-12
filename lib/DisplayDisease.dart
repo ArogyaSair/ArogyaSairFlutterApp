@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'HospitalSelection.dart';
 
 class DisplayDisease extends StatefulWidget {
-  const DisplayDisease({Key? key}) : super(key: key);
+  const DisplayDisease({super.key});
 
   @override
   State<DisplayDisease> createState() => _AppointmentBookingState();

@@ -13,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 
 class EditProfile extends StatefulWidget {
-  const EditProfile({Key? key}) : super(key: key);
+  const EditProfile({super.key});
 
   @override
   State<EditProfile> createState() => _EditProfileState();

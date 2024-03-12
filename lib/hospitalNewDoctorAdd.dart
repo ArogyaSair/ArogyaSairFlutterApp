@@ -18,7 +18,7 @@ import 'models/DoctorRegistrationModel.dart';
 import 'models/DoctorSpecializationModel.dart';
 
 class HospitalNewDoctorAdd extends StatefulWidget {
-  const HospitalNewDoctorAdd({Key? key}) : super(key: key);
+  const HospitalNewDoctorAdd({super.key});
 
   @override
   State<HospitalNewDoctorAdd> createState() => _HospitalNewDoctorAddState();

@@ -14,8 +14,8 @@
       "discover",
       "masterCard"
     ],
-    "countryCode": "IN",
-    "currencyCode": "INR",
+    "countryCode": "US",
+    "currencyCode": "USD",
     "requiredBillingContactFields": [
       "emailAddress",
       "name",

@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 class DropdownSamplePage extends StatefulWidget {
   final listOfValuesForKey1;
 
-  const DropdownSamplePage(this.listOfValuesForKey1, {Key? key})
-      : super(key: key);
+  const DropdownSamplePage(this.listOfValuesForKey1, {super.key});
 
   @override
   _DropdownSampleState createState() => _DropdownSampleState();

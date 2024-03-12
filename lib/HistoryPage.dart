@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'drawerSideNavigation.dart';
 
 class MyHistory extends StatefulWidget {
-  const MyHistory({Key? key}) : super(key: key);
+  const MyHistory({super.key});
 
   @override
   _MyHistoryState createState() => _MyHistoryState();

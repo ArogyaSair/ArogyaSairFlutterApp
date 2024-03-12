@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, non_constant_identifier_names, unused_field
+
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/src/fill_image_card.dart';
 import 'package:firebase_database/firebase_database.dart';

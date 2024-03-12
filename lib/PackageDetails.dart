@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/src/fill_image_card.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +52,7 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
     print(widget.Image);
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: FillImageCard(
           width: double.infinity,
           height: double.infinity,

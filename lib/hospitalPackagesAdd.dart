@@ -8,8 +8,7 @@ import 'models/PackagesModel.dart';
 class HospitalPackageAdd extends StatefulWidget {
   final String hospitalKey;
 
-  const HospitalPackageAdd({Key? key, required this.hospitalKey})
-      : super(key: key);
+  const HospitalPackageAdd({super.key, required this.hospitalKey});
 
   @override
   _HospitalPackageAddState createState() => _HospitalPackageAddState();

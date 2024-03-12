@@ -18,7 +18,7 @@ Future<void> main() async {
 }
 
 class HospitalDoctorAdd1 extends StatefulWidget {
-  const HospitalDoctorAdd1({Key? key}) : super(key: key);
+  const HospitalDoctorAdd1({super.key});
 
   @override
   State<HospitalDoctorAdd1> createState() => _HospitalDoctorAddState1();

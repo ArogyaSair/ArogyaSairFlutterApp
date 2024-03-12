@@ -1,9 +1,7 @@
-import 'package:arogyasair/payment_configurations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pay/pay.dart';
 
-// import 'payment_configurations.dart' as payment_configurations;
+import 'payment_configurations.dart' as payment_configurations;
 
 const _paymentItems = [
   PaymentItem(
@@ -13,33 +11,15 @@ const _paymentItems = [
   )
 ];
 
-class PayMaterialApp extends StatelessWidget {
+class PayMaterialApp extends StatefulWidget {
   const PayMaterialApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Pay for Flutter Demo',
-      localizationsDelegates: [
-        ...GlobalMaterialLocalizations.delegates,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        Locale('en', ''),
-      ],
-      home: PaySampleApp(),
-    );
-  }
-}
-
-class PaySampleApp extends StatefulWidget {
-  const PaySampleApp({super.key});
 
   @override
-  State<PaySampleApp> createState() => _PaySampleAppState();
+  State<PayMaterialApp> createState() => _MyHomePageState();
 }
 
-class _PaySampleAppState extends State<PaySampleApp> {
+class _MyHomePageState extends State<PayMaterialApp> {
   late final Future<PaymentConfiguration> _googlePayConfigFuture;
 
   @override
@@ -50,8 +30,6 @@ class _PaySampleAppState extends State<PaySampleApp> {
   }
 
   void onGooglePayResult(paymentResult) {
-    debugPrint("Payment Complete");
-    debugPrint(paymentResult.toString());
     debugPrint(paymentResult.toString());
   }
 
@@ -69,13 +47,6 @@ class _PaySampleAppState extends State<PaySampleApp> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 20),
-            child: const Image(
-              image: AssetImage('assets/images/ts_10_11019a.jpg'),
-              height: 350,
-            ),
-          ),
           const Text(
             'Product101',
             style: TextStyle(
@@ -111,32 +82,33 @@ class _PaySampleAppState extends State<PaySampleApp> {
           ),
           // Example pay button configured using an asset
           FutureBuilder<PaymentConfiguration>(
-              future: _googlePayConfigFuture,
-              builder: (context, snapshot) => snapshot.hasData
-                  ? GooglePayButton(
-                      paymentConfiguration: snapshot.data!,
-                      paymentItems: _paymentItems,
-                      type: GooglePayButtonType.buy,
-                      margin: const EdgeInsets.only(top: 15.0),
-                      onPaymentResult: onGooglePayResult,
-                      loadingIndicator: const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    )
-                  : const SizedBox.shrink()),
-          // Example pay button configured using a string
-          ApplePayButton(
-            paymentConfiguration:
-                PaymentConfiguration.fromJsonString(defaultApplePay),
-            paymentItems: _paymentItems,
-            style: ApplePayButtonStyle.black,
-            type: ApplePayButtonType.buy,
-            margin: const EdgeInsets.only(top: 15.0),
-            onPaymentResult: onApplePayResult,
-            loadingIndicator: const Center(
-              child: CircularProgressIndicator(),
-            ),
+            future: _googlePayConfigFuture,
+            builder: (context, snapshot) => snapshot.hasData
+                ? GooglePayButton(
+                    paymentConfiguration: snapshot.data!,
+                    paymentItems: _paymentItems,
+                    type: GooglePayButtonType.buy,
+                    margin: const EdgeInsets.only(top: 15.0),
+                    onPaymentResult: onGooglePayResult,
+                    loadingIndicator: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : ApplePayButton(
+                    paymentConfiguration: PaymentConfiguration.fromJsonString(
+                        payment_configurations.defaultApplePay),
+                    paymentItems: _paymentItems,
+                    style: ApplePayButtonStyle.black,
+                    type: ApplePayButtonType.buy,
+                    margin: const EdgeInsets.only(top: 15.0),
+                    onPaymentResult: onApplePayResult,
+                    loadingIndicator: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
           ),
+          // Example pay button configured using a string
+
           const SizedBox(height: 15)
         ],
       ),

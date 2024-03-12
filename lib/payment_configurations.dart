@@ -32,8 +32,8 @@ const String defaultApplePay = '''{
     "displayName": "Sam's Fish",
     "merchantCapabilities": ["3DS", "debit", "credit"],
     "supportedNetworks": ["amex", "visa", "discover", "masterCard"],
-    "countryCode": "IN",
-    "currencyCode": "INR",
+    "countryCode": "US",
+    "currencyCode": "USD",
     "requiredBillingContactFields": ["emailAddress", "name", "phoneNumber", "postalAddress"],
     "requiredShippingContactFields": [],
     "shippingMethods": [
@@ -78,7 +78,7 @@ const String defaultGooglePay = '''{
           }
         },
         "parameters": {
-          "allowedCardNetworks": ["VISA", "MASTERCARD", "RuPay"],
+          "allowedCardNetworks": ["VISA", "MASTERCARD"],
           "allowedAuthMethods": ["PAN_ONLY", "CRYPTOGRAM_3DS"],
           "billingAddressRequired": true,
           "billingAddressParameters": {
@@ -89,12 +89,12 @@ const String defaultGooglePay = '''{
       }
     ],
     "merchantInfo": {
-      "merchantId": "BCR2DN4T4HV5NVIX",
+      "merchantId": "BCR2DN4T7WY3TEI7",
       "merchantName": "ArogyaSair"
     },
     "transactionInfo": {
-      "countryCode": "IN",
-      "currencyCode": "INR"
+      "countryCode": "US",
+      "currencyCode": "USD"
     }
   }
 }''';
@@ -143,7 +143,7 @@ const String basicGooglePayLoadPaymentData = '''{
     "transactionInfo": {
       "totalPriceStatus": "FINAL",
       "totalPrice": "12.34",
-      "currencyCode": "INR"
+      "currencyCode": "USD"
     }
   }
 }''';
@@ -189,7 +189,7 @@ const String invalidGooglePayLoadPaymentData = '''{
     "transactionInfo": {
       "totalPriceStatus": "FINAL",
       "totalPrice": "12.34",
-      "currencyCode": "INR"
+      "currencyCode": "USD"
     }
   }
 }''';
