@@ -10,7 +10,7 @@ class MyUpdates extends StatefulWidget {
   final String userKey;
   final String userName;
 
-  const MyUpdates(this.userName, this.userKey, {Key? key}) : super(key: key);
+  const MyUpdates(this.userName, this.userKey, {super.key});
 
   @override
   _MyUpdatesState createState() => _MyUpdatesState();

@@ -8,16 +8,16 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
-class HospitalPackagesTab extends StatefulWidget {
+class PackageHospitalSelection extends StatefulWidget {
   final String item;
 
-  const HospitalPackagesTab({Key? key, required this.item}) : super(key: key);
+  const PackageHospitalSelection({super.key, required this.item});
 
   @override
-  State<HospitalPackagesTab> createState() => _HospitalPackagesTabState();
+  State<PackageHospitalSelection> createState() => _HospitalPackagesTabState();
 }
 
-class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
+class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
   late DatabaseReference dbRef;
   var logger = Logger();
   late String UserKey;
@@ -56,7 +56,7 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
       if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
         hospitals.add({
           'HospitalName': value['HospitalName'],
-          'Photo': 'ArogyaSair.png',
+          'Photo': value["Photo"],
           'Key': key,
         });
       } else {
@@ -118,9 +118,10 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => AppointmentDateSelection(
-                              HospitalName: data1["HospitalName"],
-                              HospitalKey: data1["Key"],
-                              item: widget.item), // Pass data to the new page
+                            HospitalName: data1["HospitalName"],
+                            HospitalKey: data1["Key"],
+                            item: widget.item,
+                          ), // Pass data to the new page
                         ),
                       );
                     },

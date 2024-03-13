@@ -11,7 +11,7 @@ import 'hospitalPackagesAdd.dart';
 import 'order.dart';
 
 class HospitalDrawerCode extends StatefulWidget {
-  const HospitalDrawerCode({Key? key}) : super(key: key);
+  const HospitalDrawerCode({super.key});
 
   @override
   _DrawerCode createState() => _DrawerCode();

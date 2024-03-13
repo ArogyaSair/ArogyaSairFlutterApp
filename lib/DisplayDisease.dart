@@ -4,6 +4,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
+import 'HospitalSelection.dart';
 import 'models/DiseaseModel.dart';
 
 class DisplayDisease extends StatefulWidget {
@@ -80,14 +81,14 @@ class _AppointmentBookingState extends State<DisplayDisease> {
                           ),
                         ),
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => HospitalPackagesTab(
-                          //       item: items[index],
-                          //     ),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PackageHospitalSelection(
+                                item: items[index],
+                              ),
+                            ),
+                          );
                         },
                       );
                     },

@@ -11,7 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 
 class HospitalEditProfile extends StatefulWidget {
-  const HospitalEditProfile({Key? key}) : super(key: key);
+  const HospitalEditProfile({super.key});
 
   @override
   State<HospitalEditProfile> createState() => _HospitalEditProfileState();

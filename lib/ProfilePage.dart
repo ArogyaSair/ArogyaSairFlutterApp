@@ -13,7 +13,7 @@ class MyProfile extends StatefulWidget {
   final String username;
   final String email;
 
-  const MyProfile(this.username, this.email, {Key? key}) : super(key: key);
+  const MyProfile(this.username, this.email, {super.key});
 
   @override
   _MyProfileState createState() => _MyProfileState();

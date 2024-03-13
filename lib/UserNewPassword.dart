@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'LandingPage.dart';
 
 class UserNewPassword extends StatefulWidget {
-  const UserNewPassword({Key? key}) : super(key: key);
+  const UserNewPassword({super.key});
 
   @override
   State<UserNewPassword> createState() => _HospitalNewPasswordState();

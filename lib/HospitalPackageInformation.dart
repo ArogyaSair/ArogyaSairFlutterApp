@@ -9,8 +9,7 @@ class PackageInformation extends StatefulWidget {
   final String key1;
   final String HospitalName;
 
-  const PackageInformation(this.HospitalName, this.key1, {Key? key})
-      : super(key: key);
+  const PackageInformation(this.HospitalName, this.key1, {super.key});
 
   @override
   _packageInformation createState() => _packageInformation();

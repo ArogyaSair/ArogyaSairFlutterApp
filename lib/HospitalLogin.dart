@@ -14,7 +14,7 @@ import 'HospitalFirstPasswordChange.dart';
 import 'HospitalHomePage.dart';
 
 class HospitalLogin extends StatefulWidget {
-  const HospitalLogin({Key? key}) : super(key: key);
+  const HospitalLogin({super.key});
 
   @override
   _LoginState createState() => _LoginState();

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HospitalLandingPage extends StatefulWidget {
-  const HospitalLandingPage({Key? key}) : super(key: key);
+  const HospitalLandingPage({super.key});
 
   @override
   _MyAppState createState() => _MyAppState();

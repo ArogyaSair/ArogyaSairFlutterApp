@@ -16,7 +16,7 @@ import 'models/HospitalRegisterModel.dart';
 class HospitalRegistration extends StatefulWidget {
   final String Email;
 
-  const HospitalRegistration({Key? key, required this.Email}) : super(key: key);
+  const HospitalRegistration({super.key, required this.Email});
 
   @override
   State<HospitalRegistration> createState() => _HospitalRegistrationState();

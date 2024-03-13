@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ViewProfile extends StatefulWidget {
-  const ViewProfile({Key? key}) : super(key: key);
+  const ViewProfile({super.key});
 
   @override
   _ViewProfileState createState() => _ViewProfileState();
@@ -103,10 +103,6 @@ class _ViewProfileState extends State<ViewProfile> {
                         ),
                       );
                     },
-                    // icon: const Icon(
-                    //   Icons.edit,
-                    //   color: Colors.white,
-                    // ),
                     icon: const FaIcon(FontAwesomeIcons.userPen))
               ],
             ),

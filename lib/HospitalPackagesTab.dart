@@ -12,7 +12,7 @@ import 'HospitalPackageInformation.dart';
 class HospitalPackagesTab extends StatefulWidget {
   final String hospitalKey;
 
-  const HospitalPackagesTab(this.hospitalKey, {Key? key}) : super(key: key);
+  const HospitalPackagesTab(this.hospitalKey, {super.key});
 
   @override
   State<HospitalPackagesTab> createState() => _HospitalPackagesTabState();

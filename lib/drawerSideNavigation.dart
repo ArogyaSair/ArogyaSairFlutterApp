@@ -3,14 +3,14 @@
 import 'package:arogyasair/LandingPage.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'ProfilePage.dart';
-import 'about.dart';
 import 'order.dart';
 
 class DrawerCode extends StatefulWidget {
-  const DrawerCode({Key? key}) : super(key: key);
+  const DrawerCode({super.key});
 
   @override
   _DrawerCode createState() => _DrawerCode();
@@ -109,15 +109,14 @@ class _DrawerCode extends State<DrawerCode> {
             },
           ),
           ListTile(
-            leading: const Icon(
-              Icons.settings,
+            leading: const FaIcon(
+              FontAwesomeIcons.suitcaseMedical,
               color: Colors.black,
             ),
-            title: const Text("Settings"),
+            title: const Text("My Packages"),
             onTap: () {
-              // Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const about()));
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => const about()));
             },
           ),
           ListTile(

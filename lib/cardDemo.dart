@@ -11,7 +11,7 @@ void main() {
 }
 
 class cardDemo extends StatefulWidget {
-  const cardDemo({Key? key}) : super(key: key);
+  const cardDemo({super.key});
 
   @override
   State<cardDemo> createState() => _cardDemoState();

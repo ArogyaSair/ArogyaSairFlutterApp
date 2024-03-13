@@ -14,7 +14,7 @@ import 'LandingPage.dart';
 class HospitalHomePage extends StatefulWidget {
   final int indexPage;
 
-  const HospitalHomePage(this.indexPage, {Key? key}) : super(key: key);
+  const HospitalHomePage(this.indexPage, {super.key});
 
   @override
   _HospitalHomePage createState() => _HospitalHomePage();

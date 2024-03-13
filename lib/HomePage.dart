@@ -4,9 +4,9 @@ import 'package:arogyasair/DisplayDisease.dart';
 import 'package:arogyasair/drawerSideNavigation.dart';
 import 'package:arogyasair/get_home_data.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
+import 'package:arogyasair/userHospitalDetails.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 
 import 'SearchPage.dart';
@@ -241,103 +241,83 @@ class _HomePageState extends State<HomePage> {
                               imagePath =
                                   "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${packagesList[index].hospitalImage}?alt=media";
                             }
-
                             return Padding(
                               padding: const EdgeInsets.all(5),
-                              child: Card(
-                                color: Colors.blue.shade100,
-                                elevation: 8,
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 5),
-                                          child: Stack(
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                child: Image.network(
-                                                  imagePath,
-                                                  height:
-                                                      constraints.maxHeight *
-                                                          0.13,
-                                                  width: constraints.maxHeight *
-                                                      0.22,
-                                                ),
+                              child: GestureDetector(
+                                child: Card(
+                                  color: Colors.blue.shade100,
+                                  elevation: 8,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 5),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              child: Image.network(
+                                                imagePath,
+                                                height: constraints.maxHeight *
+                                                    0.13,
+                                                width: constraints.maxHeight *
+                                                    0.22,
                                               ),
-                                              Positioned(
-                                                top: 0,
-                                                right: 0,
-                                                child: FloatingActionButton(
-                                                  onPressed: () {
-                                                    print(
-                                                        packagesList[index].id);
-                                                    print(packagesList[index]
-                                                        .hospitalName);
-                                                  },
-                                                  backgroundColor: Colors.white,
-                                                  elevation: 0,
-                                                  mini: true,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100),
-                                                  ),
-                                                  child: const FaIcon(
-                                                    FontAwesomeIcons.eye,
-                                                    size: 20,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 5, right: 5, top: 5),
-                                          child: SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.3,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 5),
-                                                  child: Text(
-                                                      packagesList[index]
-                                                          .hospitalName),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 5),
-                                                  child: Text(
-                                                      packagesList[index]
-                                                          .hospitalEmail),
-                                                ),
-                                              ],
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 5, right: 5, top: 5),
+                                            child: SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.3,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 5),
+                                                    child: Text(
+                                                        packagesList[index]
+                                                            .hospitalName),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 5),
+                                                    child: Text(
+                                                        packagesList[index]
+                                                            .hospitalEmail),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const HospitalDetails(),
+                                    ),
+                                  );
+                                },
                               ),
                             );
                           },

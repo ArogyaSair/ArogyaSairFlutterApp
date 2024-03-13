@@ -11,7 +11,7 @@ import 'models/FacilitiesModel.dart';
 import 'models/TreatmentModel.dart';
 
 class HospitalServices extends StatefulWidget {
-  const HospitalServices({Key? key}) : super(key: key);
+  const HospitalServices({super.key});
 
   @override
   _HospitalServicesState createState() => _HospitalServicesState();

@@ -151,10 +151,13 @@ class _GetHomeDataState extends State<get_home_data> {
                                                       data2['HospitalName'],
                                                   Duration: packagesList[index]
                                                       .Duration,
-                                                  Inculde: packagesList[index]
-                                                      .include,
+                                                        Include:
+                                                            packagesList[index]
+                                                                .include,
                                                   Image: packageImagePath,
-                                                ),
+                                                        HospitalKey:
+                                                            packagesList[index]
+                                                                .id),
                                               ),
                                             );
                                           },

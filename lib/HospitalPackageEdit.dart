@@ -16,8 +16,7 @@ class HospitalPackageEdit extends StatefulWidget {
 
   const HospitalPackageEdit(
       this.hospitalName, this.packageKey, this.packageData,
-      {Key? key})
-      : super(key: key);
+      {super.key});
 
   @override
   State<HospitalPackageEdit> createState() => _HospitalPackageEditState();

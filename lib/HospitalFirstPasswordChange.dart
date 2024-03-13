@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 
 class HospitalFirstChangePassword extends StatefulWidget {
-  const HospitalFirstChangePassword({Key? key}) : super(key: key);
+  const HospitalFirstChangePassword({super.key});
 
   @override
   State<HospitalFirstChangePassword> createState() =>

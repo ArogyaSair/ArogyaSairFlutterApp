@@ -12,8 +12,7 @@ class HospitalAddressDetails extends StatefulWidget {
   final String Name;
 
   const HospitalAddressDetails(
-      {Key? key, required this.Email, required this.Name})
-      : super(key: key);
+      {super.key, required this.Email, required this.Name});
 
   @override
   State<HospitalAddressDetails> createState() => _HospitalAddressDetailsState();

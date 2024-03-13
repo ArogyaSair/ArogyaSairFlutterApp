@@ -1,32 +1,31 @@
-// ignore_for_file: file_names, non_constant_identifier_names, unused_field, prefer_typing_uninitialized_variables
+// ignore_for_file: file_names, non_constant_identifier_names
 
+import 'package:arogyasair/Payment.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/src/fill_image_card.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
-import 'package:pay/pay.dart';
-
-import 'contact.dart';
-import 'models/BookedPackageInformation.dart';
-import 'payment_configurations.dart' as payment_configurations;
 
 class PackageBookingDateSelection extends StatefulWidget {
   final String PackageName;
   final String Price;
   final String HospitalName;
+  final String HospitalKey;
   final String Duration;
-  final String Incude;
+  final String Include;
   final String Image;
 
-  const PackageBookingDateSelection({super.key,
+  const PackageBookingDateSelection(
+      {super.key,
       required this.PackageName,
       required this.Price,
       required this.HospitalName,
       required this.Duration,
-      required this.Incude,
-      required this.Image});
+      required this.Include,
+      required this.Image,
+      required this.HospitalKey});
 
   @override
   State<PackageBookingDateSelection> createState() =>
@@ -42,49 +41,12 @@ class _PackageBookingDateSelectionState
   TextEditingController controllerDateOfBirth = TextEditingController();
   late String UserKey;
   final key = 'userKey';
-  late final _paymentItems;
 
   @override
   void initState() {
     super.initState();
     controllerDateOfBirth = TextEditingController(text: birthDate);
-    _googlePayConfigFuture =
-        PaymentConfiguration.fromAsset('default_google_pay_config.json');
     _loadUserData();
-  }
-
-  late final Future<PaymentConfiguration> _googlePayConfigFuture;
-
-  void onGooglePayResult(paymentResult) {
-    var Date = birthDate;
-    BookingPackagesInformationModel regobj = BookingPackagesInformationModel(
-        widget.PackageName,
-        widget.Price,
-        widget.HospitalName,
-        widget.Duration,
-        widget.Incude,
-        Date,
-        UserKey);
-    dbRef2.push().set(regobj.toJson());
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => contact(
-          PackageName: widget.PackageName,
-          Price: widget.Price,
-          HospitalName: widget.HospitalName,
-          Duration: widget.Duration,
-          Incude: widget.Incude,
-          Image: widget.Image,
-        ),
-      ),
-    );
-    print("Payment Done");
-    debugPrint(paymentResult.toString());
-  }
-
-  void onApplePayResult(paymentResult) {
-    debugPrint(paymentResult.toString());
   }
 
   Future<void> _loadUserData() async {
@@ -92,18 +54,14 @@ class _PackageBookingDateSelectionState
     setState(() {
       UserKey = Userkey!;
     });
-    _paymentItems = [
-      PaymentItem(
-        label: 'Total Price',
-        amount: widget.Price,
-        status: PaymentItemStatus.final_price,
-      )
-    ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Package Date Selection"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: FillImageCard(
@@ -113,15 +71,14 @@ class _PackageBookingDateSelectionState
             imagePath = widget.Image,
           ),
           title: Text(widget.PackageName),
-          description: Text(widget.Incude),
+          description: Text(widget.Include),
           tags: [
             Text(widget.HospitalName),
             Text("${widget.Price} Rs./-"),
             Text("${widget.Duration} weeks"),
             TextFormField(
               controller: controllerDateOfBirth,
-              readOnly: true,
-              // Make the text input read-only
+              readOnly: true, // Make the text input read-only
               decoration: InputDecoration(
                 prefixIcon: GestureDetector(
                   onTap: () {
@@ -141,34 +98,46 @@ class _PackageBookingDateSelectionState
               ),
             ),
           ],
-          footer: SizedBox(
-            width: double.infinity,
-            child: FutureBuilder<PaymentConfiguration>(
-              future: _googlePayConfigFuture,
-              builder: (context, snapshot) => snapshot.hasData
-                  ? GooglePayButton(
-                      paymentConfiguration: snapshot.data!,
-                      paymentItems: _paymentItems,
-                      type: GooglePayButtonType.buy,
-                      margin: const EdgeInsets.only(top: 15.0),
-                      onPaymentResult: onGooglePayResult,
-                      loadingIndicator: const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    )
-                  : ApplePayButton(
-                      paymentConfiguration: PaymentConfiguration.fromJsonString(
-                          payment_configurations.defaultApplePay),
-                      paymentItems: _paymentItems,
-                      style: ApplePayButtonStyle.black,
-                      type: ApplePayButtonType.buy,
-                      margin: const EdgeInsets.only(top: 15.0),
-                      onPaymentResult: onApplePayResult,
-                      loadingIndicator: const Center(
-                        child: CircularProgressIndicator(),
-                      ),
+          footer: ElevatedButton(
+            onPressed: () {
+              if (birthDate == "Select Appointment Date") {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text("Alert Message"),
+                      content: const Text("Please Select Date"),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('OK'),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentPage(
+                      PackageName: widget.PackageName,
+                      Price: widget.Price,
+                      HospitalName: widget.HospitalName,
+                      Duration: widget.Duration,
+                      Include: widget.Include,
+                      Date: birthDate,
+                      Image: widget.Image,
+                      HospitalKey: widget.HospitalKey,
                     ),
-            ),
+                  ),
+                );
+              }
+            },
+            child: const Text("Proceed for Payment"),
           ),
         ),
       ),
@@ -180,30 +149,47 @@ class _PackageBookingDateSelectionState
       context,
       firstDate: DateTime.now().add(const Duration(days: 14)),
       initialDate: DateTime.now().add(const Duration(days: 14)),
-      lastDate: DateTime(2090),
+      lastDate: DateTime.now().add(const Duration(days: 44)),
       dateFormat: "dd-MM-yyyy",
       locale: DateTimePickerLocale.en_us,
-      looping: true,
+      looping: false,
     );
     setState(() {
       if (datePicked != null) {
         birthDate = "${datePicked.day}-${datePicked.month}-${datePicked.year}";
-        controllerDateOfBirth = TextEditingController(text: birthDate);
+        // controllerDateOfBirth = TextEditingController(text: birthDate);
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text("Booking Confirmation"),
+                content: Text(birthDate),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text('OK'),
+                    onPressed: () {
+                      setState(() {
+                        controllerDateOfBirth =
+                            TextEditingController(text: birthDate);
+                      });
+                      Navigator.pop(context);
+                    },
+                  ),
+                  TextButton(
+                    child: const Text('CANCEL'),
+                    onPressed: () {
+                      setState(() {
+                        birthDate = "Select Appointment Date";
+                        controllerDateOfBirth =
+                            TextEditingController(text: birthDate);
+                      });
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              );
+            });
       }
     });
   }
 }
-
-// ElevatedButton(
-// onPressed: () {
-
-// },
-// style: ElevatedButton.styleFrom(
-// backgroundColor: Colors.blueAccent,
-// shadowColor: Colors.transparent,
-// ),
-// child: const Text(
-// 'Confirm',
-// style: TextStyle(color: Colors.white),
-// ),
-// )

@@ -11,18 +11,18 @@ class PackageDetails extends StatefulWidget {
   final String Price;
   final String HospitalName;
   final String Duration;
-  final String Inculde;
+  final String Include;
   final String Image;
+  final String HospitalKey;
 
-  const PackageDetails(
-      {Key? key,
+  const PackageDetails({super.key,
       required this.PackageName,
       required this.Price,
       required this.HospitalName,
       required this.Duration,
-      required this.Inculde,
-      required this.Image})
-      : super(key: key);
+      required this.Include,
+      required this.Image,
+      required this.HospitalKey});
 
   @override
   State<PackageDetails> createState() => _PackageBookingDetailsState();
@@ -50,6 +50,9 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Package Details"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: FillImageCard(
@@ -59,7 +62,7 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
             imagePath = widget.Image,
           ),
           title: Text(widget.PackageName),
-          description: Text(widget.Inculde),
+          description: Text(widget.Include),
           tags: [
             Text(widget.HospitalName),
             Text("${widget.Price} Rs./-"),
@@ -75,8 +78,9 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
                     Price: widget.Price,
                     HospitalName: widget.HospitalName,
                     Duration: widget.Duration,
-                    Incude: widget.Inculde,
+                    Include: widget.Include,
                     Image: widget.Image,
+                    HospitalKey: widget.HospitalKey,
                   ),
                 ),
               );

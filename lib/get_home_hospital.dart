@@ -5,7 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class get_hospital_data extends StatefulWidget {
-  const get_hospital_data({Key? key}) : super(key: key);
+  const get_hospital_data({super.key});
 
   @override
   State<get_hospital_data> createState() => _get_home_dataState();

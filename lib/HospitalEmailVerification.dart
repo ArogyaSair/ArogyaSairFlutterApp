@@ -7,7 +7,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class HospitalEmailVerification extends StatefulWidget {
-  const HospitalEmailVerification({Key? key}) : super(key: key);
+  const HospitalEmailVerification({super.key});
 
   @override
   State<HospitalEmailVerification> createState() => _HospitalRegisterState();

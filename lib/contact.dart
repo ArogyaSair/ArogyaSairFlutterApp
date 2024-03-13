@@ -10,21 +10,30 @@ class contact extends StatelessWidget {
   final String Incude;
   final String Image;
 
-  const contact(
-      {Key? key,
+  const contact({super.key,
       required this.PackageName,
       required this.Price,
       required this.HospitalName,
       required this.Duration,
       required this.Incude,
-      required this.Image})
-      : super(key: key);
+      required this.Image});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Contact'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(PackageName),
+          Text(Price),
+          Text(HospitalName),
+          Text(Duration),
+          Text(Incude),
+          Text(Image),
+        ],
       ),
     );
   }

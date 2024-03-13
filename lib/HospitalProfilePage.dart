@@ -9,7 +9,7 @@ import 'package:marquee/marquee.dart';
 import 'HospitalEditProfile.dart';
 
 class HospitalProfile extends StatefulWidget {
-  const HospitalProfile({Key? key}) : super(key: key);
+  const HospitalProfile({super.key});
 
   @override
   _HospitalProfileState createState() => _HospitalProfileState();

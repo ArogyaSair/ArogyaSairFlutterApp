@@ -9,7 +9,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class HospitalFirstNewPassword extends StatefulWidget {
-  const HospitalFirstNewPassword({Key? key}) : super(key: key);
+  const HospitalFirstNewPassword({super.key});
 
   @override
   State<HospitalFirstNewPassword> createState() => _HospitalNewPasswordState();

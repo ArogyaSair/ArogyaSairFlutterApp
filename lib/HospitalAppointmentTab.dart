@@ -10,7 +10,7 @@ import 'package:logger/logger.dart';
 class HospitalAppointmentTab extends StatefulWidget {
   final String hospitalKey;
 
-  const HospitalAppointmentTab(this.hospitalKey, {Key? key}) : super(key: key);
+  const HospitalAppointmentTab(this.hospitalKey, {super.key});
 
   @override
   State<HospitalAppointmentTab> createState() => _HospitalAppointmentTab();
