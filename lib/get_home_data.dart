@@ -1,29 +1,26 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names
-
-import 'dart:async';
-
-import 'package:arogyasair/models/userPackagebookinginformation.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'PackageDetails.dart';
+import 'models/userPackagebookinginformation.dart';
+// import 'models/user_package_booking_information.dart';
 
 class get_home_data extends StatefulWidget {
   const get_home_data({super.key});
 
   @override
-  State<get_home_data> createState() => _get_home_dataState();
+  State<get_home_data> createState() => _GetHomeDataState();
 }
 
-class _get_home_dataState extends State<get_home_data> {
-  late String imagePath;
+class _GetHomeDataState extends State<get_home_data> {
   late String packageImagePath;
   Map<dynamic, dynamic>? userData;
   Map<int, Map> userMap = {};
 
-  // late StreamController<List<Map>> _streamController;
-  List<Map> Package = [];
+  List<Map> package = [];
   late Map data2;
+  int _currentIndex = 0; // Current index of the carousel
 
   Future<void> fetchUserData(String key, int index) async {
     DatabaseReference dbUserData = FirebaseDatabase.instance
@@ -37,7 +34,6 @@ class _get_home_dataState extends State<get_home_data> {
       "Key": userDataSnapshot.key,
       "HospitalName": userData!["HospitalName"],
     };
-    // _streamController.add(Package); // Update the stream with new data
   }
 
   @override
@@ -45,7 +41,7 @@ class _get_home_dataState extends State<get_home_data> {
     return Padding(
       padding: const EdgeInsets.all(1),
       child: SizedBox(
-        height: 140,
+        height: MediaQuery.of(context).size.width * 0.63,
         width: double.infinity,
         child: StreamBuilder(
           stream: FirebaseDatabase.instance
@@ -61,99 +57,151 @@ class _get_home_dataState extends State<get_home_data> {
                 fetchUserData(value["HospitalName"], packagesList.length);
                 packagesList.add(UserPackageData.fromMap(value, key));
               });
-              return GridView.builder(
-                scrollDirection: Axis.horizontal,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1, childAspectRatio: 0.35),
-                itemCount: packagesList.length,
-                padding: const EdgeInsets.all(2),
-                itemBuilder: (BuildContext context, int index) {
-                  data2 = userMap[index] ?? {};
-                  if (packagesList[index].image == "") {
-                    packageImagePath =
-                        "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2FDefaultProfileImage.png?alt=media";
-                  } else {
-                    packageImagePath =
-                        "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packagesList[index].image}?alt=media";
-                  }
-                  return Card(
-                      child: Row(
-                    children: [
-                      Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Image.network(
-                              packageImagePath,
-                              height: 120,
-                              width: 120,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Text(packagesList[index].packagename),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(packagesList[index].price),
-                          ),
-                          Text("${data2['HospitalName']}"),
-                          Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Container(
-                                height: 44.0,
-                                decoration: const BoxDecoration(
-                                    gradient: LinearGradient(colors: [
-                                      Color(0xFF0D47A1),
-                                      Colors.lightBlue
-                                    ]),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    if (packagesList[index].image == "") {
-                                      packageImagePath =
-                                          "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2FDefaultProfileImage.png?alt=media";
-                                    } else {
-                                      packageImagePath =
-                                          "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packagesList[index].image}?alt=media";
-                                    }
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PackageDetails(
-                                          PackageName:
-                                              packagesList[index].packagename,
-                                          Price: packagesList[index].price,
-                                          HospitalName: data2['HospitalName'],
-                                          Duration:
-                                              packagesList[index].Duration,
-                                          Incude: packagesList[index].include,
-                                          Image: packageImagePath,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.transparent,
-                                    shadowColor: Colors.transparent,
-                                  ),
-                                  child: const Text(
-                                    'View',
-                                    style: TextStyle(color: Colors.white),
+              return Column(
+                children: [
+                  CarouselSlider.builder(
+                    itemCount: packagesList.length,
+                    itemBuilder:
+                        (BuildContext context, int index, int realIndex) {
+                      data2 = userMap[index] ?? {};
+                      if (packagesList[index].image == "") {
+                        packageImagePath =
+                            "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2FDefaultProfileImage.png?alt=media";
+                      } else {
+                        packageImagePath =
+                            "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packagesList[index].image}?alt=media";
+                      }
+                      return Card(
+                        child: Row(
+                          children: [
+                            Column(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Image.network(
+                                    packageImagePath,
+                                    height: 120,
+                                    width: 120,
                                   ),
                                 ),
-                              )),
-                        ],
-                      ),
-                    ],
-                  ));
-                },
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(packagesList[index].packagename),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(packagesList[index].price),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text("${data2['HospitalName']}"),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 20, left: 10),
+                                  child: Container(
+                                    height: 44.0,
+                                    decoration: const BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Color(0xFF0D47A1),
+                                          Colors.lightBlue
+                                        ],
+                                      ),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                    ),
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        if (packagesList[index].image == "") {
+                                          packageImagePath =
+                                              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2FDefaultProfileImage.png?alt=media";
+                                        } else {
+                                          packageImagePath =
+                                              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packagesList[index].image}?alt=media";
+                                        }
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                PackageDetails(
+                                              PackageName: packagesList[index]
+                                                  .packagename,
+                                              Price: packagesList[index].price,
+                                              HospitalName:
+                                                  data2['HospitalName'],
+                                              Duration:
+                                                  packagesList[index].Duration,
+                                              Inculde:
+                                                  packagesList[index].include,
+                                              Image: packageImagePath,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent,
+                                        shadowColor: Colors.transparent,
+                                      ),
+                                      child: const Text(
+                                        'View',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    options: CarouselOptions(
+                      aspectRatio: 16 / 9,
+                      viewportFraction: 0.8,
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      autoPlay: true,
+                      autoPlayInterval: const Duration(seconds: 3),
+                      autoPlayAnimationDuration:
+                          const Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enlargeCenterPage: true,
+                      scrollDirection: Axis.horizontal,
+                      onPageChanged: (index, _) {
+                        setState(() {
+                          _currentIndex = index;
+                        });
+                      },
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      packagesList.length,
+                      (i) {
+                        return Container(
+                          width: 8.0,
+                          height: 8.0,
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 2.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: i == _currentIndex
+                                ? Colors.lightBlue
+                                : Colors.grey,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               );
             } else {
               return const Center(

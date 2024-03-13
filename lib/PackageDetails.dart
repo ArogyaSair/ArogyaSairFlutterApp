@@ -11,7 +11,7 @@ class PackageDetails extends StatefulWidget {
   final String Price;
   final String HospitalName;
   final String Duration;
-  final String Incude;
+  final String Inculde;
   final String Image;
 
   const PackageDetails(
@@ -20,7 +20,7 @@ class PackageDetails extends StatefulWidget {
       required this.Price,
       required this.HospitalName,
       required this.Duration,
-      required this.Incude,
+      required this.Inculde,
       required this.Image})
       : super(key: key);
 
@@ -49,7 +49,6 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.Image);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -60,7 +59,7 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
             imagePath = widget.Image,
           ),
           title: Text(widget.PackageName),
-          description: Text(widget.Incude),
+          description: Text(widget.Inculde),
           tags: [
             Text(widget.HospitalName),
             Text("${widget.Price} Rs./-"),
@@ -76,7 +75,7 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
                     Price: widget.Price,
                     HospitalName: widget.HospitalName,
                     Duration: widget.Duration,
-                    Incude: widget.Incude,
+                    Incude: widget.Inculde,
                     Image: widget.Image,
                   ),
                 ),

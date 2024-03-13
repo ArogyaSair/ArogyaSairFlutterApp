@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, non_constant_identifier_names, unused_field
+// ignore_for_file: file_names, non_constant_identifier_names, unused_field, prefer_typing_uninitialized_variables
 
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/src/fill_image_card.dart';
@@ -8,6 +8,10 @@ import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:pay/pay.dart';
 
+import 'contact.dart';
+import 'models/BookedPackageInformation.dart';
+import 'payment_configurations.dart' as payment_configurations;
+
 class PackageBookingDateSelection extends StatefulWidget {
   final String PackageName;
   final String Price;
@@ -16,15 +20,13 @@ class PackageBookingDateSelection extends StatefulWidget {
   final String Incude;
   final String Image;
 
-  const PackageBookingDateSelection(
-      {Key? key,
+  const PackageBookingDateSelection({super.key,
       required this.PackageName,
       required this.Price,
       required this.HospitalName,
       required this.Duration,
       required this.Incude,
-      required this.Image})
-      : super(key: key);
+      required this.Image});
 
   @override
   State<PackageBookingDateSelection> createState() =>
@@ -40,6 +42,7 @@ class _PackageBookingDateSelectionState
   TextEditingController controllerDateOfBirth = TextEditingController();
   late String UserKey;
   final key = 'userKey';
+  late final _paymentItems;
 
   @override
   void initState() {
@@ -53,6 +56,30 @@ class _PackageBookingDateSelectionState
   late final Future<PaymentConfiguration> _googlePayConfigFuture;
 
   void onGooglePayResult(paymentResult) {
+    var Date = birthDate;
+    BookingPackagesInformationModel regobj = BookingPackagesInformationModel(
+        widget.PackageName,
+        widget.Price,
+        widget.HospitalName,
+        widget.Duration,
+        widget.Incude,
+        Date,
+        UserKey);
+    dbRef2.push().set(regobj.toJson());
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => contact(
+          PackageName: widget.PackageName,
+          Price: widget.Price,
+          HospitalName: widget.HospitalName,
+          Duration: widget.Duration,
+          Incude: widget.Incude,
+          Image: widget.Image,
+        ),
+      ),
+    );
+    print("Payment Done");
     debugPrint(paymentResult.toString());
   }
 
@@ -65,11 +92,17 @@ class _PackageBookingDateSelectionState
     setState(() {
       UserKey = Userkey!;
     });
+    _paymentItems = [
+      PaymentItem(
+        label: 'Total Price',
+        amount: widget.Price,
+        status: PaymentItemStatus.final_price,
+      )
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
-    print(widget.Image);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -108,40 +141,33 @@ class _PackageBookingDateSelectionState
               ),
             ),
           ],
-          footer: ElevatedButton(
-            onPressed: () {
-              // var Date = birthDate;
-              // BookingPackagesInformationModel regobj =
-              //     BookingPackagesInformationModel(
-              //         widget.PackageName,
-              //         widget.Price,
-              //         widget.HospitalName,
-              //         widget.Duration,
-              //         widget.Incude,
-              //         Date,
-              //         UserKey);
-              // dbRef2.push().set(regobj.toJson());
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => contact(
-              //       PackageName: widget.PackageName,
-              //       Price: widget.Price,
-              //       HospitalName: widget.HospitalName,
-              //       Duration: widget.Duration,
-              //       Incude: widget.Incude,
-              //       Image: widget.Image,
-              //     ),
-              //   ),
-              // );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blueAccent,
-              shadowColor: Colors.transparent,
-            ),
-            child: const Text(
-              'Confirm',
-              style: TextStyle(color: Colors.white),
+          footer: SizedBox(
+            width: double.infinity,
+            child: FutureBuilder<PaymentConfiguration>(
+              future: _googlePayConfigFuture,
+              builder: (context, snapshot) => snapshot.hasData
+                  ? GooglePayButton(
+                      paymentConfiguration: snapshot.data!,
+                      paymentItems: _paymentItems,
+                      type: GooglePayButtonType.buy,
+                      margin: const EdgeInsets.only(top: 15.0),
+                      onPaymentResult: onGooglePayResult,
+                      loadingIndicator: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  : ApplePayButton(
+                      paymentConfiguration: PaymentConfiguration.fromJsonString(
+                          payment_configurations.defaultApplePay),
+                      paymentItems: _paymentItems,
+                      style: ApplePayButtonStyle.black,
+                      type: ApplePayButtonType.buy,
+                      margin: const EdgeInsets.only(top: 15.0),
+                      onPaymentResult: onApplePayResult,
+                      loadingIndicator: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
             ),
           ),
         ),
@@ -153,6 +179,7 @@ class _PackageBookingDateSelectionState
     var datePicked = await DatePicker.showSimpleDatePicker(
       context,
       firstDate: DateTime.now().add(const Duration(days: 14)),
+      initialDate: DateTime.now().add(const Duration(days: 14)),
       lastDate: DateTime(2090),
       dateFormat: "dd-MM-yyyy",
       locale: DateTimePickerLocale.en_us,
@@ -166,3 +193,17 @@ class _PackageBookingDateSelectionState
     });
   }
 }
+
+// ElevatedButton(
+// onPressed: () {
+
+// },
+// style: ElevatedButton.styleFrom(
+// backgroundColor: Colors.blueAccent,
+// shadowColor: Colors.transparent,
+// ),
+// child: const Text(
+// 'Confirm',
+// style: TextStyle(color: Colors.white),
+// ),
+// )

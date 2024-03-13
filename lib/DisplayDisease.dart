@@ -1,9 +1,10 @@
 // import 'package:arogyasair/temp.dart';
 // ignore_for_file: file_names
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-import 'HospitalSelection.dart';
+import 'models/DiseaseModel.dart';
 
 class DisplayDisease extends StatefulWidget {
   const DisplayDisease({super.key});
@@ -40,23 +41,65 @@ class _AppointmentBookingState extends State<DisplayDisease> {
             },
           ),
         ),
-        body: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(items[index]),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HospitalPackagesTab(
-                      item: items[index],
-                    ),
-                  ),
-                );
+        body: Padding(
+          padding: const EdgeInsets.all(1),
+          child: SizedBox(
+            height: double.infinity,
+            width: double.infinity,
+            child: StreamBuilder(
+              stream: FirebaseDatabase.instance
+                  .ref()
+                  .child("ArogyaSair/tblDisease")
+                  .onValue,
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
+                  Map<dynamic, dynamic> map = snapshot.data!.snapshot.value;
+                  List<DiseaseData> diseaseList = [];
+                  diseaseList.clear();
+                  map.forEach((key, value) {
+                    diseaseList.add(DiseaseData.fromMap(value, key));
+                  });
+                  return ListView.builder(
+                    itemCount: diseaseList.length,
+                    padding: const EdgeInsets.all(0),
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        child: Card(
+                          child: Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Text(diseaseList[index].diseaseName),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => HospitalPackagesTab(
+                          //       item: items[index],
+                          //     ),
+                          //   ),
+                          // );
+                        },
+                      );
+                    },
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
               },
-            );
-          },
+            ),
+          ),
         ),
       ),
     );

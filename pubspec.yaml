@@ -49,8 +49,10 @@ dependencies:
   marquee: any
   font_awesome_flutter: any
   pay: any
-  flutter_localizations:
-    sdk: flutter
+  lottie: any
+  carousel_slider: any
+#  flutter_localizations:
+#    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +80,7 @@ flutter:
   assets:
     - assets/Logo/
     - assets/images/
+    - assets/Animation/
     - assets/
 #     - images/a_dot_ham.jpeg
 

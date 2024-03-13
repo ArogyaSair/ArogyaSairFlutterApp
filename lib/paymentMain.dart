@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
 
@@ -13,7 +15,6 @@ const _paymentItems = [
 
 class PayMaterialApp extends StatefulWidget {
   const PayMaterialApp({super.key});
-
 
   @override
   State<PayMaterialApp> createState() => _MyHomePageState();
@@ -107,8 +108,6 @@ class _MyHomePageState extends State<PayMaterialApp> {
                     ),
                   ),
           ),
-          // Example pay button configured using a string
-
           const SizedBox(height: 15)
         ],
       ),
