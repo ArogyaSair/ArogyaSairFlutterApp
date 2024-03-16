@@ -3,6 +3,7 @@
 import 'package:arogyasair/models/user_updates_show.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class UserPendingData extends StatefulWidget {
   final String userKey;
@@ -16,6 +17,26 @@ class UserPendingData extends StatefulWidget {
 
 class _UserPendingDataState extends State<UserPendingData> {
   late String imagePath;
+  late String packageImagePath;
+  Map<dynamic, dynamic>? userData;
+  Map<int, Map> userMap = {};
+
+  List<Map> package = [];
+  late Map data2;
+
+  Future<void> fetchUserData(String key, int index) async {
+    DatabaseReference dbUserData = FirebaseDatabase.instance
+        .ref()
+        .child("ArogyaSair/tblHospital")
+        .child(key);
+    DatabaseEvent userDataEvent = await dbUserData.once();
+    DataSnapshot userDataSnapshot = userDataEvent.snapshot;
+    userData = userDataSnapshot.value as Map?;
+    userMap[index] = {
+      "Key": userDataSnapshot.key,
+      "HospitalName": userData!["HospitalName"],
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +55,7 @@ class _UserPendingDataState extends State<UserPendingData> {
               List<UserUpdateShow> hospitalList = [];
               hospitalList.clear();
               map.forEach((key, value) {
+                fetchUserData(value["HospitalId"], hospitalList.length);
                 if (value["UserId"] == widget.userKey) {
                   if (value["Status"] == "Pending") {
                     hospitalList.add(UserUpdateShow.fromMap(value, key));
@@ -45,8 +67,9 @@ class _UserPendingDataState extends State<UserPendingData> {
                   itemCount: hospitalList.length,
                   padding: const EdgeInsets.all(2),
                   itemBuilder: (BuildContext context, int index) {
+                    data2 = userMap[index] ?? {};
                     return Card(
-                      child: Row(
+                      child: Stack(
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(5),
@@ -55,50 +78,56 @@ class _UserPendingDataState extends State<UserPendingData> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "Appointment for : ${hospitalList[index].disease}",
-                                    style: const TextStyle(fontSize: 17),
+                                  child: Row(
+                                    children: [
+                                      const FaIcon(FontAwesomeIcons.hospital),
+                                      const SizedBox(width: 20),
+                                      Text(
+                                        "${data2['HospitalName']}",
+                                        style: const TextStyle(fontSize: 17),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "Hospital Name : ${hospitalList[index].hospitalId}",
-                                    style: const TextStyle(fontSize: 17),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "User Name : ${widget.userName}",
-                                    style: const TextStyle(fontSize: 17),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "Appointment Date : ${hospitalList[index].appointmentDate}",
-                                    style: const TextStyle(fontSize: 17),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.amber,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
                                       child: Text(
-                                        hospitalList[index].status,
-                                        style: const TextStyle(
-                                            color: Colors.white),
+                                        hospitalList[index].disease,
+                                        style: const TextStyle(fontSize: 17),
                                       ),
                                     ),
-                                  ),
-                                ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        hospitalList[index].appointmentDate,
+                                        style: const TextStyle(fontSize: 17),
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
+                            ),
+                          ),
+                          Positioned(
+                            top: 5,
+                            right: 5,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.amber,
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(5),
+                                child: Text(
+                                  " P ",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
                             ),
                           ),
                         ],

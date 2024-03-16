@@ -1,4 +1,3 @@
-import 'package:arogyasair/BottomNavigation.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -41,7 +40,6 @@ class _MyHelpDeskState extends State<MyHelpDesk> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       endDrawer: const DrawerCode(),
-      bottomNavigationBar: const bottomBar(),
       body: ListView.builder(
         itemCount: faqs.length + 1, // Add 1 for the additional card
         itemBuilder: (context, index) {

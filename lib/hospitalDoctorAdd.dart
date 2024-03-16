@@ -1,10 +1,15 @@
 // ignore_for_file: file_names
 
 import 'package:arogyasair/hospitalNewDoctorAdd.dart';
+import 'package:arogyasair/models/DiseaseModel.dart';
 import 'package:arogyasair/models/HospitalDoctorModel.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet_field.dart';
+import 'package:multi_select_flutter/chip_display/multi_select_chip_display.dart';
+import 'package:multi_select_flutter/util/multi_select_item.dart';
+import 'package:multi_select_flutter/util/multi_select_list_type.dart';
 
 class HospitalDoctorAdd extends StatefulWidget {
   const HospitalDoctorAdd({super.key});
@@ -25,6 +30,8 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
   String timeFrom = "From";
   String timeTo = "To";
   String status = "Available";
+  List<MultiSelectItem<String>> diseaseItems = [];
+  List<DiseaseData> selectedItems = [];
 
   @override
   void initState() {
@@ -43,9 +50,7 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
     items = ['Select Doctor'];
     hospitalKey = hospitalKey;
     Query dbRef = FirebaseDatabase.instance.ref().child("ArogyaSair/tblDoctor");
-    dbRef
-        .onValue
-        .listen((event) {
+    dbRef.onValue.listen((event) {
       Map<dynamic, dynamic>? values = event.snapshot.value as Map?;
       if (values != null) {
         values.forEach((key, value) {
@@ -225,6 +230,70 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                 ),
               ],
             ),
+          ),
+          StreamBuilder(
+            stream: FirebaseDatabase.instance
+                .ref()
+                .child("ArogyaSair/tblDisease")
+                .onValue,
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
+                Map<dynamic, dynamic> facilitiesMap =
+                    snapshot.data!.snapshot.value;
+                List<MultiSelectItem<DiseaseData>> diseaseItems = [];
+                diseaseItems.clear();
+                facilitiesMap.forEach(
+                  (key, value) {
+                    diseaseItems.add(
+                      MultiSelectItem<DiseaseData>(
+                        DiseaseData.fromMap(value, key),
+                        value["DiseaseName"],
+                      ),
+                    );
+                  },
+                );
+                return Column(
+                  children: <Widget>[
+                    MultiSelectBottomSheetField(
+                      initialChildSize: 0.4,
+                      listType: MultiSelectListType.CHIP,
+                      searchable: true,
+                      buttonText: const Text("Select Disease"),
+                      title: const Text("Select Disease"),
+                      items: diseaseItems,
+                      onConfirm: (values) {
+                        selectedItems = values.cast<DiseaseData>();
+                      },
+                      chipDisplay: MultiSelectChipDisplay(
+                        onTap: (value) {
+                          setState(
+                            () {
+                              selectedItems.remove(value);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    selectedItems.isEmpty
+                        ? Container(
+                            padding: const EdgeInsets.all(10),
+                            alignment: Alignment.centerLeft,
+                            child: const Text(
+                              "None selected",
+                              style: TextStyle(color: Colors.black54),
+                            ),
+                          )
+                        : Container(),
+                  ],
+                );
+              } else {
+                return const CircularProgressIndicator(
+                  backgroundColor: Colors.redAccent,
+                  valueColor: AlwaysStoppedAnimation(Colors.green),
+                  strokeWidth: 1.5,
+                );
+              }
+            },
           ),
           ElevatedButton(
             onPressed: () {

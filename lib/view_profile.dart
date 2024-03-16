@@ -82,7 +82,6 @@ class _ViewProfileState extends State<ViewProfile> {
             child: CircularProgressIndicator(),
           );
         } else {
-          // If the Future is complete, show the actual UI
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.blue,

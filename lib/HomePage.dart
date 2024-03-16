@@ -313,8 +313,9 @@ class _HomePageState extends State<HomePage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const HospitalDetails(),
+                                      builder: (context) => HospitalDetails(
+                                          hospitalKey: packagesList[index]
+                                              .hospitalEmail),
                                     ),
                                   );
                                 },

@@ -51,6 +51,7 @@ dependencies:
   pay: any
   lottie: any
   carousel_slider: any
+  firebase_messaging: any
 
 dev_dependencies:
   flutter_test:

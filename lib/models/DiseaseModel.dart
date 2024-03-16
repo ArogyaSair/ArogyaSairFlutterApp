@@ -13,4 +13,9 @@ class DiseaseData {
       map["DiseaseName"] ?? '', // Use an empty string if it's null
     );
   }
+
+  @override
+  String toString() {
+    return 'Disease: $diseaseName';
+  }
 }
