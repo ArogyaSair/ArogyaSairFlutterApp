@@ -158,7 +158,6 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                                   .userId;
                                                           var status =
                                                               "Pending";
-
                                                           AppointmentDateSelectionModel
                                                               regobj =
                                                               AppointmentDateSelectionModel(
@@ -187,8 +186,14 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                                   .ref()
                                                                   .child(
                                                                       "ArogyaSair/tblDelayedAppointment/$delayedAppointmentId");
+                                                          final updatedDelayedAppointmentData =
+                                                              {
+                                                            "Status":
+                                                                "Approved",
+                                                          };
                                                           dbDelayedAppointmentRef
-                                                              .remove();
+                                                              .update(
+                                                                  updatedDelayedAppointmentData);
                                                         },
                                                       ),
                                                       TextButton(
@@ -222,35 +227,24 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                           DatabaseEvent
                                               databaseAppointmentEvent =
                                               await dbAppointmentRef.once();
+                                          var delayedAppointmentId =
+                                              hospitalList[index].id;
+
                                           DataSnapshot dataAppointmentSnapshot =
                                               databaseAppointmentEvent.snapshot;
-                                          // print(dataAppointmentSnapshot);
                                           Map dataAppointment =
                                               dataAppointmentSnapshot.value
                                                   as Map;
-                                          // print(dataAppointment);
-                                          final updatedAppointmentData = {
-                                            "Status": "Approved",
-                                          };
-                                          dbAppointmentRef
-                                              .update(updatedAppointmentData);
-                                          var delayedAppointmentId =
-                                              hospitalList[index].id;
+
                                           DatabaseReference
                                               dbDelayedAppointmentRef =
                                               FirebaseDatabase.instance.ref().child(
                                                   "ArogyaSair/tblDelayedAppointment/$delayedAppointmentId");
-                                          // dbDelayedAppointmentRef.remove();
-                                          final updatedDelayedAppointmentData =
-                                              {
-                                            "Status": "Approved",
-                                          };
-                                          dbDelayedAppointmentRef.update(
-                                              updatedDelayedAppointmentData);
                                           DatabaseEvent
                                               databaseDelayedAppointmentEvent =
                                               await dbDelayedAppointmentRef
                                                   .once();
+
                                           DataSnapshot
                                               dataDelayedAppointmentSnapshot =
                                               databaseDelayedAppointmentEvent
@@ -258,6 +252,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                           Map dataDelayedAppointment =
                                               dataDelayedAppointmentSnapshot
                                                   .value as Map;
+
                                           DatabaseReference tblTreatment =
                                               FirebaseDatabase.instance
                                                   .ref()
@@ -271,10 +266,22 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                             widget.userKey,
                                             dataAppointment["Disease"],
                                             dataAppointment["HospitalId"],
+                                            hospitalList[index].appointmentId,
                                             dataDelayedAppointment["NewDate"],
                                           );
                                           tblTreatment.push().set(
                                               treatmentModelObject.toJson());
+                                          final updatedAppointmentData = {
+                                            "Status": "Approved",
+                                          };
+                                          dbAppointmentRef
+                                              .update(updatedAppointmentData);
+                                          final updatedDelayedAppointmentData =
+                                              {
+                                            "Status": "Approved",
+                                          };
+                                          dbDelayedAppointmentRef.update(
+                                              updatedDelayedAppointmentData);
                                         },
                                         style: TextButton.styleFrom(
                                           backgroundColor: Colors.orange,
@@ -302,7 +309,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
               }
             } else {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: Text("No Delayed Appointments"),
               );
             }
           },

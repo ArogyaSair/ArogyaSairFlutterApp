@@ -1,8 +1,11 @@
+import 'package:arogyasair/saveSharePreferences.dart';
+import 'package:arogyasair/userQuestion.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'drawerSideNavigation.dart';
+import 'models/userAskQuestionModel.dart';
 
 void addFAQsToFirebase() async {
   final databaseReference = FirebaseDatabase.instance.ref("ArogyaSair/tblFAQ");
@@ -23,7 +26,24 @@ class MyHelpDesk extends StatefulWidget {
 }
 
 class _MyHelpDeskState extends State<MyHelpDesk> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _textFieldController = TextEditingController();
+  late String userKey;
+  DatabaseReference dbRef2 =
+      FirebaseDatabase.instance.ref().child('ArogyaSair/tblUserQuestions');
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    String? userData = await getKey();
+    setState(() {
+      userKey = userData!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +86,7 @@ class _MyHelpDeskState extends State<MyHelpDesk> {
                         child: Lottie.asset(
                           'assets/Animation/help_desk.json',
                           repeat: true,
+                          reverse: true,
                         ),
                       ),
                     ),
@@ -80,40 +101,54 @@ class _MyHelpDeskState extends State<MyHelpDesk> {
                   margin: const EdgeInsets.all(16),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        TextField(
-                          controller: _textFieldController,
-                          decoration: const InputDecoration(
-                            hintText: 'Ask a question...',
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (_textFieldController.text.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                      'Please write something to get a response for your query'),
-                                ),
-                              );
-                            } else {
-                              // Handle submit logic
-                            }
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.blue.shade200, // Change color here
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: _textFieldController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please Ask question';
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: 'Ask a question...',
+                              border: OutlineInputBorder(),
                             ),
                           ),
-                          child: const Text(
-                            'Submit',
-                            style: TextStyle(color: Colors.deepPurple),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                var question = _textFieldController.text;
+                                UserAskQuestionModel regobj =
+                                    UserAskQuestionModel(
+                                  question,
+                                  userKey,
+                                );
+                                dbRef2.push().set(regobj.toJson());
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const UserQuestion(),
+                                  ),
+                                );
+                              }
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.blue.shade200, // Change color here
+                              ),
+                            ),
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(color: Colors.deepPurple),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -140,7 +175,7 @@ List<Map<String, String>> faqs = [
   {
     'question': 'How do I book an appointment?',
     'answer':
-        'You can book an appointment by visiting our website or calling our reception.'
+        'You can book an appointment by selecting Request for treatment from the home page in our page.'
   },
   {
     'question': 'What are your opening hours?',

@@ -85,7 +85,7 @@ class _AppointmentBookingState extends State<DisplayDisease> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => PackageHospitalSelection(
-                                item: items[index],
+                                diseaseList: diseaseList[index],
                               ),
                             ),
                           );

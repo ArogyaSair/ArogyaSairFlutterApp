@@ -8,10 +8,12 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
-class PackageHospitalSelection extends StatefulWidget {
-  final String item;
+import 'models/DiseaseModel.dart';
 
-  const PackageHospitalSelection({super.key, required this.item});
+class PackageHospitalSelection extends StatefulWidget {
+  final DiseaseData diseaseList;
+
+  const PackageHospitalSelection({super.key, required this.diseaseList});
 
   @override
   State<PackageHospitalSelection> createState() => _HospitalPackagesTabState();
@@ -41,30 +43,30 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
   Future<List<Map>> getHospitalData() async {
     DatabaseEvent event = await dbRef.once();
     DataSnapshot snapshot = event.snapshot;
-
-    // Check if data exists
     if (snapshot.value == null) {
-      // Handle no data scenario
-      return []; // Return empty list if no data
+      return [];
     }
 
     Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
     List<Map> hospitals = [];
 
     values.forEach((key, value) {
-      // print("key is $key");
-      if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
-        hospitals.add({
-          'HospitalName': value['HospitalName'],
-          'Photo': value["Photo"],
-          'Key': key,
-        });
-      } else {
-        hospitals.add({
-          'HospitalName': value['HospitalName'],
-          'Photo': 'ArogyaSair.png',
-          'Key': key,
-        });
+      if (value['AvailableDisease'].contains(widget.diseaseList.diseaseName)) {
+        if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
+          hospitals.add({
+            'HospitalName': value['HospitalName'],
+            'Photo': value["Photo"],
+            'AvailableDisease': value['AvailableDisease'],
+            'Key': key,
+          });
+        } else {
+          hospitals.add({
+            'HospitalName': value['HospitalName'],
+            'Photo': 'ArogyaSair.png',
+            'Key': key,
+            'AvailableDisease': value['AvailableDisease'],
+          });
+        }
       }
     });
     return hospitals;
@@ -108,23 +110,32 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
                   var imagePath = data1['Photo'] == 'noimage'
                       ? 'https://via.placeholder.com/150' // Placeholder image URL
                       : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
-                  return ListTile(
-                    contentPadding: const EdgeInsets.all(1),
-                    leading: Image.network(imagePath),
-                    title: Text(data1['HospitalName'].toString()),
-                    onTap: () {
-                      // Navigate to a new page on item click
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AppointmentDateSelection(
-                            HospitalName: data1["HospitalName"],
-                            HospitalKey: data1["Key"],
-                            item: widget.item,
-                          ), // Pass data to the new page
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.all(1),
+                        leading: Image.network(
+                          imagePath,
+                          width: 100,
+                          height: 200,
                         ),
-                      );
-                    },
+                        title: Text(data1['HospitalName'].toString()),
+                        onTap: () {
+                          // Navigate to a new page on item click
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AppointmentDateSelection(
+                                HospitalName: data1["HospitalName"],
+                                HospitalKey: data1["Key"],
+                                item: widget.diseaseList.toString(),
+                              ), // Pass data to the new page
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   );
                 },
               );

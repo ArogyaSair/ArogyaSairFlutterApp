@@ -259,6 +259,7 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
       widget.userData["Key"],
       widget.appointments["Disease"],
       hospitalKey,
+      widget.appointments["Key"],
       widget.appointments["AppointmentDate"],
     );
     tblTreatment.push().set(treatmentModelObject.toJson());
