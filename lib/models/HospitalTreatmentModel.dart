@@ -7,9 +7,10 @@ class HospitalTreatmentModel {
   late String hospitalId;
   late String appointmentId;
   late String treatmentDate;
+  late String status;
 
   HospitalTreatmentModel(this.doctorName, this.patientName, this.disease,
-      this.hospitalId, this.appointmentId, this.treatmentDate);
+      this.hospitalId, this.appointmentId, this.treatmentDate, this.status);
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
         'PatientID': patientName,
@@ -17,7 +18,8 @@ class HospitalTreatmentModel {
         'Disease': disease,
         'HospitalID': hospitalId,
         'AppointmentID': appointmentId,
-        'DateOfAppointment': treatmentDate
+        'DateOfAppointment': treatmentDate,
+        'Status': status,
       };
 
   factory HospitalTreatmentModel.fromJson(Map<String, dynamic> v) {
@@ -28,6 +30,7 @@ class HospitalTreatmentModel {
       v['HospitalID'],
       v['AppointmentID'],
       v['DateOfAppointment'],
+      v['Status'],
     );
   }
 }

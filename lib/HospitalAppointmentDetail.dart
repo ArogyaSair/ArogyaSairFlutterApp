@@ -261,7 +261,7 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
       hospitalKey,
       widget.appointments["Key"],
       widget.appointments["AppointmentDate"],
-    );
+        "Approved");
     tblTreatment.push().set(treatmentModelObject.toJson());
     Navigator.pop(context);
     Navigator.pop(context);

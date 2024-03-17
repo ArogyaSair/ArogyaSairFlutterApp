@@ -268,6 +268,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                             dataAppointment["HospitalId"],
                                             hospitalList[index].appointmentId,
                                             dataDelayedAppointment["NewDate"],
+                                            "Approved",
                                           );
                                           tblTreatment.push().set(
                                               treatmentModelObject.toJson());
