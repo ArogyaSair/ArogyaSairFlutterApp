@@ -9,10 +9,11 @@ import 'package:pay/pay.dart';
 
 import 'AppointmentInformation.dart';
 import 'models/AppointmentDateSelectionModel.dart';
+import 'models/DiseaseModel.dart';
 import 'payment_configurations.dart' as payment_configurations;
 
 class AppointmentDateSelection extends StatefulWidget {
-  final String item;
+  final DiseaseData item;
   final String HospitalName;
   final String HospitalKey;
 
@@ -45,7 +46,7 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
   void onGooglePayResult(paymentResult) {
     var Hospitalkey = widget.HospitalKey;
     var HospitalName1 = widget.HospitalName;
-    var Disease = widget.item;
+    var Disease = widget.item.toString();
     var Date = birthDate;
     var User = UserKey;
     var Status = "Pending";
@@ -58,7 +59,7 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
         MaterialPageRoute(
           builder: (context) => AppointmentInformation(
             HospitalName: HospitalName1,
-            item: widget.item,
+            item: widget.item.toString(),
             Date: Date.toString(),
             Status: Status,
           ),
@@ -146,7 +147,7 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
                 // Align content to the left
                 children: [
                   Text(
-                    widget.item,
+                    widget.item.toString(),
                     style: const TextStyle(
                         fontSize: 16.0, fontWeight: FontWeight.bold),
                   ),

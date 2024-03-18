@@ -22,6 +22,61 @@ class UserDelayedData extends StatefulWidget {
 class _UserDelayedDataState extends State<UserDelayedData> {
   late String imagePath;
   late String date;
+  List<Map> Appointments = [];
+  late String packageImagePath;
+  Map<dynamic, dynamic>? userData;
+  Map<int, Map> userMap = {};
+  late Map data2;
+  bool dataFetched = false; // Flag to track if data has been fetched
+
+  Future<void> fetchUserData(String key, int index) async {
+    DatabaseReference dbUserData = FirebaseDatabase.instance
+        .ref()
+        .child("ArogyaSair/tblHospital")
+        .child(key);
+    DatabaseEvent userDataEvent = await dbUserData.once();
+    DataSnapshot userDataSnapshot = userDataEvent.snapshot;
+    userData = userDataSnapshot.value as Map?;
+    userMap[index] = {
+      "Key": userDataSnapshot.key,
+      "HospitalName": userData!["HospitalName"],
+    };
+    setState(() {});
+  }
+
+  Future<List<Map>> getPackagesData() async {
+    if (dataFetched) {
+      return Appointments; // Return if data has already been fetched
+    }
+    DatabaseReference dbRef =
+        FirebaseDatabase.instance.ref().child('ArogyaSair/tblAppointment');
+    DatabaseEvent event = await dbRef.once();
+    DataSnapshot snapshot = event.snapshot;
+
+    if (snapshot.value == null) {
+      return Appointments;
+    }
+
+    Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
+
+    values.forEach((key, value) async {
+      if (value["Status"] == "Pending") {
+        Appointments.add({
+          'AppointmentId': value["AppointmentId"],
+          'HospitalName': value['HospitalId'],
+          'Key': key,
+          'DoctorName': value["DoctorName"],
+          'AppointmentDate': value["AppointmentDate"],
+          'Disease': value["Disease"],
+          'Status': value["Status"],
+          'UserId': value["UserId"],
+        });
+        await fetchUserData(value["HospitalId"], Appointments.length - 1);
+        dataFetched = true;
+      }
+    });
+    return Appointments;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,10 +195,10 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                               dataAppointmentSnapshot =
                                                               databaseAppointmentEvent
                                                                   .snapshot;
-                                                          // print(dataAppointmentSnapshot);
                                                           Map dataAppointment =
                                                               dataAppointmentSnapshot
                                                                   .value as Map;
+
                                                           var hospitalkey =
                                                               hospitalList[
                                                                       index]
@@ -158,6 +213,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                                   .userId;
                                                           var status =
                                                               "Pending";
+
                                                           AppointmentDateSelectionModel
                                                               regobj =
                                                               AppointmentDateSelectionModel(
@@ -166,6 +222,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                                   Date,
                                                                   user,
                                                                   status);
+
                                                           DatabaseReference
                                                               dbRef2 =
                                                               FirebaseDatabase
@@ -175,6 +232,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                                       'ArogyaSair/tblAppointment');
                                                           dbRef2.push().set(
                                                               regobj.toJson());
+
                                                           var delayedAppointmentId =
                                                               hospitalList[
                                                                       index]

@@ -28,6 +28,7 @@ class _BottomBarState extends State<bottomBar> {
   @override
   void initState() {
     super.initState();
+    _selectedIndex = 0;
     _loadUserData();
   }
 

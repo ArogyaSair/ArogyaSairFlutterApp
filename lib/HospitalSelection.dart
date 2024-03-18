@@ -129,7 +129,7 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
                               builder: (context) => AppointmentDateSelection(
                                 HospitalName: data1["HospitalName"],
                                 HospitalKey: data1["Key"],
-                                item: widget.diseaseList.toString(),
+                                item: widget.diseaseList,
                               ), // Pass data to the new page
                             ),
                           );

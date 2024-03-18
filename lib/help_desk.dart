@@ -1,5 +1,5 @@
+import 'package:arogyasair/BottomNavigation.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
-import 'package:arogyasair/userQuestion.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -124,16 +124,30 @@ class _MyHelpDeskState extends State<MyHelpDesk> {
                               if (_formKey.currentState!.validate()) {
                                 var question = _textFieldController.text;
                                 UserAskQuestionModel regobj =
-                                    UserAskQuestionModel(
-                                  question,
-                                  userKey,
-                                );
+                                    UserAskQuestionModel(question, userKey,
+                                        DateTime.now().toString());
                                 dbRef2.push().set(regobj.toJson());
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const UserQuestion(),
-                                  ),
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      content: const Text(
+                                          "Thank you for your question. We will connect with you soon. Feel free to ask more queries if you have."),
+                                      actions: <Widget>[
+                                        OutlinedButton(
+                                          child: const Text('OK'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const bottomBar()));
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  },
                                 );
                               }
                             },

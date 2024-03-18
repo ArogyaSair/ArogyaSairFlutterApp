@@ -16,6 +16,6 @@ class DiseaseData {
 
   @override
   String toString() {
-    return 'Disease: $diseaseName';
+    return diseaseName;
   }
 }

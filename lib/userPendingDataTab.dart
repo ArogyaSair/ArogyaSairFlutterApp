@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
-import 'package:arogyasair/models/user_updates_show.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,12 +16,12 @@ class UserPendingData extends StatefulWidget {
 
 class _UserPendingDataState extends State<UserPendingData> {
   late String imagePath;
+  List<Map> Appointments = [];
   late String packageImagePath;
   Map<dynamic, dynamic>? userData;
   Map<int, Map> userMap = {};
-
-  List<Map> package = [];
   late Map data2;
+  bool dataFetched = false; // Flag to track if data has been fetched
 
   Future<void> fetchUserData(String key, int index) async {
     DatabaseReference dbUserData = FirebaseDatabase.instance
@@ -36,6 +35,39 @@ class _UserPendingDataState extends State<UserPendingData> {
       "Key": userDataSnapshot.key,
       "HospitalName": userData!["HospitalName"],
     };
+    setState(() {});
+  }
+
+  Future<List<Map>> getPackagesData() async {
+    if (dataFetched) {
+      return Appointments; // Return if data has already been fetched
+    }
+    DatabaseReference dbRef =
+        FirebaseDatabase.instance.ref().child('ArogyaSair/tblAppointment');
+    DatabaseEvent event = await dbRef.once();
+    DataSnapshot snapshot = event.snapshot;
+
+    if (snapshot.value == null) {
+      return Appointments;
+    }
+
+    Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
+
+    values.forEach((key, value) async {
+      if (value["Status"] == "Pending") {
+        Appointments.add({
+          'HospitalName': value['HospitalId'],
+          'Key': key,
+          'AppointmentDate': value["AppointmentDate"],
+          'Disease': value["Disease"],
+          'Status': value["Status"],
+          'UserId': value["UserId"],
+        });
+        await fetchUserData(value["HospitalId"], Appointments.length - 1);
+        dataFetched = true;
+      }
+    });
+    return Appointments;
   }
 
   @override
@@ -44,30 +76,18 @@ class _UserPendingDataState extends State<UserPendingData> {
       height: double.infinity,
       child: Padding(
         padding: const EdgeInsets.all(1),
-        child: StreamBuilder(
-          stream: FirebaseDatabase.instance
-              .ref()
-              .child("ArogyaSair/tblAppointment")
-              .onValue,
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
-              Map<dynamic, dynamic> map = snapshot.data!.snapshot.value;
-              List<UserUpdateShow> hospitalList = [];
-              hospitalList.clear();
-              map.forEach((key, value) {
-                fetchUserData(value["HospitalId"], hospitalList.length);
-                if (value["UserId"] == widget.userKey) {
-                  if (value["Status"] == "Pending") {
-                    hospitalList.add(UserUpdateShow.fromMap(value, key));
-                  }
-                }
-              });
-              if (hospitalList.isNotEmpty) {
+        child: FutureBuilder<List<Map>>(
+          future: getPackagesData(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (snapshot.hasData) {
+              if (Appointments.isNotEmpty) {
                 return ListView.builder(
-                  itemCount: hospitalList.length,
-                  padding: const EdgeInsets.all(2),
-                  itemBuilder: (BuildContext context, int index) {
-                    data2 = userMap[index] ?? {};
+                  shrinkWrap: true,
+                  itemCount: Appointments.length,
+                  itemBuilder: (context, index) {
+                    data2 = userMap[index]!;
                     return Card(
                       child: Stack(
                         children: [
@@ -94,7 +114,7 @@ class _UserPendingDataState extends State<UserPendingData> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Text(
-                                        hospitalList[index].disease,
+                                        Appointments[index]["Disease"],
                                         style: const TextStyle(fontSize: 17),
                                       ),
                                     ),
@@ -104,7 +124,7 @@ class _UserPendingDataState extends State<UserPendingData> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Text(
-                                        hospitalList[index].appointmentDate,
+                                        Appointments[index]["AppointmentDate"],
                                         style: const TextStyle(fontSize: 17),
                                       ),
                                     ),
@@ -136,17 +156,14 @@ class _UserPendingDataState extends State<UserPendingData> {
                   },
                 );
               } else {
-                return const Center(
-                  child: Text("No Pending Appointments."),
-                );
+                return const Center(child: Text('No hospitals found'));
               }
             } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),
+        //
       ),
     );
   }

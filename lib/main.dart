@@ -9,13 +9,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'BottomNavigation.dart';
 import 'HospitalHomePage.dart';
 import 'LandingPage.dart';
-import 'firebase_api.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await FirebaseApi().initNotifications();
   runApp(const MaterialApp(home: Splash()));
 }
 
