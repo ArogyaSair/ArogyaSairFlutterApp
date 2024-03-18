@@ -46,22 +46,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        return Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.blue.shade500,
-                Colors.green.shade400,
-              ],
-            ),
-          ),
-          child: SizedBox(
-            width: constraints.maxWidth * 1,
-            height: constraints.maxHeight * 1,
+        return SizedBox(
+          width: constraints.maxWidth * 1,
+          height: constraints.maxHeight * 1,
+          child: Container(
             child: Scaffold(
-              backgroundColor: Colors.transparent,
               appBar: AppBar(
                 backgroundColor: Colors.blue,
                 automaticallyImplyLeading: false,
@@ -83,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                         width: double.infinity,
                         height: constraints.maxHeight * 0.07,
                         decoration: const BoxDecoration(
-                          color: Colors.transparent,
+                          color: Colors.white,
                         ),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -92,7 +81,15 @@ class _HomePageState extends State<HomePage> {
                             width: double.infinity,
                             height: 0,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Colors.blue,
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 5,
+                                  color: Colors.blue,
+                                  offset: Offset(0, 2),
+                                  spreadRadius: 2,
+                                )
+                              ],
                               borderRadius: BorderRadius.circular(18),
                             ),
                             child: Padding(
@@ -119,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                                           4, 0, 4, 0),
                                       child: Icon(
                                         Icons.search_rounded,
-                                        color: Colors.blue,
+                                        color: Colors.white,
                                         size: 24,
                                       ),
                                     ),
@@ -145,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                                           child: Text(
                                             "Search...",
                                             style: TextStyle(
-                                              color: Colors.blue,
+                                              color: Colors.white,
                                               fontSize: 16,
                                               fontFamily: 'Manrope',
                                             ),
@@ -172,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                       child: Card(
-                        color: Colors.white,
+                        color: Colors.blue.shade200,
                         elevation: 8,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
@@ -194,17 +191,17 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                              Expanded(
+                              const Expanded(
                                 flex: 2,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(right: 55),
+                                  padding: EdgeInsets.only(right: 55),
                                   child: Center(
                                     child: Text(
                                       'Request For Treatment',
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.teal.shade700),
+                                          color: Colors.white),
                                     ),
                                   ),
                                 ),
@@ -249,7 +246,8 @@ class _HomePageState extends State<HomePage> {
                                 padding: const EdgeInsets.all(5),
                                 child: GestureDetector(
                                   child: Card(
-                                    color: Colors.white,
+                                    color: Colors.blue.shade100,
+                                    elevation: 8,
                                     child: Column(
                                       children: [
                                         Row(
@@ -294,11 +292,7 @@ class _HomePageState extends State<HomePage> {
                                                               left: 5),
                                                       child: Text(
                                                           packagesList[index]
-                                                            .hospitalName,
-                                                        style: TextStyle(
-                                                            color: Colors
-                                                                .teal.shade700),
-                                                      ),
+                                                              .hospitalName),
                                                     ),
                                                     Padding(
                                                       padding:
@@ -306,11 +300,7 @@ class _HomePageState extends State<HomePage> {
                                                               left: 5),
                                                       child: Text(
                                                           packagesList[index]
-                                                            .hospitalEmail,
-                                                        style: TextStyle(
-                                                            color: Colors
-                                                                .teal.shade700),
-                                                      ),
+                                                              .hospitalEmail),
                                                     ),
                                                   ],
                                                 ),

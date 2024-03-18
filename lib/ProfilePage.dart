@@ -82,153 +82,106 @@ class _MyProfileState extends State<MyProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.blue.shade500,
-            Colors.green.shade400,
-          ],
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          automaticallyImplyLeading: false,
-          title: const Text(
-            'Arogya Sair',
-            style: TextStyle(
-              color: Colors.white,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        automaticallyImplyLeading: false,
+        title: const Text(
+          'Arogya Sair',
+          style: TextStyle(
+            color: Colors.white,
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
         ),
-        endDrawer: const DrawerCode(),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-              child: InkWell(
-                onTap: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ViewProfile(),
-                    ),
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16, 5, 0, 0),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Text(
-                          widget.username.isNotEmpty
-                              ? widget.username[0].toUpperCase()
-                              : '',
-                          style: const TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      // Add some space between the avatar and the text
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.username,
-                              style: const TextStyle(
-                                  fontSize: 18, color: Colors.white),
-                            ),
-                            const Text(
-                              'View Profile',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ViewProfile(),
-                            ),
-                          );
-                        },
-                        child: const Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.black,
-                            size: 18,
-                          ),
-                        ),
-                      ),
-                    ],
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
+      endDrawer: const DrawerCode(),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+            child: InkWell(
+              onTap: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ViewProfile(),
                   ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-              child: InkWell(
-                onTap: () async {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const EditProfile()));
-                },
-                child: const Row(
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 5, 0, 0),
+                child: Row(
                   children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
-                        child: Text(
-                          "Edit Profile",
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                    CircleAvatar(
+                      backgroundColor: Colors.blue,
+                      child: Text(
+                        widget.username.isNotEmpty
+                            ? widget.username[0].toUpperCase()
+                            : '',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                        size: 18,
+                    const SizedBox(width: 10),
+                    // Add some space between the avatar and the text
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.username,
+                            style: const TextStyle(
+                                fontSize: 18, color: Colors.black),
+                          ),
+                          const Text('View Profile'),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ViewProfile(),
+                          ),
+                        );
+                      },
+                      child: const Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.black,
+                          size: 18,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-            InkWell(
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+            child: InkWell(
               onTap: () async {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const UserChangePassword()));
+                        builder: (context) => const EditProfile()));
               },
               child: const Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
                       child: Text(
-                        "Change Password",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        "Edit Profile",
+                        style: TextStyle(fontSize: 18),
                       ),
                     ),
                   ),
@@ -243,15 +196,46 @@ class _MyProfileState extends State<MyProfile> {
                 ],
               ),
             ),
-            const Divider(
-              height: 2,
-              thickness: 1,
-              indent: 0,
-              endIndent: 0,
-              color: Colors.white12,
+          ),
+          InkWell(
+            onTap: () async {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UserChangePassword()));
+            },
+            child: const Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
+                    child: Text(
+                      "Change Password",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black,
+                    size: 18,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          const Divider(
+            height: 2,
+            thickness: 1,
+            indent: 0,
+            endIndent: 0,
+            color: Colors.white12,
+          ),
+        ],
       ),
     );
   }

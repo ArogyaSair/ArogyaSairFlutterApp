@@ -70,146 +70,128 @@ class _MyHistoryState extends State<MyHistory> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.blue.shade500,
-            Colors.green.shade400,
-          ],
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          automaticallyImplyLeading: false,
-          title: const Text(
-            'Arogya Sair',
-            style: TextStyle(
-              color: Colors.white,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        automaticallyImplyLeading: false,
+        title: const Text(
+          'Arogya Sair',
+          style: TextStyle(
+            color: Colors.white,
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
         ),
-        endDrawer: const DrawerCode(),
-        body: SizedBox(
-          height: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.all(1),
-            child: FutureBuilder<List<Map>>(
-              future: getPackagesData(),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
-                } else if (snapshot.hasData) {
-                  if (Appointments.isNotEmpty) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: Appointments.length,
-                      itemBuilder: (context, index) {
-                        data2 = userMap[index]!;
-                        return Card(
-                          child: Stack(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Row(
-                                        children: [
-                                          const FaIcon(
-                                              FontAwesomeIcons.hospital),
-                                          const SizedBox(width: 20),
-                                          Text(
-                                            "${data2['HospitalName']}",
-                                            style:
-                                                const TextStyle(fontSize: 17),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Row(
-                                        children: [
-                                          const FaIcon(
-                                              FontAwesomeIcons.userDoctor),
-                                          const SizedBox(width: 20),
-                                          Text(
-                                            Appointments[index]["DoctorName"],
-                                            style:
-                                                const TextStyle(fontSize: 17),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Row(
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
+      endDrawer: const DrawerCode(),
+      body: SizedBox(
+        height: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: FutureBuilder<List<Map>>(
+            future: getPackagesData(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (snapshot.hasData) {
+                if (Appointments.isNotEmpty) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: Appointments.length,
+                    itemBuilder: (context, index) {
+                      data2 = userMap[index]!;
+                      return Card(
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Row(
                                       children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
-                                          child: Text(
-                                            Appointments[index]["Disease"],
-                                            style:
-                                                const TextStyle(fontSize: 17),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
-                                          child: Text(
-                                            Appointments[index]
-                                                ["AppointmentDate"],
-                                            style:
-                                                const TextStyle(fontSize: 17),
-                                          ),
+                                        const FaIcon(FontAwesomeIcons.hospital),
+                                        const SizedBox(width: 20),
+                                        Text(
+                                          "${data2['HospitalName']}",
+                                          style: const TextStyle(fontSize: 17),
                                         ),
                                       ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                top: 5,
-                                right: 5,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.blue,
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(5),
-                                    child: Text(
-                                      " C ",
-                                      style: TextStyle(color: Colors.white),
                                     ),
                                   ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Row(
+                                      children: [
+                                        const FaIcon(
+                                            FontAwesomeIcons.userDoctor),
+                                        const SizedBox(width: 20),
+                                        Text(
+                                          Appointments[index]["DoctorName"],
+                                          style: const TextStyle(fontSize: 17),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          Appointments[index]["Disease"],
+                                          style: const TextStyle(fontSize: 17),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          Appointments[index]
+                                              ["AppointmentDate"],
+                                          style: const TextStyle(fontSize: 17),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              top: 5,
+                              right: 5,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.blue,
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: Text(
+                                    " C ",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
                               ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  } else {
-                    return const Center(child: Text('No hospitals found'));
-                  }
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
                 } else {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(child: Text('No hospitals found'));
                 }
-              },
-            ),
-            //
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
           ),
+          //
         ),
       ),
     );
