@@ -258,68 +258,88 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.all(5),
                               child: GestureDetector(
                                 child: Card(
-                                  color: Colors.blue.shade100,
                                   elevation: 8,
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 5),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              child: Image.network(
-                                                imagePath,
-                                                height: constraints.maxHeight *
-                                                    0.13,
-                                                width: constraints.maxHeight *
-                                                    0.22,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Colors.blue.shade900,
+                                          Colors.teal.shade400,
+                                        ],
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                      ),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 5),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                child: Image.network(
+                                                  imagePath,
+                                                  height:
+                                                      constraints.maxHeight *
+                                                          0.13,
+                                                  width: constraints.maxHeight *
+                                                      0.22,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5, right: 5, top: 5),
-                                            child: SizedBox(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.3,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 5),
-                                                    child: Text(
+                                          ],
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, right: 5, top: 5),
+                                              child: SizedBox(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.3,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 5),
+                                                      child: Text(
                                                         packagesList[index]
-                                                            .hospitalName),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 5),
-                                                    child: Text(
+                                                            .hospitalName,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 5),
+                                                      child: Text(
                                                         packagesList[index]
-                                                            .hospitalEmail),
-                                                  ),
-                                                ],
+                                                            .hospitalEmail,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 onTap: () {

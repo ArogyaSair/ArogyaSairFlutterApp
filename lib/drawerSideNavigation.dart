@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, file_names
 
 import 'package:arogyasair/LandingPage.dart';
+import 'package:arogyasair/MyPackages.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -115,8 +116,8 @@ class _DrawerCode extends State<DrawerCode> {
             ),
             title: const Text("My Packages"),
             onTap: () {
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (context) => const about()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MyPackages()));
             },
           ),
           ListTile(

@@ -125,7 +125,7 @@ class _MyHelpDeskState extends State<MyHelpDesk> {
                                 var question = _textFieldController.text;
                                 UserAskQuestionModel regobj =
                                     UserAskQuestionModel(question, userKey,
-                                        DateTime.now().toString());
+                                        DateTime.now().toString(), "Pending");
                                 dbRef2.push().set(regobj.toJson());
                                 showDialog(
                                   context: context,
