@@ -4,10 +4,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'models/AppointmentDateSelectionModel.dart';
 import 'models/HospitalTreatmentModel.dart';
-import 'models/user_delayed_appointment_show.dart';
 
 class UserDelayedData extends StatefulWidget {
   final String userKey;
@@ -48,8 +48,9 @@ class _UserDelayedDataState extends State<UserDelayedData> {
     if (dataFetched) {
       return Appointments; // Return if data has already been fetched
     }
-    DatabaseReference dbRef =
-        FirebaseDatabase.instance.ref().child('ArogyaSair/tblAppointment');
+    DatabaseReference dbRef = FirebaseDatabase.instance
+        .ref()
+        .child('ArogyaSair/tblDelayedAppointment');
     DatabaseEvent event = await dbRef.once();
     DataSnapshot snapshot = event.snapshot;
 
@@ -60,14 +61,14 @@ class _UserDelayedDataState extends State<UserDelayedData> {
     Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
 
     values.forEach((key, value) async {
-      if (value["Status"] == "Pending") {
+      if (value["Status"] == "Delayed") {
         Appointments.add({
-          'AppointmentId': value["AppointmentId"],
-          'HospitalName': value['HospitalId'],
           'Key': key,
+          'AppointmentId': value["AppointmentId"],
           'DoctorName': value["DoctorName"],
-          'AppointmentDate': value["AppointmentDate"],
-          'Disease': value["Disease"],
+          'HospitalName': value['HospitalId'],
+          'NewDate': value["NewDate"],
+          'OldDate': value["OldDate"],
           'Status': value["Status"],
           'UserId': value["UserId"],
         });
@@ -80,300 +81,290 @@ class _UserDelayedDataState extends State<UserDelayedData> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.all(1),
-        child: StreamBuilder(
-          stream: FirebaseDatabase.instance
-              .ref()
-              .child("ArogyaSair/tblDelayedAppointment")
-              .onValue,
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
-              Map<dynamic, dynamic> map = snapshot.data!.snapshot.value;
-              List<UserDelayedAppointmentShow> hospitalList = [];
-              hospitalList.clear();
-              map.forEach((key, value) {
-                if (value["UserId"] == widget.userKey) {
-                  if (value["Status"] == "Delayed") {
-                    hospitalList
-                        .add(UserDelayedAppointmentShow.fromMap(value, key));
-                  }
-                }
-              });
-              if (hospitalList.isNotEmpty) {
-                return ListView.builder(
-                  itemCount: hospitalList.length,
-                  padding: const EdgeInsets.all(2),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "Old Date is for : ${hospitalList[index].oldDate}",
-                                    style: const TextStyle(fontSize: 17),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "Hospital Name : ${hospitalList[index].hospitalId}",
-                                    style: const TextStyle(fontSize: 17),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "User Name : ${widget.userName}",
-                                    style: const TextStyle(fontSize: 17),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "New Date : ${hospitalList[index].appointmentDate}",
-                                    style: const TextStyle(fontSize: 17),
-                                  ),
-                                ),
-                                Row(
+    return Padding(
+      padding: const EdgeInsets.all(1),
+      child: FutureBuilder<List<Map>>(
+        future: getPackagesData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (snapshot.hasData) {
+            if (Appointments.isNotEmpty) {
+              return ListView.builder(
+                itemCount: Appointments.length,
+                itemBuilder: (context, index) {
+                  data2 = userMap[index]!;
+                  return Card(
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Row(
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: TextButton(
-                                        style: TextButton.styleFrom(
-                                          backgroundColor: Colors.orange,
-                                        ),
-                                        onPressed: () async {
-                                          var datePicked = await DatePicker
-                                              .showSimpleDatePicker(
-                                            context,
-                                            firstDate: DateTime.now(),
-                                            lastDate: DateTime.now()
-                                                .add(const Duration(days: 14)),
-                                            dateFormat: "dd-MM-yyyy",
-                                            locale: DateTimePickerLocale.en_us,
-                                            looping: true,
-                                          );
-                                          setState(() {
-                                            if (datePicked != null) {
-                                              date =
-                                                  "${datePicked.day}-${datePicked.month}-${datePicked.year}";
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return AlertDialog(
-                                                    title: const Text(
-                                                        "Alert Message"),
-                                                    content: Text(
-                                                        "New will be $date"),
-                                                    actions: <Widget>[
-                                                      TextButton(
-                                                        child: const Text('OK'),
-                                                        onPressed: () async {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                          DatabaseReference
-                                                              dbAppointmentRef =
-                                                              FirebaseDatabase
-                                                                  .instance
-                                                                  .ref()
-                                                                  .child(
-                                                                      "ArogyaSair/tblAppointment/${hospitalList[index].appointmentId}");
-                                                          DatabaseEvent
-                                                              databaseAppointmentEvent =
-                                                              await dbAppointmentRef
-                                                                  .once();
-                                                          DataSnapshot
-                                                              dataAppointmentSnapshot =
-                                                              databaseAppointmentEvent
-                                                                  .snapshot;
-                                                          Map dataAppointment =
-                                                              dataAppointmentSnapshot
-                                                                  .value as Map;
-
-                                                          var hospitalkey =
-                                                              hospitalList[
-                                                                      index]
-                                                                  .hospitalId;
-                                                          var disease =
-                                                              dataAppointment[
-                                                                  "Disease"];
-                                                          var Date = date;
-                                                          var user =
-                                                              hospitalList[
-                                                                      index]
-                                                                  .userId;
-                                                          var status =
-                                                              "Pending";
-
-                                                          AppointmentDateSelectionModel
-                                                              regobj =
-                                                              AppointmentDateSelectionModel(
-                                                                  hospitalkey,
-                                                                  disease,
-                                                                  Date,
-                                                                  user,
-                                                                  status);
-
-                                                          DatabaseReference
-                                                              dbRef2 =
-                                                              FirebaseDatabase
-                                                                  .instance
-                                                                  .ref()
-                                                                  .child(
-                                                                      'ArogyaSair/tblAppointment');
-                                                          dbRef2.push().set(
-                                                              regobj.toJson());
-
-                                                          var delayedAppointmentId =
-                                                              hospitalList[
-                                                                      index]
-                                                                  .id;
-                                                          DatabaseReference
-                                                              dbDelayedAppointmentRef =
-                                                              FirebaseDatabase
-                                                                  .instance
-                                                                  .ref()
-                                                                  .child(
-                                                                      "ArogyaSair/tblDelayedAppointment/$delayedAppointmentId");
-                                                          final updatedDelayedAppointmentData =
-                                                              {
-                                                            "Status":
-                                                                "Approved",
-                                                          };
-                                                          dbDelayedAppointmentRef
-                                                              .update(
-                                                                  updatedDelayedAppointmentData);
-                                                        },
-                                                      ),
-                                                      TextButton(
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: const Text(
-                                                            "Cancel"),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            }
-                                          });
-                                        },
-                                        child: const Text(
-                                          "Delay",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: TextButton(
-                                        onPressed: () async {
-                                          DatabaseReference dbAppointmentRef =
-                                              FirebaseDatabase.instance.ref().child(
-                                                  "ArogyaSair/tblAppointment/${hospitalList[index].appointmentId}");
-                                          DatabaseEvent
-                                              databaseAppointmentEvent =
-                                              await dbAppointmentRef.once();
-                                          var delayedAppointmentId =
-                                              hospitalList[index].id;
-
-                                          DataSnapshot dataAppointmentSnapshot =
-                                              databaseAppointmentEvent.snapshot;
-                                          Map dataAppointment =
-                                              dataAppointmentSnapshot.value
-                                                  as Map;
-
-                                          DatabaseReference
-                                              dbDelayedAppointmentRef =
-                                              FirebaseDatabase.instance.ref().child(
-                                                  "ArogyaSair/tblDelayedAppointment/$delayedAppointmentId");
-                                          DatabaseEvent
-                                              databaseDelayedAppointmentEvent =
-                                              await dbDelayedAppointmentRef
-                                                  .once();
-
-                                          DataSnapshot
-                                              dataDelayedAppointmentSnapshot =
-                                              databaseDelayedAppointmentEvent
-                                                  .snapshot;
-                                          Map dataDelayedAppointment =
-                                              dataDelayedAppointmentSnapshot
-                                                  .value as Map;
-
-                                          DatabaseReference tblTreatment =
-                                              FirebaseDatabase.instance
-                                                  .ref()
-                                                  .child(
-                                                      "ArogyaSair/tblTreatment");
-                                          HospitalTreatmentModel
-                                              treatmentModelObject =
-                                              HospitalTreatmentModel(
-                                            dataDelayedAppointment[
-                                                "DoctorName"],
-                                            widget.userKey,
-                                            dataAppointment["Disease"],
-                                            dataAppointment["HospitalId"],
-                                            hospitalList[index].appointmentId,
-                                            dataDelayedAppointment["NewDate"],
-                                            "Approved",
-                                          );
-                                          tblTreatment.push().set(
-                                              treatmentModelObject.toJson());
-                                          final updatedAppointmentData = {
-                                            "Status": "Approved",
-                                          };
-                                          dbAppointmentRef
-                                              .update(updatedAppointmentData);
-                                          final updatedDelayedAppointmentData =
-                                              {
-                                            "Status": "Approved",
-                                          };
-                                          dbDelayedAppointmentRef.update(
-                                              updatedDelayedAppointmentData);
-                                        },
-                                        style: TextButton.styleFrom(
-                                          backgroundColor: Colors.orange,
-                                        ),
-                                        child: const Text(
-                                          "Confirm",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
+                                    const FaIcon(FontAwesomeIcons.hospital),
+                                    const SizedBox(width: 20),
+                                    Text(
+                                      "${data2['HospitalName']}",
+                                      style: const TextStyle(fontSize: 17),
                                     ),
                                   ],
-                                )
-                              ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  "Old Date : ${Appointments[index]["OldDate"]}",
+                                  style: const TextStyle(fontSize: 17),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  "New Date : ${Appointments[index]["NewDate"]}",
+                                  style: const TextStyle(fontSize: 17),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: Colors.orange,
+                                      ),
+                                      onPressed: () async {
+                                        var datePicked = await DatePicker
+                                            .showSimpleDatePicker(
+                                          context,
+                                          firstDate: DateTime.now(),
+                                          lastDate: DateTime.now()
+                                              .add(const Duration(days: 14)),
+                                          dateFormat: "dd-MM-yyyy",
+                                          locale: DateTimePickerLocale.en_us,
+                                          looping: true,
+                                        );
+                                        setState(() {
+                                          if (datePicked != null) {
+                                            date =
+                                                "${datePicked.day}-${datePicked.month}-${datePicked.year}";
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title: const Text(
+                                                      "Alert Message"),
+                                                  content:
+                                                      Text("New will be $date"),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      child: const Text('OK'),
+                                                      onPressed: () async {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                        DatabaseReference
+                                                            dbAppointmentRef =
+                                                            FirebaseDatabase
+                                                                .instance
+                                                                .ref()
+                                                                .child(
+                                                                    "ArogyaSair/tblAppointment/${Appointments[index]["AppointmentId"]}");
+                                                        DatabaseEvent
+                                                            databaseAppointmentEvent =
+                                                            await dbAppointmentRef
+                                                                .once();
+                                                        DataSnapshot
+                                                            dataAppointmentSnapshot =
+                                                            databaseAppointmentEvent
+                                                                .snapshot;
+                                                        Map dataAppointment =
+                                                            dataAppointmentSnapshot
+                                                                .value as Map;
+                                                        var hospitalkey =
+                                                            Appointments[index][
+                                                                "HospitalName"];
+                                                        var disease =
+                                                            dataAppointment[
+                                                                "Disease"];
+                                                        var Date = date;
+                                                        var user =
+                                                            Appointments[index]
+                                                                ["UserId"];
+                                                        var status = "Pending";
+                                                        AppointmentDateSelectionModel
+                                                            regobj =
+                                                            AppointmentDateSelectionModel(
+                                                                hospitalkey,
+                                                                disease,
+                                                                Date,
+                                                                user,
+                                                                status);
+
+                                                        DatabaseReference
+                                                            dbRef2 =
+                                                            FirebaseDatabase
+                                                                .instance
+                                                                .ref()
+                                                                .child(
+                                                                    'ArogyaSair/tblAppointment');
+                                                        dbRef2.push().set(
+                                                            regobj.toJson());
+                                                        var delayedAppointmentId =
+                                                            Appointments[index]
+                                                                ["Key"];
+                                                        DatabaseReference
+                                                            dbDelayedAppointmentRef =
+                                                            FirebaseDatabase
+                                                                .instance
+                                                                .ref()
+                                                                .child(
+                                                                    "ArogyaSair/tblDelayedAppointment/$delayedAppointmentId");
+                                                        final updatedDelayedAppointmentData =
+                                                            {
+                                                          "Status": "Approved",
+                                                        };
+                                                        dbDelayedAppointmentRef
+                                                            .update(
+                                                                updatedDelayedAppointmentData);
+                                                      },
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child:
+                                                          const Text("Cancel"),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
+                                        });
+                                      },
+                                      child: const Text(
+                                        "Delay",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: TextButton(
+                                      onPressed: () async {
+                                        DatabaseReference dbAppointmentRef =
+                                            FirebaseDatabase.instance.ref().child(
+                                                "ArogyaSair/tblAppointment/${Appointments[index]["AppointmentId"]}");
+                                        DatabaseEvent databaseAppointmentEvent =
+                                            await dbAppointmentRef.once();
+                                        var delayedAppointmentId =
+                                            Appointments[index]["Key"];
+
+                                        DataSnapshot dataAppointmentSnapshot =
+                                            databaseAppointmentEvent.snapshot;
+                                        Map dataAppointment =
+                                            dataAppointmentSnapshot.value
+                                                as Map;
+
+                                        DatabaseReference
+                                            dbDelayedAppointmentRef =
+                                            FirebaseDatabase.instance.ref().child(
+                                                "ArogyaSair/tblDelayedAppointment/$delayedAppointmentId");
+                                        DatabaseEvent
+                                            databaseDelayedAppointmentEvent =
+                                            await dbDelayedAppointmentRef
+                                                .once();
+
+                                        DataSnapshot
+                                            dataDelayedAppointmentSnapshot =
+                                            databaseDelayedAppointmentEvent
+                                                .snapshot;
+                                        Map dataDelayedAppointment =
+                                            dataDelayedAppointmentSnapshot.value
+                                                as Map;
+
+                                        DatabaseReference tblTreatment =
+                                            FirebaseDatabase.instance
+                                                .ref()
+                                                .child(
+                                                    "ArogyaSair/tblTreatment");
+                                        HospitalTreatmentModel
+                                            treatmentModelObject =
+                                            HospitalTreatmentModel(
+                                          dataDelayedAppointment["DoctorName"],
+                                          widget.userKey,
+                                          dataAppointment["Disease"],
+                                          dataAppointment["HospitalId"],
+                                          Appointments[index]["AppointmentId"],
+                                          dataDelayedAppointment["NewDate"],
+                                          "Approved",
+                                        );
+                                        tblTreatment
+                                            .push()
+                                            .set(treatmentModelObject.toJson());
+                                        final updatedAppointmentData = {
+                                          "Status": "Approved",
+                                        };
+                                        dbAppointmentRef
+                                            .update(updatedAppointmentData);
+                                        final updatedDelayedAppointmentData = {
+                                          "Status": "Approved",
+                                        };
+                                        dbDelayedAppointmentRef.update(
+                                            updatedDelayedAppointmentData);
+                                      },
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: Colors.orange,
+                                      ),
+                                      child: const Text(
+                                        "Confirm",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          top: 5,
+                          right: 5,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.orange,
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(5),
+                              child: Text(
+                                " D ",
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                );
-              } else {
-                return const Center(
-                  child: Text("No Delayed Appointments"),
-                );
-              }
-            } else {
-              return const Center(
-                child: Text("No Delayed Appointments"),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               );
+            } else {
+              return const Center(child: Text('No hospitals found'));
             }
-          },
-        ),
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
       ),
+      //
     );
   }
 }

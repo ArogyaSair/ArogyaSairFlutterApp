@@ -62,7 +62,7 @@ class _GetHomeDataState extends State<get_home_data> {
         } else {
           packages.add({
             'HospitalName': value['HospitalName'],
-            'Photo': 'ArogyaSair.png',
+            'Photo': 'DefaultProfileImage.png',
             'Key': key,
             'Duration': value["Duration"],
             'PackageName': value["PackageName"],
@@ -100,7 +100,7 @@ class _GetHomeDataState extends State<get_home_data> {
                   itemBuilder: (context, index) {
                     var imageName = packages[index]['Photo'] == 'noimage'
                         ? 'noimage'
-                        : "HospitalImage%2F${packages[index]['Photo']}";
+                        : "PackageImage%2F${packages[index]['Photo']}";
                     var imagePath = packages[index]['Photo'] == 'noimage'
                         ? 'https://via.placeholder.com/150' // Placeholder image URL
                         : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
@@ -139,8 +139,8 @@ class _GetHomeDataState extends State<get_home_data> {
                                                     BorderRadius.circular(100),
                                                 child: Image.network(
                                                   imagePath,
-                                                  height: 120,
-                                                  width: 120,
+                                                  height: 130,
+                                                  width: 130,
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
