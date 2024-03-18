@@ -21,43 +21,55 @@ class _MyUpdatesState extends State<MyUpdates> {
   late List<MaterialColor> color = [];
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          automaticallyImplyLeading: false,
-          title: const Text(
-            'Arogya Sair',
-            style: TextStyle(
-              color: Colors.white,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.blue.shade500,
+            Colors.green.shade400,
+          ],
+        ),
+      ),
+      child: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            automaticallyImplyLeading: false,
+            title: const Text(
+              'Arogya Sair',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            iconTheme: const IconThemeData(color: Colors.white),
+            bottom: const TabBar(
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.white,
+              tabs: [
+                Tab(text: 'PENDING'),
+                Tab(text: 'DELAYED'),
+                Tab(text: 'APPROVED'),
+              ],
             ),
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
-          bottom: const TabBar(
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.white,
-            tabs: [
-              Tab(text: 'PENDING'),
-              Tab(text: 'DELAYED'),
-              Tab(text: 'APPROVED'),
+          endDrawer: const DrawerCode(),
+          body: TabBarView(
+            children: [
+              Center(
+                child: UserPendingData(widget.userKey, widget.userName),
+              ),
+              Center(
+                child: UserDelayedData(widget.userKey, widget.userName),
+              ),
+              Center(
+                child: UserApprovedData(widget.userKey, widget.userName),
+              ),
             ],
           ),
-        ),
-        endDrawer: const DrawerCode(),
-        body: TabBarView(
-          children: [
-            Center(
-              child: UserPendingData(widget.userKey, widget.userName),
-            ),
-            Center(
-              child: UserDelayedData(widget.userKey, widget.userName),
-            ),
-            Center(
-              child: UserApprovedData(widget.userKey, widget.userName),
-            ),
-          ],
         ),
       ),
     );

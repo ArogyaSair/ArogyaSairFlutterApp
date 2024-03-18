@@ -156,21 +156,33 @@ class _GetHomeDataState extends State<get_home_data> {
                                                       const EdgeInsets.only(
                                                           left: 10),
                                                   child: Text(packages[index]
-                                                      ["PackageName"]),
+                                                        ["PackageName"],
+                                                    style: TextStyle(
+                                                        color: Colors
+                                                            .teal.shade700),
+                                                  ),
                                                 ),
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
                                                           left: 10),
                                                   child: Text(
-                                                      packages[index]["Price"]),
+                                                    packages[index]["Price"],
+                                                    style: TextStyle(
+                                                        color: Colors
+                                                            .teal.shade700),
+                                                  ),
                                                 ),
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
                                                           left: 10),
                                                   child: Text(
-                                                      "${userMap[index]!["HospitalName"]}"),
+                                                    "${userMap[index]!["HospitalName"]}",
+                                                    style: TextStyle(
+                                                        color: Colors
+                                                            .teal.shade700),
+                                                  ),
                                                 ),
                                                 Padding(
                                                   padding:
@@ -290,8 +302,8 @@ class _GetHomeDataState extends State<get_home_data> {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: i == _currentIndex
-                                      ? Colors.lightBlue
-                                      : Colors.grey,
+                                      ? Colors.blue.shade900
+                                      : Colors.white,
                                 ),
                               );
                             },

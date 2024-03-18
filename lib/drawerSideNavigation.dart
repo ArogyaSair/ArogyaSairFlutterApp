@@ -39,130 +39,157 @@ class _DrawerCode extends State<DrawerCode> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: Colors.white,
-      child: ListView(
-        padding: const EdgeInsets.only(top: 20),
-        children: [
-          Row(
-            children: <Widget>[
-              Flexible(
-                child: Container(
-                  width: 70,
-                  height: 70,
-                  padding: const EdgeInsets.only(bottom: 0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(40),
-                    // Set your desired border radius
-                    child: Image.asset(
-                      'assets/Logo/ArogyaSair.png',
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.blue.shade500,
+            Colors.green.shade400,
+          ],
+        ),
+      ),
+      child: Drawer(
+        backgroundColor: Colors.transparent,
+        child: ListView(
+          padding: const EdgeInsets.only(top: 20),
+          children: [
+            Row(
+              children: <Widget>[
+                Flexible(
+                  child: Container(
+                    width: 70,
+                    height: 70,
+                    padding: const EdgeInsets.only(bottom: 0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(40),
+                      // Set your desired border radius
+                      child: Image.asset(
+                        'assets/Logo/ArogyaSair.png',
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        username,
-                        style: const TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          username,
+                          style: const TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Text(
-                        email,
-                        style: const TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                        Text(
+                          email,
+                          style: const TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
+              ],
+            ),
+            const Divider(
+              thickness: 5,
+              color: Colors.white,
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.account_circle_outlined,
+                color: Colors.white,
               ),
-            ],
-          ),
-          const Divider(
-            thickness: 5,
-            color: Color(0xFFE0E3E7),
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.account_circle_outlined,
-              color: Colors.black,
+              title: const Text(
+                "My Account",
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MyProfile(username, email)));
+              },
             ),
-            title: const Text("My Account"),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MyProfile(username, email)));
-            },
-          ),
-          ListTile(
-            leading: const FaIcon(
-              FontAwesomeIcons.suitcaseMedical,
-              color: Colors.black,
+            ListTile(
+              leading: const FaIcon(
+                FontAwesomeIcons.suitcaseMedical,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "My Packages",
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => const about()));
+              },
             ),
-            title: const Text("My Packages"),
-            onTap: () {
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (context) => const about()));
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.info,
-              color: Colors.black,
+            ListTile(
+              leading: const Icon(
+                Icons.info,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "About us",
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const order()));
+              },
             ),
-            title: const Text("About us"),
-            onTap: () {
-              // Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const order()));
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.email,
-              color: Colors.black,
+            ListTile(
+              leading: const Icon(
+                Icons.email,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "Contact us",
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const order()));
+              },
             ),
-            title: const Text("Contact us"),
-            onTap: () {
-              // Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const order()));
-            },
-          ),
-          const Divider(
-            thickness: 5,
-            color: Color(0xFFE0E3E7),
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.logout_outlined,
-              color: Colors.black,
+            const Divider(
+              thickness: 5,
+              color: Color(0xFFE0E3E7),
             ),
-            title: const Text("Log out"),
-            onTap: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.clear();
-              Navigator.pop(context);
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MyApp()));
-            },
-          ),
-        ],
+            ListTile(
+              leading: const Icon(
+                Icons.logout_outlined,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "Log out",
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.clear();
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const MyApp()));
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
