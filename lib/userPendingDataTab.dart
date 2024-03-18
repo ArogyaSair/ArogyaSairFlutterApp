@@ -16,7 +16,7 @@ class UserPendingData extends StatefulWidget {
 
 class _UserPendingDataState extends State<UserPendingData> {
   late String imagePath;
-  List<Map> Appointments = [];
+  List<Map> appointments = [];
   late String packageImagePath;
   Map<dynamic, dynamic>? userData;
   Map<int, Map> userMap = {};
@@ -40,7 +40,7 @@ class _UserPendingDataState extends State<UserPendingData> {
 
   Future<List<Map>> getPackagesData() async {
     if (dataFetched) {
-      return Appointments; // Return if data has already been fetched
+      return appointments; // Return if data has already been fetched
     }
     DatabaseReference dbRef =
         FirebaseDatabase.instance.ref().child('ArogyaSair/tblAppointment');
@@ -48,14 +48,14 @@ class _UserPendingDataState extends State<UserPendingData> {
     DataSnapshot snapshot = event.snapshot;
 
     if (snapshot.value == null) {
-      return Appointments;
+      return appointments;
     }
 
     Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
 
     values.forEach((key, value) async {
       if (value["Status"] == "Pending") {
-        Appointments.add({
+        appointments.add({
           'HospitalName': value['HospitalId'],
           'Key': key,
           'AppointmentDate': value["AppointmentDate"],
@@ -63,11 +63,11 @@ class _UserPendingDataState extends State<UserPendingData> {
           'Status': value["Status"],
           'UserId': value["UserId"],
         });
-        await fetchUserData(value["HospitalId"], Appointments.length - 1);
+        await fetchUserData(value["HospitalId"], appointments.length - 1);
         dataFetched = true;
       }
     });
-    return Appointments;
+    return appointments;
   }
 
   @override
@@ -82,10 +82,10 @@ class _UserPendingDataState extends State<UserPendingData> {
             if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (snapshot.hasData) {
-              if (Appointments.isNotEmpty) {
+              if (appointments.isNotEmpty && userMap.isNotEmpty) {
                 return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: Appointments.length,
+                  itemCount: appointments.length,
                   itemBuilder: (context, index) {
                     data2 = userMap[index]!;
                     return Card(
@@ -114,7 +114,7 @@ class _UserPendingDataState extends State<UserPendingData> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Text(
-                                        Appointments[index]["Disease"],
+                                        appointments[index]["Disease"],
                                         style: const TextStyle(fontSize: 17),
                                       ),
                                     ),
@@ -124,7 +124,7 @@ class _UserPendingDataState extends State<UserPendingData> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Text(
-                                        Appointments[index]["AppointmentDate"],
+                                        appointments[index]["AppointmentDate"],
                                         style: const TextStyle(fontSize: 17),
                                       ),
                                     ),
@@ -155,8 +155,11 @@ class _UserPendingDataState extends State<UserPendingData> {
                     );
                   },
                 );
+              } else if (userMap.isEmpty) {
+                return const Center(child: CircularProgressIndicator());
               } else {
-                return const Center(child: Text('No hospitals found'));
+                return const Center(
+                    child: Text('No pending appointments found'));
               }
             } else {
               return const Center(child: CircularProgressIndicator());

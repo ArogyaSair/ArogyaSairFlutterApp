@@ -83,7 +83,7 @@ class _UserApprovedDataState extends State<UserApprovedData> {
             if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (snapshot.hasData) {
-              if (Appointments.isNotEmpty) {
+              if (Appointments.isNotEmpty && userMap.isNotEmpty) {
                 return ListView.builder(
                   shrinkWrap: true,
                   itemCount: Appointments.length,
@@ -156,8 +156,11 @@ class _UserApprovedDataState extends State<UserApprovedData> {
                     );
                   },
                 );
+              } else if (userMap.isEmpty) {
+                return const Center(child: CircularProgressIndicator());
               } else {
-                return const Center(child: Text('No hospitals found'));
+                return const Center(
+                    child: Text('No Approved appointments found'));
               }
             } else {
               return const Center(child: CircularProgressIndicator());

@@ -89,7 +89,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
           if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-            if (Appointments.isNotEmpty) {
+            if (Appointments.isNotEmpty && userMap.isNotEmpty) {
               return ListView.builder(
                 itemCount: Appointments.length,
                 itemBuilder: (context, index) {
@@ -356,8 +356,10 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                   );
                 },
               );
+            } else if (userMap.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
             } else {
-              return const Center(child: Text('No hospitals found'));
+              return const Center(child: Text('No delayed appointments found'));
             }
           } else {
             return const Center(child: CircularProgressIndicator());
