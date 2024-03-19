@@ -28,7 +28,9 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
   var imagePath =
       "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2FDefaultProfileImage.png?alt=media";
   Map<dynamic, dynamic>? userData;
+  Map<dynamic, dynamic>? hospitalDoctorData;
   List<Map<dynamic, dynamic>> userMap = []; // Change this line
+  List<Map<dynamic, dynamic>> hospitalDoctorMap = []; // Change this line
 
   @override
   void initState() {

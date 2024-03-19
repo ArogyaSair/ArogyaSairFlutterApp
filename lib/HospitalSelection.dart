@@ -29,7 +29,6 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
   @override
   void initState() {
     super.initState();
-    dbRef = FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
     _loadUserData();
   }
 
@@ -38,14 +37,15 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
     setState(() {
       UserKey = HospitalKey!;
     });
+    dbRef = FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
   }
 
   Future<List<Map>> getHospitalData() async {
     DatabaseEvent event = await dbRef.once();
     DataSnapshot snapshot = event.snapshot;
-    if (snapshot.value == null) {
-      return [];
-    }
+    // if (snapshot.value == null) {
+    //   return [];
+    // }
 
     Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
     List<Map> hospitals = [];
@@ -95,9 +95,7 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
       body: FutureBuilder<List<Map>>(
         future: getHospitalData(),
         builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (snapshot.hasData) {
+          if (snapshot.hasData) {
             List<Map>? hospitals = snapshot.data;
             if (hospitals != null && hospitals.isNotEmpty) {
               return ListView.builder(

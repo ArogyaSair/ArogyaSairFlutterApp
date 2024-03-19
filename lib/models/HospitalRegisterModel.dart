@@ -36,6 +36,7 @@ class HospitalRegisterModel {
         'HospitalCity': city,
         'HospitalState': state,
         'Photo': photo,
+        'AvailableDisease': ""
       };
 
   factory HospitalRegisterModel.fromJson(Map<String, dynamic> v) {

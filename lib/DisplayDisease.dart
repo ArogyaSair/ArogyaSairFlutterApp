@@ -1,7 +1,6 @@
-// ignore_for_file: file_names
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'HospitalSelection.dart';
 import 'models/DiseaseModel.dart';
@@ -14,11 +13,12 @@ class DisplayDisease extends StatefulWidget {
 }
 
 class _DisplayDiseaseState extends State<DisplayDisease> {
-  //our data source
+  String _searchTerm = '';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -40,58 +40,117 @@ class _DisplayDiseaseState extends State<DisplayDisease> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            height: double.infinity,
-            width: double.infinity,
-            child: StreamBuilder(
-              stream: FirebaseDatabase.instance
-                  .ref()
-                  .child("ArogyaSair/tblDisease")
-                  .onValue,
-              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
-                  Map<dynamic, dynamic> map = snapshot.data!.snapshot.value;
-                  List<DiseaseData> diseaseList = [];
-                  diseaseList.clear();
-                  map.forEach((key, value) {
-                    diseaseList.add(DiseaseData.fromMap(value, key));
+          child: Column(
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search diseases',
+                  prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6.0),
+                    borderSide: BorderSide(
+                      color: Colors.grey[400]!,
+                      width: 5.0,
+                    ),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 16.0),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _searchTerm = value.toLowerCase();
                   });
-                  return ListView.builder(
-                    itemCount: diseaseList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        child: Card(
-                          elevation: 2,
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 16),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                              diseaseList[index].diseaseName,
-                              style: const TextStyle(fontSize: 18),
+                },
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: StreamBuilder(
+                  stream: FirebaseDatabase.instance
+                      .ref()
+                      .child("ArogyaSair/tblDisease")
+                      .onValue,
+                  builder:
+                      (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                    if (snapshot.hasData &&
+                        snapshot.data!.snapshot.value != null) {
+                      Map<dynamic, dynamic> map = snapshot.data!.snapshot.value;
+                      List<DiseaseData> diseaseList = [];
+                      diseaseList.clear();
+                      map.forEach((key, value) {
+                        diseaseList.add(DiseaseData.fromMap(value, key));
+                      });
+                      // Filter the diseaseList based on the search term
+                      List<DiseaseData> filteredList = diseaseList
+                          .where((disease) => disease.diseaseName
+                              .toLowerCase()
+                              .contains(_searchTerm))
+                          .toList();
+                      if (filteredList.isEmpty) {
+                        return Center(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Lottie.asset(
+                                  'assets/Animation/searching_disease.json',
+                                  // Path to your Lottie animation file
+                                  width: 350, // Increase the width
+                                  height: 240, // Increase the height
+                                  fit: BoxFit.cover,
+                                ),
+                                const SizedBox(height: 8),
+                                const Text(
+                                  'Not Found',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PackageHospitalSelection(
-                                diseaseList: diseaseList[index],
+                        );
+                      }
+                      return ListView.builder(
+                        itemCount: filteredList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                            child: Card(
+                              elevation: 2,
+                              margin: const EdgeInsets.symmetric(
+                                  vertical: 8, horizontal: 16),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Text(
+                                  filteredList[index].diseaseName,
+                                  style: const TextStyle(fontSize: 18),
+                                ),
                               ),
                             ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      PackageHospitalSelection(
+                                    diseaseList: filteredList[index],
+                                  ),
+                                ),
+                              );
+                            },
                           );
                         },
                       );
-                    },
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),
