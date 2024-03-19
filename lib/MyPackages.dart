@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -64,6 +66,14 @@ class _MyPackagesState extends State<MyPackages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "My Packages",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blue,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       body: FutureBuilder<List<Map>>(
         future: getPackagesData(),
         builder: (context, snapshot) {

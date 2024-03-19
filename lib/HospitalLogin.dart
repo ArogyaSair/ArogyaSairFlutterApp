@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:arogyasair/HospitalPasswordChangeUserName.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -126,6 +127,22 @@ class _LoginState extends State<HospitalLogin> {
                                         labelText: 'Password',
                                         hintText: 'Enter Password',
                                       ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const HospitalPasswordChangeUserName()));
+                                          },
+                                          child:
+                                              const Text("Forgot Password ?"),
+                                        ),
+                                      ],
                                     ),
                                     const SizedBox(
                                       height: 10,

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api, non_constant_identifier_names
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

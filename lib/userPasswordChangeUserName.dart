@@ -1,24 +1,20 @@
-// ignore_for_file: file_names, library_private_types_in_public_api, use_build_context_synchronously, avoid_print
+// ignore_for_file: file_names, library_private_types_in_public_api, use_build_context_synchronously, avoid_print, camel_case_types
 
-import 'dart:convert';
-
+import 'package:arogyasair/UserChangePassword.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
-import 'package:arogyasair/userPasswordChangeUserName.dart';
-import 'package:crypto/crypto.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-import 'BottomNavigation.dart';
-import 'Registration.dart';
-
-class Login extends StatefulWidget {
-  const Login({super.key});
+class userPasswordChangeUserName extends StatefulWidget {
+  const userPasswordChangeUserName({super.key});
 
   @override
-  _LoginState createState() => _LoginState();
+  userPasswordChangeUserNameState createState() =>
+      userPasswordChangeUserNameState();
 }
 
-class _LoginState extends State<Login> {
+class userPasswordChangeUserNameState
+    extends State<userPasswordChangeUserName> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   TextEditingController controlleruname = TextEditingController();
@@ -43,7 +39,7 @@ class _LoginState extends State<Login> {
               child: const Padding(
                 padding: EdgeInsets.only(top: 60, left: 22),
                 child: Text(
-                  "Login",
+                  "Please Enter Username",
                   style: TextStyle(
                       fontSize: 30,
                       color: Colors.white,
@@ -99,55 +95,6 @@ class _LoginState extends State<Login> {
                                       const SizedBox(
                                         height: 20,
                                       ),
-                                      TextFormField(
-                                        controller: controllerpassword,
-                                        obscureText: !isPasswordVisible,
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'Please enter password';
-                                          }
-                                          return null;
-                                        },
-                                        decoration: InputDecoration(
-                                          prefixIcon: const Icon(Icons.lock),
-                                          suffixIcon: IconButton(
-                                            icon: Icon(
-                                              isPasswordVisible
-                                                  ? Icons.visibility
-                                                  : Icons.visibility_off,
-                                            ),
-                                            onPressed: () {
-                                              _togglePasswordVisibility(
-                                                  context);
-                                            },
-                                          ),
-                                          prefixIconColor: Colors.blue,
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          labelText: 'Password',
-                                          hintText: 'Enter Password',
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const userPasswordChangeUserName()));
-                                            },
-                                            child:
-                                                const Text("Forgot Password ?"),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
                                       Container(
                                         height: 50,
                                         width: 300,
@@ -173,7 +120,7 @@ class _LoginState extends State<Login> {
                                             shadowColor: Colors.transparent,
                                           ),
                                           child: const Text(
-                                            'LOG IN',
+                                            'Change Password',
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
@@ -181,44 +128,6 @@ class _LoginState extends State<Login> {
                                       ),
                                       const SizedBox(
                                         height: 20,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Padding(
-                                            padding: EdgeInsets.all(0),
-                                            child: Text(
-                                              "Don't have account yet..?",
-                                              style: TextStyle(
-                                                  color: Colors.blue,
-                                                  fontSize: 16),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(0),
-                                            child: TextButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const Registration()),
-                                                );
-                                              },
-                                              child: const Text(
-                                                "Register here",
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontStyle: FontStyle.italic,
-                                                    color: Colors.blue,
-                                                    decoration: TextDecoration
-                                                        .underline),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
                                       ),
                                     ],
                                   ),
@@ -245,41 +154,33 @@ class _LoginState extends State<Login> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  void _togglePasswordVisibility(BuildContext context) {
-    setState(() {
-      isPasswordVisible = !isPasswordVisible;
-    });
-  }
-
   void _performLogin(BuildContext context) async {
     final scaffoldContext = context;
 
     var username = controlleruname.text;
-    var password = controllerpassword.text;
-    var encPassword = encryptString(password);
     Query dbRef2 = FirebaseDatabase.instance
         .ref()
         .child('ArogyaSair/tblUser')
         .orderByChild("Username")
         .equalTo(username);
-    String msg = "Invalid Username or Password..! Please check..!!";
+    String msg = "No Username found";
     Map data;
     var count = 0;
     await dbRef2.once().then((documentSnapshot) async {
       for (var x in documentSnapshot.snapshot.children) {
         String? key = x.key;
         data = x.value as Map;
-        if (data["Username"] == username &&
-            data["Password"].toString() == encPassword) {
-          await saveData('username', data["Username"]);
+        if (data["Username"] == username) {
           await saveData('email', data["Email"]);
           await saveData('key', key);
           count = count + 1;
           Navigator.pop(context);
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const bottomBar()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const UserChangePassword()));
         } else {
-          msg = "Sorry..! Wrong Username or Password";
+          msg = "Sorry..! No Username found";
           _showSnackbar(scaffoldContext, msg);
         }
       }
@@ -304,10 +205,4 @@ class _LoginState extends State<Login> {
       }
     });
   }
-}
-
-String encryptString(String originalString) {
-  var bytes = utf8.encode(originalString); // Convert string to bytes
-  var digest = sha256.convert(bytes); // Apply SHA-256 hash function
-  return digest.toString(); // Return the hashed string
 }

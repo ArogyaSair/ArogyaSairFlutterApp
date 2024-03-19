@@ -223,7 +223,7 @@ class _GetHomeDataState extends State<get_home_data> {
                                                                     packageImagePath,
                                                                 HospitalKey:
                                                                     packages[index]
-                                                                        ["key"]),
+                                                                        ["Key"]),
                                                           ),
                                                         );
                                                       },

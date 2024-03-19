@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, file_names, prefer_typing_uninitialized_variables
 
-import 'package:arogyasair/contact.dart';
+import 'package:arogyasair/MyPackages.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,6 @@ class _PaymentPageState extends State<PaymentPage> {
   late final Future<PaymentConfiguration> _googlePayConfigFuture;
 
   void onGooglePayResult(paymentResult) {
-    // print(GooglePayButtonType.book);
     BookingPackagesInformationModel regobj = BookingPackagesInformationModel(
         widget.PackageName,
         widget.Price,
@@ -55,18 +54,12 @@ class _PaymentPageState extends State<PaymentPage> {
         UserKey);
 
     dbRef2.push().set(regobj.toJson());
+    Navigator.pop(context);
+    Navigator.pop(context);
+    Navigator.pop(context);
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => contact(
-          PackageName: widget.PackageName,
-          Price: widget.Price,
-          HospitalName: widget.HospitalName,
-          Duration: widget.Duration,
-          Incude: widget.Include,
-          Image: widget.Image,
-        ),
-      ),
+      MaterialPageRoute(builder: (context) => const MyPackages()),
     );
     // debugPrint(paymentResult.toString());
   }

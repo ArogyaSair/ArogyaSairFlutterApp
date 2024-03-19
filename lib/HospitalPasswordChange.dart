@@ -6,12 +6,6 @@ import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 
-// void main() {
-//   runApp(const MaterialApp(
-//     home: HospitalChangePassword(),
-//   ));
-// }
-
 class HospitalChangePassword extends StatefulWidget {
   const HospitalChangePassword({super.key});
 

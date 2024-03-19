@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:arogyasair/hospitalNewDoctorAdd.dart';
 import 'package:arogyasair/models/HospitalDoctorModel.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
@@ -35,6 +37,8 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
   }
 
   Future<void> fetchUserData() async {
+    imagePath =
+        "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2FDefaultProfileImage.png?alt=media";
     DatabaseReference dbUserData =
         FirebaseDatabase.instance.ref().child("ArogyaSair/tblDoctor");
     DatabaseEvent userDataEvent = await dbUserData.once();
@@ -95,7 +99,9 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
               child: FutureBuilder<void>(
                 future: getSpecializationData(),
                 builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
+                  if (snapshot.connectionState == ConnectionState.waiting &&
+                      itemsSpecialization.isEmpty &&
+                      userMap.isEmpty) {
                     return const CircularProgressIndicator();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
@@ -140,8 +146,6 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                           }).toList(),
                                           onChanged: (String? newValue) {
                                             setState(() {
-                                              print(
-                                                  "itemsSpecialization = $itemsSpecialization");
                                               selectedDoctors = newValue!;
                                               if (selectedDoctors !=
                                                   "Select Specialization") {
@@ -180,7 +184,6 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                     selectedDoctors == user['Speciality'])
                                 .toList();
                             final user = filteredUsers[index];
-                            print("user photo ${user["Photo"]}");
                             if (user["Photo"] != "") {
                               imagePath =
                                   "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2F${user["Photo"]}?alt=media";
