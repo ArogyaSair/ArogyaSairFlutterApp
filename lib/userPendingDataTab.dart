@@ -158,11 +158,10 @@ class _UserPendingDataState extends State<UserPendingData> {
               } else if (userMap.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                return const Center(
-                    child: Text('No pending appointments found'));
+                return const Center(child: CircularProgressIndicator());
               }
             } else {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: Text('No pending appointments found'));
             }
           },
         ),

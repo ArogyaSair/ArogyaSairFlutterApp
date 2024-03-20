@@ -135,6 +135,8 @@ class _EditProfileState extends State<EditProfile> {
                       decoration: const InputDecoration(
                         hintText: "Username",
                         prefixIcon: Icon(Icons.person),
+                        disabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(15),
