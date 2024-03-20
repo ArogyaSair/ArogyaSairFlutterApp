@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:arogyasair/userHospitalDetails.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -75,10 +76,10 @@ class _SearchPageState extends State<SearchPage>
                 hospitals.add(Map.from(value));
               }
             } else {
-              // If 'Photo' field is empty or null, add a placeholder
               hospitals.add({
                 'HospitalName': value['HospitalName'],
                 'HospitalCity': value['HospitalCity'],
+                'Email': value['Email'],
                 'Photo': 'noimage',
                 // Placeholder value
               });
@@ -146,6 +147,15 @@ class _SearchPageState extends State<SearchPage>
                           ? 'https://via.placeholder.com/150' // Placeholder image URL
                           : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
                       return ListTile(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  HospitalDetails(hospitalKey: data1["Email"]),
+                            ),
+                          );
+                        },
                         contentPadding: const EdgeInsets.all(1),
                         leading: Image.network(imagePath),
                         title: Text(data1['HospitalName'].toString()),

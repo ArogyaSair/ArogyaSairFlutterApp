@@ -1,67 +1,90 @@
-// ignore_for_file: non_constant_identifier_names, file_names, prefer_typing_uninitialized_variables
+// ignore_for_file: file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables
 
-import 'package:arogyasair/MyPackages.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
 
-import 'models/BookedPackageInformation.dart';
+import 'AppointmentInformation.dart';
+import 'models/AppointmentDateSelectionModel.dart';
+import 'models/SurgeryData.dart';
 import 'payment_configurations.dart' as payment_configurations;
 
-class PaymentPage extends StatefulWidget {
-  final String PackageName;
-  final String Price;
+class SurgeryPaymentPage extends StatefulWidget {
+  final SurgeryModel item;
   final String HospitalName;
   final String HospitalKey;
-  final String Duration;
-  final String Include;
-  final String Date;
-  final String Image;
+  final String birthDate;
 
-  const PaymentPage(
+  const SurgeryPaymentPage(
       {super.key,
-      required this.PackageName,
-      required this.Price,
+      required this.item,
       required this.HospitalName,
-      required this.Duration,
-      required this.Include,
-      required this.Image,
-      required this.Date,
-      required this.HospitalKey});
+      required this.HospitalKey,
+      required this.birthDate});
 
   @override
-  State<PaymentPage> createState() => _PaymentPageState();
+  State<SurgeryPaymentPage> createState() => _SurgeryPaymentPageState();
 }
 
-class _PaymentPageState extends State<PaymentPage> {
+class _SurgeryPaymentPageState extends State<SurgeryPaymentPage> {
   DatabaseReference dbRef2 =
-      FirebaseDatabase.instance.ref().child('ArogyaSair/tblBookedPackages');
+      FirebaseDatabase.instance.ref().child('ArogyaSair/tblAppointment');
+  var birthDate = "Select Appointment Date";
+  TextEditingController controllerDateOfBirth = TextEditingController();
+  TextEditingController controllerStatus = TextEditingController();
   late String UserKey;
   final key = 'userKey';
+  late bool containsKey;
+
   late var _paymentItems;
 
   late final Future<PaymentConfiguration> _googlePayConfigFuture;
 
   void onGooglePayResult(paymentResult) {
-    BookingPackagesInformationModel regobj = BookingPackagesInformationModel(
-        widget.PackageName,
-        widget.Price,
-        widget.HospitalKey,
-        widget.Duration,
-        widget.Include,
-        widget.Date,
-        UserKey);
-
-    dbRef2.push().set(regobj.toJson());
-    Navigator.pop(context);
-    Navigator.pop(context);
-    Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const MyPackages()),
-    );
-    // debugPrint(paymentResult.toString());
+    var Hospitalkey = widget.HospitalKey;
+    var HospitalName1 = widget.HospitalName;
+    var Disease = widget.item.toString();
+    var Date = widget.birthDate;
+    var User = UserKey;
+    var Status = "Pending";
+    if (birthDate != "Select Appointment Date") {
+      AppointmentDateSelectionModel regobj = AppointmentDateSelectionModel(
+          Hospitalkey, Disease, Date, User, Status);
+      dbRef2.push().set(regobj.toJson());
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AppointmentInformation(
+            HospitalName: HospitalName1,
+            item: widget.item.toString(),
+            Date: Date.toString(),
+            Status: Status,
+          ),
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Date Selection"),
+            content: const Text("Please Select Date for appointment"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  "OK",
+                ),
+              )
+            ],
+          );
+        },
+      );
+    }
   }
 
   void onApplePayResult(paymentResult) {
@@ -71,30 +94,31 @@ class _PaymentPageState extends State<PaymentPage> {
   @override
   void initState() {
     super.initState();
-    _googlePayConfigFuture =
-        PaymentConfiguration.fromAsset('default_google_pay_config.json');
+    controllerDateOfBirth = TextEditingController(text: birthDate);
     _loadUserData();
-    _paymentItems = [
-      const PaymentItem(
-        label: 'Total',
-        amount: "200",
-        status: PaymentItemStatus.final_price,
-      )
-    ];
   }
 
   Future<void> _loadUserData() async {
-    String? Userkey = await getKey();
+    _googlePayConfigFuture =
+        PaymentConfiguration.fromAsset('default_google_pay_config.json');
+    String? HospitalKey = await getKey();
     setState(() {
-      UserKey = Userkey!;
+      UserKey = HospitalKey!;
     });
+    _paymentItems = [
+      const PaymentItem(
+        label: 'Total',
+        amount: '200',
+        status: PaymentItemStatus.final_price,
+      )
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Check Out Page"),
+        title: const Text("Payment Page"),
       ),
       body: Card(
         elevation: 3,
@@ -104,12 +128,6 @@ class _PaymentPageState extends State<PaymentPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                widget.Image,
-                width: double.infinity,
-                height: 200,
-                fit: BoxFit.cover,
-              ),
               const Text(
                 'Hospital Name:',
                 style: TextStyle(
@@ -125,30 +143,16 @@ class _PaymentPageState extends State<PaymentPage> {
                 ),
               ),
               const Text(
-                'Package Name:',
+                'Appointment For Name:',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
               const SizedBox(height: 5),
-              Text(
-                widget.PackageName,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
               const Text(
-                'Duration:',
+                "General Checkup",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.Duration,
-                style: const TextStyle(
                   fontSize: 14,
                 ),
               ),
@@ -161,38 +165,7 @@ class _PaymentPageState extends State<PaymentPage> {
               ),
               const SizedBox(height: 5),
               Text(
-                widget.Date,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              const Text(
-                'Include:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.Include,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Divider(),
-              const SizedBox(height: 10),
-              const Text(
-                'Total Price:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                "₹ ${widget.Price}",
+                widget.birthDate,
                 style: const TextStyle(
                   fontSize: 14,
                 ),

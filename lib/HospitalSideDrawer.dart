@@ -6,9 +6,6 @@ import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'about.dart';
-import 'hospitalPackagesAdd.dart';
-import 'order.dart';
 
 class HospitalDrawerCode extends StatefulWidget {
   const HospitalDrawerCode({super.key});
@@ -111,71 +108,6 @@ class _DrawerCode extends State<HospitalDrawerCode> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const HospitalProfile(),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.settings,
-              color: Colors.black,
-            ),
-            title: const Text("Settings"),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const about(),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.medical_services,
-              color: Colors.black,
-            ),
-            title: const Text("Packages"),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      HospitalPackageAdd(hospitalKey: userKey.toString()),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.info,
-              color: Colors.black,
-            ),
-            title: const Text("About us"),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const order(),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.email,
-              color: Colors.black,
-            ),
-            title: const Text("Contact us"),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const order(),
                 ),
               );
             },

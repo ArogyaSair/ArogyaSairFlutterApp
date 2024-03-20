@@ -1,38 +1,50 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 
-class contact extends StatelessWidget {
-  final String PackageName;
-  final String Price;
-  final String HospitalName;
-  final String Duration;
-  final String Incude;
-  final String Image;
-
-  const contact({super.key,
-      required this.PackageName,
-      required this.Price,
-      required this.HospitalName,
-      required this.Duration,
-      required this.Incude,
-      required this.Image});
+class ContactUs extends StatelessWidget {
+  const ContactUs({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Contact'),
+        backgroundColor: Colors.blue.shade900,
+        title: const Text(
+          'Contact',
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
-      body: Column(
+      body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(PackageName),
-          Text(Price),
-          Text(HospitalName),
-          Text(Duration),
-          Text(Incude),
-          Text(Image),
+          Text(
+            'Contact Us',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 8.0),
+          Text(
+            'Address: 123 Main Street, City, Country',
+            style: TextStyle(fontSize: 16.0),
+          ),
+          Text(
+            'Phone: +1 234 567 890',
+            style: TextStyle(fontSize: 16.0),
+          ),
+          Text(
+            'Email: info@arogyasair.com',
+            style: TextStyle(fontSize: 16.0),
+          ),
         ],
       ),
     );

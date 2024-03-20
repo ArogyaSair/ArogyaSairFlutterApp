@@ -2,13 +2,14 @@
 
 import 'package:arogyasair/LandingPage.dart';
 import 'package:arogyasair/MyPackages.dart';
+import 'package:arogyasair/about.dart';
+import 'package:arogyasair/contact.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'ProfilePage.dart';
-import 'order.dart';
 
 class DrawerCode extends StatefulWidget {
   const DrawerCode({super.key});
@@ -129,7 +130,7 @@ class _DrawerCode extends State<DrawerCode> {
             onTap: () {
               // Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const order()));
+                  MaterialPageRoute(builder: (context) => const AboutUs()));
             },
           ),
           ListTile(
@@ -141,7 +142,7 @@ class _DrawerCode extends State<DrawerCode> {
             onTap: () {
               // Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const order()));
+                  MaterialPageRoute(builder: (context) => const ContactUs()));
             },
           ),
           const Divider(

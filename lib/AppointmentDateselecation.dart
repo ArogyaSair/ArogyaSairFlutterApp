@@ -1,16 +1,12 @@
 // ignore_for_file: file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables
 
+import 'package:arogyasair/SurgeryPaymentPage.dart';
 import 'package:arogyasair/models/SurgeryData.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
-import 'package:pay/pay.dart';
-
-import 'AppointmentInformation.dart';
-import 'models/AppointmentDateSelectionModel.dart';
-import 'payment_configurations.dart' as payment_configurations;
 
 class AppointmentDateSelection extends StatefulWidget {
   final SurgeryModel item;
@@ -39,60 +35,6 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
   final key = 'userKey';
   late bool containsKey;
 
-  late var _paymentItems;
-
-  late final Future<PaymentConfiguration> _googlePayConfigFuture;
-
-  void onGooglePayResult(paymentResult) {
-    var Hospitalkey = widget.HospitalKey;
-    var HospitalName1 = widget.HospitalName;
-    var Disease = widget.item.toString();
-    var Date = birthDate;
-    var User = UserKey;
-    var Status = "Pending";
-    if (birthDate != "Select Appointment Date") {
-      AppointmentDateSelectionModel regobj = AppointmentDateSelectionModel(
-          Hospitalkey, Disease, Date, User, Status);
-      dbRef2.push().set(regobj.toJson());
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => AppointmentInformation(
-            HospitalName: HospitalName1,
-            item: widget.item.toString(),
-            Date: Date.toString(),
-            Status: Status,
-          ),
-        ),
-      );
-    } else {
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text("Date Selection"),
-            content: const Text("Please Select Date for appointment"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  "OK",
-                ),
-              )
-            ],
-          );
-        },
-      );
-    }
-  }
-
-  void onApplePayResult(paymentResult) {
-    debugPrint(paymentResult.toString());
-  }
-
   @override
   void initState() {
     super.initState();
@@ -101,19 +43,10 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
   }
 
   Future<void> _loadUserData() async {
-    _googlePayConfigFuture =
-        PaymentConfiguration.fromAsset('default_google_pay_config.json');
     String? HospitalKey = await getKey();
     setState(() {
       UserKey = HospitalKey!;
     });
-    _paymentItems = [
-      const PaymentItem(
-        label: 'Total',
-        amount: '100',
-        status: PaymentItemStatus.final_price,
-      )
-    ];
   }
 
   @override
@@ -180,35 +113,43 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
                       fillColor: const Color(0xffE0E3E7),
                     ),
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: FutureBuilder<PaymentConfiguration>(
-                      future: _googlePayConfigFuture,
-                      builder: (context, snapshot) => snapshot.hasData
-                          ? GooglePayButton(
-                              paymentConfiguration: snapshot.data!,
-                              paymentItems: _paymentItems,
-                              type: GooglePayButtonType.book,
-                              margin: const EdgeInsets.only(top: 15.0),
-                              onPaymentResult: onGooglePayResult,
-                              loadingIndicator: const Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                            )
-                          : ApplePayButton(
-                              paymentConfiguration:
-                                  PaymentConfiguration.fromJsonString(
-                                      payment_configurations.defaultApplePay),
-                              paymentItems: _paymentItems,
-                              style: ApplePayButtonStyle.black,
-                              type: ApplePayButtonType.book,
-                              margin: const EdgeInsets.only(top: 15.0),
-                              onPaymentResult: onApplePayResult,
-                              loadingIndicator: const Center(
-                                child: CircularProgressIndicator(),
-                              ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (birthDate == "Select Appointment Date") {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text("Alert Message"),
+                              content: const Text("Please Select Date"),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SurgeryPaymentPage(
+                              item: widget.item,
+                              HospitalName: widget.HospitalName,
+                              HospitalKey: widget.HospitalKey,
+                              key: widget.key,
+                              birthDate: birthDate,
                             ),
-                    ),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text("Proceed for Payment"),
                   ),
                 ],
               ),
