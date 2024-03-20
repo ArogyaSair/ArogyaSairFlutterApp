@@ -26,7 +26,7 @@ class _MyUpdatesState extends State<MyUpdates> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.blue.shade900,
           automaticallyImplyLeading: false,
           title: const Text(
             'Arogya Sair',

@@ -84,7 +84,7 @@ class _MyProfileState extends State<MyProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blue.shade900,
         automaticallyImplyLeading: false,
         title: const Text(
           'Arogya Sair',
@@ -116,7 +116,7 @@ class _MyProfileState extends State<MyProfile> {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Colors.blue.shade900,
                       child: Text(
                         widget.username.isNotEmpty
                             ? widget.username[0].toUpperCase()

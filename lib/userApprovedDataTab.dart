@@ -159,11 +159,11 @@ class _UserApprovedDataState extends State<UserApprovedData> {
               } else if (userMap.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                    child: Text('No Approved appointments found'));
               }
             } else {
-              return const Center(
-                  child: Text('No Approved appointments found'));
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),
