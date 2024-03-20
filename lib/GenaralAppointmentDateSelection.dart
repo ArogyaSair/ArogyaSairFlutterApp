@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables
 
-import 'package:arogyasair/models/SurgeryData.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -12,23 +11,24 @@ import 'AppointmentInformation.dart';
 import 'models/AppointmentDateSelectionModel.dart';
 import 'payment_configurations.dart' as payment_configurations;
 
-class AppointmentDateSelection extends StatefulWidget {
-  final SurgeryModel item;
+class GeneralAppointmentDateSelection extends StatefulWidget {
+  final String item;
   final String HospitalName;
   final String HospitalKey;
 
-  const AppointmentDateSelection(
+  const GeneralAppointmentDateSelection(
       {super.key,
       required this.item,
       required this.HospitalName,
       required this.HospitalKey});
 
   @override
-  State<AppointmentDateSelection> createState() =>
-      _AppointmentDateSelectionState();
+  State<GeneralAppointmentDateSelection> createState() =>
+      _GeneralAppointmentDateSelectionState();
 }
 
-class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
+class _GeneralAppointmentDateSelectionState
+    extends State<GeneralAppointmentDateSelection> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   DatabaseReference dbRef2 =
       FirebaseDatabase.instance.ref().child('ArogyaSair/tblAppointment');
@@ -124,7 +124,7 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
           "Packages",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue.shade900,
+        backgroundColor: Colors.blue,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(

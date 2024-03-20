@@ -462,6 +462,7 @@ class _HospitalNewDoctorAddState extends State<HospitalNewDoctorAdd> {
                             .map((item) => item.specialization)
                             .join(',');
                         if (password == confirmPassword) {
+                          uploadImage();
                           DoctorRegisterModel regobj = DoctorRegisterModel(
                               password1,
                               email,
@@ -472,7 +473,6 @@ class _HospitalNewDoctorAddState extends State<HospitalNewDoctorAdd> {
                               address,
                               fileName,
                               specilization);
-                          uploadImage();
                           dbRef2.push().set(regobj.toJson());
                           Navigator.of(context).pop();
                         } else {

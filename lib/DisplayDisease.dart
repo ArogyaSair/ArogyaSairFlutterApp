@@ -1,18 +1,20 @@
+// ignore_for_file: file_names
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'HospitalSelection.dart';
-import 'models/DiseaseModel.dart';
+import 'models/SurgeryData.dart';
 
-class DisplayDisease extends StatefulWidget {
-  const DisplayDisease({super.key});
+class DisplaySurgery extends StatefulWidget {
+  const DisplaySurgery({super.key});
 
   @override
-  State<DisplayDisease> createState() => _DisplayDiseaseState();
+  State<DisplaySurgery> createState() => _DisplayDiseaseState();
 }
 
-class _DisplayDiseaseState extends State<DisplayDisease> {
+class _DisplayDiseaseState extends State<DisplaySurgery> {
   String _searchTerm = '';
 
   @override
@@ -23,10 +25,10 @@ class _DisplayDiseaseState extends State<DisplayDisease> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text(
-            "Disease",
+            "Surgeries",
             style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.blue.shade900,
           elevation: 0,
           leading: IconButton(
             icon: const Icon(
@@ -44,7 +46,7 @@ class _DisplayDiseaseState extends State<DisplayDisease> {
             children: [
               TextField(
                 decoration: InputDecoration(
-                  hintText: 'Search diseases',
+                  hintText: 'Search Surgery',
                   prefixIcon: const Icon(Icons.search, color: Colors.grey),
                   filled: true,
                   fillColor: Colors.grey[200],
@@ -69,21 +71,21 @@ class _DisplayDiseaseState extends State<DisplayDisease> {
                 child: StreamBuilder(
                   stream: FirebaseDatabase.instance
                       .ref()
-                      .child("ArogyaSair/tblDisease")
+                      .child("ArogyaSair/AllSurgeries")
                       .onValue,
                   builder:
                       (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                     if (snapshot.hasData &&
                         snapshot.data!.snapshot.value != null) {
                       Map<dynamic, dynamic> map = snapshot.data!.snapshot.value;
-                      List<DiseaseData> diseaseList = [];
-                      diseaseList.clear();
+                      List<SurgeryModel> surgeryList = [];
+                      surgeryList.clear();
                       map.forEach((key, value) {
-                        diseaseList.add(DiseaseData.fromMap(value, key));
+                        surgeryList.add(SurgeryModel.fromMap(value, key));
                       });
                       // Filter the diseaseList based on the search term
-                      List<DiseaseData> filteredList = diseaseList
-                          .where((disease) => disease.diseaseName
+                      List<SurgeryModel> filteredList = surgeryList
+                          .where((surgery) => surgery.surgery
                               .toLowerCase()
                               .contains(_searchTerm))
                           .toList();
@@ -123,7 +125,7 @@ class _DisplayDiseaseState extends State<DisplayDisease> {
                               child: Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Text(
-                                  filteredList[index].diseaseName,
+                                  filteredList[index].surgery,
                                   style: const TextStyle(fontSize: 18),
                                 ),
                               ),

@@ -1,6 +1,6 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
-import 'package:arogyasair/DisplayDisease.dart';
+import 'package:arogyasair/DisplayHospitals.dart';
 import 'package:arogyasair/drawerSideNavigation.dart';
 import 'package:arogyasair/get_home_data.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
@@ -9,6 +9,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import 'DisplayDisease.dart';
 import 'SearchPage.dart';
 import 'models/HomePageModel.dart';
 
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
           height: constraints.maxHeight * 1,
           child: Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.blue.shade900,
               automaticallyImplyLeading: false,
               title: const Text(
                 'Arogya Sair',
@@ -80,16 +81,17 @@ class _HomePageState extends State<HomePage> {
                           width: double.infinity,
                           height: 0,
                           decoration: BoxDecoration(
-                            color: Colors.blue,
-                            boxShadow: const [
-                              BoxShadow(
-                                blurRadius: 5,
-                                color: Colors.blue,
-                                offset: Offset(0, 2),
-                                spreadRadius: 2,
-                              )
-                            ],
                             borderRadius: BorderRadius.circular(18),
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.blue.shade800,
+                                Colors.blue.shade700,
+                                Colors.teal.shade400,
+                                Colors.teal.shade300,
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.centerRight,
+                            ),
                           ),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -159,70 +161,137 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const get_home_data(),
                   GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DisplayDisease(),
-                          ),
-                        );
-                      },
-                      child: Card(
-                        elevation: 8,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DisplaySurgery(),
                         ),
-                        margin: const EdgeInsets.all(16),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.blue.shade700,
-                                Colors.purple.shade300,
-                                Colors.purple.shade600
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
+                      );
+                    },
+                    child: Card(
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      margin: const EdgeInsets.all(16),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.blue.shade800,
+                              Colors.blue.shade700,
+                              Colors.teal.shade400,
+                              Colors.teal.shade300,
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.centerRight,
                           ),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: constraints.maxHeight * 0.15,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Center(
-                                    child: Lottie.asset(
-                                      'assets/Animation/treatment.json',
-                                      width: 180,
-                                      height: 120,
-                                    ),
+                        ),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: constraints.maxHeight * 0.15,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Center(
+                                  child: Lottie.asset(
+                                    'assets/Animation/treatment.json',
+                                    width: 180,
+                                    height: 120,
                                   ),
                                 ),
-                                const Expanded(
-                                  flex: 2,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(right: 55),
-                                    child: Center(
-                                      child: Text(
-                                        'Request For Treatment',
-                                        style: TextStyle(
+                              ),
+                              const Expanded(
+                                flex: 2,
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 55),
+                                  child: Center(
+                                    child: Text(
+                                      'Request For Surgery',
+                                      style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
+                                          color: Colors.white),
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DisplayHospitals(),
+                        ),
+                      );
+                    },
+                    child: Card(
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      margin: const EdgeInsets.all(16),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.blue.shade800,
+                              Colors.blue.shade700,
+                              Colors.teal.shade400,
+                              Colors.teal.shade300,
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.centerRight,
+                          ),
+                        ),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: constraints.maxHeight * 0.15,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Center(
+                                  child: Lottie.asset(
+                                    'assets/Animation/treatment.json',
+                                    width: 180,
+                                    height: 120,
+                                  ),
+                                ),
+                              ),
+                              const Expanded(
+                                flex: 2,
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 55),
+                                  child: Center(
+                                    child: Text(
+                                      'Request For Check up',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   StreamBuilder(
                     stream: dbRef2.onValue,
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -259,15 +328,22 @@ class _HomePageState extends State<HomePage> {
                               child: GestureDetector(
                                 child: Card(
                                   elevation: 8,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  margin: const EdgeInsets.all(16),
                                   child: Container(
                                     decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
                                       gradient: LinearGradient(
                                         colors: [
-                                          Colors.blue.shade900,
+                                          Colors.blue.shade800,
+                                          Colors.blue.shade700,
                                           Colors.teal.shade400,
+                                          Colors.teal.shade300,
                                         ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.centerRight,
                                       ),
                                     ),
                                     child: Column(
@@ -284,9 +360,9 @@ class _HomePageState extends State<HomePage> {
                                                   imagePath,
                                                   height:
                                                       constraints.maxHeight *
-                                                          0.13,
+                                                          0.1,
                                                   width: constraints.maxHeight *
-                                                      0.22,
+                                                      0.2,
                                                 ),
                                               ),
                                             ),
@@ -327,6 +403,17 @@ class _HomePageState extends State<HomePage> {
                                                       child: Text(
                                                         packagesList[index]
                                                             .hospitalEmail,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 5),
+                                                      child: Text(
+                                                        "${packagesList[index].hospitalCity}, ${packagesList[index].hospitalState}",
                                                         style: const TextStyle(
                                                             color:
                                                                 Colors.white),

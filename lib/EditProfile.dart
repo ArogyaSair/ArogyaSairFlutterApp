@@ -130,12 +130,16 @@ class _EditProfileState extends State<EditProfile> {
                     padding: const EdgeInsets.all(10),
                     child: TextFormField(
                       controller: controllerUsername,
+                      enabled: false,
+                      style: const TextStyle(color: Colors.black),
                       decoration: const InputDecoration(
                         hintText: "Username",
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15),
+                            ),
+                            borderSide: BorderSide(color: Colors.black)),
                       ),
                     ),
                   ),

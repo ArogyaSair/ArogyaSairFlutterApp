@@ -8,10 +8,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
-import 'models/DiseaseModel.dart';
+import 'models/SurgeryData.dart';
 
 class PackageHospitalSelection extends StatefulWidget {
-  final DiseaseData diseaseList;
+  final SurgeryModel diseaseList;
 
   const PackageHospitalSelection({super.key, required this.diseaseList});
 
@@ -43,20 +43,19 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
   Future<List<Map>> getHospitalData() async {
     DatabaseEvent event = await dbRef.once();
     DataSnapshot snapshot = event.snapshot;
-    // if (snapshot.value == null) {
-    //   return [];
-    // }
 
     Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
     List<Map> hospitals = [];
 
+    // print("values $values");
+
     values.forEach((key, value) {
-      if (value['AvailableDisease'].contains(widget.diseaseList.diseaseName)) {
+      if (value['AvailableSurgeries'].contains(widget.diseaseList.surgery)) {
         if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
           hospitals.add({
             'HospitalName': value['HospitalName'],
             'Photo': value["Photo"],
-            'AvailableDisease': value['AvailableDisease'],
+            'AvailableDisease': value['AvailableSurgeries'],
             'Key': key,
           });
         } else {
@@ -64,7 +63,7 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
             'HospitalName': value['HospitalName'],
             'Photo': 'ArogyaSair.png',
             'Key': key,
-            'AvailableDisease': value['AvailableDisease'],
+            'AvailableDisease': value['AvailableSurgeries'],
           });
         }
       }
@@ -80,7 +79,7 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
           "Hospitals",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blue.shade900,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -95,8 +94,12 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
       body: FutureBuilder<List<Map>>(
         future: getHospitalData(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
             List<Map>? hospitals = snapshot.data;
+          if (!snapshot.hasData) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
             if (hospitals != null && hospitals.isNotEmpty) {
               return ListView.builder(
                 itemCount: hospitals.length,
@@ -140,8 +143,6 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
             } else {
               return const Center(child: Text('No hospitals found'));
             }
-          } else {
-            return const Center(child: CircularProgressIndicator());
           }
         },
       ),

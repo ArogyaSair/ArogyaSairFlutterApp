@@ -62,7 +62,7 @@ class _GetHomeDataState extends State<get_home_data> {
         } else {
           packages.add({
             'HospitalName': value['HospitalName'],
-            'Photo': 'DefaultProfileImage.png',
+            'Photo': 'ArogyaSair.png',
             'Key': key,
             'Duration': value["Duration"],
             'PackageName': value["PackageName"],
@@ -83,7 +83,8 @@ class _GetHomeDataState extends State<get_home_data> {
     return Padding(
       padding: const EdgeInsets.all(1),
       child: SizedBox(
-        height: MediaQuery.of(context).size.width * 0.6,
+        // home page size
+        height: MediaQuery.of(context).size.width * 0.47,
         width: double.infinity,
         child: FutureBuilder<List<Map>>(
           future: getPackagesData(),
@@ -91,23 +92,17 @@ class _GetHomeDataState extends State<get_home_data> {
             if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (snapshot.hasData && userMap.isNotEmpty) {
-              // List<Map>? pa = snapshot.data;
               if (packages.isNotEmpty) {
                 return ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: packages.length,
                   itemBuilder: (context, index) {
-                    var imageName = packages[index]['Photo'] == 'noimage'
-                        ? 'noimage'
-                        : "PackageImage%2F${packages[index]['Photo']}";
-                    var imagePath = packages[index]['Photo'] == 'noimage'
-                        ? 'https://via.placeholder.com/150' // Placeholder image URL
-                        : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
                     return Column(
                       children: [
                         SizedBox(
-                          height: MediaQuery.of(context).size.width * 0.5,
+                          // dots place
+                          height: MediaQuery.of(context).size.width * 0.4,
                           width: MediaQuery.of(context).size.width,
                           child: Column(
                             children: [
@@ -118,142 +113,139 @@ class _GetHomeDataState extends State<get_home_data> {
                                   data2 = userMap[index]!;
                                   if (packages[index]["Photo"] == "") {
                                     packageImagePath =
-                                        "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2FDefaultProfileImage.png?alt=media";
+                                        "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FDefaultProfileImage.png?alt=media";
                                   } else {
                                     packageImagePath =
                                         "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packages[index]["Photo"]}?alt=media";
                                   }
-                                  return Card(
-                                    // color: Colors.blue.shade100,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 10, top: 10),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(100),
-                                                child: Image.network(
-                                                  imagePath,
-                                                  height: 130,
-                                                  width: 130,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
+                                  return GestureDetector(
+                                    onTap: () {
+                                      if (packages[index]["Photo"] == "") {
+                                        packageImagePath =
+                                            "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2FArogyaSair.png?alt=media";
+                                      } else {
+                                        packageImagePath =
+                                            "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packages[index]["Photo"]}?alt=media";
+                                      }
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => PackageDetails(
+                                              PackageName: packages[index]
+                                                  ["PackageName"],
+                                              Price: packages[index]["Price"],
+                                              HospitalName:
+                                                  data2['HospitalName'],
+                                              Duration: packages[index]
+                                                  ["Duration"],
+                                              Include: packages[index]
+                                                  ["Include"],
+                                              Image: packageImagePath,
+                                              HospitalKey: packages[index]
+                                                  ["Key"]),
+                                        ),
+                                      );
+                                    },
+                                    child: Card(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Colors.purple.shade600,
+                                              Colors.blue.shade600,
                                             ],
+                                            begin: Alignment.bottomLeft,
+                                            end: Alignment.centerRight,
                                           ),
-                                          Flexible(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10),
-                                                  child: Text(packages[index]
-                                                      ["PackageName"]),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10),
-                                                  child: Text(
-                                                      packages[index]["Price"]),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10),
-                                                  child: Text(
-                                                      "${userMap[index]!["HospitalName"]}"),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 20, left: 10),
-                                                  child: Container(
-                                                    height: 44.0,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color(0xFF0D47A1),
-                                                          Colors.lightBlue
-                                                        ],
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                        Radius.circular(10),
-                                                      ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              blurRadius: 5,
+                                              offset: const Offset(0, 2),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 10, top: 10),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
+                                                    child: Image.network(
+                                                      packageImagePath,
+                                                      height: 120,
+                                                      width: 120,
+                                                      fit: BoxFit.contain,
                                                     ),
-                                                    child: ElevatedButton(
-                                                      onPressed: () {
-                                                        if (packages[index]
-                                                                ["Photo"] ==
-                                                            "") {
-                                                          packageImagePath =
-                                                              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2FDefaultProfileImage.png?alt=media";
-                                                        } else {
-                                                          packageImagePath =
-                                                              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packages[index]["Photo"]}?alt=media";
-                                                        }
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) => PackageDetails(
-                                                                PackageName: packages[
-                                                                        index][
-                                                                    "PackageName"],
-                                                                Price: packages[index]
-                                                                    ["Price"],
-                                                                HospitalName: data2[
-                                                                    'HospitalName'],
-                                                                Duration: packages[
-                                                                        index][
-                                                                    "Duration"],
-                                                                Include: packages[
-                                                                        index]
-                                                                    ["Include"],
-                                                                Image:
-                                                                    packageImagePath,
-                                                                HospitalKey:
-                                                                    packages[index]
-                                                                        ["Key"]),
-                                                          ),
-                                                        );
-                                                      },
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        backgroundColor:
-                                                            Colors.transparent,
-                                                        shadowColor:
-                                                            Colors.transparent,
-                                                      ),
-                                                      child: const Text(
-                                                        'View',
-                                                        style: TextStyle(
+                                                  ),
+                                                ],
+                                              ),
+                                              Flexible(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10),
+                                                      child: Text(
+                                                        packages[index]
+                                                            ["PackageName"],
+                                                        style: const TextStyle(
                                                             color:
                                                                 Colors.white),
                                                       ),
                                                     ),
-                                                  ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10),
+                                                      child: Text(
+                                                        packages[index]
+                                                            ["Price"],
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10),
+                                                      child: Text(
+                                                        userMap[index]![
+                                                            "HospitalName"],
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
                                     ),
                                   );
                                 },
                                 options: CarouselOptions(
+                                  // card size
                                   height:
-                                      MediaQuery.of(context).size.width * 0.5,
+                                      MediaQuery.of(context).size.width * 0.4,
                                   //increase card size
                                   aspectRatio: 16 / 9,
                                   viewportFraction: 0.8,
@@ -290,8 +282,8 @@ class _GetHomeDataState extends State<get_home_data> {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: i == _currentIndex
-                                      ? Colors.lightBlue
-                                      : Colors.grey,
+                                      ? Colors.blue.shade700
+                                      : Colors.grey.shade400,
                                 ),
                               );
                             },

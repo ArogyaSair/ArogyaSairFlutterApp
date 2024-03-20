@@ -8,7 +8,7 @@ import 'package:logger/logger.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 import 'models/FacilitiesModel.dart';
-import 'models/TreatmentModel.dart';
+import 'models/SurgeryData.dart';
 
 class HospitalServices extends StatefulWidget {
   const HospitalServices({super.key});
@@ -19,7 +19,7 @@ class HospitalServices extends StatefulWidget {
 
 class _HospitalServicesState extends State<HospitalServices> {
   List<MultiSelectItem<String>> items = [];
-  List<TreatmentModel> selectedItems = [];
+  List<SurgeryModel> selectedItems = [];
   List<FacilityData> selectedItems2 = [];
   String? Key;
   var logger = Logger();
@@ -64,7 +64,7 @@ class _HospitalServicesState extends State<HospitalServices> {
                     child: StreamBuilder(
                       stream: FirebaseDatabase.instance
                           .ref()
-                          .child("ArogyaSair/AllTreatment")
+                          .child("ArogyaSair/AllSurgeries")
                           .onValue,
                       builder: (BuildContext context,
                           AsyncSnapshot<dynamic> snapshot) {
@@ -72,14 +72,14 @@ class _HospitalServicesState extends State<HospitalServices> {
                             snapshot.data!.snapshot.value != null) {
                           Map<dynamic, dynamic> facilitiesMap =
                               snapshot.data!.snapshot.value;
-                          List<MultiSelectItem<TreatmentModel>> items = [];
+                          List<MultiSelectItem<SurgeryModel>> items = [];
                           items.clear();
                           facilitiesMap.forEach(
                             (key, value) {
                               items.add(
-                                MultiSelectItem<TreatmentModel>(
-                                  TreatmentModel.fromMap(value, key),
-                                  value["TreatmentName"],
+                                MultiSelectItem<SurgeryModel>(
+                                  SurgeryModel.fromMap(value, key),
+                                  value["SurgeryName"],
                                 ),
                               );
                             },
@@ -90,11 +90,11 @@ class _HospitalServicesState extends State<HospitalServices> {
                                 initialChildSize: 0.4,
                                 listType: MultiSelectListType.CHIP,
                                 searchable: true,
-                                buttonText: const Text("Select Treatments"),
-                                title: const Text("Select Treatments"),
+                                buttonText: const Text("Select surgeries"),
+                                title: const Text("Select surgeries"),
                                 items: items,
                                 onConfirm: (values) {
-                                  selectedItems = values.cast<TreatmentModel>();
+                                  selectedItems = values.cast<SurgeryModel>();
                                 },
                                 chipDisplay: MultiSelectChipDisplay(
                                   onTap: (value) {
@@ -213,8 +213,8 @@ class _HospitalServicesState extends State<HospitalServices> {
                       "AvailableFacilities": selectedItems2
                           .map((item) => item.facilities)
                           .join(','),
-                      "AvailableTreatments":
-                          selectedItems.map((item) => item.treatment).join(','),
+                      "AvailableSurgeries":
+                          selectedItems.map((item) => item.surgery).join(','),
                     };
                     final hospitalRef = FirebaseDatabase.instance
                         .ref()
