@@ -213,8 +213,7 @@ class _GetHomeDataState extends State<get_home_data> {
                                                           const EdgeInsets.only(
                                                               left: 10),
                                                       child: Text(
-                                                        packages[index]
-                                                            ["Price"],
+                                                        "₹ ${packages[index]["Price"]}",
                                                         style: const TextStyle(
                                                             color:
                                                                 Colors.white),
