@@ -63,12 +63,12 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
     setState(() {
       hospitalKey = userKey!;
     });
-    itemsSpecialization.clear();
     getSpecializationData();
     // fetchUserData();
   }
 
   Future<void> getSpecializationData() async {
+    itemsSpecialization.clear();
     itemsSpecialization = ['Select Specialization'];
     hospitalKey = hospitalKey;
     Query dbRef = FirebaseDatabase.instance.ref().child("ArogyaSair/tblSpe");
@@ -104,14 +104,16 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                   if (snapshot.connectionState == ConnectionState.waiting &&
                       itemsSpecialization.isEmpty &&
                       userMap.isEmpty) {
-                    return const CircularProgressIndicator();
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else {
                     return Column(
                       children: [
                         SizedBox(
-                          height: 100,
+                          height: MediaQuery.of(context).size.width * 0.3,
                           width: double.infinity,
                           child: ListView(
                             children: [
@@ -147,12 +149,13 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                             );
                                           }).toList(),
                                           onChanged: (String? newValue) {
+                                            if (selectedDoctors !=
+                                                "Select Specialization") {
+                                              fetchUserData();
+                                            }
                                             setState(() {
+                                              fetchUserData();
                                               selectedDoctors = newValue!;
-                                              if (selectedDoctors !=
-                                                  "Select Specialization") {
-                                                fetchUserData();
-                                              }
                                             });
                                           },
                                         ),
@@ -196,8 +199,7 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                   borderRadius: BorderRadius.circular(5),
                                   child: Image.network(
                                     imagePath,
-                                    height: MediaQuery.of(context).size.width *
-                                        0.28,
+                                    height: MediaQuery.of(context).size.width * 0.2,
                                     width: MediaQuery.of(context).size.width *
                                         0.22,
                                   ),
