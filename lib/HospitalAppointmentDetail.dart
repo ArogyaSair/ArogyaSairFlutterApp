@@ -84,8 +84,6 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
                                 Text(
                                     "Patient Name : ${widget.userData['UserName']}"),
                                 const SizedBox(width: 10),
-                                Text("Patient Key : ${widget.userData['Key']}"),
-                                const SizedBox(width: 10),
                                 Text(
                                     "Requested date of visit : ${widget.appointments['AppointmentDate']}"),
                                 const SizedBox(width: 10),
@@ -102,10 +100,6 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
                                 const SizedBox(width: 10),
                                 Text(
                                     "Contact Number : ${widget.userData["ContactNumber"]}"),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Text("Key : ${widget.appointments["Key"]}"),
                                 const SizedBox(
                                   width: 10,
                                 ),

@@ -48,43 +48,20 @@ class _SurgeryPaymentPageState extends State<SurgeryPaymentPage> {
     var Date = widget.birthDate;
     var User = UserKey;
     var Status = "Pending";
-    if (birthDate != "Select Appointment Date") {
-      AppointmentDateSelectionModel regobj = AppointmentDateSelectionModel(
-          Hospitalkey, Disease, Date, User, Status);
-      dbRef2.push().set(regobj.toJson());
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => AppointmentInformation(
-            HospitalName: HospitalName1,
-            item: widget.item.toString(),
-            Date: Date.toString(),
-            Status: Status,
-          ),
+    AppointmentDateSelectionModel regobj =
+        AppointmentDateSelectionModel(Hospitalkey, Disease, Date, User, Status);
+    dbRef2.push().set(regobj.toJson());
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AppointmentInformation(
+          HospitalName: HospitalName1,
+          item: widget.item.toString(),
+          Date: Date.toString(),
+          Status: Status,
         ),
-      );
-    } else {
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text("Date Selection"),
-            content: const Text("Please Select Date for appointment"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  "OK",
-                ),
-              )
-            ],
-          );
-        },
-      );
-    }
+      ),
+    );
   }
 
   void onApplePayResult(paymentResult) {
