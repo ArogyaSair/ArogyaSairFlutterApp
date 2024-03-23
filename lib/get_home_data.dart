@@ -252,7 +252,7 @@ class _GetHomeDataState extends State<get_home_data> {
                                   enableInfiniteScroll: true,
                                   reverse: false,
                                   autoPlay: true,
-                                  autoPlayInterval: const Duration(seconds: 3),
+                                  autoPlayInterval: const Duration(seconds: 2),
                                   autoPlayAnimationDuration:
                                       const Duration(milliseconds: 800),
                                   autoPlayCurve: Curves.fastOutSlowIn,

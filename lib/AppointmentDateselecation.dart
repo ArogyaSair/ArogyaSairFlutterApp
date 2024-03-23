@@ -7,6 +7,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 
 class AppointmentDateSelection extends StatefulWidget {
   final SurgeryModel item;
@@ -54,10 +56,10 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Packages",
+          "Appointments",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue.shade900,
+        backgroundColor: Colors.blue,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -73,87 +75,131 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
         padding: const EdgeInsets.all(1),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                // Align content to the left
-                children: [
-                  Text(
-                    widget.item.toString(),
-                    style: const TextStyle(
-                        fontSize: 16.0, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8.0),
-                  // Add some vertical spacing
-                  Text(
-                    widget.HospitalName,
-                    style: const TextStyle(
-                        fontSize: 16.0, fontWeight: FontWeight.bold),
-                  ),
-                  TextFormField(
-                    controller: controllerDateOfBirth,
-                    readOnly: true,
-                    // Make the text input read-only
-                    decoration: InputDecoration(
-                      prefixIcon: GestureDetector(
-                        onTap: () {
-                          _getDate(context);
-                        },
-                        child: const Icon(
-                          Icons.date_range,
-                          color: Colors.blue,
+          child: Padding(
+            padding: const EdgeInsets.all(5),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Column(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // Align content to the left
+                      children: [
+                        Row(
+                          children: [
+                            const Text(
+                              "Surgery For: ",
+                              style: TextStyle(
+                                  fontSize: 16.0, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              widget.item.toString(),
+                              style: const TextStyle(
+                                  fontSize: 16.0, fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
-                      ),
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      filled: true,
-                      fillColor: const Color(0xffE0E3E7),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (birthDate == "Select Appointment Date") {
-                        showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text("Alert Message"),
-                              content: const Text("Please Select Date"),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: const Text('OK'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SurgeryPaymentPage(
-                              item: widget.item,
-                              HospitalName: widget.HospitalName,
-                              HospitalKey: widget.HospitalKey,
-                              key: widget.key,
-                              birthDate: birthDate,
+                        const SizedBox(height: 10.0),
+                        // Add some vertical spacing
+                        Row(
+                          children: [
+                            const FaIcon(FontAwesomeIcons.hospital),
+                            const SizedBox(width: 5.0),
+                            Text(
+                              widget.HospitalName.toString(),
+                              style: const TextStyle(
+                                  fontSize: 16.0, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10.0),
+                        TextFormField(
+                          controller: controllerDateOfBirth,
+                          readOnly: true,
+                          // Make the text input read-only
+                          decoration: InputDecoration(
+                            prefixIcon: GestureDetector(
+                              onTap: () {
+                                _getDate(context);
+                              },
+                              child: const Icon(
+                                Icons.date_range,
+                                color: Colors.blue,
+                              ),
+                            ),
+                            // filled: true,
+                            // fillColor: const Color(0xffE0E3E7),
+                          ),
+                        ),
+                        const SizedBox(height: 10.0),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(200, 50),
+                            elevation: 10,
+                            backgroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                        );
-                      }
-                    },
-                    child: const Text("Proceed for Payment"),
-                  ),
-                ],
+                          onPressed: () {
+                            if (birthDate == "Select Appointment Date") {
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: const Text("Alert Message"),
+                                    content: const Text("Please Select Date"),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        child: const Text('OK'),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SurgeryPaymentPage(
+                                    HospitalKey: widget.HospitalKey,
+                                    HospitalName: widget.HospitalName,
+                                    item: widget.item,
+                                    key: widget.key,
+                                    birthDate: birthDate,
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text("Proceed for Payment",
+                              style: TextStyle(color: Colors.white)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(65),
+                          child: SizedBox(
+                            child: Center(
+                              // Center the Lottie animation
+                              child: Lottie.asset(
+                                'assets/Animation/booking_payment.json',
+                                width: 300,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ],
+            ),
           ),
         ),
       ),

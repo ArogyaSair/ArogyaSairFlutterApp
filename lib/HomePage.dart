@@ -9,7 +9,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'DisplayDisease.dart';
+import 'DisplaySurgery.dart';
 import 'SearchPage.dart';
 import 'models/HomePageModel.dart';
 

@@ -103,12 +103,24 @@ class _MyPackagesState extends State<MyPackages> {
                               const SizedBox(
                                 width: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Text(
-                                  "${packages[index]["Duration"]} weeks",
-                                  style: const TextStyle(fontSize: 17),
-                                ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      "${packages[index]["Duration"]} weeks approximate time will be taken.",
+                                      style: const TextStyle(fontSize: 17),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      "${packages[index]["DateOfStarting"]} is the first date.",
+                                      style: const TextStyle(fontSize: 17),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
