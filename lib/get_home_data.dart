@@ -141,8 +141,9 @@ class _GetHomeDataState extends State<get_home_data> {
                                               Include: packages[index]
                                                   ["Include"],
                                               Image: packageImagePath,
+                                              // key
                                               HospitalKey: packages[index]
-                                                  ["Key"]),
+                                                  ["HospitalName"]),
                                         ),
                                       );
                                     },

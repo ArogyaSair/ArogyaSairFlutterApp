@@ -18,6 +18,7 @@ class _MyPackagesState extends State<MyPackages> {
   late String packageImagePath;
   Map<dynamic, dynamic>? userData;
   bool dataFetched = false;
+  Map<int, Map> hospitalMap = {};
 
   @override
   void initState() {
@@ -30,6 +31,23 @@ class _MyPackagesState extends State<MyPackages> {
     setState(() {
       userId = userData!;
     });
+  }
+
+  Future<void> fetchUserData(String key, int index) async {
+    print("key is $key");
+    DatabaseReference dbUserData = FirebaseDatabase.instance
+        .ref()
+        .child("ArogyaSair/tblHospital")
+        .child(key);
+    DatabaseEvent userDataEvent = await dbUserData.once();
+    DataSnapshot userDataSnapshot = userDataEvent.snapshot;
+    userData = userDataSnapshot.value as Map?;
+    print("userData is $userData");
+    hospitalMap[index] = {
+      "Key": userDataSnapshot.key,
+      "HospitalName": userData?["HospitalName"],
+    };
+    setState(() {});
   }
 
   Future<List<Map>> getPackagesData() async {
@@ -58,6 +76,8 @@ class _MyPackagesState extends State<MyPackages> {
         'UserId': value["UserName"],
         'PackageName': value["PackageName"],
       });
+      print("hospital id is ${value["HospitalName"]}");
+      await fetchUserData(value["HospitalName"], packages.length - 1);
       dataFetched = true;
     });
     return packages;
@@ -117,6 +137,13 @@ class _MyPackagesState extends State<MyPackages> {
                                     padding: const EdgeInsets.only(left: 10),
                                     child: Text(
                                       "${packages[index]["DateOfStarting"]} is the first date.",
+                                      style: const TextStyle(fontSize: 17),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      "Offered by :- ${hospitalMap[index]!["HospitalName"]} hospital",
                                       style: const TextStyle(fontSize: 17),
                                     ),
                                   ),

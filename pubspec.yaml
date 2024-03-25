@@ -52,6 +52,7 @@ dependencies:
   lottie: any
   carousel_slider: any
   firebase_messaging: any
+  url_launcher: any
 
 dev_dependencies:
   flutter_test:
