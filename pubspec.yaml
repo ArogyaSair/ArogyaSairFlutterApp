@@ -53,6 +53,8 @@ dependencies:
   carousel_slider: any
   firebase_messaging: any
   url_launcher: any
+  http: any
+  flutter_local_notifications: any
 
 dev_dependencies:
   flutter_test:

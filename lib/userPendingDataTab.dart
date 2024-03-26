@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, library_private_types_in_public_api
 
+import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,9 +22,26 @@ class _UserPendingDataState extends State<UserPendingData> {
   Map<dynamic, dynamic>? userData;
   Map<int, Map> userMap = {};
   late Map data2;
+  late String userId;
   bool dataFetched = false; // Flag to track if data has been fetched
 
+  @override
+  void initState() {
+    super.initState();
+    // appointments.clear();
+    // userMap.clear();
+    loadUser();
+  }
+
+  Future<void> loadUser() async {
+    String? userid = await getKey();
+    setState(() {
+      userId = userid!;
+    });
+  }
+
   Future<void> fetchUserData(String key, int index) async {
+    userMap.clear();
     DatabaseReference dbUserData = FirebaseDatabase.instance
         .ref()
         .child("ArogyaSair/tblHospital")
@@ -53,8 +71,9 @@ class _UserPendingDataState extends State<UserPendingData> {
 
     Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
 
+    appointments.clear();
     values.forEach((key, value) async {
-      if (value["Status"] == "Pending") {
+      if (value["Status"] == "Pending" && value["UserId"] == userId) {
         appointments.add({
           'HospitalName': value['HospitalId'],
           'Key': key,
@@ -84,7 +103,7 @@ class _UserPendingDataState extends State<UserPendingData> {
             } else if (snapshot.hasData) {
               if (appointments.isNotEmpty && userMap.isNotEmpty) {
                 return ListView.builder(
-                  shrinkWrap: true,
+                  // shrinkWrap: true,
                   itemCount: appointments.length,
                   itemBuilder: (context, index) {
                     data2 = userMap[index]!;
@@ -108,6 +127,9 @@ class _UserPendingDataState extends State<UserPendingData> {
                                       ),
                                     ],
                                   ),
+                                ),
+                                const SizedBox(
+                                  width: 20,
                                 ),
                                 Row(
                                   children: [

@@ -1,5 +1,8 @@
-// ignore_for_file: file_names, library_private_types_in_public_api, non_constant_identifier_names
+// ignore_for_file: file_names, library_private_types_in_public_api, non_constant_identifier_names, prefer_typing_uninitialized_variables
 
+import 'package:arogyasair/Notifications/hospital_appointment_delay_confirm_notification.dart';
+import 'package:arogyasair/Notifications/hospital_appointment_delay_delay_notification.dart';
+import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
@@ -22,14 +25,34 @@ class UserDelayedData extends StatefulWidget {
 class _UserDelayedDataState extends State<UserDelayedData> {
   late String imagePath;
   late String date;
+  late String username;
+  late String userkey;
   List<Map> Appointments = [];
   late String packageImagePath;
   Map<dynamic, dynamic>? userData;
   Map<int, Map> userMap = {};
   late Map data2;
+  late var disease;
   bool dataFetched = false; // Flag to track if data has been fetched
 
+  @override
+  void initState() {
+    super.initState();
+    loadUser();
+  }
+
+  Future<void> loadUser() async {
+    String? Username = await getData("username");
+    String? UserKey = await getKey();
+    setState(() {
+      username = Username!;
+      userkey = UserKey!;
+    });
+    getPackagesData();
+  }
+
   Future<void> fetchUserData(String key, int index) async {
+    userMap.clear();
     DatabaseReference dbUserData = FirebaseDatabase.instance
         .ref()
         .child("ArogyaSair/tblHospital")
@@ -59,9 +82,9 @@ class _UserDelayedDataState extends State<UserDelayedData> {
     }
 
     Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
-
+    Appointments.clear();
     values.forEach((key, value) async {
-      if (value["Status"] == "Delayed") {
+      if (value["Status"] == "Delayed" && value["UserId"] == userkey) {
         Appointments.add({
           'Key': key,
           'AppointmentId': value["AppointmentId"],
@@ -76,6 +99,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
         dataFetched = true;
       }
     });
+    setState(() {});
     return Appointments;
   }
 
@@ -190,7 +214,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                         var hospitalkey =
                                                             Appointments[index][
                                                                 "HospitalName"];
-                                                        var disease =
+                                                        disease =
                                                             dataAppointment[
                                                                 "Disease"];
                                                         var Date = date;
@@ -228,16 +252,25 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                                     "ArogyaSair/tblDelayedAppointment/$delayedAppointmentId");
                                                         final updatedDelayedAppointmentData =
                                                             {
-                                                          "Status": "Approved",
+                                                          "Status": "Delay",
                                                         };
+                                                        sendAppointmentDelayToHospital(
+                                                            hospitalKey: hospitalkey,
+                                                            appointmentDate: Appointments[index]["NewDate"],
+                                                            disease: disease,
+                                                            status: "Delay",
+                                                            userName: username,
+                                                            newDate: date);
                                                         dbDelayedAppointmentRef
                                                             .update(
                                                                 updatedDelayedAppointmentData);
+                                                        setState(() {});
                                                       },
                                                     ),
                                                     TextButton(
                                                       onPressed: () {
                                                         Navigator.pop(context);
+                                                        setState(() {});
                                                       },
                                                       child:
                                                           const Text("Cancel"),
@@ -319,6 +352,15 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                         };
                                         dbDelayedAppointmentRef.update(
                                             updatedDelayedAppointmentData);
+                                        sendAppointmentDelayConfirmationToHospital(
+                                            hospitalKey:
+                                                dataAppointment["HospitalId"],
+                                            disease: dataAppointment["Disease"],
+                                            username: username,
+                                            hospitalName: data2['HospitalName'],
+                                            newDate: dataDelayedAppointment[
+                                                "NewDate"]);
+                                        setState(() {});
                                       },
                                       style: TextButton.styleFrom(
                                         backgroundColor: Colors.orange,

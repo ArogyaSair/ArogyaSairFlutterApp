@@ -1,8 +1,11 @@
 // ignore_for_file: file_names, prefer_typing_uninitialized_variables, avoid_print, use_build_context_synchronously
 
 import 'package:arogyasair/HospitalHomePage.dart';
+import 'package:arogyasair/Notifications/user_appointment_request_approve_notificaation.dart';
+import 'package:arogyasair/Notifications/user_appointment_request_delay_notification.dart';
 import 'package:arogyasair/models/HospitalAppointmentDelayedModel.dart';
 import 'package:arogyasair/models/HospitalTreatmentModel.dart';
+import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
@@ -29,12 +32,27 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
   late Query dbRef;
   var logger = Logger();
   late String hospitalKey;
+  late String hospitalName;
   late String date;
   late TextEditingController newDate = TextEditingController();
   List<String> hospitals = [];
   List<Map> appointment = [];
   late List<String> listOfValuesForKey1;
   late String? selectedDoctor = 'Select Doctor';
+
+  @override
+  void initState() {
+    super.initState();
+    loadUSer();
+  }
+
+  Future<void> loadUSer() async {
+    String? hospitalName = await getData("HospitalName");
+    setState(() {
+      this.hospitalName = hospitalName!;
+    });
+    print("hospitalName = $hospitalName");
+  }
 
   Future<void> getHospitalData() async {
     listOfValuesForKey1 = ['Select Doctor'];
@@ -249,14 +267,22 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
     DatabaseReference tblTreatment =
         FirebaseDatabase.instance.ref().child("ArogyaSair/tblTreatment");
     HospitalTreatmentModel treatmentModelObject = HospitalTreatmentModel(
-      newDate.text,
-      widget.userData["Key"],
-      widget.appointments["Disease"],
-      hospitalKey,
-      widget.appointments["Key"],
-      widget.appointments["AppointmentDate"],
+        newDate.text,
+        widget.userData["Key"],
+        widget.appointments["Disease"],
+        hospitalKey,
+        widget.appointments["Key"],
+        widget.appointments["AppointmentDate"],
         "Approved");
     tblTreatment.push().set(treatmentModelObject.toJson());
+
+    sendAppointmentApprovalToUser(
+        userKey: widget.userData["Key"],
+        appointmentDate: widget.appointments["AppointmentDate"],
+        disease: widget.appointments["Disease"],
+        status: "Approved",
+        hospitalName: hospitalName);
+
     Navigator.pop(context);
     Navigator.pop(context);
     Navigator.push(
@@ -280,6 +306,14 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
         .child("ArogyaSair/tblAppointment")
         .child(appointmentKey);
     await userRef.update(updatedData);
+
+    sendAppointmentDelayToUser(
+        userKey: widget.userData["Key"],
+        appointmentDate: widget.appointments["AppointmentDate"],
+        disease: widget.appointments["Disease"],
+        status: "Approved",
+        hospitalName: hospitalName,
+        newDate: date);
 
     DatabaseReference tblDelayedAppointment = FirebaseDatabase.instance
         .ref()

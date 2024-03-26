@@ -8,22 +8,24 @@ class HomeData {
   final String hospitalAddress;
   final String hospitalCity;
   final String hospitalState;
+  final String hospitalFCMToken;
 
   HomeData(this.id, this.hospitalEmail, this.hospitalImage, this.hospitalName,
-      this.hospitalAddress, this.hospitalCity, this.hospitalState);
+      this.hospitalAddress,
+      this.hospitalCity,
+      this.hospitalState,
+      this.hospitalFCMToken);
 
-  // Add a factory constructor to create an instance from a Map
   factory HomeData.fromMap(Map<dynamic, dynamic> map, String id) {
     return HomeData(
       id,
-      map["Email"] ?? '', // Use an empty string if it's null
+      map["Email"] ?? '',
       map["Photo"],
-      map["HospitalName"] ?? '', // Use an empty string if it's null
+      map["HospitalName"] ?? '',
       map["HospitalAddress"] ?? '',
-      // Use an empty string if it's null
       map["HospitalCity"] ?? '',
-      // Use an empty string if it's null
-      map["HospitalState"] ?? '', // Use an empty string if it's null
+      map["HospitalState"] ?? '',
+      map["HospitalFCMToken"] ?? '',
     );
   }
 }

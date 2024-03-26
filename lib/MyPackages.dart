@@ -34,7 +34,6 @@ class _MyPackagesState extends State<MyPackages> {
   }
 
   Future<void> fetchUserData(String key, int index) async {
-    print("key is $key");
     DatabaseReference dbUserData = FirebaseDatabase.instance
         .ref()
         .child("ArogyaSair/tblHospital")
@@ -42,7 +41,6 @@ class _MyPackagesState extends State<MyPackages> {
     DatabaseEvent userDataEvent = await dbUserData.once();
     DataSnapshot userDataSnapshot = userDataEvent.snapshot;
     userData = userDataSnapshot.value as Map?;
-    print("userData is $userData");
     hospitalMap[index] = {
       "Key": userDataSnapshot.key,
       "HospitalName": userData?["HospitalName"],
@@ -76,7 +74,6 @@ class _MyPackagesState extends State<MyPackages> {
         'UserId': value["UserName"],
         'PackageName': value["PackageName"],
       });
-      print("hospital id is ${value["HospitalName"]}");
       await fetchUserData(value["HospitalName"], packages.length - 1);
       dataFetched = true;
     });

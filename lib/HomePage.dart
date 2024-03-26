@@ -2,10 +2,12 @@
 
 import 'package:arogyasair/DisplayHospitals.dart';
 import 'package:arogyasair/drawerSideNavigation.dart';
+import 'package:arogyasair/firebase_api.dart';
 import 'package:arogyasair/get_home_data.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/userHospitalDetails.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -25,19 +27,32 @@ class _HomePageState extends State<HomePage> {
       FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
   late String data;
   final key = 'username';
-  late bool containsKey;
-
+  late String userKey;
+  final _messagingService = MessagingService();
+  final FirebaseMessaging _fcm = FirebaseMessaging.instance;
   @override
   void initState() {
     super.initState();
+    _messagingService.init(context);
     _loadUserData();
   }
 
   Future<void> _loadUserData() async {
+    String? userkey = await getKey();
     String? userData = await getData(key);
     setState(() {
       data = userData!;
+      userKey = userkey!;
     });
+    var fcmToken = await _fcm.getToken();
+    final updatedData = {
+      "UserFCMToken": fcmToken,
+    };
+    final userRef = FirebaseDatabase.instance
+        .ref()
+        .child("ArogyaSair/tblUser")
+        .child(userKey);
+    await userRef.update(updatedData);
   }
 
   var imagePath =
@@ -199,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                                 flex: 1,
                                 child: Center(
                                   child: Lottie.asset(
-                                    'assets/Animation/treatment.json',
+                                    'assets/Animation/surgery.json',
                                     width: 180,
                                     height: 120,
                                   ),
@@ -453,6 +468,29 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            // floatingActionButton: FloatingActionButton(
+            //   onPressed: () async {
+            //     notificationServices.getDeviceToken().then((value) async {
+            //       var data = {
+            //         'to': value.toString(),
+            //         'priority': 'high',
+            //         'notification': {
+            //           'title': "Arogya Sair",
+            //           'body': 'Hello from admin',
+            //         }
+            //       };
+            //       await http.post(
+            //         Uri.parse('https://fcm.googleapis.com/fcm/send'),
+            //         body: jsonEncode(data),
+            //         headers: {
+            //           'Content-type': 'application/json; charset=UTF-8',
+            //           'Authorization':
+            //               'key=AAAANZSWEE8:APA91bGT4zt_EFbTd_zsH9VQf0ydv7wTmKR9pGgdN0r509WHczxR2uwMj4bk9UajZvOix_l3y6a6usEnXZMWyA3q04W7n49K92zK45fbqwXsRm5NL_Ryru5MlqSexZ7exPNK820TyH1C'
+            //         },
+            //       );
+            //     });
+            //   },
+            // ),
           ),
         );
       },

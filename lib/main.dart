@@ -1,18 +1,24 @@
 // ignore_for_file: use_build_context_synchronously, file_names, camel_case_types, prefer_typing_uninitialized_variables
-
+import 'package:arogyasair/firebase_options.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'BottomNavigation.dart';
 import 'HospitalHomePage.dart';
 import 'LandingPage.dart';
-import 'firebase_options.dart';
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MaterialApp(home: Splash()));
 }
@@ -42,6 +48,7 @@ class splash extends State<Splash> {
   }
 
   navigateToHome() async {
+    // await FirebaseApi().initNotification(context);
     await Future.delayed(const Duration(seconds: 5));
     await _checkIfLoggedIn();
     Navigator.pop(context);

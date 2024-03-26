@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, non_constant_identifier_names, prefer_typing_uninitialized_variables
 
+import 'package:arogyasair/Notifications/hospital_appointment_request_notification.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +52,11 @@ class _SurgeryPaymentPageState extends State<SurgeryPaymentPage> {
     AppointmentDateSelectionModel regobj =
         AppointmentDateSelectionModel(Hospitalkey, Disease, Date, User, Status);
     dbRef2.push().set(regobj.toJson());
+    sendNotificationToHospital(
+        appointmentDate: Date,
+        disease: Disease,
+        hospitalKey: Hospitalkey,
+        status: Status);
     Navigator.push(
       context,
       MaterialPageRoute(
