@@ -8,7 +8,6 @@ class AppointmentData {
   final String status;
   final String userID;
 
-
   AppointmentData(this.id, this.appointmentDate, this.disease, this.hospitalId,
       this.status, this.userID);
 

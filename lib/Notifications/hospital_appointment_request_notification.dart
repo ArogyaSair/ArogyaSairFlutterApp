@@ -20,17 +20,18 @@ sendNotificationToHospital(
       .child("ArogyaSair/tblHospital")
       .child(hospitalKey);
 
-    DatabaseEvent databaseEvent = await userRef.once();
-    DataSnapshot dataSnapshot = databaseEvent.snapshot;
+  DatabaseEvent databaseEvent = await userRef.once();
+  DataSnapshot dataSnapshot = databaseEvent.snapshot;
 
-    var hospitalData = dataSnapshot.value as Map;
-    token=hospitalData["HospitalFCMToken"];
+  var hospitalData = dataSnapshot.value as Map;
+  token = hospitalData["HospitalFCMToken"];
 
   String constructFCMPayload(String token) {
     return jsonEncode(
       <String, dynamic>{
         'notification': <String, dynamic>{
-          'body': "You have a new appointment for $appointmentDate for $disease",
+          'body':
+              "You have a new appointment for $appointmentDate for $disease",
           'title': "New Appointment",
         },
         'data': <String, dynamic>{

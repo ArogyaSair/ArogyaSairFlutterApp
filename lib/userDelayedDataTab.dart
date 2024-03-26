@@ -255,8 +255,12 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                           "Status": "Delay",
                                                         };
                                                         sendAppointmentDelayToHospital(
-                                                            hospitalKey: hospitalkey,
-                                                            appointmentDate: Appointments[index]["NewDate"],
+                                                            hospitalKey:
+                                                                hospitalkey,
+                                                            appointmentDate:
+                                                                Appointments[
+                                                                        index]
+                                                                    ["NewDate"],
                                                             disease: disease,
                                                             status: "Delay",
                                                             userName: username,
