@@ -94,157 +94,182 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Check Out Page"),
+        backgroundColor: Colors.blue.shade900,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title:
+            const Text("Check Out Page", style: TextStyle(color: Colors.white)),
       ),
-      body: Card(
-        elevation: 3,
-        margin: const EdgeInsets.all(10),
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.network(
-                widget.Image,
-                width: double.infinity,
-                height: 200,
-                fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.blue.shade500,
+                Colors.green.shade400,
+              ],
+            ),
+          ),
+          child: Card(
+            elevation: 3,
+            margin: const EdgeInsets.all(10),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.network(
+                    widget.Image,
+                    width: double.infinity,
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                  const Text(
+                    'Hospital Name:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    widget.HospitalName,
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  const Text(
+                    'Package Name:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    widget.PackageName,
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  const Text(
+                    'Duration:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    widget.Duration,
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  const Text(
+                    'Date:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    widget.Date,
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  const Text(
+                    'Include:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    widget.Include,
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Divider(),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Total Price:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    "₹ ${widget.Price}",
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Divider(),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Payable amount now:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    "₹ 200",
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FutureBuilder<PaymentConfiguration>(
+                      future: _googlePayConfigFuture,
+                      builder: (context, snapshot) => snapshot.hasData
+                          ? GooglePayButton(
+                              paymentConfiguration: snapshot.data!,
+                              paymentItems: _paymentItems,
+                              type: GooglePayButtonType.book,
+                              margin: const EdgeInsets.only(top: 15.0),
+                              onPaymentResult: onGooglePayResult,
+                              loadingIndicator: const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            )
+                          : ApplePayButton(
+                              paymentConfiguration:
+                                  PaymentConfiguration.fromJsonString(
+                                      payment_configurations.defaultApplePay),
+                              paymentItems: _paymentItems,
+                              style: ApplePayButtonStyle.black,
+                              type: ApplePayButtonType.book,
+                              margin: const EdgeInsets.only(top: 15.0),
+                              onPaymentResult: onApplePayResult,
+                              loadingIndicator: const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                    ),
+                  )
+                ],
               ),
-              const Text(
-                'Hospital Name:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.HospitalName,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              const Text(
-                'Package Name:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.PackageName,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              const Text(
-                'Duration:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.Duration,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              const Text(
-                'Date:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.Date,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              const Text(
-                'Include:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.Include,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Divider(),
-              const SizedBox(height: 10),
-              const Text(
-                'Total Price:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                "₹ ${widget.Price}",
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Divider(),
-              const SizedBox(height: 10),
-              const Text(
-                'Payable amount now:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 5),
-              const Text(
-                "₹ 200",
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: FutureBuilder<PaymentConfiguration>(
-                  future: _googlePayConfigFuture,
-                  builder: (context, snapshot) => snapshot.hasData
-                      ? GooglePayButton(
-                          paymentConfiguration: snapshot.data!,
-                          paymentItems: _paymentItems,
-                          type: GooglePayButtonType.book,
-                          margin: const EdgeInsets.only(top: 15.0),
-                          onPaymentResult: onGooglePayResult,
-                          loadingIndicator: const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        )
-                      : ApplePayButton(
-                          paymentConfiguration:
-                              PaymentConfiguration.fromJsonString(
-                                  payment_configurations.defaultApplePay),
-                          paymentItems: _paymentItems,
-                          style: ApplePayButtonStyle.black,
-                          type: ApplePayButtonType.book,
-                          margin: const EdgeInsets.only(top: 15.0),
-                          onPaymentResult: onApplePayResult,
-                          loadingIndicator: const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        ),
-                ),
-              )
-            ],
+            ),
           ),
         ),
       ),

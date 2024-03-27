@@ -66,7 +66,7 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
           tags: [
             Text(widget.HospitalName),
             Text("${widget.Price} Rs./-"),
-            Text("${widget.Duration} weeks"),
+            Text("${widget.Duration} weeks for the treatment"),
           ],
           footer: ElevatedButton(
             onPressed: () {

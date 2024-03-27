@@ -133,9 +133,9 @@ class _SurgeryPaymentPageState extends State<SurgeryPaymentPage> {
                 ),
               ),
               const SizedBox(height: 5),
-              const Text(
-                "General Checkup",
-                style: TextStyle(
+              Text(
+                widget.item.toString(),
+                style: const TextStyle(
                   fontSize: 14,
                 ),
               ),

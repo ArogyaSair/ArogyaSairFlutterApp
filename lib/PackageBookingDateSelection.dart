@@ -75,7 +75,7 @@ class _PackageBookingDateSelectionState
           tags: [
             Text(widget.HospitalName),
             Text("${widget.Price} Rs./-"),
-            Text("${widget.Duration} weeks"),
+            Text("${widget.Duration} weeks for the treatment"),
             TextFormField(
               controller: controllerDateOfBirth,
               readOnly: true, // Make the text input read-only
