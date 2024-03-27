@@ -59,7 +59,7 @@ class _GeneralAppointmentDateSelectionState
           "Appointments",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blue.shade900,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(

@@ -114,7 +114,8 @@ class _AppointmentInformationState extends State<AppointmentInformation> {
                     ),
                     Container(
                       child: Lottie.asset(
-                          'assets/Animation/booking_confirmation.json'),
+                          'assets/Animation/booking_confirmation.json',
+                          reverse: true),
                     )
                   ],
                 ),

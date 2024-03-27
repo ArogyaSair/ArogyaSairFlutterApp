@@ -42,6 +42,7 @@ class _MyHomePageState extends State<PayMaterialApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text('Pay with GPay'),
       ),
       backgroundColor: Colors.white,

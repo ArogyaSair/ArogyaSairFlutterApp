@@ -84,7 +84,7 @@ class _ViewProfileState extends State<ViewProfile> {
         } else {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.blue.shade900,
               title: const Text(
                 'View Profile',
                 style: TextStyle(

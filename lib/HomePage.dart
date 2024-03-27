@@ -324,7 +324,8 @@ class _HomePageState extends State<HomePage> {
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
-                            childAspectRatio: constraints.maxHeight * 0.00089,
+                            childAspectRatio: constraints.maxHeight * 0.00088,
+                            //       Size
                           ),
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -362,83 +363,68 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Row(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                child: Image.network(
-                                                  imagePath,
-                                                  height:
-                                                      constraints.maxHeight *
-                                                          0.1,
-                                                  width: constraints.maxHeight *
-                                                      0.2,
-                                                ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.1,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.4,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child: Image.network(
+                                                imagePath,
+                                                height:
+                                                    constraints.maxHeight * 0.1,
+                                                width:
+                                                    constraints.maxHeight * 0.2,
+                                                fit: BoxFit.cover,
                                               ),
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5, right: 5, top: 5),
-                                              child: SizedBox(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.3,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 5),
-                                                      child: Text(
-                                                        packagesList[index]
-                                                            .hospitalName,
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 5),
-                                                      child: Text(
-                                                        packagesList[index]
-                                                            .hospitalEmail,
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 5),
-                                                      child: Text(
-                                                        "${packagesList[index].hospitalCity}, ${packagesList[index].hospitalState}",
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                    ),
-                                                  ],
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 5, right: 5, top: 5),
+                                          child: Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 5),
+                                                  child: Text(
+                                                    packagesList[index]
+                                                        .hospitalName,
+                                                    style: const TextStyle(
+                                                        color: Colors.white),
+                                                  ),
                                                 ),
-                                              ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                    left: 5,
+                                                    top: 5,
+                                                  ),
+                                                  child: Text(
+                                                    "${packagesList[index].hospitalCity}, ${packagesList[index].hospitalState}",
+                                                    style: const TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -468,29 +454,6 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            // floatingActionButton: FloatingActionButton(
-            //   onPressed: () async {
-            //     notificationServices.getDeviceToken().then((value) async {
-            //       var data = {
-            //         'to': value.toString(),
-            //         'priority': 'high',
-            //         'notification': {
-            //           'title': "Arogya Sair",
-            //           'body': 'Hello from admin',
-            //         }
-            //       };
-            //       await http.post(
-            //         Uri.parse('https://fcm.googleapis.com/fcm/send'),
-            //         body: jsonEncode(data),
-            //         headers: {
-            //           'Content-type': 'application/json; charset=UTF-8',
-            //           'Authorization':
-            //               'key=AAAANZSWEE8:APA91bGT4zt_EFbTd_zsH9VQf0ydv7wTmKR9pGgdN0r509WHczxR2uwMj4bk9UajZvOix_l3y6a6usEnXZMWyA3q04W7n49K92zK45fbqwXsRm5NL_Ryru5MlqSexZ7exPNK820TyH1C'
-            //         },
-            //       );
-            //     });
-            //   },
-            // ),
           ),
         );
       },

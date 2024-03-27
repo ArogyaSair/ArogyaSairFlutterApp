@@ -51,6 +51,7 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text("Package Details"),
       ),
       body: Padding(

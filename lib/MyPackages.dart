@@ -88,7 +88,7 @@ class _MyPackagesState extends State<MyPackages> {
           "My Packages",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blue.shade900,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: FutureBuilder<List<Map>>(

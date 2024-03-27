@@ -96,6 +96,7 @@ class _GeneralAppointmentPaymentState extends State<GeneralAppointmentPayment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text("Payment Page"),
       ),
       body: Card(

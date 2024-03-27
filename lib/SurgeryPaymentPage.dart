@@ -101,6 +101,7 @@ class _SurgeryPaymentPageState extends State<SurgeryPaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text("Payment Page"),
       ),
       body: Card(

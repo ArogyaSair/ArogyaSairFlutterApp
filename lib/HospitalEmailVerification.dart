@@ -24,7 +24,6 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       key: _formKey,
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

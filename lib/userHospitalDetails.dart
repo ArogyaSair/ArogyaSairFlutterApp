@@ -65,7 +65,7 @@ class _HospitalDetailsState extends State<HospitalDetails> {
         } else {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.blue.shade900,
               title: const Text(
                 'View Hospital',
                 style: TextStyle(
