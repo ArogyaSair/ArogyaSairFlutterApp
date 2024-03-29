@@ -137,10 +137,10 @@ class _GetHomeDataState extends State<get_home_data> {
                                 },
                                 child: Card(
                                   child: Container(
-                                    height:
-                                        MediaQuery.of(context).size.width * 0.4,
+                                    height: MediaQuery.of(context).size.width *
+                                        0.33,
                                     width:
-                                        MediaQuery.of(context).size.width * 0.8,
+                                        MediaQuery.of(context).size.width * 0.7,
                                     decoration: BoxDecoration(
                                       gradient: LinearGradient(
                                         colors: [
