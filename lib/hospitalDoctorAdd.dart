@@ -30,15 +30,19 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
   Map<dynamic, dynamic>? userData;
   Map<dynamic, dynamic>? hospitalDoctorData;
   List<Map<dynamic, dynamic>> userMap = []; // Change this line
-  List<Map<dynamic, dynamic>> hospitalDoctorMap = []; // Change this line
+  // List<Map<dynamic, dynamic>> hospitalDoctorMap = []; // Change this line
+  List hospitalDoctorMap = []; // Change this line
 
   @override
   void initState() {
     super.initState();
     _loadUserData();
+    getSpecializationData();
+    fetchUserData();
   }
 
   Future<void> fetchUserData() async {
+    userMap.clear();
     imagePath =
         "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2FDefaultProfileImage.png?alt=media";
     DatabaseReference dbUserData =
@@ -46,14 +50,27 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
     DatabaseEvent userDataEvent = await dbUserData.once();
     DataSnapshot userDataSnapshot = userDataEvent.snapshot;
     userData = userDataSnapshot.value as Map?;
-    userMap.clear(); // Clear the userMap before adding new data
+
+    DatabaseReference dbHospitalDoctorData =
+        FirebaseDatabase.instance.ref().child("ArogyaSair/tblHospitalDoctor");
+    DatabaseEvent hospitalDoctorDataEvent = await dbHospitalDoctorData.once();
+    DataSnapshot hospitalDoctorDataSnapshot = hospitalDoctorDataEvent.snapshot;
+    hospitalDoctorData = hospitalDoctorDataSnapshot.value as Map?;
+    hospitalDoctorData?.forEach((key, value) {
+      if (value["Hospital_ID"] == hospitalKey) {
+        hospitalDoctorMap.add(value["Doctor"]);
+      }
+    });
+
     userData!.forEach((key, value) {
-      userMap.add({
-        "Key": key,
-        "DoctorName": value!["DoctorName"],
-        "Speciality": value["Speciality"],
-        "Photo": value["Photo"],
-      });
+      if (!hospitalDoctorMap.contains(key)) {
+        userMap.add({
+          "Key": key,
+          "DoctorName": value!["DoctorName"],
+          "Speciality": value["Speciality"],
+          "Photo": value["Photo"],
+        });
+      }
     });
     setState(() {});
   }
@@ -63,8 +80,6 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
     setState(() {
       hospitalKey = userKey!;
     });
-    getSpecializationData();
-    // fetchUserData();
   }
 
   Future<void> getSpecializationData() async {
@@ -75,8 +90,7 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
     dbRef.onValue.listen((event) {
       Map<dynamic, dynamic>? values = event.snapshot.value as Map?;
       if (values != null) {
-        Set<String> uniqueSpecializations =
-            {}; // Use a set to store unique values
+        Set<String> uniqueSpecializations = {};
         values.forEach((key, value) {
           uniqueSpecializations.add(value['Specilization']);
         });
@@ -199,7 +213,8 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                   borderRadius: BorderRadius.circular(5),
                                   child: Image.network(
                                     imagePath,
-                                    height: MediaQuery.of(context).size.width * 0.2,
+                                    height:
+                                        MediaQuery.of(context).size.width * 0.2,
                                     width: MediaQuery.of(context).size.width *
                                         0.22,
                                   ),
@@ -240,7 +255,7 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                               TextButton(
                                                 child: const Text('From'),
                                                 onPressed: () async {
-                                                  final TimeOfDay? time =
+                                                  TimeOfDay? timeFrom =
                                                       await showTimePicker(
                                                     context: context,
                                                     initialTime:
@@ -251,12 +266,26 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                                             .dial,
                                                     orientation:
                                                         Orientation.portrait,
+                                                    useRootNavigator: false,
+                                                    builder:
+                                                        (BuildContext context,
+                                                            Widget? child) {
+                                                      return MediaQuery(
+                                                        data: MediaQuery.of(
+                                                                context)
+                                                            .copyWith(
+                                                                alwaysUse24HourFormat:
+                                                                    false),
+                                                        child: child!,
+                                                      );
+                                                    },
                                                   );
                                                   setState(() {
-                                                    selectedTimeFrom = time;
-                                                    if (time != null) {
+                                                    selectedTimeFrom = timeFrom;
+                                                    if (timeFrom != null) {
                                                       timeFrom =
-                                                          '${time.hour}:${time.minute}'; // Update timeFrom
+                                                          '${timeFrom?.hourOfPeriod}:${timeFrom?.minute} ${timeFrom?.period.index == 0 ? 'AM' : 'PM'}'
+                                                              as TimeOfDay?; // Update timeFrom
                                                     }
                                                   });
                                                 },
@@ -275,12 +304,25 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                                             .dial,
                                                     orientation:
                                                         Orientation.portrait,
+                                                    useRootNavigator: false,
+                                                    builder:
+                                                        (BuildContext context,
+                                                            Widget? child) {
+                                                      return MediaQuery(
+                                                        data: MediaQuery.of(
+                                                                context)
+                                                            .copyWith(
+                                                                alwaysUse24HourFormat:
+                                                                    false),
+                                                        child: child!,
+                                                      );
+                                                    },
                                                   );
                                                   setState(() {
                                                     selectedTimeTo = time;
                                                     if (time != null) {
                                                       timeTo =
-                                                          '${time.hour}:${time.minute}'; // Update timeTo
+                                                          '${time.hourOfPeriod}:${time.minute} ${time.period.index == 0 ? 'AM' : 'PM'}'; // Format time with AM/PM suffix
                                                     }
                                                   });
                                                 },

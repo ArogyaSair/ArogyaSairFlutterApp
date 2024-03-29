@@ -84,6 +84,7 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
       "Email": userData!["Email"],
       "ContactNumber": userData!["ContactNumber"],
     };
+    print("userMap $userMap");
     _streamController.add(appointment); // Update the stream with new data
   }
 
@@ -105,6 +106,7 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
                     itemBuilder: (context, index) {
                       data1 = appointment[index];
                       data2 = userMap[index] ?? {};
+                      print('userMap data2 $userMap');
                       var date = "${data1["AppointmentDate"]}";
                       return Card(
                         child: ListTile(

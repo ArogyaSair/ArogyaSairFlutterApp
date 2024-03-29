@@ -363,68 +363,81 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.1,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.4,
+                                        Center(
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 10),
                                             child: ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(5),
                                               child: Image.network(
                                                 imagePath,
                                                 height:
                                                     constraints.maxHeight * 0.1,
                                                 width:
-                                                    constraints.maxHeight * 0.2,
+                                                    constraints.maxWidth * 0.35,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 5, right: 5, top: 5),
-                                          child: Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5, right: 5, top: 5),
+                                              child: SizedBox(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.3,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
                                                           left: 5),
-                                                  child: Text(
-                                                    packagesList[index]
-                                                        .hospitalName,
-                                                    style: const TextStyle(
-                                                        color: Colors.white),
-                                                  ),
+                                                      child: Text(
+                                                        packagesList[index]
+                                                            .hospitalName,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 5),
+                                                      child: Text(
+                                                        packagesList[index]
+                                                            .hospitalEmail,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 5),
+                                                      child: Text(
+                                                        "${packagesList[index].hospitalCity}, ${packagesList[index].hospitalState}",
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    left: 5,
-                                                    top: 5,
-                                                  ),
-                                                  child: Text(
-                                                    "${packagesList[index].hospitalCity}, ${packagesList[index].hospitalState}",
-                                                    style: const TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                ),
-                                              ],
+                                              ),
                                             ),
-                                          ),
+                                          ],
                                         ),
                                       ],
                                     ),

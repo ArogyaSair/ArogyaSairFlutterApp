@@ -20,11 +20,33 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
   late Query dbRef;
   late StreamController<List<Map>> _streamController;
   var logger = Logger();
+  late var imagePath;
+  Map<dynamic, dynamic>? doctorData;
+  Map<int, dynamic> doctorMap = {};
+  List<Map> hospitals = [];
 
   @override
   void initState() {
     super.initState();
     getHospitalData();
+  }
+
+  Future<void> fetchUserData(String key, int index) async {
+    imagePath =
+        "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2FDefaultProfileImage.png?alt=media";
+    DatabaseReference dbUserData = FirebaseDatabase.instance
+        .ref()
+        .child("ArogyaSair/tblDoctor")
+        .child(key);
+    DatabaseEvent userDataEvent = await dbUserData.once();
+    DataSnapshot userDataSnapshot = userDataEvent.snapshot;
+    doctorData = userDataSnapshot.value as Map?;
+    doctorMap[index] = {
+      "DoctorName": doctorData!["DoctorName"],
+      "Speciality": doctorData?["Speciality"],
+      "Photo": doctorData?["Photo"],
+    };
+    _streamController.add(hospitals); // Update the stream with new data
   }
 
   void getHospitalData() {
@@ -37,22 +59,19 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
         .onValue
         .listen((event) {
       Map<dynamic, dynamic>? values = event.snapshot.value as Map?;
-      List<Map> hospitals = [];
-      logger.d(hospitals);
       if (values != null) {
-        values.forEach((key, value) {
-          if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
-          } else {
-            hospitals.add({
-              'DoctorName': value['Doctor'],
-              'Hospital_ID': value['Hospital_ID'],
-              "TimeFrom": value["TimeFrom"],
-              "TimeTo": value["TimeTo"]
-            });
-          }
+        values.forEach((key, value) async {
+          var doctorId = value["Doctor"];
+          print("doctor id $doctorId");
+          hospitals.add({
+            'DoctorName': value['Doctor'],
+            'Hospital_ID': value['Hospital_ID'],
+            "TimeFrom": value["TimeFrom"],
+            "TimeTo": value["TimeTo"],
+          });
+          await fetchUserData(doctorId, hospitals.length - 1);
         });
       }
-      logger.d(hospitals);
       _streamController.add(hospitals);
     });
   }
@@ -72,22 +91,51 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
                 if (hospitals != null && hospitals.isNotEmpty) {
                   return ListView.builder(
                     itemCount: hospitals.length,
+                    shrinkWrap: true,
                     itemBuilder: (context, index) {
                       Map data1 = hospitals[index];
                       var time = "${data1["TimeFrom"]} - ${data1["TimeTo"]}";
-                      return Card(
-                        child: ListTile(
-                          contentPadding: const EdgeInsets.all(12),
-                          // leading: Image.network(imagePath),
-                          title: Text(data1['DoctorName'].toString()),
-                          subtitle: Text(time),
-                          onTap: () {},
-                        ),
-                      );
+                      print("doctorMap $index ${doctorMap[index]}");
+                      if (doctorMap[index]["Photo"] != null &&
+                          doctorMap[index]["Photo"] != "") {
+                        imagePath =
+                            "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2F${doctorMap[index]["Photo"]}?alt=media";
+                      }
+                      if (doctorMap.isNotEmpty) {
+                        return SizedBox(
+                          child: Card(
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              child: ListTile(
+                                contentPadding: const EdgeInsets.all(12),
+                                leading: ClipRRect(
+                                  borderRadius: BorderRadius.circular(5),
+                                  child: Image.network(
+                                    imagePath,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.1,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.2,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                title: Text(
+                                    doctorMap[index]["DoctorName"].toString()),
+                                subtitle: Text(time),
+                                onTap: () {},
+                              ),
+                            ),
+                          ),
+                        );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
                     },
                   );
                 } else {
-                  return const Center(child: Text('No hospitals found'));
+                  return const Center(child: Text('No doctors found'));
                 }
               }
             },

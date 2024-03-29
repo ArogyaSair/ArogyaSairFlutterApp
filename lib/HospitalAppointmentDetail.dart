@@ -1,7 +1,7 @@
-// ignore_for_file: file_names, prefer_typing_uninitialized_variables, avoid_print, use_build_context_synchronously
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables, use_build_context_synchronously
 
 import 'package:arogyasair/HospitalHomePage.dart';
-import 'package:arogyasair/Notifications/user_appointment_request_approve_notificaation.dart';
+import 'package:arogyasair/Notifications/user_appointment_request_approve_notification.dart';
 import 'package:arogyasair/Notifications/user_appointment_request_delay_notification.dart';
 import 'package:arogyasair/models/HospitalAppointmentDelayedModel.dart';
 import 'package:arogyasair/models/HospitalTreatmentModel.dart';
@@ -34,11 +34,12 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
   late String hospitalKey;
   late String hospitalName;
   late String date;
-  late TextEditingController newDate = TextEditingController();
+  late String newDate;
   List<String> hospitals = [];
   List<Map> appointment = [];
   late List<String> listOfValuesForKey1;
   late String? selectedDoctor = 'Select Doctor';
+  List<Map<String, dynamic>> doctorMap = [];
 
   @override
   void initState() {
@@ -48,15 +49,16 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
 
   Future<void> loadUSer() async {
     String? hospitalName = await getData("HospitalName");
+    newDate = "Select Doctor";
+    getHospitalData();
     setState(() {
       this.hospitalName = hospitalName!;
     });
-    print("hospitalName = $hospitalName");
   }
 
   Future<void> getHospitalData() async {
-    listOfValuesForKey1 = ['Select Doctor'];
-    print("Select Doctor $selectedDoctor");
+    doctorMap.clear();
+    doctorMap.add({'Key': 'Select Doctor', 'DoctorName': 'Select Doctor'});
     hospitalKey = widget.hospitalKey;
     Query dbRef =
         FirebaseDatabase.instance.ref().child("ArogyaSair/tblHospitalDoctor");
@@ -66,12 +68,12 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
         .onValue
         .listen((event) {
       Map<dynamic, dynamic>? values = event.snapshot.value as Map?;
-      if (values != null) {
-        values.forEach((key, value) {
-          listOfValuesForKey1.add(value['Doctor']);
+      values!.forEach((key, value) {
+        doctorMap.add({
+          "Key": key,
+          "DoctorName": value["Doctor"],
         });
-        print(listOfValuesForKey1);
-      }
+      });
     });
   }
 
@@ -123,52 +125,38 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
                                 ),
                                 Form(
                                   key: _formKey,
-                                  child: TextFormField(
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'Please Select Doctor';
-                                      }
-                                      return null;
-                                    },
-                                    controller: newDate,
-                                    enabled: false,
-                                    style: const TextStyle(color: Colors.black),
+                                  child: Container(
+                                    height: 44,
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(20),
+                                      ),
+                                    ),
+                                    child: DropdownButton<String>(
+                                      value: selectedDoctor,
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      style:
+                                          const TextStyle(color: Colors.black),
+                                      icon: const Icon(Icons.arrow_drop_down),
+                                      items: doctorMap
+                                          .map<DropdownMenuItem<String>>(
+                                              (Map<String, dynamic> doctor) {
+                                        return DropdownMenuItem<String>(
+                                          value: doctor["Key"],
+                                          child: Text(doctor["DoctorName"]),
+                                        );
+                                      }).toList(),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          selectedDoctor = newValue;
+                                        });
+                                      },
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(
                                   width: 10,
-                                ),
-                                Container(
-                                  height: 44,
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(20),
-                                    ),
-                                  ),
-                                  child: DropdownButton(
-                                    value: selectedDoctor,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    style: const TextStyle(color: Colors.black),
-                                    icon: const Icon(Icons.arrow_drop_down),
-                                    items:
-                                        listOfValuesForKey1.map((String items) {
-                                      return DropdownMenuItem(
-                                          value: items, child: Text(items));
-                                    }).toList(),
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        selectedDoctor = newValue;
-                                        if (newValue == "Select Doctor") {
-                                          newDate = TextEditingController();
-                                        } else {
-                                          newDate = TextEditingController(
-                                            text: "Dr.$newValue",
-                                          );
-                                        }
-                                      });
-                                    },
-                                  ),
                                 ),
                                 const SizedBox(
                                   width: 10,
@@ -217,7 +205,30 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
                                         onPressed: () {
                                           if (_formKey.currentState!
                                               .validate()) {
-                                            _getDate(context);
+                                            if (newDate == "Select Doctor") {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                        "Alert Message"),
+                                                    content: const Text(
+                                                        "Please select doctor for this patient."),
+                                                    actions: <Widget>[
+                                                      OutlinedButton(
+                                                        child: const Text('OK'),
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                      )
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            } else {
+                                              _getDate(context);
+                                            }
                                           }
                                         },
                                         style: ElevatedButton.styleFrom(
@@ -254,76 +265,115 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
   }
 
   Future<void> approveAppointment() async {
-    var appointmentKey = widget.appointments["Key"];
-    print(appointmentKey);
-    final updatedData = {
-      "Status": "Approved",
-    };
-    final userRef = FirebaseDatabase.instance
-        .ref()
-        .child("ArogyaSair/tblAppointment")
-        .child(appointmentKey);
-    await userRef.update(updatedData);
-    DatabaseReference tblTreatment =
-        FirebaseDatabase.instance.ref().child("ArogyaSair/tblTreatment");
-    HospitalTreatmentModel treatmentModelObject = HospitalTreatmentModel(
-        newDate.text,
-        widget.userData["Key"],
-        widget.appointments["Disease"],
-        hospitalKey,
-        widget.appointments["Key"],
-        widget.appointments["AppointmentDate"],
-        "Approved");
-    tblTreatment.push().set(treatmentModelObject.toJson());
+    if (newDate == "Select Doctor") {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Alert Message"),
+            content: const Text("Please select doctor for this patient."),
+            actions: <Widget>[
+              OutlinedButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        },
+      );
+    } else {
+      var appointmentKey = widget.appointments["Key"];
+      final updatedData = {
+        "Status": "Approved",
+      };
+      final userRef = FirebaseDatabase.instance
+          .ref()
+          .child("ArogyaSair/tblAppointment")
+          .child(appointmentKey);
+      await userRef.update(updatedData);
+      DatabaseReference tblTreatment =
+          FirebaseDatabase.instance.ref().child("ArogyaSair/tblTreatment");
+      HospitalTreatmentModel treatmentModelObject = HospitalTreatmentModel(
+          newDate,
+          widget.userData["Key"],
+          widget.appointments["Disease"],
+          hospitalKey,
+          widget.appointments["Key"],
+          widget.appointments["AppointmentDate"],
+          "Approved");
+      tblTreatment.push().set(treatmentModelObject.toJson());
 
-    sendAppointmentApprovalToUser(
-        userKey: widget.userData["Key"],
-        appointmentDate: widget.appointments["AppointmentDate"],
-        disease: widget.appointments["Disease"],
-        status: "Approved",
-        hospitalName: hospitalName);
+      sendAppointmentApprovalToUser(
+          userKey: widget.userData["Key"],
+          appointmentDate: widget.appointments["AppointmentDate"],
+          disease: widget.appointments["Disease"],
+          status: "Approved",
+          hospitalName: hospitalName);
 
-    Navigator.pop(context);
-    Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HospitalHomePage(2),
-      ),
-    );
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HospitalHomePage(2),
+        ),
+      );
+    }
   }
 
   Future<void> delayAppointment() async {
-    print(widget.appointments["Key"]);
-    var appointmentKey = widget.appointments["Key"];
-    print(appointmentKey);
-    final updatedData = {
-      "AppointmentDate": date,
-      "Status": "Delayed",
-    };
-    final userRef = FirebaseDatabase.instance
-        .ref()
-        .child("ArogyaSair/tblAppointment")
-        .child(appointmentKey);
-    await userRef.update(updatedData);
+    if (newDate == "Select Doctor") {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Alert Message"),
+            content: const Text("Please select doctor for this patient."),
+            actions: <Widget>[
+              OutlinedButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        },
+      );
+    } else {
+      var appointmentKey = widget.appointments["Key"];
+      final updatedData = {
+        "AppointmentDate": date,
+        "Status": "Delayed",
+      };
+      final userRef = FirebaseDatabase.instance
+          .ref()
+          .child("ArogyaSair/tblAppointment")
+          .child(appointmentKey);
+      await userRef.update(updatedData);
 
-    sendAppointmentDelayToUser(
-        userKey: widget.userData["Key"],
-        appointmentDate: widget.appointments["AppointmentDate"],
-        disease: widget.appointments["Disease"],
-        status: "Approved",
-        hospitalName: hospitalName,
-        newDate: date);
+      sendAppointmentDelayToUser(
+          userKey: widget.userData["Key"],
+          appointmentDate: widget.appointments["AppointmentDate"],
+          disease: widget.appointments["Disease"],
+          status: "Approved",
+          hospitalName: hospitalName,
+          newDate: date);
 
-    DatabaseReference tblDelayedAppointment = FirebaseDatabase.instance
-        .ref()
-        .child("ArogyaSair/tblDelayedAppointment");
-    var oldDate = widget.appointments['AppointmentDate'];
-    var userKey = widget.userData['Key'];
-    HospitalAppointmentDelayedModel hospitalAppointmentDelayedModel =
-        HospitalAppointmentDelayedModel(widget.appointments['Key'], date,
-            newDate.text, hospitalKey, oldDate, userKey, "Delayed");
-    tblDelayedAppointment.push().set(hospitalAppointmentDelayedModel.toJson());
+      DatabaseReference tblDelayedAppointment = FirebaseDatabase.instance
+          .ref()
+          .child("ArogyaSair/tblDelayedAppointment");
+      var oldDate = widget.appointments['AppointmentDate'];
+      var userKey = widget.userData['Key'];
+      HospitalAppointmentDelayedModel hospitalAppointmentDelayedModel =
+          HospitalAppointmentDelayedModel(widget.appointments['Key'], date,
+              newDate, hospitalKey, oldDate, userKey, "Delayed");
+      tblDelayedAppointment
+          .push()
+          .set(hospitalAppointmentDelayedModel.toJson());
+    }
   }
 
   Future<void> _getDate(BuildContext context) async {
@@ -335,7 +385,6 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
       locale: DateTimePickerLocale.en_us,
       looping: true,
     );
-    print(DateTime.tryParse(widget.appointments["AppointmentDate"]));
     setState(() {
       if (datePicked != null) {
         date = "${datePicked.day}-${datePicked.month}-${datePicked.year}";
