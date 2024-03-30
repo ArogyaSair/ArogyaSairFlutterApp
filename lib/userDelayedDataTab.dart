@@ -68,6 +68,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
   }
 
   Future<List<Map>> getPackagesData() async {
+    Appointments.clear();
     if (dataFetched) {
       return Appointments; // Return if data has already been fetched
     }
@@ -279,6 +280,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                         dbDelayedAppointmentRef
                                                             .update(
                                                                 updatedDelayedAppointmentData);
+                                                        // Appointments.clear();
                                                         setState(() {});
                                                       },
                                                     ),
@@ -329,7 +331,6 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                             databaseDelayedAppointmentEvent =
                                             await dbDelayedAppointmentRef
                                                 .once();
-
                                         DataSnapshot
                                             dataDelayedAppointmentSnapshot =
                                             databaseDelayedAppointmentEvent
@@ -337,7 +338,6 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                         Map dataDelayedAppointment =
                                             dataDelayedAppointmentSnapshot.value
                                                 as Map;
-
                                         DatabaseReference tblTreatment =
                                             FirebaseDatabase.instance
                                                 .ref()
@@ -376,6 +376,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                             hospitalName: data2['HospitalName'],
                                             newDate: dataDelayedAppointment[
                                                 "NewDate"]);
+                                        // Appointments.clear();
+                                        // getPackagesData();
                                         setState(() {});
                                       },
                                       style: TextButton.styleFrom(
