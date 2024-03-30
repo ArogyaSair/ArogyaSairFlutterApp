@@ -68,7 +68,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
   }
 
   Future<List<Map>> getPackagesData() async {
-    Appointments.clear();
+    // Appointments.clear();
     if (dataFetched) {
       return Appointments; // Return if data has already been fetched
     }
@@ -185,7 +185,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                               .add(const Duration(days: 14)),
                                           dateFormat: "dd-MM-yyyy",
                                           locale: DateTimePickerLocale.en_us,
-                                          looping: true,
+                                          looping: false,
                                         );
                                         setState(() {
                                           if (datePicked != null) {
@@ -280,7 +280,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                         dbDelayedAppointmentRef
                                                             .update(
                                                                 updatedDelayedAppointmentData);
-                                                        // Appointments.clear();
+                                                        dataFetched = false;
+                                                        getPackagesData();
                                                         setState(() {});
                                                       },
                                                     ),
@@ -376,8 +377,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                             hospitalName: data2['HospitalName'],
                                             newDate: dataDelayedAppointment[
                                                 "NewDate"]);
-                                        // Appointments.clear();
-                                        // getPackagesData();
+                                        dataFetched = false;
+                                        getPackagesData();
                                         setState(() {});
                                       },
                                       style: TextButton.styleFrom(
