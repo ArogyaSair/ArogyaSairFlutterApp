@@ -12,7 +12,9 @@ sendAppointmentDelayToUser(
     required String disease,
     required String status,
     required String hospitalName,
-    required String newDate}) async {
+    required String newDate,
+    required String time
+    }) async {
   var serverKey =
       'AAAANZSWEE8:APA91bGT4zt_EFbTd_zsH9VQf0ydv7wTmKR9pGgdN0r509WHczxR2uwMj4bk9UajZvOix_l3y6a6usEnXZMWyA3q04W7n49K92zK45fbqwXsRm5NL_Ryru5MlqSexZ7exPNK820TyH1C';
 
@@ -33,7 +35,7 @@ sendAppointmentDelayToUser(
       <String, dynamic>{
         'notification': <String, dynamic>{
           'body':
-              "Your appointment of date $appointmentDate, for $disease has been DELAYED for $newDate date by $hospitalName.",
+              "Your appointment of date $appointmentDate, for $disease has been DELAYED for $newDate date by $hospitalName.Between $time",
           'title': "Appointment Notification",
         },
         'data': <String, dynamic>{

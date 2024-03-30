@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables
 
 import 'dart:async';
 
@@ -62,7 +62,6 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
       if (values != null) {
         values.forEach((key, value) async {
           var doctorId = value["Doctor"];
-          print("doctor id $doctorId");
           hospitals.add({
             'DoctorName': value['Doctor'],
             'Hospital_ID': value['Hospital_ID'],
@@ -95,7 +94,6 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
                     itemBuilder: (context, index) {
                       Map data1 = hospitals[index];
                       var time = "${data1["TimeFrom"]} - ${data1["TimeTo"]}";
-                      print("doctorMap $index ${doctorMap[index]}");
                       if (doctorMap[index]["Photo"] != null &&
                           doctorMap[index]["Photo"] != "") {
                         imagePath =

@@ -25,13 +25,11 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
   String timeFrom = "From";
   String timeTo = "To";
   String status = "Available";
-  var imagePath =
-      "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2FDefaultProfileImage.png?alt=media";
+  var imagePath = "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2FDefaultProfileImage.png?alt=media";
   Map<dynamic, dynamic>? userData;
   Map<dynamic, dynamic>? hospitalDoctorData;
-  List<Map<dynamic, dynamic>> userMap = []; // Change this line
-  // List<Map<dynamic, dynamic>> hospitalDoctorMap = []; // Change this line
-  List hospitalDoctorMap = []; // Change this line
+  List<Map<dynamic, dynamic>> userMap = [];
+  List hospitalDoctorMap = [];
 
   @override
   void initState() {
@@ -238,24 +236,21 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                         builder: (BuildContext context,
                                             StateSetter setState) {
                                           return AlertDialog(
-                                            title: const Text(
-                                                "Select doctor's time:-"),
+                                            title: const Text("Select doctor's time:-"),
                                             content: Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 if (selectedTimeFrom != null)
-                                                  Text(
-                                                      'Selected Time From: ${selectedTimeFrom!.hour}:${selectedTimeFrom!.minute}'),
+                                                  Text('Selected Time From: ${selectedTimeFrom!.hour} :${selectedTimeFrom!.minute} '),
                                                 if (selectedTimeTo != null)
-                                                  Text(
-                                                      'Selected Time To: ${selectedTimeTo!.hour}:${selectedTimeTo!.minute}'),
+                                                  Text('Selected Time To: ${selectedTimeTo!.hour} : ${selectedTimeTo!.minute}'),
                                               ],
                                             ),
                                             actions: <Widget>[
                                               TextButton(
                                                 child: const Text('From'),
                                                 onPressed: () async {
-                                                  TimeOfDay? timeFrom =
+                                                  final TimeOfDay? time =
                                                       await showTimePicker(
                                                     context: context,
                                                     initialTime:
@@ -263,76 +258,55 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                                             TimeOfDay.now(),
                                                     initialEntryMode:
                                                         TimePickerEntryMode
-                                                            .dial,
+                                                            .inputOnly,
                                                     orientation:
                                                         Orientation.portrait,
-                                                    useRootNavigator: false,
-                                                    builder:
-                                                        (BuildContext context,
-                                                            Widget? child) {
-                                                      return MediaQuery(
-                                                        data: MediaQuery.of(
-                                                                context)
-                                                            .copyWith(
-                                                                alwaysUse24HourFormat:
-                                                                    false),
-                                                        child: child!,
-                                                      );
-                                                    },
                                                   );
                                                   setState(() {
-                                                    selectedTimeFrom = timeFrom;
-                                                    if (timeFrom != null) {
-                                                      timeFrom =
-                                                          '${timeFrom?.hourOfPeriod}:${timeFrom?.minute} ${timeFrom?.period.index == 0 ? 'AM' : 'PM'}'
-                                                              as TimeOfDay?; // Update timeFrom
+                                                    if (time != null) {
+                                                      timeFrom = '${time.hourOfPeriod}:${time.minute}'; // Update timeFrom
                                                     }
+                                                    selectedTimeFrom = time;
                                                   });
                                                 },
                                               ),
                                               TextButton(
                                                 child: const Text('To'),
                                                 onPressed: () async {
-                                                  final TimeOfDay? time =
-                                                      await showTimePicker(
-                                                    context: context,
-                                                    initialTime:
-                                                        selectedTimeTo ??
-                                                            TimeOfDay.now(),
-                                                    initialEntryMode:
-                                                        TimePickerEntryMode
-                                                            .dial,
-                                                    orientation:
-                                                        Orientation.portrait,
-                                                    useRootNavigator: false,
-                                                    builder:
-                                                        (BuildContext context,
-                                                            Widget? child) {
-                                                      return MediaQuery(
-                                                        data: MediaQuery.of(
-                                                                context)
-                                                            .copyWith(
-                                                                alwaysUse24HourFormat:
-                                                                    false),
-                                                        child: child!,
+                                                  if(selectedTimeFrom != null){
+                                                    final TimeOfDay? time =
+                                                    await showTimePicker(
+                                                      context: context,
+                                                      initialTime: selectedTimeTo ?? TimeOfDay(hour: selectedTimeFrom!.hour+1, minute: selectedTimeFrom!.minute),
+                                                      initialEntryMode: TimePickerEntryMode.inputOnly,
+                                                      orientation: Orientation.landscape,
+                                                      useRootNavigator: false,
+                                                    );
+                                                    setState(() {
+                                                      selectedTimeTo = time;
+                                                      if (time != null) {
+                                                        timeTo = '${time.hourOfPeriod}:${time.minute}'; // Format time with AM/PM suffix
+                                                      }
+                                                    });
+                                                  }else{
+                                                    showDialog(context: context, builder: (BuildContext context){
+                                                      return AlertDialog(
+                                                        title: const Text("Please select From time first"),
+                                                        actions: [
+                                                          TextButton(onPressed: (){
+                                                            Navigator.pop(context);
+                                                          }, child: const Text("Ok")),
+                                                        ],
                                                       );
-                                                    },
-                                                  );
-                                                  setState(() {
-                                                    selectedTimeTo = time;
-                                                    if (time != null) {
-                                                      timeTo =
-                                                          '${time.hourOfPeriod}:${time.minute} ${time.period.index == 0 ? 'AM' : 'PM'}'; // Format time with AM/PM suffix
-                                                    }
-                                                  });
+                                                    });
+                                                  }
                                                 },
                                               ),
                                               TextButton(
                                                 child: const Text('Ok'),
                                                 onPressed: () {
-                                                  {
-                                                    var doctor =
-                                                        user['DoctorName'];
+                                                  if(timeTo!="To"){
+                                                    var doctor = user['Key'];
                                                     HospitalDoctor regobj =
                                                         HospitalDoctor(
                                                             doctor,
@@ -345,8 +319,7 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                                         .set(regobj.toJson());
                                                     Navigator.of(context).pop();
                                                   }
-                                                  Navigator.pop(
-                                                      context); // Close the AlertDialog
+                                                  Navigator.pop(context); // Close the AlertDialog
                                                 },
                                               ),
                                             ],

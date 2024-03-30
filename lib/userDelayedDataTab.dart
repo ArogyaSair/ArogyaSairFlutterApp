@@ -94,6 +94,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
           'OldDate': value["OldDate"],
           'Status': value["Status"],
           'UserId': value["UserId"],
+          'VisitingTime': value["VisitingTime"],
         });
         await fetchUserData(value["HospitalId"], Appointments.length - 1);
         dataFetched = true;
@@ -153,6 +154,16 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Text(
                                   "New Date : ${Appointments[index]["NewDate"]}",
+                                  style: const TextStyle(fontSize: 17),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  "Time for visit : ${Appointments[index]["VisitingTime"]}",
                                   style: const TextStyle(fontSize: 17),
                                 ),
                               ),
@@ -342,6 +353,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                           Appointments[index]["AppointmentId"],
                                           dataDelayedAppointment["NewDate"],
                                           "Approved",
+                                          Appointments[index]["VisitingTime"],
                                         );
                                         tblTreatment
                                             .push()

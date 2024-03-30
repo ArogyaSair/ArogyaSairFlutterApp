@@ -8,9 +8,17 @@ class HospitalAppointmentDelayedModel {
   late String oldDate;
   late String userId;
   late String status;
+  late String visitingTime;
 
-  HospitalAppointmentDelayedModel(this.appointmentId, this.newDate,
-      this.doctorName, this.hospitalId, this.oldDate, this.userId, this.status);
+  HospitalAppointmentDelayedModel(
+      this.appointmentId,
+      this.newDate,
+      this.doctorName,
+      this.hospitalId,
+      this.oldDate,
+      this.userId,
+      this.status,
+      this.visitingTime);
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
         'AppointmentId': appointmentId,
@@ -19,7 +27,8 @@ class HospitalAppointmentDelayedModel {
         'HospitalId': hospitalId,
         'OldDate': oldDate,
         'UserId': userId,
-        'Status': status
+        'Status': status,
+        'VisitingTime': visitingTime,
       };
 
   factory HospitalAppointmentDelayedModel.fromJson(Map<String, dynamic> v) {
@@ -31,6 +40,7 @@ class HospitalAppointmentDelayedModel {
       v['OldDate'],
       v['UserId'],
       v["Status"],
+      v["VisitingTime"],
     );
   }
 }
