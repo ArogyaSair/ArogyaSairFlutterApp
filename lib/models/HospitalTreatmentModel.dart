@@ -11,7 +11,11 @@ class HospitalTreatmentModel {
   late String visitingTime;
 
   HospitalTreatmentModel(this.doctorName, this.patientName, this.disease,
-      this.hospitalId, this.appointmentId, this.treatmentDate, this.status, this.visitingTime);
+      this.hospitalId,
+      this.appointmentId,
+      this.treatmentDate,
+      this.status,
+      this.visitingTime);
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
         'PatientID': patientName,

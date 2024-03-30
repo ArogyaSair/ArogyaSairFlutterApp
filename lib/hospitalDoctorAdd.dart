@@ -25,7 +25,8 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
   String timeFrom = "From";
   String timeTo = "To";
   String status = "Available";
-  var imagePath = "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2FDefaultProfileImage.png?alt=media";
+  var imagePath =
+      "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/DoctorImage%2FDefaultProfileImage.png?alt=media";
   Map<dynamic, dynamic>? userData;
   Map<dynamic, dynamic>? hospitalDoctorData;
   List<Map<dynamic, dynamic>> userMap = [];
@@ -236,14 +237,17 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                         builder: (BuildContext context,
                                             StateSetter setState) {
                                           return AlertDialog(
-                                            title: const Text("Select doctor's time:-"),
+                                            title: const Text(
+                                                "Select doctor's time:-"),
                                             content: Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 if (selectedTimeFrom != null)
-                                                  Text('Selected Time From: ${selectedTimeFrom!.hour} :${selectedTimeFrom!.minute} '),
+                                                  Text(
+                                                      'Selected Time From: ${selectedTimeFrom!.hour} :${selectedTimeFrom!.minute} '),
                                                 if (selectedTimeTo != null)
-                                                  Text('Selected Time To: ${selectedTimeTo!.hour} : ${selectedTimeTo!.minute}'),
+                                                  Text(
+                                                      'Selected Time To: ${selectedTimeTo!.hour} : ${selectedTimeTo!.minute}'),
                                               ],
                                             ),
                                             actions: <Widget>[
@@ -264,7 +268,8 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                                   );
                                                   setState(() {
                                                     if (time != null) {
-                                                      timeFrom = '${time.hourOfPeriod}:${time.minute}'; // Update timeFrom
+                                                      timeFrom =
+                                                          '${time.hourOfPeriod}:${time.minute}'; // Update timeFrom
                                                     }
                                                     selectedTimeFrom = time;
                                                   });
@@ -273,39 +278,62 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                               TextButton(
                                                 child: const Text('To'),
                                                 onPressed: () async {
-                                                  if(selectedTimeFrom != null){
+                                                  if (selectedTimeFrom !=
+                                                      null) {
                                                     final TimeOfDay? time =
-                                                    await showTimePicker(
+                                                        await showTimePicker(
                                                       context: context,
-                                                      initialTime: selectedTimeTo ?? TimeOfDay(hour: selectedTimeFrom!.hour+1, minute: selectedTimeFrom!.minute),
-                                                      initialEntryMode: TimePickerEntryMode.inputOnly,
-                                                      orientation: Orientation.landscape,
+                                                      initialTime: selectedTimeTo ??
+                                                          TimeOfDay(
+                                                              hour:
+                                                                  selectedTimeFrom!
+                                                                          .hour +
+                                                                      1,
+                                                              minute:
+                                                                  selectedTimeFrom!
+                                                                      .minute),
+                                                      initialEntryMode:
+                                                          TimePickerEntryMode
+                                                              .inputOnly,
+                                                      orientation:
+                                                          Orientation.landscape,
                                                       useRootNavigator: false,
                                                     );
                                                     setState(() {
                                                       selectedTimeTo = time;
                                                       if (time != null) {
-                                                        timeTo = '${time.hourOfPeriod}:${time.minute}'; // Format time with AM/PM suffix
+                                                        timeTo =
+                                                            '${time.hourOfPeriod}:${time.minute}'; // Format time with AM/PM suffix
                                                       }
                                                     });
-                                                  }else{
-                                                    showDialog(context: context, builder: (BuildContext context){
-                                                      return AlertDialog(
-                                                        title: const Text("Please select From time first"),
-                                                        actions: [
-                                                          TextButton(onPressed: (){
-                                                            Navigator.pop(context);
-                                                          }, child: const Text("Ok")),
-                                                        ],
-                                                      );
-                                                    });
+                                                  } else {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return AlertDialog(
+                                                            title: const Text(
+                                                                "Please select From time first"),
+                                                            actions: [
+                                                              TextButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                  child:
+                                                                      const Text(
+                                                                          "Ok")),
+                                                            ],
+                                                          );
+                                                        });
                                                   }
                                                 },
                                               ),
                                               TextButton(
                                                 child: const Text('Ok'),
                                                 onPressed: () {
-                                                  if(timeTo!="To"){
+                                                  if (timeTo != "To") {
                                                     var doctor = user['Key'];
                                                     HospitalDoctor regobj =
                                                         HospitalDoctor(
@@ -319,7 +347,8 @@ class _HospitalDoctorAddState extends State<HospitalDoctorAdd> {
                                                         .set(regobj.toJson());
                                                     Navigator.of(context).pop();
                                                   }
-                                                  Navigator.pop(context); // Close the AlertDialog
+                                                  Navigator.pop(
+                                                      context); // Close the AlertDialog
                                                 },
                                               ),
                                             ],

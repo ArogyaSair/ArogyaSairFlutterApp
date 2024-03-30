@@ -11,7 +11,8 @@ sendAppointmentApprovalToUser(
     required String appointmentDate,
     required String disease,
     required String status,
-    required String hospitalName, required String time}) async {
+    required String hospitalName,
+    required String time}) async {
   var serverKey =
       'AAAANZSWEE8:APA91bGT4zt_EFbTd_zsH9VQf0ydv7wTmKR9pGgdN0r509WHczxR2uwMj4bk9UajZvOix_l3y6a6usEnXZMWyA3q04W7n49K92zK45fbqwXsRm5NL_Ryru5MlqSexZ7exPNK820TyH1C';
 

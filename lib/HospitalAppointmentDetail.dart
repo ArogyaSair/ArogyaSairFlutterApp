@@ -25,7 +25,7 @@ class HospitalAppointmentDetail extends StatefulWidget {
 }
 
 class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late Map data1;
   late Map data2;
   late Query dbRef;
@@ -275,11 +275,9 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
                                                         "Please select doctor for this patient."),
                                                     actions: <Widget>[
                                                       OutlinedButton(
-                                                        child:
-                                                        const Text('OK'),
+                                                        child: const Text('OK'),
                                                         onPressed: () {
-                                                          Navigator.of(
-                                                              context)
+                                                          Navigator.of(context)
                                                               .pop();
                                                         },
                                                       )
@@ -373,7 +371,8 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
           appointmentDate: widget.appointments["AppointmentDate"],
           disease: widget.appointments["Disease"],
           status: "Approved",
-          hospitalName: hospitalName, time: visitingTime.text);
+          hospitalName: hospitalName,
+          time: visitingTime.text);
 
       Navigator.pop(context);
       Navigator.pop(context);
@@ -424,8 +423,7 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
           status: "Approved",
           hospitalName: hospitalName,
           newDate: date,
-          time: visitingTime.text
-      );
+          time: visitingTime.text);
 
       DatabaseReference tblDelayedAppointment = FirebaseDatabase.instance
           .ref()
@@ -433,8 +431,15 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
       var oldDate = widget.appointments['AppointmentDate'];
       var userKey = widget.userData['Key'];
       HospitalAppointmentDelayedModel hospitalAppointmentDelayedModel =
-          HospitalAppointmentDelayedModel(widget.appointments['Key'], date,
-              newDate, hospitalKey, oldDate, userKey, "Delayed", visitingTime.text);
+          HospitalAppointmentDelayedModel(
+              widget.appointments['Key'],
+              date,
+              newDate,
+              hospitalKey,
+              oldDate,
+              userKey,
+              "Delayed",
+              visitingTime.text);
       tblDelayedAppointment
           .push()
           .set(hospitalAppointmentDelayedModel.toJson());
@@ -516,7 +521,6 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
           toTime = stringToTimeOfDay(element["timeTo"]);
         }
       }
-      print(timeToCheck);
       final TimeOfDay? time = await showTimePicker(
         context: context,
         initialTime: selectedTimeFrom ??
