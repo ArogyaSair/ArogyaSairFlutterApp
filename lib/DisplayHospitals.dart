@@ -7,7 +7,6 @@ import 'package:logger/logger.dart';
 
 import 'GenaralAppointmentDateSelection.dart';
 
-
 class DisplayHospitals extends StatefulWidget {
   const DisplayHospitals({super.key});
 
@@ -45,26 +44,24 @@ class _DisplayHospitalsState extends State<DisplayHospitals> {
     // print("values $values");
 
     values.forEach((key, value) {
-        if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
-          hospitals.add({
-            'HospitalName': value['HospitalName'],
-            'Photo': value["Photo"],
-            'AvailableDisease': value['AvailableSurgeries'],
-            'Key': key,
-          });
-        } else {
-          hospitals.add({
-            'HospitalName': value['HospitalName'],
-            'Photo': 'ArogyaSair.png',
-            'Key': key,
-            'AvailableDisease': value['AvailableSurgeries'],
-          });
-        }
-
+      if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
+        hospitals.add({
+          'HospitalName': value['HospitalName'],
+          'Photo': value["Photo"],
+          'AvailableDisease': value['AvailableSurgeries'],
+          'Key': key,
+        });
+      } else {
+        hospitals.add({
+          'HospitalName': value['HospitalName'],
+          'Photo': 'ArogyaSair.png',
+          'Key': key,
+          'AvailableDisease': value['AvailableSurgeries'],
+        });
+      }
     });
     return hospitals;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +130,8 @@ class _DisplayHospitalsState extends State<DisplayHospitals> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => GeneralAppointmentDateSelection(
+                                      builder: (context) =>
+                                          GeneralAppointmentDateSelection(
                                         HospitalName: data1["HospitalName"],
                                         HospitalKey: data1["Key"],
                                         item: "General Checkup",

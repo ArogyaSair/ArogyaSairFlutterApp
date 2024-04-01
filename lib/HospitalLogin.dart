@@ -42,7 +42,7 @@ class _LoginState extends State<HospitalLogin> {
               width: double.infinity,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
-                      colors: [Color(0xff12d3c6),Color(0xff12d3c6)])),
+                      colors: [Color(0xff12d3c6), Color(0xff12d3c6)])),
               child: const Padding(
                 padding: EdgeInsets.only(top: 60, left: 22),
                 child: Text(
@@ -67,7 +67,7 @@ class _LoginState extends State<HospitalLogin> {
                   width: double.infinity,
                   child: Padding(
                     padding:
-                    const EdgeInsets.only(top: 50, right: 20, left: 20),
+                        const EdgeInsets.only(top: 50, right: 20, left: 20),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -87,7 +87,8 @@ class _LoginState extends State<HospitalLogin> {
                                         return null;
                                       },
                                       decoration: const InputDecoration(
-                                        prefixIcon: Icon(Icons.email_outlined,color: Color(0xff12d3c6)),
+                                        prefixIcon: Icon(Icons.email_outlined,
+                                            color: Color(0xff12d3c6)),
                                         prefixIconColor: Colors.blue,
 
                                         labelText: 'Email',
@@ -109,7 +110,8 @@ class _LoginState extends State<HospitalLogin> {
                                         return null;
                                       },
                                       decoration: InputDecoration(
-                                        prefixIcon: const Icon(Icons.lock,color: Color(0xff12d3c6)),
+                                        prefixIcon: const Icon(Icons.lock,
+                                            color: Color(0xff12d3c6)),
                                         suffixIcon: IconButton(
                                           icon: Icon(
                                             isPasswordVisible
@@ -138,10 +140,11 @@ class _LoginState extends State<HospitalLogin> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                    const HospitalPasswordChangeUserName()));
+                                                        const HospitalPasswordChangeUserName()));
                                           },
-                                          child:
-                                          Text("Forgot Password ?",style: TextStyle(color: Colors.grey.shade700)),
+                                          child: Text("Forgot Password ?",
+                                              style: TextStyle(
+                                                  color: Colors.grey.shade700)),
                                         ),
                                       ],
                                     ),
@@ -153,7 +156,8 @@ class _LoginState extends State<HospitalLogin> {
                                       width: 300,
                                       decoration: const BoxDecoration(
                                           gradient: LinearGradient(colors: [
-                                            Color(0xff12d3c6),Color(0xff12d3c6)
+                                            Color(0xff12d3c6),
+                                            Color(0xff12d3c6)
                                           ]),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(20))),
@@ -182,7 +186,7 @@ class _LoginState extends State<HospitalLogin> {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.all(0),
@@ -202,7 +206,7 @@ class _LoginState extends State<HospitalLogin> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                    const HospitalEmailVerification()),
+                                                        const HospitalEmailVerification()),
                                               );
                                             },
                                             child: const Text(
@@ -212,7 +216,7 @@ class _LoginState extends State<HospitalLogin> {
                                                   fontStyle: FontStyle.italic,
                                                   color: Color(0xff12d3c6),
                                                   decoration:
-                                                  TextDecoration.underline),
+                                                      TextDecoration.underline),
                                             ),
                                           ),
                                         ),

@@ -26,14 +26,11 @@ class _MyUpdatesState extends State<MyUpdates> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor:const Color(0xfff2f6f7),
+          backgroundColor: const Color(0xfff2f6f7),
           automaticallyImplyLeading: false,
           title: const Text(
             'Arogya Sair',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold
-            ),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
           iconTheme: const IconThemeData(color: Color(0xff12d3c6)),
           bottom: const TabBar(
@@ -41,9 +38,21 @@ class _MyUpdatesState extends State<MyUpdates> {
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white,
             tabs: [
-              Tab(child: Text("PENDING",style: TextStyle(color: Color(0xff12d3c6)),)),
-              Tab(child: Text("DELAYED",style: TextStyle(color: Color(0xff12d3c6)),)),
-              Tab(child: Text("APPROVED",style: TextStyle(color: Color(0xff12d3c6)),)),
+              Tab(
+                  child: Text(
+                "PENDING",
+                style: TextStyle(color: Color(0xff12d3c6)),
+              )),
+              Tab(
+                  child: Text(
+                "DELAYED",
+                style: TextStyle(color: Color(0xff12d3c6)),
+              )),
+              Tab(
+                  child: Text(
+                "APPROVED",
+                style: TextStyle(color: Color(0xff12d3c6)),
+              )),
             ],
           ),
         ),

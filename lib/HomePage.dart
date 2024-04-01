@@ -24,7 +24,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Query dbRef2 =
-  FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
+      FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
   late String data;
   final key = 'username';
   late String userKey;
@@ -68,7 +68,6 @@ class _HomePageState extends State<HomePage> {
           child: Scaffold(
             backgroundColor: const Color(0xfff2f6f7),
             appBar: AppBar(
-
               backgroundColor: const Color(0xfff2f6f7),
               automaticallyImplyLeading: false,
               title: const Column(
@@ -84,7 +83,9 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black, fontWeight: FontWeight.bold))
                 ],
               ),
-              iconTheme: const IconThemeData(color: Color(0xff12d3c6),),
+              iconTheme: const IconThemeData(
+                color: Color(0xff12d3c6),
+              ),
             ),
             endDrawer: const DrawerCode(),
             body: SingleChildScrollView(
@@ -100,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Padding(
                         padding:
-                        const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+                            const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
                         child: Container(
                           width: double.infinity - 10,
                           height: 5,
@@ -121,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                        const SearchPage()));
+                                            const SearchPage()));
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -138,8 +139,8 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   Padding(
                                     padding:
-                                    const EdgeInsetsDirectional.fromSTEB(
-                                        4, 0, 0, 0),
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            4, 0, 0, 0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -150,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                            const SearchPage(),
+                                                const SearchPage(),
                                           ),
                                         );
                                       },
@@ -202,17 +203,17 @@ class _HomePageState extends State<HomePage> {
                                 height: constraints.maxHeight * 0.10,
                                 child: Row(
                                   crossAxisAlignment:
-                                  CrossAxisAlignment.stretch,
+                                      CrossAxisAlignment.stretch,
                                   children: [
                                     Expanded(
                                       flex: 1,
                                       child: Center(
                                         child: Padding(
                                           padding:
-                                          const EdgeInsets.only(left: 12),
+                                              const EdgeInsets.only(left: 12),
                                           child: ClipRRect(
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                             // Adjust the radius as needed
                                             child: Image.asset(
                                               'assets/Animation/generalcheckup.jpg',
@@ -247,7 +248,7 @@ class _HomePageState extends State<HomePage> {
                                                   style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight:
-                                                      FontWeight.bold,
+                                                          FontWeight.bold,
                                                       color: Colors.black),
                                                 )
                                               ],
@@ -290,17 +291,17 @@ class _HomePageState extends State<HomePage> {
                                 height: constraints.maxHeight * 0.10,
                                 child: Row(
                                   crossAxisAlignment:
-                                  CrossAxisAlignment.stretch,
+                                      CrossAxisAlignment.stretch,
                                   children: [
                                     Expanded(
                                       flex: 1,
                                       child: Center(
                                         child: Padding(
                                           padding:
-                                          const EdgeInsets.only(left: 12),
+                                              const EdgeInsets.only(left: 12),
                                           child: ClipRRect(
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                             // Adjust the radius as needed
                                             child: Image.asset(
                                               'assets/Animation/surgery.jpg',
@@ -333,7 +334,7 @@ class _HomePageState extends State<HomePage> {
                                                   style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight:
-                                                      FontWeight.bold,
+                                                          FontWeight.bold,
                                                       color: Colors.black),
                                                 )
                                               ],
@@ -383,7 +384,7 @@ class _HomePageState extends State<HomePage> {
                           return GridView.builder(
                             scrollDirection: Axis.vertical,
                             gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
+                                SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 1,
                               childAspectRatio: constraints.maxHeight * 0.00145,
                             ),
@@ -394,30 +395,32 @@ class _HomePageState extends State<HomePage> {
                             itemBuilder: (BuildContext context, int index) {
                               if (packagesList[index].hospitalImage == "") {
                                 imagePath =
-                                "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FArogyaSair.png?alt=media";
+                                    "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FArogyaSair.png?alt=media";
                               } else {
                                 imagePath =
-                                "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${packagesList[index].hospitalImage}?alt=media";
+                                    "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${packagesList[index].hospitalImage}?alt=media";
                               }
                               return Padding(
                                 padding: const EdgeInsets.all(5),
                                 child: GestureDetector(
-                                  child:  Padding(
+                                  child: Padding(
                                     padding: const EdgeInsets.all(12.0),
                                     child: FillImageCard(
                                       imageProvider: NetworkImage(
                                         imagePath,
                                       ),
-                                      heightImage: MediaQuery.of(context).size.height * 0.23,
+                                      heightImage:
+                                          MediaQuery.of(context).size.height *
+                                              0.23,
                                       title: Text(
                                           packagesList[index].hospitalName,
-                                          style: const TextStyle(fontWeight: FontWeight.bold,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
                                               fontSize: 20)),
                                       height: double.infinity,
                                       width: double.infinity,
                                       description: Text(
                                           packagesList[index].hospitalEmail),
-
                                     ),
                                   ),
                                   onTap: () {

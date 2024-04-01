@@ -15,7 +15,6 @@ class ContactUs extends StatelessWidget {
     }
   }
 
-
   Future<void> makePhoneCall() async {
     final url = Uri.parse("tel:9016204659");
     if (await canLaunchUrl(url)) {

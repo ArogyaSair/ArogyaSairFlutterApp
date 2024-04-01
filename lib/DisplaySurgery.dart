@@ -50,9 +50,10 @@ class _DisplayDiseaseState extends State<DisplaySurgery> {
                   decoration: InputDecoration(
                     hintText: 'Search Surgery',
                     hintStyle: const TextStyle(color: Color(0xff12d3c6)),
-                    prefixIcon: const Icon(Icons.search, color:  Color(0xff12d3c6)),
+                    prefixIcon:
+                        const Icon(Icons.search, color: Color(0xff12d3c6)),
                     filled: true,
-                    fillColor:Colors.white,
+                    fillColor: Colors.white,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: const BorderSide(
@@ -76,11 +77,12 @@ class _DisplayDiseaseState extends State<DisplaySurgery> {
                         .ref()
                         .child("ArogyaSair/AllSurgeries")
                         .onValue,
-                    builder:
-                        (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                    builder: (BuildContext context,
+                        AsyncSnapshot<dynamic> snapshot) {
                       if (snapshot.hasData &&
                           snapshot.data!.snapshot.value != null) {
-                        Map<dynamic, dynamic> map = snapshot.data!.snapshot.value;
+                        Map<dynamic, dynamic> map =
+                            snapshot.data!.snapshot.value;
                         List<SurgeryModel> surgeryList = [];
                         surgeryList.clear();
                         map.forEach((key, value) {
@@ -89,8 +91,8 @@ class _DisplayDiseaseState extends State<DisplaySurgery> {
                         // Filter the diseaseList based on the search term
                         List<SurgeryModel> filteredList = surgeryList
                             .where((surgery) => surgery.surgery
-                            .toLowerCase()
-                            .contains(_searchTerm))
+                                .toLowerCase()
+                                .contains(_searchTerm))
                             .toList();
                         if (filteredList.isEmpty) {
                           return Center(
@@ -130,7 +132,8 @@ class _DisplayDiseaseState extends State<DisplaySurgery> {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     filteredList[index].surgery,
-                                    style: const TextStyle(fontSize: 18,color: Colors.black),
+                                    style: const TextStyle(
+                                        fontSize: 18, color: Colors.black),
                                   ),
                                 ),
                               ),
@@ -140,8 +143,8 @@ class _DisplayDiseaseState extends State<DisplaySurgery> {
                                   MaterialPageRoute(
                                     builder: (context) =>
                                         PackageHospitalSelection(
-                                          diseaseList: filteredList[index],
-                                        ),
+                                      diseaseList: filteredList[index],
+                                    ),
                                   ),
                                 );
                               },

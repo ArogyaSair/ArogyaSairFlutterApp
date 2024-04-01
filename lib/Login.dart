@@ -42,9 +42,11 @@ class _LoginState extends State<Login> {
                         colors: [Color(0xff12d3c6), Color(0xff12d3c6)])),
                 child: const Column(
                   children: [
-                    Padding(padding: EdgeInsets.only(top: 70, right: 235),
-                      child: Text("Welcome, ",
-                        style: TextStyle(color: Colors.white,fontSize: 18),
+                    Padding(
+                      padding: EdgeInsets.only(top: 70, right: 235),
+                      child: Text(
+                        "Welcome, ",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),
                     Padding(
@@ -58,8 +60,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
             Padding(
               padding: const EdgeInsets.only(top: 200),
               child: Container(
@@ -73,7 +74,7 @@ class _LoginState extends State<Login> {
                   width: double.infinity,
                   child: Padding(
                     padding:
-                    const EdgeInsets.only(top: 50, right: 20, left: 20),
+                        const EdgeInsets.only(top: 50, right: 20, left: 20),
                     child: Column(
                       children: [
                         Column(
@@ -81,7 +82,7 @@ class _LoginState extends State<Login> {
                           children: [
                             Padding(
                               padding:
-                              const EdgeInsets.only(right: 20, left: 20),
+                                  const EdgeInsets.only(right: 20, left: 20),
                               child: Form(
                                 key: _formKey,
                                 child: SingleChildScrollView(
@@ -96,8 +97,8 @@ class _LoginState extends State<Login> {
                                           return null;
                                         },
                                         decoration: const InputDecoration(
-                                          prefixIcon:
-                                          Icon(Icons.email_outlined,color: Color(0xff12d3c6)),
+                                          prefixIcon: Icon(Icons.email_outlined,
+                                              color: Color(0xff12d3c6)),
                                           prefixIconColor: Colors.blue,
                                           labelText: 'Username',
                                           filled: true,
@@ -118,7 +119,8 @@ class _LoginState extends State<Login> {
                                           return null;
                                         },
                                         decoration: InputDecoration(
-                                          prefixIcon: const Icon(Icons.lock,color: Color(0xff12d3c6)),
+                                          prefixIcon: const Icon(Icons.lock,
+                                              color: Color(0xff12d3c6)),
                                           suffixIcon: IconButton(
                                             icon: Icon(
                                               isPasswordVisible
@@ -140,7 +142,7 @@ class _LoginState extends State<Login> {
                                       ),
                                       Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.end,
+                                            MainAxisAlignment.end,
                                         children: [
                                           TextButton(
                                             onPressed: () {
@@ -148,10 +150,12 @@ class _LoginState extends State<Login> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                      const userPasswordChangeUserName()));
+                                                          const userPasswordChangeUserName()));
                                             },
-                                            child:
-                                            Text("Forgot Password ?",style: TextStyle(color: Colors.grey.shade700)),
+                                            child: Text("Forgot Password ?",
+                                                style: TextStyle(
+                                                    color:
+                                                        Colors.grey.shade700)),
                                           ),
                                         ],
                                       ),
@@ -185,7 +189,7 @@ class _LoginState extends State<Login> {
                                           child: const Text(
                                             'LOG IN',
                                             style:
-                                            TextStyle(color: Colors.white),
+                                                TextStyle(color: Colors.white),
                                           ),
                                         ),
                                       ),
@@ -194,7 +198,7 @@ class _LoginState extends State<Login> {
                                       ),
                                       Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                            MainAxisAlignment.center,
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.all(0),
@@ -214,7 +218,7 @@ class _LoginState extends State<Login> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                      const Registration()),
+                                                          const Registration()),
                                                 );
                                               },
                                               child: const Text(

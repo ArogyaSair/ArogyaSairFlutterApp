@@ -111,7 +111,9 @@ class _UserApprovedDataState extends State<UserApprovedData> {
                                     ],
                                   ),
                                 ),
-                                const SizedBox(height: 10,),
+                                const SizedBox(
+                                  height: 10,
+                                ),
                                 Row(
                                   children: [
                                     Padding(
@@ -146,7 +148,7 @@ class _UserApprovedDataState extends State<UserApprovedData> {
                               ),
                               child: const Padding(
                                 padding: EdgeInsets.all(5),
-                                child: Icon(Icons.check,color: Colors.white),
+                                child: Icon(Icons.check, color: Colors.white),
                               ),
                             ),
                           ),

@@ -20,7 +20,7 @@ class Registration extends StatefulWidget {
 class _Registration extends State<Registration> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   DatabaseReference dbRef2 =
-  FirebaseDatabase.instance.ref().child('ArogyaSair/tblUser');
+      FirebaseDatabase.instance.ref().child('ArogyaSair/tblUser');
 
   TextEditingController controlleruname = TextEditingController();
   TextEditingController controllerpassword = TextEditingController();
@@ -49,7 +49,7 @@ class _Registration extends State<Registration> {
           width: double.infinity,
           decoration: const BoxDecoration(
               gradient: LinearGradient(
-                  colors: [Color(0xff12d3c6),Color(0xff12d3c6)])),
+                  colors: [Color(0xff12d3c6), Color(0xff12d3c6)])),
           child: const Padding(
             padding: EdgeInsets.only(top: 60, left: 22),
             child: Text(
@@ -90,10 +90,10 @@ class _Registration extends State<Registration> {
                           },
                           decoration: const InputDecoration(
                             prefixIconColor: Colors.blue,
-                            prefixIcon: Icon(Icons.person,color: Color(0xff12d3c6)),
+                            prefixIcon:
+                                Icon(Icons.person, color: Color(0xff12d3c6)),
                             labelText: 'Full Name',
                             hintText: 'Enter Name',
-
                           ),
                         ),
                         const SizedBox(
@@ -109,10 +109,10 @@ class _Registration extends State<Registration> {
                           },
                           decoration: const InputDecoration(
                             prefixIconColor: Colors.blue,
-                            prefixIcon: Icon(Icons.account_box,color: Color(0xff12d3c6)),
+                            prefixIcon: Icon(Icons.account_box,
+                                color: Color(0xff12d3c6)),
                             labelText: 'Username',
                             hintText: 'Enter Username',
-
                           ),
                         ),
                         const SizedBox(
@@ -128,7 +128,8 @@ class _Registration extends State<Registration> {
                           },
                           obscureText: !isPasswordVisible,
                           decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock,color: Color(0xff12d3c6)),
+                            prefixIcon: const Icon(Icons.lock,
+                                color: Color(0xff12d3c6)),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 isPasswordVisible
@@ -143,7 +144,6 @@ class _Registration extends State<Registration> {
                             prefixIconColor: Colors.blue,
                             labelText: 'Password',
                             hintText: 'Enter Password',
-
                           ),
                         ),
                         const SizedBox(
@@ -159,7 +159,8 @@ class _Registration extends State<Registration> {
                           },
                           obscureText: !isConfirmPasswordVisible,
                           decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock,color: Color(0xff12d3c6)),
+                            prefixIcon: const Icon(Icons.lock,
+                                color: Color(0xff12d3c6)),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 isConfirmPasswordVisible
@@ -174,7 +175,6 @@ class _Registration extends State<Registration> {
                             prefixIconColor: Colors.blue,
                             labelText: 'Confirm Password',
                             hintText: 'Re-Enter Password',
-
                           ),
                         ),
                         const SizedBox(
@@ -191,7 +191,8 @@ class _Registration extends State<Registration> {
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
                             prefixIconColor: Colors.blue,
-                            prefixIcon: Icon(Icons.email,color: Color(0xff12d3c6)),
+                            prefixIcon:
+                                Icon(Icons.email, color: Color(0xff12d3c6)),
                             labelText: 'Email',
                             hintText: 'Enter Email',
                           ),
@@ -210,10 +211,10 @@ class _Registration extends State<Registration> {
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             prefixIconColor: Colors.blue,
-                            prefixIcon: Icon(Icons.call,color:Color(0xff12d3c6)),
+                            prefixIcon:
+                                Icon(Icons.call, color: Color(0xff12d3c6)),
                             labelText: 'Contact Number',
                             hintText: 'Enter Contact',
-
                           ),
                         ),
                         const SizedBox(
@@ -224,7 +225,6 @@ class _Registration extends State<Registration> {
                           readOnly: true,
                           // Make the text input read-only
                           decoration: InputDecoration(
-
                             prefixIcon: GestureDetector(
                               onTap: () {
                                 _getDate(context);
@@ -244,13 +244,9 @@ class _Registration extends State<Registration> {
                           width: 300,
                           decoration: const BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [
-                                Color(0xff12d3c6),
-                                Color(0xff12d3c6)
-                              ],
+                              colors: [Color(0xff12d3c6), Color(0xff12d3c6)],
                             ),
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(20)),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
                           child: ElevatedButton(
                             onPressed: () {
@@ -275,7 +271,8 @@ class _Registration extends State<Registration> {
                                           builder: (context) => const Login()));
                                 } else {
                                   const snackBar = SnackBar(
-                                    content: Text("Password does not match..!!"),
+                                    content:
+                                        Text("Password does not match..!!"),
                                     duration: Duration(seconds: 2),
                                   );
                                   ScaffoldMessenger.of(context)
@@ -289,12 +286,10 @@ class _Registration extends State<Registration> {
                             ),
                             child: const Text("Sign up",
                                 style: TextStyle(color: Colors.white)),
-
                           ),
                         ),
                         const SizedBox(
                           height: 10,
-
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -303,8 +298,8 @@ class _Registration extends State<Registration> {
                               padding: const EdgeInsets.all(0),
                               child: Text(
                                 "Already have an account..?",
-                                style:
-                                TextStyle(color: Colors.grey.shade700, fontSize: 16),
+                                style: TextStyle(
+                                    color: Colors.grey.shade700, fontSize: 16),
                               ),
                             ),
                             Padding(

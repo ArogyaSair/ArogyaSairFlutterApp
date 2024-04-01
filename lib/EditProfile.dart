@@ -62,7 +62,7 @@ class _EditProfileState extends State<EditProfile> {
         backgroundColor: const Color(0xff12d3c6),
         title: const Text(
           'Edit Profile',
-          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
           icon: const Icon(
@@ -90,7 +90,8 @@ class _EditProfileState extends State<EditProfile> {
                     padding: EdgeInsets.all(10),
                     child: Text(
                       "Update Account Information",
-                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(
@@ -136,7 +137,8 @@ class _EditProfileState extends State<EditProfile> {
                       style: const TextStyle(color: Colors.black),
                       decoration: const InputDecoration(
                         hintText: "Username",
-                        prefixIcon: Icon(Icons.person,color: Color(0xff12d3c6)),
+                        prefixIcon:
+                            Icon(Icons.person, color: Color(0xff12d3c6)),
                         disabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black)),
                         border: OutlineInputBorder(
@@ -153,7 +155,8 @@ class _EditProfileState extends State<EditProfile> {
                       controller: controllerName,
                       decoration: const InputDecoration(
                         hintText: "Name",
-                        prefixIcon: Icon(Icons.person,color: Color(0xff12d3c6)),
+                        prefixIcon:
+                            Icon(Icons.person, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
@@ -167,7 +170,7 @@ class _EditProfileState extends State<EditProfile> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         hintText: "Email Address",
-                        prefixIcon: Icon(Icons.mail,color: Color(0xff12d3c6)),
+                        prefixIcon: Icon(Icons.mail, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
@@ -237,7 +240,8 @@ class _EditProfileState extends State<EditProfile> {
                       controller: controllerBloodGroup,
                       decoration: const InputDecoration(
                         hintText: "Blood Group",
-                        prefixIcon: Icon(Icons.bloodtype,color: Color(0xff12d3c6)),
+                        prefixIcon:
+                            Icon(Icons.bloodtype, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),

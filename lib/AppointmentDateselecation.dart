@@ -79,155 +79,164 @@ class _AppointmentDateSelectionState extends State<AppointmentDateSelection> {
             padding: const EdgeInsets.all(0),
             child: Container(
               color: const Color(0xfff2f6f7),
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      Card(
-                        color: Colors.white,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          // Align content to the left
-                          children: [
-                            const Center(
-                              child:FaIcon(FontAwesomeIcons.hospital,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Card(
+                      color: Colors.white,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // Align content to the left
+                        children: [
+                          const Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.hospital,
                               color: Color(0xff12d3c6),
                               size: 50,
-                            ),),
-                            const SizedBox(height: 10,),
-                            Center(
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding:  EdgeInsets.zero,
-                                      child: Text(
-                                        widget.HospitalName.toString(),
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            fontSize: 25.0, fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ),
-                            const SizedBox(height: 10,),
-
-                              Padding(
-                                padding: const EdgeInsets.only(left: 70,right: 20),
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      "Surgery For: ",
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Center(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.zero,
+                                    child: Text(
+                                      widget.HospitalName.toString(),
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 16.0, fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      widget.item.toString(),
                                       style: const TextStyle(
-                                          fontSize: 16.0, fontWeight: FontWeight.bold),
+                                          fontSize: 25.0,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(left: 70, right: 20),
+                            child: Row(
+                              children: [
+                                const Text(
+                                  "Surgery For: ",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  widget.item.toString(),
+                                  style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 10.0),
+                          // Add some vertical spacing
+                          Padding(
+                            padding: const EdgeInsets.only(left: 50, right: 50),
+                            child: TextFormField(
+                              controller: controllerDateOfBirth,
+                              readOnly: true,
+
+                              // Make the text input read-only
+                              decoration: InputDecoration(
+                                prefixIcon: GestureDetector(
+                                  onTap: () {
+                                    _getDate(context);
+                                  },
+                                  child: const Icon(
+                                    Icons.date_range,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                // filled: true,
+                                // fillColor: const Color(0xffE0E3E7),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10.0),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 80, right: 20),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(200, 50),
+                                elevation: 10,
+                                backgroundColor: const Color(0xff12d3c6),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
                               ),
-                            const SizedBox(height: 10.0),
-                            // Add some vertical spacing
-                            Padding(
-                              padding: const EdgeInsets.only(left: 50,right: 50),
-                              child: TextFormField(
-                                controller: controllerDateOfBirth,
-                                readOnly: true,
-
-                                // Make the text input read-only
-                                decoration: InputDecoration(
-                                  prefixIcon: GestureDetector(
-                                    onTap: () {
-                                      _getDate(context);
+                              onPressed: () {
+                                if (birthDate == "Select Appointment Date") {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: const Text("Alert Message"),
+                                        content:
+                                            const Text("Please Select Date"),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: const Text('OK'),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      );
                                     },
-                                    child: const Icon(
-                                      Icons.date_range,
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  // filled: true,
-                                  // fillColor: const Color(0xffE0E3E7),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10.0),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 80,right: 20),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(200, 50),
-                                  elevation: 10,
-                                  backgroundColor: const Color(0xff12d3c6),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  if (birthDate == "Select Appointment Date") {
-                                    showDialog(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: const Text("Alert Message"),
-                                          content: const Text("Please Select Date"),
-                                          actions: <Widget>[
-                                            TextButton(
-                                              child: const Text('OK'),
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  } else {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => SurgeryPaymentPage(
-                                          HospitalKey: widget.HospitalKey,
-                                          HospitalName: widget.HospitalName,
-                                          item: widget.item,
-                                          key: widget.key,
-                                          birthDate: birthDate,
-                                        ),
+                                  );
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SurgeryPaymentPage(
+                                        HospitalKey: widget.HospitalKey,
+                                        HospitalName: widget.HospitalName,
+                                        item: widget.item,
+                                        key: widget.key,
+                                        birthDate: birthDate,
                                       ),
-                                    );
-                                  }
-                                },
-                                child: const Text("Proceed for Payment",
-                                    style: TextStyle(color: Colors.white)),
-                              ),
+                                    ),
+                                  );
+                                }
+                              },
+                              child: const Text("Proceed for Payment",
+                                  style: TextStyle(color: Colors.white)),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(65),
-                              child: SizedBox(
-                                child: Center(
-                                  // Center the Lottie animation
-                                  child: Lottie.asset(
-                                    'assets/Animation/booking_payment.json',
-                                    width: 300,
-                                    height: 200,
-                                    fit: BoxFit.cover,
-                                  ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(65),
+                            child: SizedBox(
+                              child: Center(
+                                // Center the Lottie animation
+                                child: Lottie.asset(
+                                  'assets/Animation/booking_payment.json',
+                                  width: 300,
+                                  height: 200,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-
+              ),
             ),
           ),
         ),

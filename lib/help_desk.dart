@@ -77,7 +77,7 @@ class _MyHelpDeskState extends State<MyHelpDesk> {
                         gradient: const LinearGradient(
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
-                          colors: [Color(0xff12d3c6),Color(0xff12d3c6)],
+                          colors: [Color(0xff12d3c6), Color(0xff12d3c6)],
                         ),
                         borderRadius: BorderRadius.circular(16),
                       ),
@@ -154,7 +154,8 @@ class _MyHelpDeskState extends State<MyHelpDesk> {
                                 }
                               },
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all<Color>(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
                                   const Color(0xff12d3c6), // Change color here
                                 ),
                               ),

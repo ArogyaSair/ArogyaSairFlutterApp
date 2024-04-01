@@ -87,7 +87,8 @@ class _ViewProfileState extends State<ViewProfile> {
               backgroundColor: Color(0xff12d3c6),
               title: const Text(
                 'View Profile',
-                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
               iconTheme: const IconThemeData(color: Colors.white),
               actions: <Widget>[

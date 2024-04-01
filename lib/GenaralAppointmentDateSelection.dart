@@ -90,44 +90,53 @@ class _GeneralAppointmentDateSelectionState
                         // Align content to the left
                         children: [
                           const Center(
-                            child:FaIcon(FontAwesomeIcons.hospital,
+                            child: FaIcon(
+                              FontAwesomeIcons.hospital,
                               color: Color(0xff12d3c6),
                               size: 50,
-                            ),),
-                          const SizedBox(height: 10,),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           Center(
                             child: Row(
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding:  EdgeInsets.zero,
+                                    padding: EdgeInsets.zero,
                                     child: Text(
                                       widget.HospitalName.toString(),
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(
-                                          fontSize: 25.0, fontWeight: FontWeight.bold),
+                                          fontSize: 25.0,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          const SizedBox(height: 10,),
+                          const SizedBox(
+                            height: 10,
+                          ),
 
                           Padding(
-                            padding: const EdgeInsets.only(left: 70,right: 20),
+                            padding: const EdgeInsets.only(left: 70, right: 20),
                             child: Row(
                               children: [
                                 const Text(
                                   "Surgery For: ",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      fontSize: 16.0, fontWeight: FontWeight.bold),
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   widget.item.toString(),
                                   style: const TextStyle(
-                                      fontSize: 16.0, fontWeight: FontWeight.bold),
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -135,7 +144,7 @@ class _GeneralAppointmentDateSelectionState
                           const SizedBox(height: 10.0),
                           // Add some vertical spacing
                           Padding(
-                            padding: const EdgeInsets.only(left: 50,right: 50),
+                            padding: const EdgeInsets.only(left: 50, right: 50),
                             child: TextFormField(
                               controller: controllerDateOfBirth,
                               readOnly: true,
@@ -158,7 +167,7 @@ class _GeneralAppointmentDateSelectionState
                           ),
                           const SizedBox(height: 10.0),
                           Padding(
-                            padding: const EdgeInsets.only(left: 80,right: 20),
+                            padding: const EdgeInsets.only(left: 80, right: 20),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 minimumSize: const Size(200, 50),
@@ -176,7 +185,8 @@ class _GeneralAppointmentDateSelectionState
                                     builder: (context) {
                                       return AlertDialog(
                                         title: const Text("Alert Message"),
-                                        content: const Text("Please Select Date"),
+                                        content:
+                                            const Text("Please Select Date"),
                                         actions: <Widget>[
                                           TextButton(
                                             child: const Text('OK'),
@@ -192,7 +202,8 @@ class _GeneralAppointmentDateSelectionState
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => GeneralAppointmentPayment(
+                                      builder: (context) =>
+                                          GeneralAppointmentPayment(
                                         HospitalKey: widget.HospitalKey,
                                         HospitalName: widget.HospitalName,
                                         item: widget.item,
@@ -227,7 +238,6 @@ class _GeneralAppointmentDateSelectionState
                   ],
                 ),
               ),
-
             ),
           ),
         ),

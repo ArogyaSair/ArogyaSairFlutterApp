@@ -59,7 +59,7 @@ class _PackageBookingDateSelectionState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         title: const Text(
           "Package Date Selection",
           style: TextStyle(color: Colors.black),
@@ -109,7 +109,6 @@ class _PackageBookingDateSelectionState
                   //   borderRadius: BorderRadius.all(Radius.circular(8)),
                   //   borderSide: BorderSide(color: Colors.black),
                   // ),
-
                 ),
               ),
             ],
@@ -160,7 +159,8 @@ class _PackageBookingDateSelectionState
                   );
                 }
               },
-              child: const Text("Proceed for Payment",style: TextStyle(color: Colors.white)),
+              child: const Text("Proceed for Payment",
+                  style: TextStyle(color: Colors.white)),
             ),
           ),
         ),

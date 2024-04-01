@@ -167,7 +167,8 @@ class _UserPendingDataState extends State<UserPendingData> {
                               child: const Padding(
                                 padding: EdgeInsets.all(5),
                                 child: Icon(
-                                 Icons.hourglass_bottom,color: Colors.white,
+                                  Icons.hourglass_bottom,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),

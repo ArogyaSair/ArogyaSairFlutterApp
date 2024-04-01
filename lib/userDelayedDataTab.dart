@@ -200,8 +200,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                   return AlertDialog(
                                                     title: const Text(
                                                         "Alert Message"),
-                                                    content:
-                                                        Text("New will be $date"),
+                                                    content: Text(
+                                                        "New will be $date"),
                                                     actions: <Widget>[
                                                       TextButton(
                                                         child: const Text('OK'),
@@ -227,16 +227,19 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                               dataAppointmentSnapshot
                                                                   .value as Map;
                                                           var hospitalkey =
-                                                              Appointments[index][
+                                                              Appointments[
+                                                                      index][
                                                                   "HospitalName"];
                                                           disease =
                                                               dataAppointment[
                                                                   "Disease"];
                                                           var Date = date;
                                                           var user =
-                                                              Appointments[index]
+                                                              Appointments[
+                                                                      index]
                                                                   ["UserId"];
-                                                          var status = "Pending";
+                                                          var status =
+                                                              "Pending";
                                                           AppointmentDateSelectionModel
                                                               regobj =
                                                               AppointmentDateSelectionModel(
@@ -256,8 +259,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                           dbRef2.push().set(
                                                               regobj.toJson());
                                                           var delayedAppointmentId =
-                                                              Appointments[index]
-                                                                  ["Key"];
+                                                              Appointments[
+                                                                  index]["Key"];
                                                           DatabaseReference
                                                               dbDelayedAppointmentRef =
                                                               FirebaseDatabase
@@ -275,10 +278,12 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                               appointmentDate:
                                                                   Appointments[
                                                                           index]
-                                                                      ["NewDate"],
+                                                                      [
+                                                                      "NewDate"],
                                                               disease: disease,
                                                               status: "Delay",
-                                                              userName: username,
+                                                              userName:
+                                                                  username,
                                                               newDate: date);
                                                           dbDelayedAppointmentRef
                                                               .update(
@@ -290,11 +295,12 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                                       ),
                                                       TextButton(
                                                         onPressed: () {
-                                                          Navigator.pop(context);
+                                                          Navigator.pop(
+                                                              context);
                                                           setState(() {});
                                                         },
-                                                        child:
-                                                            const Text("Cancel"),
+                                                        child: const Text(
+                                                            "Cancel"),
                                                       ),
                                                     ],
                                                   );
@@ -316,7 +322,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                           DatabaseReference dbAppointmentRef =
                                               FirebaseDatabase.instance.ref().child(
                                                   "ArogyaSair/tblAppointment/${Appointments[index]["AppointmentId"]}");
-                                          DatabaseEvent databaseAppointmentEvent =
+                                          DatabaseEvent
+                                              databaseAppointmentEvent =
                                               await dbAppointmentRef.once();
                                           var delayedAppointmentId =
                                               Appointments[index]["Key"];
@@ -340,8 +347,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                               databaseDelayedAppointmentEvent
                                                   .snapshot;
                                           Map dataDelayedAppointment =
-                                              dataDelayedAppointmentSnapshot.value
-                                                  as Map;
+                                              dataDelayedAppointmentSnapshot
+                                                  .value as Map;
                                           DatabaseReference tblTreatment =
                                               FirebaseDatabase.instance
                                                   .ref()
@@ -350,24 +357,26 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                           HospitalTreatmentModel
                                               treatmentModelObject =
                                               HospitalTreatmentModel(
-                                            dataDelayedAppointment["DoctorName"],
+                                            dataDelayedAppointment[
+                                                "DoctorName"],
                                             widget.userKey,
                                             dataAppointment["Disease"],
                                             dataAppointment["HospitalId"],
-                                            Appointments[index]["AppointmentId"],
+                                            Appointments[index]
+                                                ["AppointmentId"],
                                             dataDelayedAppointment["NewDate"],
                                             "Approved",
                                             Appointments[index]["VisitingTime"],
                                           );
-                                          tblTreatment
-                                              .push()
-                                              .set(treatmentModelObject.toJson());
+                                          tblTreatment.push().set(
+                                              treatmentModelObject.toJson());
                                           final updatedAppointmentData = {
                                             "Status": "Approved",
                                           };
                                           dbAppointmentRef
                                               .update(updatedAppointmentData);
-                                          final updatedDelayedAppointmentData = {
+                                          final updatedDelayedAppointmentData =
+                                              {
                                             "Status": "Approved",
                                           };
                                           dbDelayedAppointmentRef.update(
@@ -375,9 +384,11 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                           sendAppointmentDelayConfirmationToHospital(
                                               hospitalKey:
                                                   dataAppointment["HospitalId"],
-                                              disease: dataAppointment["Disease"],
+                                              disease:
+                                                  dataAppointment["Disease"],
                                               username: username,
-                                              hospitalName: data2['HospitalName'],
+                                              hospitalName:
+                                                  data2['HospitalName'],
                                               newDate: dataDelayedAppointment[
                                                   "NewDate"]);
                                           dataFetched = false;
@@ -409,7 +420,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                               child: const Padding(
                                 padding: EdgeInsets.all(5),
                                 child: Icon(
-                                  Icons.access_time,color: Colors.white,
+                                  Icons.access_time,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
@@ -420,7 +432,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                   },
                 );
               } else {
-                return const Center(child: Text('No delayed appointments found'));
+                return const Center(
+                    child: Text('No delayed appointments found'));
               }
             } else {
               return const Center(child: CircularProgressIndicator());

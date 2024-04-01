@@ -68,7 +68,7 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
         ),
       ),
       body: Container(
-          color:const Color(0xfff2f6f7),
+        color: const Color(0xfff2f6f7),
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: FillImageCard(
@@ -109,7 +109,6 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
                   ),
                 );
               },
-
               child: const Text(
                 'Book',
                 style: TextStyle(color: Colors.white),
