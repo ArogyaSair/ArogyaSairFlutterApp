@@ -82,8 +82,8 @@ class _MyAppState extends State<MyApp> {
                   padding: const EdgeInsets.only(left: 0),
                   child: Image.asset(
                     "assets/Logo/ArogyaSair.png",
-                    height: 150,
-                    width: 150,
+                    height: 250,
+                    width: 250,
                   ),
                 ),
                 Padding(
