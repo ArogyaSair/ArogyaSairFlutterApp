@@ -1,3 +1,4 @@
+import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -10,15 +11,25 @@ class ContactUs extends StatefulWidget {
 
 class _ContactUs extends State<ContactUs> {
   late String userName;
+  late String userLastName;
 
   @override
   void initState() {
     super.initState();
   }
 
+  Future<void> loadUser() async {
+    String? userFirstName = await getData("firstname");
+    String? userLastName = await getData("lastname");
+    setState(() {
+      userName = userFirstName!;
+      userLastName = userLastName!;
+    });
+  }
+
   Future<void> launchEmail() async {
     final url = Uri.parse(
-        'mailto:arogyasair@gmail.com?subject=Hello my name is Dev Tamakuwala');
+        'mailto:arogyasair@gmail.com?subject=Hello my name is $userName $userLastName');
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
