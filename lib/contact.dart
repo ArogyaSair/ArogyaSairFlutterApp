@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ContactUs extends StatefulWidget{
+class ContactUs extends StatefulWidget {
   const ContactUs({super.key});
 
   @override
@@ -9,18 +9,16 @@ class ContactUs extends StatefulWidget{
 }
 
 class _ContactUs extends State<ContactUs> {
-
   late String userName;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-
   }
 
-
   Future<void> launchEmail() async {
-    final url = Uri.parse('mailto:arogyasair@gmail.com?subject=Hello my name is Dev Tamakuwala');
+    final url = Uri.parse(
+        'mailto:arogyasair@gmail.com?subject=Hello my name is Dev Tamakuwala');
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {

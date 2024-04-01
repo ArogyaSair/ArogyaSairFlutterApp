@@ -47,7 +47,9 @@ class _BottomBarState extends State<bottomBar> {
     _widgetOptions = <Widget>[
       Scaffold(
         backgroundColor: Colors.white,
-        body: HomePage(firstname: firstName,),
+        body: HomePage(
+          firstname: firstName,
+        ),
       ),
       Scaffold(
         backgroundColor: Colors.white,

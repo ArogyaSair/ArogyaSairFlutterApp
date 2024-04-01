@@ -110,12 +110,12 @@ class _EditProfileState extends State<EditProfile> {
                             borderRadius: BorderRadius.circular(100),
                             child: _image != null
                                 ? Image.file(_image!,
-                                height: 110, width: 110, fit: BoxFit.cover)
+                                    height: 110, width: 110, fit: BoxFit.cover)
                                 : Image.network(
-                              imagePath,
-                              height: 110,
-                              width: 110,
-                            ),
+                                    imagePath,
+                                    height: 110,
+                                    width: 110,
+                                  ),
                           ),
                           const SizedBox(width: 10),
                           ElevatedButton.icon(
@@ -169,8 +169,8 @@ class _EditProfileState extends State<EditProfile> {
                                   hintText: "First Name",
                                   prefixIcon: Icon(Icons.person),
                                   border: OutlineInputBorder(
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(15))),
                                 ),
                               ),
                             ),
@@ -185,8 +185,8 @@ class _EditProfileState extends State<EditProfile> {
                                   hintText: "Last Name",
                                   prefixIcon: Icon(Icons.person),
                                   border: OutlineInputBorder(
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(15))),
                                 ),
                               ),
                             ),
@@ -204,7 +204,7 @@ class _EditProfileState extends State<EditProfile> {
                           prefixIcon: Icon(Icons.mail),
                           border: OutlineInputBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(15))),
+                                  BorderRadius.all(Radius.circular(15))),
                         ),
                       ),
                     ),
@@ -274,7 +274,7 @@ class _EditProfileState extends State<EditProfile> {
                           prefixIcon: Icon(Icons.bloodtype),
                           border: OutlineInputBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(15))),
+                                  BorderRadius.all(Radius.circular(15))),
                         ),
                       ),
                     ),
@@ -403,7 +403,7 @@ class _EditProfileState extends State<EditProfile> {
     firebaseStorageRef.putFile(_image!);
   }
 
-  void updateData(String userkey,BuildContext context) async {
+  void updateData(String userkey, BuildContext context) async {
     if (_image != null) {
       final updatedData = {
         "Username": controllerUsername.text,

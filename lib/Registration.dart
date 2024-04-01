@@ -280,7 +280,8 @@ class _Registration extends State<Registration> {
                                 var name = controllername.text;
                                 var lastname = controllerLastname.text;
                                 var password = controllerpassword.text;
-                                var confirmPassword = controllerconfirmpassword.text;
+                                var confirmPassword =
+                                    controllerconfirmpassword.text;
                                 var username = controlleruname.text;
                                 var email = controllermail.text;
                                 var contact = controllcontact.text;
@@ -288,7 +289,12 @@ class _Registration extends State<Registration> {
                                 var encPassword = encryptString(password);
                                 if (password == confirmPassword) {
                                   RegisterModel regobj = RegisterModel(username,
-                                      encPassword, email, name, lastname, DOB, contact);
+                                      encPassword,
+                                      email,
+                                      name,
+                                      lastname,
+                                      DOB,
+                                      contact);
                                   dbRef2.push().set(regobj.toJson());
                                   Navigator.of(context).pop();
                                   Navigator.push(

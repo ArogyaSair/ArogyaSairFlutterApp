@@ -99,8 +99,8 @@ class _MyProfileState extends State<MyProfile> {
           children: [
             Text("Profile",
                 textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold))
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold))
           ],
         ),
         iconTheme: const IconThemeData(
@@ -243,10 +243,8 @@ class _MyProfileState extends State<MyProfile> {
           ),
           InkWell(
             onTap: () async {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AboutUs()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AboutUs()));
             },
             child: const Row(
               mainAxisSize: MainAxisSize.max,
@@ -274,10 +272,8 @@ class _MyProfileState extends State<MyProfile> {
           ),
           InkWell(
             onTap: () async {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AboutUs()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AboutUs()));
             },
             child: const Row(
               mainAxisSize: MainAxisSize.max,
@@ -305,10 +301,8 @@ class _MyProfileState extends State<MyProfile> {
           ),
           InkWell(
             onTap: () async {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const MyHelpDesk()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MyHelpDesk()));
             },
             child: const Row(
               mainAxisSize: MainAxisSize.max,
