@@ -35,21 +35,30 @@ class _LoginState extends State<Login> {
         body: Stack(
           children: [
             Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Color(0xFF0D47A1), Colors.lightBlue])),
-              child: const Padding(
-                padding: EdgeInsets.only(top: 60, left: 22),
-                child: Text(
-                  "Login",
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
+                height: double.infinity,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Color(0xff12d3c6), Color(0xff12d3c6)])),
+                child: const Column(
+                  children: [
+                    Padding(padding: EdgeInsets.only(top: 70, right: 235),
+                      child: Text("Welcome, ",
+                        style: TextStyle(color: Colors.white,fontSize: 18),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 205),
+                      child: Text(
+                        "LOGIN",
+                        style: TextStyle(
+                            fontSize: 40,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                )
             ),
             Padding(
               padding: const EdgeInsets.only(top: 200),
@@ -64,7 +73,7 @@ class _LoginState extends State<Login> {
                   width: double.infinity,
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(top: 50, right: 20, left: 20),
+                    const EdgeInsets.only(top: 50, right: 20, left: 20),
                     child: Column(
                       children: [
                         Column(
@@ -72,7 +81,7 @@ class _LoginState extends State<Login> {
                           children: [
                             Padding(
                               padding:
-                                  const EdgeInsets.only(right: 20, left: 20),
+                              const EdgeInsets.only(right: 20, left: 20),
                               child: Form(
                                 key: _formKey,
                                 child: SingleChildScrollView(
@@ -88,7 +97,7 @@ class _LoginState extends State<Login> {
                                         },
                                         decoration: const InputDecoration(
                                           prefixIcon:
-                                              Icon(Icons.email_outlined),
+                                          Icon(Icons.email_outlined,color: Color(0xff12d3c6)),
                                           prefixIconColor: Colors.blue,
                                           labelText: 'Username',
                                           filled: true,
@@ -109,12 +118,13 @@ class _LoginState extends State<Login> {
                                           return null;
                                         },
                                         decoration: InputDecoration(
-                                          prefixIcon: const Icon(Icons.lock),
+                                          prefixIcon: const Icon(Icons.lock,color: Color(0xff12d3c6)),
                                           suffixIcon: IconButton(
                                             icon: Icon(
                                               isPasswordVisible
                                                   ? Icons.visibility
                                                   : Icons.visibility_off,
+                                              color: const Color(0xff12d3c6),
                                             ),
                                             onPressed: () {
                                               _togglePasswordVisibility(
@@ -130,7 +140,7 @@ class _LoginState extends State<Login> {
                                       ),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                        MainAxisAlignment.end,
                                         children: [
                                           TextButton(
                                             onPressed: () {
@@ -138,10 +148,10 @@ class _LoginState extends State<Login> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          const userPasswordChangeUserName()));
+                                                      const userPasswordChangeUserName()));
                                             },
                                             child:
-                                                const Text("Forgot Password ?"),
+                                            Text("Forgot Password ?",style: TextStyle(color: Colors.grey.shade700)),
                                           ),
                                         ],
                                       ),
@@ -154,8 +164,8 @@ class _LoginState extends State<Login> {
                                         decoration: const BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [
-                                              Color(0xFF0D47A1),
-                                              Colors.lightBlue
+                                              Color(0xff12d3c6),
+                                              Color(0xff12d3c6)
                                             ],
                                           ),
                                           borderRadius: BorderRadius.all(
@@ -175,7 +185,7 @@ class _LoginState extends State<Login> {
                                           child: const Text(
                                             'LOG IN',
                                             style:
-                                                TextStyle(color: Colors.white),
+                                            TextStyle(color: Colors.white),
                                           ),
                                         ),
                                       ),
@@ -184,14 +194,14 @@ class _LoginState extends State<Login> {
                                       ),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        MainAxisAlignment.center,
                                         children: [
-                                          const Padding(
-                                            padding: EdgeInsets.all(0),
+                                          Padding(
+                                            padding: const EdgeInsets.all(0),
                                             child: Text(
                                               "Don't have account yet..?",
                                               style: TextStyle(
-                                                  color: Colors.blue,
+                                                  color: Colors.grey.shade700,
                                                   fontSize: 16),
                                             ),
                                           ),
@@ -204,7 +214,7 @@ class _LoginState extends State<Login> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          const Registration()),
+                                                      const Registration()),
                                                 );
                                               },
                                               child: const Text(
@@ -212,7 +222,7 @@ class _LoginState extends State<Login> {
                                                 style: TextStyle(
                                                     fontSize: 16,
                                                     fontStyle: FontStyle.italic,
-                                                    color: Colors.blue,
+                                                    color: Color(0xff12d3c6),
                                                     decoration: TextDecoration
                                                         .underline),
                                               ),

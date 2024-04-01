@@ -73,7 +73,8 @@ class _UserApprovedDataState extends State<UserApprovedData> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      color: const Color(0xfff2f6f7),
       height: double.infinity,
       child: Padding(
         padding: const EdgeInsets.all(1),
@@ -110,6 +111,7 @@ class _UserApprovedDataState extends State<UserApprovedData> {
                                     ],
                                   ),
                                 ),
+                                const SizedBox(height: 10,),
                                 Row(
                                   children: [
                                     Padding(
@@ -140,14 +142,11 @@ class _UserApprovedDataState extends State<UserApprovedData> {
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.green,
+                                color: const Color(0xff12d3c6),
                               ),
                               child: const Padding(
                                 padding: EdgeInsets.all(5),
-                                child: Text(
-                                  " A ",
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                                child: Icon(Icons.check,color: Colors.white),
                               ),
                             ),
                           ),

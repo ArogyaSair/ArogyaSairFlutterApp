@@ -51,48 +51,69 @@ class _PackageBookingDetailsState extends State<PackageDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: const Text("Package Details"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: FillImageCard(
-          width: double.infinity,
-          height: double.infinity,
-          imageProvider: NetworkImage(
-            imagePath = widget.Image,
+        title: const Text(
+          "Package Details",
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: const Color(0xfff2f6f7),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.black,
           ),
-          title: Text(widget.PackageName),
-          description: Text(widget.Include),
-          tags: [
-            Text(widget.HospitalName),
-            Text("${widget.Price} Rs./-"),
-            Text("${widget.Duration} weeks for the treatment"),
-          ],
-          footer: ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PackageBookingDateSelection(
-                    PackageName: widget.PackageName,
-                    Price: widget.Price,
-                    HospitalName: widget.HospitalName,
-                    Duration: widget.Duration,
-                    Include: widget.Include,
-                    Image: widget.Image,
-                    HospitalKey: widget.HospitalKey,
-                  ),
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blueAccent,
-              shadowColor: Colors.transparent,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Container(
+          color:const Color(0xfff2f6f7),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: FillImageCard(
+            width: double.infinity,
+            height: double.infinity,
+            imageProvider: NetworkImage(
+              imagePath = widget.Image,
             ),
-            child: const Text(
-              'Book',
-              style: TextStyle(color: Colors.white),
+            title: Text(widget.PackageName),
+            description: Text(widget.Include),
+            tags: [
+              Text(widget.HospitalName),
+              Text("${widget.Price} Rs./-"),
+              Text("${widget.Duration} weeks for the treatment"),
+            ],
+            footer: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 50),
+                elevation: 10,
+                backgroundColor: const Color(0xff12d3c6),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PackageBookingDateSelection(
+                      PackageName: widget.PackageName,
+                      Price: widget.Price,
+                      HospitalName: widget.HospitalName,
+                      Duration: widget.Duration,
+                      Include: widget.Include,
+                      Image: widget.Image,
+                      HospitalKey: widget.HospitalKey,
+                    ),
+                  ),
+                );
+              },
+
+              child: const Text(
+                'Book',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         ),

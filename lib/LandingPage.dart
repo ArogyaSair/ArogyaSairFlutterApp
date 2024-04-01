@@ -1,11 +1,10 @@
 // ignore_for_file: non_constant_identifier_names, camel_case_types, library_private_types_in_public_api, use_build_context_synchronously, file_names
 
-import 'package:arogyasair/HospitalLandingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
+import 'HospitalLogin.dart';
 import 'Login.dart';
-import 'Registration.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -68,85 +67,155 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("assets/Logo/ArogyaSair.png"),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Registration()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(200, 50),
-                  elevation: 10,
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      return SizedBox(
+        width: constraints.maxWidth * 1,
+        height: constraints.maxHeight * 1,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 0),
+                  child: Image.asset(
+                    "assets/Logo/ArogyaSair.png",
+                    height: 150,
+                    width: 150,
                   ),
                 ),
-                child: const Text(
-                  "Register",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Login()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(200, 50),
-                  elevation: 10,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                Padding(
+                  padding: const EdgeInsets.only(top: 0),
+                  child: Image.asset(
+                    "assets/Animation/hospital.jpg",
                   ),
                 ),
-                child: const Text(
-                  "Login",
-                  style: TextStyle(fontSize: 20, color: Colors.blue),
+                Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        right: 130.0,
+                      ),
+                      child: Text(
+                        "Arogya Sair",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(),
+                      child: Container(
+                        width: double.infinity,
+                        height: 358,
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(50),
+                                topRight: Radius.circular(50)),
+                            color: Colors.transparent),
+                        child: Column(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(
+                                  bottom: 20.0, top: 10, right: 210),
+                              child: Text(
+                                "Login As :",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Login()),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(250, 50),
+                                  elevation: 10,
+                                  backgroundColor: const Color(0xff12d3c6),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "User",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HospitalLogin()),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(250, 50),
+                                  elevation: 10,
+                                  backgroundColor: const Color(0xff12d3c6),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "Hospital",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+
+                // Padding(
+                //   padding: const EdgeInsets.all(1),
+                //   child: TextButton(
+                //     onPressed: () {
+                //       Navigator.pop(context);
+                //       Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => const HospitalLandingPage()),
+                //       );
+                //     },
+                //     child: const Text(
+                //       "For Hospital",
+                //       style: TextStyle(
+                //           fontSize: 15,
+                //           color: Colors.blue,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //   ),
+                // ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(1),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const HospitalLandingPage()),
-                  );
-                },
-                child: const Text(
-                  "For Hospital",
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

@@ -5,11 +5,11 @@ import 'package:arogyasair/drawerSideNavigation.dart';
 import 'package:arogyasair/firebase_api.dart';
 import 'package:arogyasair/get_home_data.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
+import 'package:arogyasair/src/fill_image_card.dart';
 import 'package:arogyasair/userHospitalDetails.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 import 'DisplaySurgery.dart';
 import 'SearchPage.dart';
@@ -24,7 +24,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Query dbRef2 =
-      FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
+  FirebaseDatabase.instance.ref().child('ArogyaSair/tblHospital');
   late String data;
   final key = 'username';
   late String userKey;
@@ -66,16 +66,25 @@ class _HomePageState extends State<HomePage> {
           width: constraints.maxWidth * 1,
           height: constraints.maxHeight * 1,
           child: Scaffold(
+            backgroundColor: const Color(0xfff2f6f7),
             appBar: AppBar(
-              backgroundColor: Colors.blue.shade900,
+
+              backgroundColor: const Color(0xfff2f6f7),
               automaticallyImplyLeading: false,
-              title: const Text(
-                'Arogya Sair',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+              title: const Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Welcome to",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(fontSize: 12, color: Color(0xffabafb0))),
+                  Text("Arogya Sair",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold))
+                ],
               ),
-              iconTheme: const IconThemeData(color: Colors.white),
+              iconTheme: const IconThemeData(color: Color(0xff12d3c6),),
             ),
             endDrawer: const DrawerCode(),
             body: SingleChildScrollView(
@@ -84,29 +93,20 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                     child: Container(
-                      width: double.infinity,
-                      height: constraints.maxHeight * 0.07,
+                      width: 400,
+                      height: constraints.maxHeight * 0.10,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: Color(0xfff2f6f7),
                       ),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+                        const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
                         child: Container(
-                          width: double.infinity,
-                          height: 0,
+                          width: double.infinity - 10,
+                          height: 5,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(18),
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.blue.shade800,
-                                Colors.blue.shade700,
-                                Colors.teal.shade400,
-                                Colors.teal.shade300,
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.centerRight,
-                            ),
+                            color: Colors.white,
                           ),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const SearchPage()));
+                                        const SearchPage()));
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -132,14 +132,14 @@ class _HomePageState extends State<HomePage> {
                                         4, 0, 4, 0),
                                     child: Icon(
                                       Icons.search_rounded,
-                                      color: Colors.white,
-                                      size: 24,
+                                      color: Colors.black,
+                                      size: 22,
                                     ),
                                   ),
                                   Padding(
                                     padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            4, 0, 0, 0),
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        4, 0, 0, 0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                const SearchPage(),
+                                            const SearchPage(),
                                           ),
                                         );
                                       },
@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                                         child: Text(
                                           "Search...",
                                           style: TextStyle(
-                                            color: Colors.white,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontFamily: 'Manrope',
                                           ),
@@ -174,295 +174,273 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  const get_home_data(),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DisplaySurgery(),
-                        ),
-                      );
-                    },
-                    child: Card(
-                      elevation: 8,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      margin: const EdgeInsets.all(16),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.blue.shade800,
-                              Colors.blue.shade700,
-                              Colors.teal.shade400,
-                              Colors.teal.shade300,
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.centerRight,
-                          ),
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: constraints.maxHeight * 0.15,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Center(
-                                  child: Lottie.asset(
-                                    'assets/Animation/surgery.json',
-                                    width: 180,
-                                    height: 120,
-                                  ),
-                                ),
-                              ),
-                              const Expanded(
-                                flex: 2,
-                                child: Padding(
-                                  padding: EdgeInsets.only(right: 55),
-                                  child: Center(
-                                    child: Text(
-                                      'Request For Surgery',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DisplayHospitals(),
-                        ),
-                      );
-                    },
-                    child: Card(
-                      elevation: 8,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      margin: const EdgeInsets.all(16),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.blue.shade800,
-                              Colors.blue.shade700,
-                              Colors.teal.shade400,
-                              Colors.teal.shade300,
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.centerRight,
-                          ),
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: constraints.maxHeight * 0.15,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Center(
-                                  child: Lottie.asset(
-                                    'assets/Animation/treatment.json',
-                                    width: 180,
-                                    height: 120,
-                                  ),
-                                ),
-                              ),
-                              const Expanded(
-                                flex: 2,
-                                child: Padding(
-                                  padding: EdgeInsets.only(right: 55),
-                                  child: Center(
-                                    child: Text(
-                                      'Request For Check up',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  StreamBuilder(
-                    stream: dbRef2.onValue,
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      if (snapshot.hasData &&
-                          snapshot.data!.snapshot.value != null) {
-                        Map<dynamic, dynamic> map =
-                            snapshot.data!.snapshot.value;
-                        List<HomeData> packagesList = [];
-                        packagesList.clear();
-                        map.forEach((key, value) {
-                          packagesList.add(HomeData.fromMap(value, key));
-                        });
-                        return GridView.builder(
-                          scrollDirection: Axis.vertical,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: constraints.maxHeight * 0.00088,
-                            //       Size
-                          ),
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: packagesList.length,
-                          padding: const EdgeInsets.all(0),
-                          itemBuilder: (BuildContext context, int index) {
-                            if (packagesList[index].hospitalImage == "") {
-                              imagePath =
-                                  "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FArogyaSair.png?alt=media";
-                            } else {
-                              imagePath =
-                                  "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${packagesList[index].hospitalImage}?alt=media";
-                            }
-                            return Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: GestureDetector(
-                                child: Card(
-                                  elevation: 8,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  margin: const EdgeInsets.all(16),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Colors.blue.shade800,
-                                          Colors.blue.shade700,
-                                          Colors.teal.shade400,
-                                          Colors.teal.shade300,
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.centerRight,
-                                      ),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Center(
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 10),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              child: Image.network(
-                                                imagePath,
-                                                height:
-                                                    constraints.maxHeight * 0.1,
-                                                width:
-                                                    constraints.maxWidth * 0.35,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5, right: 5, top: 5),
-                                              child: SizedBox(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.3,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                          left: 5),
-                                                      child: Text(
-                                                        packagesList[index]
-                                                            .hospitalName,
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 5),
-                                                      child: Text(
-                                                        packagesList[index]
-                                                            .hospitalEmail,
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 5),
-                                                      child: Text(
-                                                        "${packagesList[index].hospitalCity}, ${packagesList[index].hospitalState}",
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => HospitalDetails(
-                                          hospitalKey: packagesList[index]
-                                              .hospitalEmail),
-                                    ),
-                                  );
-                                },
+                  Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DisplayHospitals(),
                               ),
                             );
                           },
-                        );
-                      } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                    },
+                          child: Card(
+                            elevation: 8,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            margin: const EdgeInsets.all(10),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: SizedBox(
+                                width: 200,
+                                height: constraints.maxHeight * 0.10,
+                                child: Row(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.stretch,
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Center(
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.only(left: 12),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                            BorderRadius.circular(5),
+                                            // Adjust the radius as needed
+                                            child: Image.asset(
+                                              'assets/Animation/generalcheckup.jpg',
+                                              width: 100,
+                                              height: 40,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const Expanded(
+                                      flex: 2,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: 0),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.only(top: 18.0),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  textAlign: TextAlign.right,
+                                                  "Request for",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      // fontWeight: FontWeight.bold,
+                                                      color: Colors.black),
+                                                ),
+                                                Text(
+                                                  textAlign: TextAlign.right,
+                                                  'Check-Up',
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                      color: Colors.black),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DisplaySurgery(),
+                              ),
+                            );
+                          },
+                          child: Card(
+                            color: Colors.white,
+                            elevation: 8,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            margin: const EdgeInsets.all(10),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: SizedBox(
+                                width: 200,
+                                height: constraints.maxHeight * 0.10,
+                                child: Row(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.stretch,
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Center(
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.only(left: 12),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                            BorderRadius.circular(5),
+                                            // Adjust the radius as needed
+                                            child: Image.asset(
+                                              'assets/Animation/surgery.jpg',
+                                              width: 100,
+                                              height: 40,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const Expanded(
+                                      flex: 2,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: 0),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.only(top: 18.0),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  "Request for",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      // fontWeight: FontWeight.bold,
+                                                      color: Colors.black),
+                                                ),
+                                                Text(
+                                                  'Surgery',
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                      color: Colors.black),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(30),
+                            topLeft: Radius.circular(30)),
+                        color: Color(0xff12d3c6),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.only(top: 20.0),
+                        child: get_home_data(),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(color: Color(0xff12d3c6)),
+                    child: StreamBuilder(
+                      stream: dbRef2.onValue,
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData &&
+                            snapshot.data!.snapshot.value != null) {
+                          Map<dynamic, dynamic> map =
+                              snapshot.data!.snapshot.value;
+                          List<HomeData> packagesList = [];
+                          packagesList.clear();
+                          map.forEach((key, value) {
+                            packagesList.add(HomeData.fromMap(value, key));
+                          });
+                          return GridView.builder(
+                            scrollDirection: Axis.vertical,
+                            gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                              childAspectRatio: constraints.maxHeight * 0.00145,
+                            ),
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: packagesList.length,
+                            padding: const EdgeInsets.all(0),
+                            itemBuilder: (BuildContext context, int index) {
+                              if (packagesList[index].hospitalImage == "") {
+                                imagePath =
+                                "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FArogyaSair.png?alt=media";
+                              } else {
+                                imagePath =
+                                "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${packagesList[index].hospitalImage}?alt=media";
+                              }
+                              return Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: GestureDetector(
+                                  child:  Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: FillImageCard(
+                                      imageProvider: NetworkImage(
+                                        imagePath,
+                                      ),
+                                      heightImage: MediaQuery.of(context).size.height * 0.23,
+                                      title: Text(
+                                          packagesList[index].hospitalName,
+                                          style: const TextStyle(fontWeight: FontWeight.bold,
+                                              fontSize: 20)),
+                                      height: double.infinity,
+                                      width: double.infinity,
+                                      description: Text(
+                                          packagesList[index].hospitalEmail),
+
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HospitalDetails(
+                                            hospitalKey: packagesList[index]
+                                                .hospitalEmail),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          );
+                        } else {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      },
+                    ),
                   ),
                 ],
               ),

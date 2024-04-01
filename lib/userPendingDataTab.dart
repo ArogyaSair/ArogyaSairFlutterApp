@@ -91,7 +91,8 @@ class _UserPendingDataState extends State<UserPendingData> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      color: const Color(0xfff2f6f7),
       height: double.infinity,
       child: Padding(
         padding: const EdgeInsets.all(1),
@@ -161,13 +162,12 @@ class _UserPendingDataState extends State<UserPendingData> {
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.amber,
+                                color: Color(0xff12d3c6),
                               ),
                               child: const Padding(
                                 padding: EdgeInsets.all(5),
-                                child: Text(
-                                  " P ",
-                                  style: TextStyle(color: Colors.white),
+                                child: Icon(
+                                 Icons.hourglass_bottom,color: Colors.white,
                                 ),
                               ),
                             ),

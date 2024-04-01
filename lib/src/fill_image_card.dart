@@ -81,7 +81,7 @@ class FillImageCard extends StatelessWidget {
               image: imageProvider,
               width: width,
               height: heightImage,
-              fit: BoxFit.contain,
+              fit: BoxFit.cover,
             ),
           ),
           ImageCardContent(

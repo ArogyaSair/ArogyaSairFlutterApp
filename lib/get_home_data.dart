@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -79,169 +80,223 @@ class _GetHomeDataState extends State<get_home_data> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(1),
-      child: SizedBox(
-        // home page size
-        height: MediaQuery.of(context).size.width * 0.42,
-        width: double.infinity,
-        child: FutureBuilder<List<Map>>(
-          future: getPackagesData(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else if (snapshot.hasData && userMap.isNotEmpty) {
-              if (packages.isNotEmpty) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: packages.length,
-                  itemBuilder: (context, index) {
-                    data2 = userMap[index]!;
-                    if (packages[index]["Photo"] == "") {
-                      packageImagePath =
-                          "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FDefaultProfileImage.png?alt=media";
-                    } else {
-                      packageImagePath =
-                          "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packages[index]["Photo"]}?alt=media";
-                    }
-                    return Column(
-                      children: [
-                        SizedBox(
-                          // dots place
-                          child: Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  if (packages[index]["Photo"] == "") {
-                                    packageImagePath =
-                                        "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2FArogyaSair.png?alt=media";
-                                  } else {
-                                    packageImagePath =
-                                        "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packages[index]["Photo"]}?alt=media";
-                                  }
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PackageDetails(
-                                          PackageName: packages[index]
-                                              ["PackageName"],
-                                          Price: packages[index]["Price"],
-                                          HospitalName: data2['HospitalName'],
-                                          Duration: packages[index]["Duration"],
-                                          Include: packages[index]["Include"],
-                                          Image: packageImagePath,
-                                          // key
-                                          HospitalKey: packages[index]
-                                              ["HospitalName"]),
-                                    ),
-                                  );
-                                },
-                                child: Card(
-                                  child: Container(
-                                    height: MediaQuery.of(context).size.width *
-                                        0.33,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.7,
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Colors.purple.shade600,
-                                          Colors.blue.shade600,
-                                        ],
-                                        begin: Alignment.bottomLeft,
-                                        end: Alignment.centerRight,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 1,
-                                          blurRadius: 5,
-                                          offset: const Offset(0, 2),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 10, top: 10),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(100),
-                                                child: Image.network(
-                                                  packageImagePath,
-                                                  height: 120,
-                                                  width: 120,
-                                                  fit: BoxFit.contain,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Flexible(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10),
-                                                  child: Text(
-                                                    packages[index]
-                                                        ["PackageName"],
-                                                    style: const TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10),
-                                                  child: Text(
-                                                    "₹ ${packages[index]["Price"]}",
-                                                    style: const TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10),
-                                                  child: Text(
-                                                    userMap[index]![
-                                                        "HospitalName"],
-                                                    style: const TextStyle(
-                                                        color: Colors.white),
-                                                  ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(left: 24.0, bottom: 20),
+            child: Text(
+              "Packages:",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+          ),
+          SizedBox(
+            // home page size
+            height: MediaQuery.of(context).size.width * 0.47,
+            width: double.infinity,
+            child: FutureBuilder<List<Map>>(
+              future: getPackagesData(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else if (snapshot.hasData && userMap.isNotEmpty) {
+                  if (packages.isNotEmpty) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: packages.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            SizedBox(
+                              // dots place
+                              height: MediaQuery.of(context).size.width * 0.4,
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                children: [
+                                  CarouselSlider.builder(
+                                    itemCount: packages.length,
+                                    itemBuilder: (BuildContext context,
+                                        int index, int realIndex) {
+                                      data2 = userMap[index]!;
+                                      if (packages[index]["Photo"] == "") {
+                                        packageImagePath =
+                                            "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FDefaultProfileImage.png?alt=media";
+                                      } else {
+                                        packageImagePath =
+                                            "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packages[index]["Photo"]}?alt=media";
+                                      }
+                                      return GestureDetector(
+                                        onTap: () {
+                                          if (packages[index]["Photo"] == "") {
+                                            packageImagePath =
+                                                "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2FArogyaSair.png?alt=media";
+                                          } else {
+                                            packageImagePath =
+                                                "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/PackageImage%2F${packages[index]["Photo"]}?alt=media";
+                                          }
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PackageDetails(
+                                                      PackageName:
+                                                          packages[index]
+                                                              ["PackageName"],
+                                                      Price: packages[index]
+                                                          ["Price"],
+                                                      HospitalName:
+                                                          data2['HospitalName'],
+                                                      Duration: packages[index]
+                                                          ["Duration"],
+                                                      Include: packages[index]
+                                                          ["Include"],
+                                                      Image: packageImagePath,
+                                                      // key
+                                                      HospitalKey:
+                                                          packages[index]
+                                                              ["HospitalName"]),
+                                            ),
+                                          );
+                                        },
+                                        child: Card(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Colors.white,
+                                                  spreadRadius: 1,
+                                                  offset: Offset(2, 2),
                                                 ),
                                               ],
                                             ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10, right: 10, top: 10),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Column(
+                                                    children: [
+                                                      ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
+                                                        // Adjust the value as needed
+                                                        child: Image.network(
+                                                          packageImagePath,
+                                                          height: 120,
+                                                          width: 120,
+                                                          fit: BoxFit.fitHeight,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Flexible(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  left: 10),
+                                                          child: Text(
+                                                            packages[index]
+                                                                ["PackageName"],
+                                                            style: const TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 17),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  left: 10),
+                                                          child: Text(
+                                                            "₹ ${packages[index]["Price"]}",
+                                                            style:
+                                                                const TextStyle(
+                                                                    color: Colors
+                                                                        .black),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  left: 10),
+                                                          child: Text(
+                                                            userMap[index]![
+                                                                "HospitalName"],
+                                                            style:
+                                                                const TextStyle(
+                                                                    color: Colors
+                                                                        .black),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      );
+                                    },
+                                    options: CarouselOptions(
+                                      // card size
+                                      height:
+                                          MediaQuery.of(context).size.width *
+                                              0.4,
+                                      //increase card size
+                                      aspectRatio: 16 / 9,
+                                      viewportFraction: 0.8,
+                                      initialPage: 0,
+                                      enableInfiniteScroll: true,
+                                      reverse: false,
+                                      autoPlay: true,
+                                      autoPlayInterval:
+                                          const Duration(seconds: 2),
+                                      autoPlayAnimationDuration:
+                                          const Duration(milliseconds: 800),
+                                      autoPlayCurve: Curves.fastOutSlowIn,
+                                      enlargeCenterPage: true,
+                                      scrollDirection: Axis.horizontal,
                                     ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     );
-                  },
-                );
-              } else {
-                return const Center(child: Text('No hospitals found'));
-              }
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        ),
+                  } else {
+                    return const Center(child: Text('No hospitals found'));
+                  }
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
+          )
+        ],
       ),
     );
   }

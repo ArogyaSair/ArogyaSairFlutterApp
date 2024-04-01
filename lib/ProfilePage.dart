@@ -84,103 +84,137 @@ class _MyProfileState extends State<MyProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
+        backgroundColor: const Color(0xfff2f6f7),
         automaticallyImplyLeading: false,
         title: const Text(
           'Arogya Sair',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Color(0xff12d3c6)),
       ),
       endDrawer: const DrawerCode(),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-            child: InkWell(
-              onTap: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ViewProfile(),
+      body: Container(
+        color: const Color(0xfff2f6f7),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+              child: InkWell(
+                onTap: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ViewProfile(),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 5, 0, 0),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: const Color(0xff12d3c6),
+                        child: Text(
+                          widget.username.isNotEmpty
+                              ? widget.username[0].toUpperCase()
+                              : '',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      // Add some space between the avatar and the text
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.username,
+                              style: const TextStyle(
+                                  fontSize: 18, color: Colors.black),
+                            ),
+                            const Text('View Profile'),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ViewProfile(),
+                            ),
+                          );
+                        },
+                        child: const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.black,
+                            size: 18,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 5, 0, 0),
-                child: Row(
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+              child: InkWell(
+                onTap: () async {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const EditProfile()));
+                },
+                child: const Row(
                   children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.blue.shade900,
-                      child: Text(
-                        widget.username.isNotEmpty
-                            ? widget.username[0].toUpperCase()
-                            : '',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    // Add some space between the avatar and the text
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.username,
-                            style: const TextStyle(
-                                fontSize: 18, color: Colors.black),
-                          ),
-                          const Text('View Profile'),
-                        ],
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
+                        child: Text(
+                          "Edit Profile",
+                          style: TextStyle(fontSize: 18),
+                        ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ViewProfile(),
-                          ),
-                        );
-                      },
-                      child: const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.black,
-                          size: 18,
-                        ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.black,
+                        size: 18,
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-            child: InkWell(
+            InkWell(
               onTap: () async {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const EditProfile()));
+                        builder: (context) => const UserChangePassword()));
               },
               child: const Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
                       child: Text(
-                        "Edit Profile",
+                        "Change Password",
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
@@ -196,46 +230,15 @@ class _MyProfileState extends State<MyProfile> {
                 ],
               ),
             ),
-          ),
-          InkWell(
-            onTap: () async {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const UserChangePassword()));
-            },
-            child: const Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
-                    child: Text(
-                      "Change Password",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.black,
-                    size: 18,
-                  ),
-                ),
-              ],
+            const Divider(
+              height: 2,
+              thickness: 1,
+              indent: 0,
+              endIndent: 0,
+              color: Colors.white12,
             ),
-          ),
-          const Divider(
-            height: 2,
-            thickness: 1,
-            indent: 0,
-            endIndent: 0,
-            color: Colors.white12,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

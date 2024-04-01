@@ -4,26 +4,29 @@ import 'package:url_launcher/url_launcher.dart';
 class ContactUs extends StatelessWidget {
   const ContactUs({super.key});
 
+  Future<void> launchEmail() async {
+    final url = Uri.parse('mailto:arogyasair@gmail.com');
+    var condition = await canLaunchUrl(url);
+    print(condition);
+    if (condition) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch email app. User might not have Gmail installed.';
+    }
+  }
+
+
+  Future<void> makePhoneCall() async {
+    final url = Uri.parse("tel:9016204659");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch phone app';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    void sendingMails() async {
-      var url = Uri.parse("mailto:arogyasair@gmail.com");
-      if (await canLaunchUrl(url)) {
-        await launchUrl(url);
-      } else {
-        throw 'Could not launch $url';
-      }
-    }
-
-    makingPhoneCall() async {
-      var url = Uri.parse("tel:9016204659");
-      if (await canLaunchUrl(url)) {
-        await launchUrl(url);
-      } else {
-        throw 'Could not launch $url';
-      }
-    }
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
@@ -36,9 +39,7 @@ class ContactUs extends StatelessWidget {
             Icons.arrow_back_ios_new,
             color: Colors.white,
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: Column(
@@ -71,14 +72,12 @@ class ContactUs extends StatelessWidget {
                 style: TextStyle(fontSize: 16.0),
               ),
               TextButton(
-                onPressed: () {
-                  makingPhoneCall();
-                },
+                onPressed: makePhoneCall,
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(
                       EdgeInsets.zero), // Remove padding
                 ),
-                child: const Text(
+                child: Text(
                   '+91 9016204659',
                   style: TextStyle(
                       color: Colors.blue,
@@ -96,14 +95,12 @@ class ContactUs extends StatelessWidget {
                 style: TextStyle(fontSize: 16.0),
               ),
               TextButton(
-                onPressed: () {
-                  sendingMails();
-                },
+                onPressed: launchEmail,
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(
                       EdgeInsets.zero), // Remove padding
                 ),
-                child: const Text(
+                child: Text(
                   'arogyasair@gmail.com',
                   style: TextStyle(
                       color: Colors.blue,
