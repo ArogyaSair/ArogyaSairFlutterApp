@@ -19,7 +19,8 @@ class _ViewProfileState extends State<ViewProfile> {
   late Query Ref;
   late Map data;
   late String controllerUsername;
-  late String controllerName;
+  late String controllerFirstName;
+  late String controllerLastName;
   late String controllerMail;
   late String controllerDateOfBirth;
   late String controllerBloodGroup;
@@ -31,8 +32,12 @@ class _ViewProfileState extends State<ViewProfile> {
   late String fileName;
   String imageName = "";
   late String email;
+  late String userFirstName;
+  late String userLastName;
   final key = 'username';
   final key1 = 'email';
+  final key2 = 'userFirstName';
+  final key3 = 'userLastName';
 
   @override
   void initState() {
@@ -59,7 +64,8 @@ class _ViewProfileState extends State<ViewProfile> {
       for (var x in documentSnapshot.snapshot.children) {
         data = x.value as Map;
         controllerUsername = data["Username"];
-        controllerName = data["Name"];
+        controllerFirstName = data["FirstName"];
+        controllerLastName = data["LastName"];
         controllerMail = data["Email"];
         controllerDateOfBirth = data["DOB"];
         controllerBloodGroup = data["BloodGroup"];
@@ -84,11 +90,12 @@ class _ViewProfileState extends State<ViewProfile> {
         } else {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Color(0xff12d3c6),
+              backgroundColor: Colors.blue.shade900,
               title: const Text(
                 'View Profile',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
               iconTheme: const IconThemeData(color: Colors.white),
               actions: <Widget>[
@@ -165,10 +172,19 @@ class _ViewProfileState extends State<ViewProfile> {
                             ListTile(
                               leading: const Icon(Icons.person),
                               title: const Text(
-                                'Name',
+                                'First Name',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              subtitle: Text(controllerName),
+                              subtitle: Text(controllerFirstName),
+                            ),
+                            const Divider(height: 20, color: Colors.grey),
+                            ListTile(
+                              leading: const Icon(Icons.person),
+                              title: const Text(
+                                'Last Name',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text(controllerLastName),
                             ),
                             const Divider(height: 20, color: Colors.grey),
                             ListTile(

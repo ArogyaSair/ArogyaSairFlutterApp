@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ContactUs extends StatelessWidget {
+class ContactUs extends StatefulWidget{
   const ContactUs({super.key});
 
+  @override
+  State<StatefulWidget> createState() => _ContactUs();
+}
+
+class _ContactUs extends State<ContactUs> {
+
+  late String userName;
+
+  @override
+  void initState(){
+    super.initState();
+
+  }
+
+
   Future<void> launchEmail() async {
-    final url = Uri.parse('mailto:arogyasair@gmail.com');
-    var condition = await canLaunchUrl(url);
-    print(condition);
-    if (condition) {
+    final url = Uri.parse('mailto:arogyasair@gmail.com?subject=Hello my name is Dev Tamakuwala');
+    if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
       throw 'Could not launch email app. User might not have Gmail installed.';
@@ -16,7 +29,7 @@ class ContactUs extends StatelessWidget {
   }
 
   Future<void> makePhoneCall() async {
-    final url = Uri.parse("tel:9016204659");
+    final url = Uri.parse("tel:+919016204659");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -76,7 +89,7 @@ class ContactUs extends StatelessWidget {
                   padding: MaterialStateProperty.all(
                       EdgeInsets.zero), // Remove padding
                 ),
-                child: Text(
+                child: const Text(
                   '+91 9016204659',
                   style: TextStyle(
                       color: Colors.blue,
@@ -99,7 +112,7 @@ class ContactUs extends StatelessWidget {
                   padding: MaterialStateProperty.all(
                       EdgeInsets.zero), // Remove padding
                 ),
-                child: Text(
+                child: const Text(
                   'arogyasair@gmail.com',
                   style: TextStyle(
                       color: Colors.blue,

@@ -1,11 +1,15 @@
 // ignore_for_file: file_names, library_private_types_in_public_api, use_build_context_synchronously, non_constant_identifier_names, prefer_typing_uninitialized_variables
 
 import 'package:arogyasair/EditProfile.dart';
+import 'package:arogyasair/LandingPage.dart';
 import 'package:arogyasair/UserChangePassword.dart';
+import 'package:arogyasair/about.dart';
+import 'package:arogyasair/help_desk.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/view_profile.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'drawerSideNavigation.dart';
 
@@ -83,138 +87,113 @@ class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xfff2f6f7),
+        actionsIconTheme: IconThemeData(color: Colors.blue.shade900),
+        actions: const [],
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: const Text(
-          'Arogya Sair',
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-        iconTheme: const IconThemeData(color: Color(0xff12d3c6)),
-      ),
-      endDrawer: const DrawerCode(),
-      body: Container(
-        color: const Color(0xfff2f6f7),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
+        title: const Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-              child: InkWell(
-                onTap: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ViewProfile(),
-                    ),
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16, 5, 0, 0),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: const Color(0xff12d3c6),
-                        child: Text(
-                          widget.username.isNotEmpty
-                              ? widget.username[0].toUpperCase()
-                              : '',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      // Add some space between the avatar and the text
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.username,
-                              style: const TextStyle(
-                                  fontSize: 18, color: Colors.black),
-                            ),
-                            const Text('View Profile'),
-                          ],
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ViewProfile(),
-                            ),
-                          );
-                        },
-                        child: const Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.black,
-                            size: 18,
-                          ),
-                        ),
-                      ),
-                    ],
+            Text("Profile",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold))
+          ],
+        ),
+        iconTheme: const IconThemeData(
+          color: Color(0xff12d3c6),
+        ),
+      ),
+      endDrawer: const DrawerCode(),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+            child: InkWell(
+              onTap: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ViewProfile(),
                   ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-              child: InkWell(
-                onTap: () async {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const EditProfile()));
-                },
-                child: const Row(
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 5, 0, 0),
+                child: Row(
                   children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
-                        child: Text(
-                          "Edit Profile",
-                          style: TextStyle(fontSize: 18),
+                    CircleAvatar(
+                      backgroundColor: Colors.teal.shade500,
+                      child: Text(
+                        widget.username.isNotEmpty
+                            ? widget.username[0].toUpperCase()
+                            : '',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                        size: 18,
+                    const SizedBox(width: 10),
+                    // Add some space between the avatar and the text
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.username,
+                            style: const TextStyle(
+                                fontSize: 18, color: Colors.black),
+                          ),
+                          const Text('View Profile'),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ViewProfile(),
+                          ),
+                        );
+                      },
+                      child: const Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.black,
+                          size: 18,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-            InkWell(
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+            child: InkWell(
               onTap: () async {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const UserChangePassword()));
+                        builder: (context) => const EditProfile()));
               },
               child: const Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
                       child: Text(
-                        "Change Password",
+                        "Edit Profile",
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
@@ -230,15 +209,172 @@ class _MyProfileState extends State<MyProfile> {
                 ],
               ),
             ),
-            const Divider(
-              height: 2,
-              thickness: 1,
-              indent: 0,
-              endIndent: 0,
-              color: Colors.white12,
+          ),
+          InkWell(
+            onTap: () async {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UserChangePassword()));
+            },
+            child: const Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
+                    child: Text(
+                      "Change Password",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black,
+                    size: 18,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          InkWell(
+            onTap: () async {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AboutUs()));
+            },
+            child: const Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
+                    child: Text(
+                      "About Us",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black,
+                    size: 18,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          InkWell(
+            onTap: () async {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AboutUs()));
+            },
+            child: const Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
+                    child: Text(
+                      "Contact Us",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black,
+                    size: 18,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          InkWell(
+            onTap: () async {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyHelpDesk()));
+            },
+            child: const Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
+                    child: Text(
+                      "FAQ",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black,
+                    size: 18,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Divider(
+            height: 2,
+            thickness: 1,
+            indent: 0,
+            endIndent: 0,
+            color: Colors.white12,
+          ),
+          InkWell(
+            onTap: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.clear();
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MyApp()));
+            },
+            child: const Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 20),
+                    child: Text(
+                      "Log Out",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                  child: Icon(
+                    Icons.logout,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

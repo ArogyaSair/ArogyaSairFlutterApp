@@ -26,6 +26,7 @@ class _Registration extends State<Registration> {
   TextEditingController controllerpassword = TextEditingController();
   TextEditingController controllerconfirmpassword = TextEditingController();
   TextEditingController controllername = TextEditingController();
+  TextEditingController controllerLastname = TextEditingController();
   TextEditingController controllermail = TextEditingController();
   TextEditingController controllcontact = TextEditingController();
   TextEditingController controllerDateOfBirth = TextEditingController();
@@ -76,24 +77,49 @@ class _Registration extends State<Registration> {
                 height: double.maxFinite,
                 width: double.infinity,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 30, right: 20, left: 20),
+                  padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        TextFormField(
-                          controller: controllername,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your name';
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIconColor: Colors.blue,
-                            prefixIcon:
-                                Icon(Icons.person, color: Color(0xff12d3c6)),
-                            labelText: 'Full Name',
-                            hintText: 'Enter Name',
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 1,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.4,
+                                  child: TextFormField(
+                                    controller: controllername,
+                                    decoration: const InputDecoration(
+                                      hintText: "First Name",
+                                      prefixIcon: Icon(
+                                        Icons.person,
+                                        color: Color(0xff12d3c6),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.4,
+                                  child: TextFormField(
+                                    controller: controllerLastname,
+                                    decoration: const InputDecoration(
+                                      hintText: "Last Name",
+                                      prefixIcon: Icon(
+                                        Icons.person,
+                                        color: Color(0xff12d3c6),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         const SizedBox(
@@ -135,7 +161,7 @@ class _Registration extends State<Registration> {
                                 isPasswordVisible
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: Color(0xff12d3c6),
+                                color: const Color(0xff12d3c6),
                               ),
                               onPressed: () {
                                 _togglePasswordVisibility(context);
@@ -166,7 +192,7 @@ class _Registration extends State<Registration> {
                                 isConfirmPasswordVisible
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: Color(0xff12d3c6),
+                                color: const Color(0xff12d3c6),
                               ),
                               onPressed: () {
                                 _toggleConfirmPasswordVisibility(context);
@@ -252,9 +278,9 @@ class _Registration extends State<Registration> {
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 var name = controllername.text;
+                                var lastname = controllerLastname.text;
                                 var password = controllerpassword.text;
-                                var confirmPassword =
-                                    controllerconfirmpassword.text;
+                                var confirmPassword = controllerconfirmpassword.text;
                                 var username = controlleruname.text;
                                 var email = controllermail.text;
                                 var contact = controllcontact.text;
@@ -262,7 +288,7 @@ class _Registration extends State<Registration> {
                                 var encPassword = encryptString(password);
                                 if (password == confirmPassword) {
                                   RegisterModel regobj = RegisterModel(username,
-                                      encPassword, email, name, DOB, contact);
+                                      encPassword, email, name, lastname, DOB, contact);
                                   dbRef2.push().set(regobj.toJson());
                                   Navigator.of(context).pop();
                                   Navigator.push(

@@ -21,6 +21,7 @@ class _BottomBarState extends State<bottomBar> {
   late String username;
   late String email;
   final key = 'username';
+  late String firstName;
   final key1 = 'email';
   late String userKey;
   List<Widget> _widgetOptions = [];
@@ -35,16 +36,18 @@ class _BottomBarState extends State<bottomBar> {
   Future<void> _loadUserData() async {
     String? userData = await getData(key);
     String? userEmail = await getData(key1);
+    String? userFirstName = await getData("firstname");
     String? userkey = await getKey();
     setState(() {
       username = userData!;
       email = userEmail!;
       userKey = userkey!;
+      firstName = userFirstName!;
     });
     _widgetOptions = <Widget>[
-      const Scaffold(
+      Scaffold(
         backgroundColor: Colors.white,
-        body: HomePage(),
+        body: HomePage(firstname: firstName,),
       ),
       Scaffold(
         backgroundColor: Colors.white,

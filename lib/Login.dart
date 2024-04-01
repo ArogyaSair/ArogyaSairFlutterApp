@@ -286,6 +286,8 @@ class _LoginState extends State<Login> {
         if (data["Username"] == username &&
             data["Password"].toString() == encPassword) {
           await saveData('username', data["Username"]);
+          await saveData('firstname', data["FirstName"]);
+          await saveData('lastname', data["LastName"]);
           await saveData('email', data["Email"]);
           await saveData('key', key);
           count = count + 1;
