@@ -23,11 +23,23 @@ class _DrawerCode extends State<DrawerCode> {
   late String email;
   final key = 'username';
   final key1 = 'email';
+  late String userFirstName;
+  late String userLastName;
 
   @override
   void initState() {
     super.initState();
+    loadUser();
     _loadUserData();
+  }
+
+  Future<void> loadUser() async {
+    String? userFirstname = await getData("firstname");
+    String? userLastname = await getData("lastname");
+    setState(() {
+      userFirstName = userFirstname!;
+      userLastName = userLastname!;
+    });
   }
 
   Future<void> _loadUserData() async {
@@ -142,7 +154,11 @@ class _DrawerCode extends State<DrawerCode> {
             onTap: () {
               // Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const ContactUs()));
+                  MaterialPageRoute(
+                      builder: (context) => ContactUs(
+                            userFirstName: userFirstName,
+                            userLastName: userLastName,
+                          )));
             },
           ),
           const Divider(
