@@ -82,8 +82,8 @@ class _MyAppState extends State<MyApp> {
                   padding: const EdgeInsets.only(left: 0),
                   child: Image.asset(
                     "assets/Logo/ArogyaSair.png",
-                    height: 250,
-                    width: 250,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: MediaQuery.of(context).size.width * 1,
                   ),
                 ),
                 Padding(
@@ -93,15 +93,17 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Padding(
                       padding: EdgeInsets.only(
-                        right: 130.0,
+                        left: 80.0,
                       ),
                       child: Text(
                         "Arogya Sair",
                         style: TextStyle(
                           fontSize: 30,
+                          color: Color(0xff12d3c6),
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.left,
@@ -111,7 +113,7 @@ class _MyAppState extends State<MyApp> {
                       padding: const EdgeInsets.only(),
                       child: Container(
                         width: double.infinity,
-                        height: 358,
+                        height: MediaQuery.of(context).size.height * 0.35,
                         decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(50),
@@ -123,11 +125,12 @@ class _MyAppState extends State<MyApp> {
                               padding: EdgeInsets.only(
                                   bottom: 20.0, top: 10, right: 210),
                               child: Text(
-                                "Login As :",
+                                "Login As",
                                 style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                                  fontSize: 18,
+                                  color: Color(0xff12d3c6),
+                                  fontWeight: FontWeight.bold,
+                                ),
                                 textAlign: TextAlign.left,
                               ),
                             ),
