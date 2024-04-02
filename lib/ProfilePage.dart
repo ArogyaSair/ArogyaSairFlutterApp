@@ -340,7 +340,6 @@ class _MyProfileState extends State<MyProfile> {
               SharedPreferences prefs = await SharedPreferences.getInstance();
               prefs.clear();
               Navigator.pop(context);
-              Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const MyApp()));
             },

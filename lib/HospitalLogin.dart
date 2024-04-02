@@ -201,7 +201,6 @@ class _LoginState extends State<HospitalLogin> {
                                           padding: const EdgeInsets.all(0),
                                           child: TextButton(
                                             onPressed: () {
-                                              Navigator.of(context).pop();
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(

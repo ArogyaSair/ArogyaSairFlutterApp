@@ -213,7 +213,6 @@ class _LoginState extends State<Login> {
                                             padding: const EdgeInsets.all(0),
                                             child: TextButton(
                                               onPressed: () {
-                                                Navigator.of(context).pop();
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
