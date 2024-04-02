@@ -69,7 +69,7 @@ class splash extends State<Splash> {
       DatabaseEvent databaseEvent = await dbUserRef.once();
       DataSnapshot dataSnapshot = databaseEvent.snapshot;
       if (dataSnapshot.value != null) {
-        page = const bottomBar();
+        page = const BottomBar();
       }
       return;
     }

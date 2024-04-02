@@ -141,10 +141,12 @@ class _MyHelpDeskState extends State<MyHelpDesk> {
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                               Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const bottomBar()));
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const BottomBar(),
+                                                ),
+                                              );
                                             },
                                           )
                                         ],

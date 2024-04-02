@@ -83,17 +83,6 @@ class _GetHomeDataState extends State<get_home_data> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 24.0, bottom: 20),
-            child: Text(
-              "Packages:",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
-          ),
           SizedBox(
             // home page size
             height: MediaQuery.of(context).size.width * 0.47,

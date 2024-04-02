@@ -4,25 +4,24 @@ import 'package:arogyasair/HistoryPage.dart';
 import 'package:arogyasair/HomePage.dart';
 import 'package:arogyasair/ProfilePage.dart';
 import 'package:arogyasair/UpdatesPage.dart';
-import 'package:arogyasair/help_desk.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-class bottomBar extends StatefulWidget {
-  const bottomBar({super.key});
+class BottomBar extends StatefulWidget {
+  const BottomBar({super.key});
 
   @override
   _BottomBarState createState() => _BottomBarState();
 }
 
-class _BottomBarState extends State<bottomBar> {
-  static int _selectedIndex = 0;
+class _BottomBarState extends State<BottomBar> {
+  int _selectedIndex = 0;
   late String username;
   late String email;
   final key = 'username';
-  late String firstName;
   final key1 = 'email';
+  late String firstName;
   late String userKey;
   List<Widget> _widgetOptions = [];
 
@@ -59,10 +58,6 @@ class _BottomBarState extends State<bottomBar> {
         backgroundColor: Colors.white,
         body: MyHistory(),
       ),
-      const Scaffold(
-        backgroundColor: Colors.white,
-        body: MyHelpDesk(),
-      ),
       Scaffold(
         backgroundColor: Colors.white,
         body: MyProfile(username, email),
@@ -88,29 +83,30 @@ class _BottomBarState extends State<bottomBar> {
               _selectedIndex = index;
             });
           },
-          items: const [
-            Icon(
-              Icons.home,
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.update,
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.history,
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.support,
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.person,
-              color: Colors.white,
-            ),
+          items: [
+            _buildIcon(Icons.home, 0),
+            _buildIcon(Icons.update, 1),
+            _buildIcon(Icons.history, 2),
+            _buildIcon(Icons.person, 3),
           ],
           index: _selectedIndex, // Use 'index' instead of 'currentIndex'
+        ),
+      ),
+    );
+  }
+
+  Widget _buildIcon(IconData icon, int index) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        child: Icon(
+          icon,
+          color: Colors.white,
         ),
       ),
     );

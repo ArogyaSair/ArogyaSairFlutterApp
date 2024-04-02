@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
     _messagingService.init(context);
     _loadUserData();
   }
+
   Future<void> _loadUserData() async {
     String? userkey = await getKey();
     String? userData = await getData(key);
@@ -76,13 +77,20 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Welcome to",
+                  Text("Welcome to",
                       textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 12, color: Color(0xffabafb0))),
-                  Text(widget.firstname,
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold))
+                      style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey.shade800,
+                          fontWeight: FontWeight.bold)),
+                  Text(
+                    widget.firstname,
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
                 ],
               ),
               iconTheme: const IconThemeData(
@@ -92,11 +100,12 @@ class _HomePageState extends State<HomePage> {
             endDrawer: const DrawerCode(),
             body: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
                     child: Container(
-                      width: 400,
+                      width: double.infinity,
                       height: constraints.maxHeight * 0.10,
                       decoration: const BoxDecoration(
                         color: Color(0xfff2f6f7),
@@ -178,6 +187,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         child: GestureDetector(
@@ -354,8 +364,17 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: Text(
+                      "Packages:",
+                      textAlign: TextAlign.left,
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
+                    padding: const EdgeInsets.only(top: 0),
                     child: Container(
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
@@ -363,88 +382,124 @@ class _HomePageState extends State<HomePage> {
                             topLeft: Radius.circular(30)),
                         color: Color(0xff12d3c6),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 20.0),
-                        child: get_home_data(),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(color: Color(0xff12d3c6)),
-                    child: StreamBuilder(
-                      stream: dbRef2.onValue,
-                      builder: (BuildContext context, AsyncSnapshot snapshot) {
-                        if (snapshot.hasData &&
-                            snapshot.data!.snapshot.value != null) {
-                          Map<dynamic, dynamic> map =
-                              snapshot.data!.snapshot.value;
-                          List<HomeData> packagesList = [];
-                          packagesList.clear();
-                          map.forEach((key, value) {
-                            packagesList.add(HomeData.fromMap(value, key));
-                          });
-                          return GridView.builder(
-                            scrollDirection: Axis.vertical,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              childAspectRatio: constraints.maxHeight * 0.00145,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const get_home_data(),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 25),
+                              child: Text(
+                                "Hospitals:",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: packagesList.length,
-                            padding: const EdgeInsets.all(0),
-                            itemBuilder: (BuildContext context, int index) {
-                              if (packagesList[index].hospitalImage == "") {
-                                imagePath =
-                                    "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FArogyaSair.png?alt=media";
-                              } else {
-                                imagePath =
-                                    "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${packagesList[index].hospitalImage}?alt=media";
-                              }
-                              return Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: GestureDetector(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: FillImageCard(
-                                      imageProvider: NetworkImage(
-                                        imagePath,
+                            Container(
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(30),
+                                    topLeft: Radius.circular(30)),
+                                color: Colors.white,
+                              ),
+                              child: StreamBuilder(
+                                stream: dbRef2.onValue,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot snapshot) {
+                                  if (snapshot.hasData &&
+                                      snapshot.data!.snapshot.value != null) {
+                                    Map<dynamic, dynamic> map =
+                                        snapshot.data!.snapshot.value;
+                                    List<HomeData> packagesList = [];
+                                    packagesList.clear();
+                                    map.forEach((key, value) {
+                                      packagesList
+                                          .add(HomeData.fromMap(value, key));
+                                    });
+                                    return GridView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 1,
+                                        childAspectRatio:
+                                            constraints.maxHeight * 0.00145,
                                       ),
-                                      heightImage:
-                                          MediaQuery.of(context).size.height *
-                                              0.23,
-                                      title: Text(
-                                          packagesList[index].hospitalName,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20)),
-                                      height: double.infinity,
-                                      width: double.infinity,
-                                      description: Text(
-                                          packagesList[index].hospitalEmail),
-                                    ),
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HospitalDetails(
-                                            hospitalKey: packagesList[index]
-                                                .hospitalEmail),
-                                      ),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: packagesList.length,
+                                      padding: const EdgeInsets.only(top: 20.0),
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        if (packagesList[index].hospitalImage ==
+                                            "") {
+                                          imagePath =
+                                              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2FArogyaSair.png?alt=media";
+                                        } else {
+                                          imagePath =
+                                              "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/HospitalImage%2F${packagesList[index].hospitalImage}?alt=media";
+                                        }
+                                        return Padding(
+                                          padding: const EdgeInsets.all(5),
+                                          child: GestureDetector(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(12.0),
+                                              child: FillImageCard(
+                                                imageProvider: NetworkImage(
+                                                  imagePath,
+                                                ),
+                                                heightImage:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.23,
+                                                title: Text(
+                                                    packagesList[index]
+                                                        .hospitalName,
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 20)),
+                                                height: double.infinity,
+                                                width: double.infinity,
+                                                description: Text(
+                                                    packagesList[index]
+                                                        .hospitalEmail),
+                                              ),
+                                            ),
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      HospitalDetails(
+                                                          hospitalKey:
+                                                              packagesList[
+                                                                      index]
+                                                                  .hospitalEmail),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        );
+                                      },
                                     );
-                                  },
-                                ),
-                              );
-                            },
-                          );
-                        } else {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                      },
+                                  } else {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],

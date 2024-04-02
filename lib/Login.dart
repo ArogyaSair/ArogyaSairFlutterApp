@@ -293,7 +293,7 @@ class _LoginState extends State<Login> {
           count = count + 1;
           Navigator.pop(context);
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const bottomBar()));
+              MaterialPageRoute(builder: (context) => const BottomBar()));
         } else {
           msg = "Sorry..! Wrong Username or Password";
           _showSnackbar(scaffoldContext, msg);

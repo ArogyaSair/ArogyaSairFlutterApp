@@ -40,9 +40,6 @@ class _DisplayHospitalsState extends State<DisplayHospitals> {
 
     Map<dynamic, dynamic> values = snapshot.value as Map<dynamic, dynamic>;
     List<Map> hospitals = [];
-
-    // print("values $values");
-
     values.forEach((key, value) {
       if (value['Photo'] != null && value['Photo'].toString().isNotEmpty) {
         hospitals.add({
@@ -118,11 +115,13 @@ class _DisplayHospitalsState extends State<DisplayHospitals> {
                               padding: const EdgeInsets.all(10),
                               child: ListTile(
                                 contentPadding: const EdgeInsets.all(1),
-                                leading: Image.network(
-                                  imagePath,
-                                  width: 100,
-                                  height: 200,
-                                  fit: BoxFit.cover,
+                                leading: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.network(
+                                    imagePath,
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                                 title: Text(data1['HospitalName'].toString()),
                                 onTap: () {
