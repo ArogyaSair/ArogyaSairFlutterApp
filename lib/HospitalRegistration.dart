@@ -59,8 +59,8 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
               child: Center(
                 child: Image.asset(
                   'assets/Logo/ArogyaSair.png',
-                  width: 200,
-                  height: 200,
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -81,7 +81,8 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                       },
                       decoration: const InputDecoration(
                         prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon:
+                            Icon(Icons.person, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -107,7 +108,7 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: Icon(Icons.email, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -131,12 +132,14 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                       },
                       obscureText: !isPasswordVisible,
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
+                        prefixIcon:
+                            const Icon(Icons.lock, color: Color(0xff12d3c6)),
                         suffixIcon: IconButton(
                           icon: Icon(
                             isPasswordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
+                            color: const Color(0xff12d3c6),
                           ),
                           onPressed: () {
                             _togglePasswordVisibility(context);
@@ -166,12 +169,14 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                       },
                       obscureText: !isConfirmPasswordVisible,
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
+                        prefixIcon:
+                            const Icon(Icons.lock, color: Color(0xff12d3c6)),
                         suffixIcon: IconButton(
                           icon: Icon(
                             isConfirmPasswordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
+                            color: const Color(0xff12d3c6),
                           ),
                           onPressed: () {
                             _toggleConfirmPasswordVisibility(context);
@@ -215,7 +220,7 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                               "Agree to T&C",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: Color(0xff12d3c6),
                                 fontSize: 17,
                               ),
                             ),
@@ -227,6 +232,14 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                       height: 10,
                     ),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(200, 50),
+                        elevation: 10,
+                        backgroundColor: const Color(0xff12d3c6),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           var name = controllername.text;
@@ -259,7 +272,8 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                           }
                         }
                       },
-                      child: const Text("Sign up"),
+                      child: const Text("Sign up",
+                          style: TextStyle(color: Colors.white)),
                     ),
                     const SizedBox(
                       height: 10,
@@ -271,7 +285,7 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                           padding: EdgeInsets.all(0),
                           child: Text(
                             "Already have an account..?",
-                            style: TextStyle(color: Colors.blue, fontSize: 16),
+                            style: TextStyle(color: Colors.black, fontSize: 16),
                           ),
                         ),
                         Padding(
@@ -289,6 +303,7 @@ class _HospitalRegistrationState extends State<HospitalRegistration> {
                             child: const Text(
                               "Login here",
                               style: TextStyle(
+                                  color: Color(0xff12d3c6),
                                   fontSize: 16,
                                   fontStyle: FontStyle.italic,
                                   decoration: TextDecoration.underline),

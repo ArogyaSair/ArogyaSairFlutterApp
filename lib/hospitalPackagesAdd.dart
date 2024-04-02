@@ -53,12 +53,24 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                           const EdgeInsets.only(top: 20, left: 10, right: 10),
                       child: Center(
                         child: Image.asset(
-                          'assets/Logo/ArogyaSair.png',
+                          'assets/Logo/ArogyaSairLogo.png',
                           width: 200,
                           height: 200,
                           fit: BoxFit.cover,
                         ),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 180.0),
+                      child: Text("Add Packages :",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          )),
                     ),
                     const SizedBox(
                       height: 10,
@@ -72,7 +84,7 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                         return null;
                       },
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
+                        prefixIconColor: Color(0xff12d3c6),
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -97,8 +109,8 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                       },
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIconColor: Color(0xff12d3c6),
+                        prefixIcon: Icon(Icons.currency_rupee),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -121,8 +133,8 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                         return null;
                       },
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIconColor: Color(0xff12d3c6),
+                        prefixIcon: Icon(Icons.add),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -140,8 +152,8 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                       controller: controllerhospitalname,
                       enabled: false,
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIconColor: Color(0xff12d3c6),
+                        prefixIcon: Icon(Icons.local_hospital),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -165,8 +177,8 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                       },
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIconColor: Color(0xff12d3c6),
+                        prefixIcon: Icon(Icons.access_time),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -178,9 +190,17 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(200, 50),
+                        elevation: 10,
+                        backgroundColor: const Color(0xff12d3c6),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           var name = controllerpackagename.text;
@@ -194,7 +214,8 @@ class _HospitalPackageAddState extends State<HospitalPackageAdd> {
                           Navigator.of(context).pop();
                         }
                       },
-                      child: const Text("Add"),
+                      child: const Text("Add",
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ],
                 ),

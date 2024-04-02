@@ -77,78 +77,79 @@ class _HospitalPackagesTabState extends State<PackageHospitalSelection> {
       appBar: AppBar(
         title: const Text(
           "Hospitals",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.blue.shade900,
+        backgroundColor: const Color(0xfff2f6f7),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Colors.white,
+            color: Colors.black,
           ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
       ),
-      body: FutureBuilder<List<Map>>(
-        future: getHospitalData(),
-        builder: (context, snapshot) {
+      body: Container(
+        color: const Color(0xfff2f6f7),
+        child: FutureBuilder<List<Map>>(
+          future: getHospitalData(),
+          builder: (context, snapshot) {
             List<Map>? hospitals = snapshot.data;
-          if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            if (hospitals != null && hospitals.isNotEmpty) {
-              return ListView.builder(
-                itemCount: hospitals.length,
-                itemBuilder: (context, index) {
-                  Map data1 = hospitals[index];
-                  var imageName = data1['Photo'] == 'noimage'
-                      ? 'noimage'
-                      : "HospitalImage%2F${data1['Photo']}";
-                  var imagePath = data1['Photo'] == 'noimage'
-                      ? 'https://via.placeholder.com/150' // Placeholder image URL
-                      : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
-                  return Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(1),
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
+            if (!snapshot.hasData) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              if (hospitals != null && hospitals.isNotEmpty) {
+                return ListView.builder(
+                  itemCount: hospitals.length,
+                  itemBuilder: (context, index) {
+                    Map data1 = hospitals[index];
+                    var imageName = data1['Photo'] == 'noimage'
+                        ? 'noimage'
+                        : "HospitalImage%2F${data1['Photo']}";
+                    var imagePath = data1['Photo'] == 'noimage'
+                        ? 'https://via.placeholder.com/150' // Placeholder image URL
+                        : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
+                    return Card(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(1),
+                          leading: Image.network(
                             imagePath,
                             width: 100,
                             height: 200,
                             fit: BoxFit.cover,
                           ),
+                          title: Text(data1['HospitalName'].toString()),
+                          onTap: () {
+                            // Navigate to a new page on item click
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AppointmentDateSelection(
+                                  HospitalName: data1["HospitalName"],
+                                  HospitalKey: data1["Key"],
+                                  item: widget.diseaseList,
+                                ), // Pass data to the new page
+                              ),
+                            );
+                          },
                         ),
-                        title: Text(data1['HospitalName'].toString()),
-                        onTap: () {
-                          // Navigate to a new page on item click
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AppointmentDateSelection(
-                                HospitalName: data1["HospitalName"],
-                                HospitalKey: data1["Key"],
-                                item: widget.diseaseList,
-                              ), // Pass data to the new page
-                            ),
-                          );
-                        },
                       ),
-                    ),
-                  );
-                },
-              );
-            } else {
-              return const Center(child: Text('No hospitals found'));
+                    );
+                  },
+                );
+              } else {
+                return const Center(child: Text('No hospitals found'));
+              }
             }
-          }
-        },
+          },
+        ),
       ),
     );
   }

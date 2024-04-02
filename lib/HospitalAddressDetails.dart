@@ -73,8 +73,8 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
               child: Center(
                 child: Image.asset(
                   'assets/Logo/ArogyaSair.png',
-                  width: 200,
-                  height: 200,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.35,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -96,7 +96,8 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
                       },
                       decoration: const InputDecoration(
                         prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon:
+                            Icon(Icons.person, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -122,7 +123,7 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: Icon(Icons.email, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -146,8 +147,9 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
                       },
                       keyboardType: TextInputType.streetAddress,
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.pin_drop),
+                        prefixIconColor: Color(0xff12d3c6),
+                        prefixIcon:
+                            Icon(Icons.pin_drop, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -172,7 +174,8 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
                       keyboardType: TextInputType.streetAddress,
                       decoration: const InputDecoration(
                         prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.pin_drop),
+                        prefixIcon:
+                            Icon(Icons.pin_drop, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -197,7 +200,8 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
                       keyboardType: TextInputType.streetAddress,
                       decoration: const InputDecoration(
                         prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.pin_drop),
+                        prefixIcon:
+                            Icon(Icons.pin_drop, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -212,6 +216,14 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
                       height: 10,
                     ),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(200, 50),
+                        elevation: 10,
+                        backgroundColor: const Color(0xff12d3c6),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       onPressed: () async {
                         var address = controllerAddress.text;
                         var city = controllerCity.text;
@@ -238,7 +250,8 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
                                 builder: (context) =>
                                     const HospitalServices()));
                       },
-                      child: const Text("Add Details"),
+                      child: const Text("Add Details",
+                          style: TextStyle(color: Colors.white)),
                     ),
                     const SizedBox(
                       height: 10,
@@ -250,7 +263,7 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
                           padding: EdgeInsets.all(0),
                           child: Text(
                             "Already have an account..?",
-                            style: TextStyle(color: Colors.blue, fontSize: 16),
+                            style: TextStyle(color: Colors.black, fontSize: 16),
                           ),
                         ),
                         Padding(
@@ -269,6 +282,7 @@ class _HospitalAddressDetailsState extends State<HospitalAddressDetails> {
                               "Login here",
                               style: TextStyle(
                                   fontSize: 16,
+                                  color: Color(0xff12d3c6),
                                   fontStyle: FontStyle.italic,
                                   decoration: TextDecoration.underline),
                             ),

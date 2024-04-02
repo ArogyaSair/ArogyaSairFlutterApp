@@ -29,7 +29,7 @@ class _packageInformation extends State<PackageInformation> {
           "Packages",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color(0xff12d3c6),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -76,12 +76,24 @@ class _packageInformation extends State<PackageInformation> {
                     children: [
                       SizedBox(
                         width: double.infinity,
-                        child: Card(
+                        child: Center(
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                Center(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(25),
+                                    child: Image.network(
+                                      imagePath,
+                                      height: 100,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
                                 Text(
                                   widget.HospitalName,
                                   style: const TextStyle(
@@ -89,20 +101,17 @@ class _packageInformation extends State<PackageInformation> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text("Package name : ${data["PackageName"]}"),
+                                Text("Package name : ${data["PackageName"]}",
+                                    style: const TextStyle(fontSize: 16.5)),
                                 Text(
-                                    "This package includes : ${data["Include"]}"),
-                                Text("Price is : ${data["Price"]}"),
-                                Text("Duration : ${data["Duration"]} weeks"),
+                                    "This package includes : ${data["Include"]}",
+                                    style: const TextStyle(fontSize: 16.5)),
+                                Text("Price is : ${data["Price"]}",
+                                    style: const TextStyle(fontSize: 16.5)),
+                                Text("Duration : ${data["Duration"]} weeks",
+                                    style: const TextStyle(fontSize: 16.5)),
                                 const SizedBox(
                                   height: 10,
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(25),
-                                  child: Image.network(
-                                    imagePath,
-                                    height: 100,
-                                  ),
                                 ),
                               ],
                             ),

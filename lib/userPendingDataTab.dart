@@ -28,8 +28,6 @@ class _UserPendingDataState extends State<UserPendingData> {
   @override
   void initState() {
     super.initState();
-    // appointments.clear();
-    // userMap.clear();
     loadUser();
   }
 
@@ -162,7 +160,7 @@ class _UserPendingDataState extends State<UserPendingData> {
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Color(0xff12d3c6),
+                                color: const Color(0xff12d3c6),
                               ),
                               child: const Padding(
                                 padding: EdgeInsets.all(5),

@@ -57,8 +57,8 @@ class _HospitalRegisterImageAddState extends State<HospitalRegisterImageAdd> {
             child: Center(
               child: Image.asset(
                 'assets/Logo/ArogyaSair.png',
-                width: 200,
-                height: 200,
+                width: MediaQuery.of(context).size.width * 1,
+                height: MediaQuery.of(context).size.height * 0.4,
                 fit: BoxFit.cover,
               ),
             ),
@@ -89,7 +89,8 @@ class _HospitalRegisterImageAddState extends State<HospitalRegisterImageAdd> {
                     "Upload Image",
                     style: TextStyle(color: Colors.white),
                   ),
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xff12d3c6)),
                   onPressed: () {
                     getImage();
                   },
@@ -98,8 +99,16 @@ class _HospitalRegisterImageAddState extends State<HospitalRegisterImageAdd> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(1),
+            padding: const EdgeInsets.only(top: 20),
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 50),
+                elevation: 10,
+                backgroundColor: const Color(0xff12d3c6),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               onPressed: () {
                 updateData(userKey);
                 Navigator.pop(context);
@@ -108,7 +117,8 @@ class _HospitalRegisterImageAddState extends State<HospitalRegisterImageAdd> {
                     MaterialPageRoute(
                         builder: (context) => const HospitalHomePage(0)));
               },
-              child: const Text("Add Image"),
+              child: const Text("Add Image",
+                  style: TextStyle(color: Colors.white)),
             ),
           )
         ],

@@ -77,61 +77,65 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          StreamBuilder<List<Map>>(
-            stream: _streamController.stream,
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
-              } else {
-                List<Map>? hospitals = snapshot.data;
-                if (hospitals != null && hospitals.isNotEmpty) {
-                  return ListView.builder(
-                    itemCount: hospitals.length,
-                    itemBuilder: (context, index) {
-                      Map data1 = hospitals[index];
-                      var imageName = data1['Photo'] == ''
-                          ? 'DefaultProfileImage.png'
-                          : "PackageImage%2F${data1['Photo']}";
-                      var imagePath = data1['Photo'] == 'noImage'
-                          ? 'https://via.placeholder.com/150'
-                          : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
-                      return Card(
-                        child: ListTile(
-                          contentPadding: const EdgeInsets.all(0),
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(25),
-                            child: Image.network(
-                              imagePath,
-                              height: 100,
-                              width: 100,
-                            ),
-                          ),
-                          title: Text(data1['PackageName'].toString()),
-                          subtitle:
-                              Text("${data1['Duration'].toString()} weeks"),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PackageInformation(
-                                    hospitalName,
-                                    hospitals[index]["ID"].toString()),
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  );
+      body: Container(
+        color: const Color(0xfff2f6f7),
+        child: Stack(
+          children: [
+            StreamBuilder<List<Map>>(
+              stream: _streamController.stream,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
                 } else {
-                  return const Center(child: Text('No hospitals found'));
+                  List<Map>? hospitals = snapshot.data;
+                  if (hospitals != null && hospitals.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: hospitals.length,
+                      itemBuilder: (context, index) {
+                        Map data1 = hospitals[index];
+                        var imageName = data1['Photo'] == ''
+                            ? 'DefaultProfileImage.png'
+                            : "PackageImage%2F${data1['Photo']}";
+                        var imagePath = data1['Photo'] == 'noImage'
+                            ? 'https://via.placeholder.com/150'
+                            : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
+                        return Card(
+                          color: Colors.white,
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.all(0),
+                            leading: ClipRRect(
+                              borderRadius: BorderRadius.circular(25),
+                              child: Image.network(
+                                imagePath,
+                                height: 100,
+                                width: 100,
+                              ),
+                            ),
+                            title: Text(data1['PackageName'].toString()),
+                            subtitle:
+                                Text("${data1['Duration'].toString()} weeks"),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PackageInformation(
+                                      hospitalName,
+                                      hospitals[index]["ID"].toString()),
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return const Center(child: Text('No hospitals found'));
+                  }
                 }
-              }
-            },
-          ),
-        ],
+              },
+            ),
+          ],
+        ),
       ),
       floatingActionButton: SizedBox(
         height: 50,
@@ -149,7 +153,7 @@ class _HospitalPackagesTabState extends State<HospitalPackagesTab> {
             color: Colors.white,
           ),
           style: const ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(Colors.blue),
+            backgroundColor: MaterialStatePropertyAll(Color(0xff12d3c6)),
           ),
         ),
       ),

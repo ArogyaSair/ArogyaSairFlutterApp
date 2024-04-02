@@ -46,7 +46,7 @@ class _HospitalProfileState extends State<HospitalProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color(0xff12d3c6),
         // automaticallyImplyLeading: false,
         leading: IconButton(
           icon: const Icon(
@@ -82,7 +82,10 @@ class _HospitalProfileState extends State<HospitalProfile> {
             padding: const EdgeInsetsDirectional.fromSTEB(16, 5, 0, 0),
             child: Text(
               username,
-              style: const TextStyle(fontSize: 18, color: Colors.black),
+              style: const TextStyle(
+                  fontSize: 22,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Padding(

@@ -157,7 +157,7 @@ class _GeneralAppointmentDateSelectionState
                                   },
                                   child: const Icon(
                                     Icons.date_range,
-                                    color: const Color(0xff12d3c6),
+                                    color: Color(0xff12d3c6),
                                   ),
                                 ),
                                 // filled: true,

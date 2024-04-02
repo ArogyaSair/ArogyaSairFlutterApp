@@ -87,7 +87,8 @@ class _HospitalEditProfileState extends State<HospitalEditProfile> {
                     padding: EdgeInsets.all(10),
                     child: Text(
                       "Update Hospital Information",
-                      style: TextStyle(fontSize: 18),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(
@@ -117,7 +118,7 @@ class _HospitalEditProfileState extends State<HospitalEditProfile> {
                             style: TextStyle(color: Colors.white),
                           ),
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue),
+                              backgroundColor: const Color(0xff12d3c6)),
                           onPressed: () {
                             getImage();
                           },
@@ -131,7 +132,10 @@ class _HospitalEditProfileState extends State<HospitalEditProfile> {
                       controller: controllerName,
                       decoration: const InputDecoration(
                         hintText: "Name",
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon: Icon(
+                          Icons.person,
+                          color: Color(0xff12d3c6),
+                        ),
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
@@ -145,7 +149,7 @@ class _HospitalEditProfileState extends State<HospitalEditProfile> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         hintText: "Email Address",
-                        prefixIcon: Icon(Icons.mail),
+                        prefixIcon: Icon(Icons.mail, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
@@ -159,7 +163,8 @@ class _HospitalEditProfileState extends State<HospitalEditProfile> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         hintText: "Address",
-                        prefixIcon: Icon(Icons.pin_drop),
+                        prefixIcon:
+                            Icon(Icons.pin_drop, color: Color(0xff12d3c6)),
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
@@ -173,7 +178,7 @@ class _HospitalEditProfileState extends State<HospitalEditProfile> {
                         updateData(userKey);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor: const Color(0xff12d3c6),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),

@@ -34,8 +34,8 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
               child: Center(
                 child: Image.asset(
                   'assets/Logo/ArogyaSair.png',
-                  width: 200,
-                  height: 200,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -46,7 +46,7 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
                 controller: controllerEmail, // enabled: false,
                 decoration: InputDecoration(
                   hintText: "Email",
-                  prefixIcon: const Icon(Icons.mail),
+                  prefixIcon: const Icon(Icons.mail, color: Color(0xff12d3c6)),
                   suffixIcon: TextButton(
                     onPressed: () async {
                       Query dbRef2 = FirebaseDatabase.instance
@@ -87,7 +87,8 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
                         }
                       });
                     },
-                    child: const Text("Send OTP"),
+                    child: const Text("Send OTP",
+                        style: TextStyle(color: Color(0xff12d3c6))),
                   ),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -104,7 +105,7 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
                 decoration: const InputDecoration(
                   hintText: "OTP",
                   labelText: "Enter OTP",
-                  prefixIcon: Icon(Icons.password),
+                  prefixIcon: Icon(Icons.password, color: Color(0xff12d3c6)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(15),
@@ -116,6 +117,14 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
             Padding(
               padding: const EdgeInsets.all(10),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(200, 50),
+                  elevation: 10,
+                  backgroundColor: const Color(0xff12d3c6),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
                 onPressed: () async {
                   if (await myauth.verifyOTP(otp: controllerOTP.text) == true) {
                     Navigator.pop(context);
@@ -135,7 +144,8 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
                     );
                   }
                 },
-                child: const Text("Verify OTP"),
+                child: const Text("Verify OTP",
+                    style: TextStyle(color: Colors.white)),
               ),
             ),
             Row(
@@ -145,7 +155,7 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
                   padding: EdgeInsets.all(0),
                   child: Text(
                     "Already registered..?",
-                    style: TextStyle(color: Colors.blue, fontSize: 16),
+                    style: TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 ),
                 Padding(
@@ -164,7 +174,7 @@ class _HospitalRegisterState extends State<HospitalEmailVerification> {
                       style: TextStyle(
                           fontSize: 16,
                           fontStyle: FontStyle.italic,
-                          color: Colors.blue,
+                          color: Color(0xff12d3c6),
                           decoration: TextDecoration.underline),
                     ),
                   ),

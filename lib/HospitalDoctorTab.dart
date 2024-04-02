@@ -157,7 +157,7 @@ class _HospitalDoctorTabState extends State<HospitalDoctorTab> {
             color: Colors.white,
           ),
           style: const ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(Colors.blue),
+            backgroundColor: MaterialStatePropertyAll(Color(0xff12d3c6)),
           ),
         ),
       ),

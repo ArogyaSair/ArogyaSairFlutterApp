@@ -117,6 +117,14 @@ class _HospitalChangePasswordState extends State<HospitalChangePassword> {
           Padding(
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 50),
+                elevation: 10,
+                backgroundColor: const Color(0xff12d3c6),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               onPressed: () async {
                 if (await myauth.verifyOTP(otp: controllerOTP.text) == true) {
                   Navigator.pop(context);
@@ -132,7 +140,8 @@ class _HospitalChangePasswordState extends State<HospitalChangePassword> {
                   );
                 }
               },
-              child: const Text("Verify OTP"),
+              child: const Text("Verify OTP",
+                  style: TextStyle(color: Colors.white)),
             ),
           ),
         ],

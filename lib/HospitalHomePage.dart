@@ -78,7 +78,7 @@ class _HospitalHomePage extends State<HospitalHomePage> {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.blue,
+            backgroundColor: const Color(0xff12d3c6),
             title: Text(
               displayName,
               style: TextStyle(color: Colors.white),
@@ -130,12 +130,26 @@ class _HospitalHomePage extends State<HospitalHomePage> {
               ),
             ],
             bottom: TabBar(
+              indicatorColor: Colors.white,
               labelColor: Colors.white,
               unselectedLabelColor: Colors.white,
               tabs: const [
-                Tab(text: 'PACKAGES'),
-                Tab(text: 'DOCTORS'),
-                Tab(text: 'APPOINTMENTS'),
+                Tab(
+                  child: Text(
+                    "PACKAGES",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                Tab(
+                    child: Text(
+                  "DOCTORS",
+                  style: TextStyle(color: Colors.white),
+                )),
+                Tab(
+                    child: Text(
+                  "APPOINTMENTS",
+                  style: TextStyle(color: Colors.white),
+                )),
               ],
             ),
           ),

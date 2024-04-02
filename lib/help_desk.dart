@@ -49,7 +49,7 @@ class _MyHelpDeskState extends State<MyHelpDesk> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xfff2f6f7),
+        backgroundColor: const Color(0xfff2f6f7),
         automaticallyImplyLeading: false,
         title: const Text(
           'Arogya Sair',

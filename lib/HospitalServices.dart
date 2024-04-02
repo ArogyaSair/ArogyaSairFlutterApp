@@ -48,7 +48,7 @@ class _HospitalServicesState extends State<HospitalServices> {
                 padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
                 child: Center(
                   child: Image.asset(
-                    'assets/Logo/ArogyaSair.png',
+                    'assets/Logo/ArogyaSairLogo.png',
                     width: 200,
                     height: 200,
                     fit: BoxFit.cover,
@@ -232,6 +232,7 @@ class _HospitalServicesState extends State<HospitalServices> {
                   child: const Text(
                     "Next",
                     style: TextStyle(
+                      color: Color(0xff12d3c6),
                       fontSize: 18,
                     ),
                   ),

@@ -80,10 +80,10 @@ class _DrawerCode extends State<HospitalDrawerCode> {
                       ),
                       Text(
                         email,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: Colors.grey.shade700,
                         ),
                       ),
                     ],
@@ -99,7 +99,7 @@ class _DrawerCode extends State<HospitalDrawerCode> {
           ListTile(
             leading: const Icon(
               Icons.account_circle_outlined,
-              color: Colors.black,
+              color: Color(0xff12d3c6),
             ),
             title: const Text("My Profile"),
             onTap: () {
@@ -119,7 +119,7 @@ class _DrawerCode extends State<HospitalDrawerCode> {
           ListTile(
             leading: const Icon(
               Icons.logout_outlined,
-              color: Colors.black,
+              color: Color(0xff12d3c6),
             ),
             title: const Text("Log out"),
             onTap: () async {

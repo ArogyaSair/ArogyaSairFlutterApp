@@ -74,7 +74,7 @@ class _MyHistoryState extends State<MyHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xfff2f6f7),
+        backgroundColor: const Color(0xfff2f6f7),
         automaticallyImplyLeading: false,
         title: const Text(
           'Arogya Sair',
@@ -86,7 +86,7 @@ class _MyHistoryState extends State<MyHistory> {
       ),
       endDrawer: const DrawerCode(),
       body: Container(
-        color: Color(0xfff2f6f7),
+        color: const Color(0xfff2f6f7),
         height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(1),

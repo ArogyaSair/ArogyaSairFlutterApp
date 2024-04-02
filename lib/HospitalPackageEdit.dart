@@ -69,7 +69,7 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
           "Packages",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color(0xff12d3c6),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -127,7 +127,7 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
                               style: TextStyle(color: Colors.white),
                             ),
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue),
+                                backgroundColor: const Color(0xff12d3c6)),
                             onPressed: () {
                               getImage();
                             },
@@ -147,7 +147,7 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
                         return null;
                       },
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
+                        prefixIconColor: Color(0xff12d3c6),
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -171,8 +171,8 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
                         return null;
                       },
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIconColor: Color(0xff12d3c6),
+                        prefixIcon: Icon(Icons.currency_rupee),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -195,8 +195,8 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
                         return null;
                       },
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIconColor: Color(0xff12d3c6),
+                        prefixIcon: Icon(Icons.add),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -214,8 +214,8 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
                       controller: controllerHospitalName,
                       enabled: false,
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIconColor: Color(0xff12d3c6),
+                        prefixIcon: Icon(Icons.local_hospital),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -238,8 +238,8 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
                         return null;
                       },
                       decoration: const InputDecoration(
-                        prefixIconColor: Colors.blue,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIconColor: Color(0xff12d3c6),
+                        prefixIcon: Icon(Icons.access_time),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Colors.black),
@@ -254,13 +254,22 @@ class _HospitalPackageEditState extends State<HospitalPackageEdit> {
                       height: 10,
                     ),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(200, 50),
+                        elevation: 10,
+                        backgroundColor: const Color(0xff12d3c6),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           updateData(packageKey);
                           Navigator.pop(context);
                         }
                       },
-                      child: const Text("Update"),
+                      child: const Text("Update",
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ],
                 ),
