@@ -2,6 +2,7 @@
 
 import 'package:arogyasair/HospitalProfilePage.dart';
 import 'package:arogyasair/firebase_api.dart';
+import 'package:arogyasair/privacy_policy.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -92,8 +93,8 @@ class _HospitalHomePage extends State<HospitalHomePage> {
                       child: Text('My Account'),
                     ),
                     const PopupMenuItem(
-                      value: 'settings',
-                      child: Text('Settings'),
+                      value: 'Privacy policy',
+                      child: Text('Privacy Policy'),
                     ),
                     const PopupMenuItem(
                       value: 'logout',
@@ -108,7 +109,11 @@ class _HospitalHomePage extends State<HospitalHomePage> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => HospitalProfile()));
-                  } else if (value == 'settings') {
+                  } else if (value == 'Privacy policy') {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PrivacyPolicy()));
                     // Handle Settings
                   } else if (value == 'logout') {
                     SharedPreferences prefs =

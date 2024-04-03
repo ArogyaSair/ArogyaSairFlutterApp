@@ -20,7 +20,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MaterialApp(home: Splash()));
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Splash(),
+  ));
 }
 
 class Splash extends StatefulWidget {
