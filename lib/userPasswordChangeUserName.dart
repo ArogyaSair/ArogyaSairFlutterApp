@@ -20,7 +20,6 @@ class userPasswordChangeUserNameState
   TextEditingController controlleruname = TextEditingController();
   TextEditingController controllerpassword = TextEditingController();
   bool isPasswordVisible = false;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,11 +34,11 @@ class userPasswordChangeUserNameState
               width: double.infinity,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
-                      colors: [Color(0xFF0D47A1), Colors.lightBlue])),
+                      colors: [Color(0xff12d3c6), Color(0xff12d3c6)])),
               child: const Padding(
                 padding: EdgeInsets.only(top: 60, left: 22),
                 child: Text(
-                  "Please Enter Username",
+                  "Please, Enter Username",
                   style: TextStyle(
                       fontSize: 30,
                       color: Colors.white,
@@ -83,8 +82,8 @@ class userPasswordChangeUserNameState
                                           return null;
                                         },
                                         decoration: const InputDecoration(
-                                          prefixIcon:
-                                              Icon(Icons.email_outlined),
+                                          prefixIcon: Icon(Icons.email_outlined,
+                                              color: Color(0xff12d3c6)),
                                           prefixIconColor: Colors.blue,
                                           labelText: 'Username',
                                           filled: true,
@@ -101,8 +100,8 @@ class userPasswordChangeUserNameState
                                         decoration: const BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [
-                                              Color(0xFF0D47A1),
-                                              Colors.lightBlue
+                                              Color(0xff12d3c6),
+                                              Color(0xff12d3c6)
                                             ],
                                           ),
                                           borderRadius: BorderRadius.all(
