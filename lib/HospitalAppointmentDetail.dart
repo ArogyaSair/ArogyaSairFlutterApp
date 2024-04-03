@@ -113,316 +113,306 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
       appBar: AppBar(
         title: const Text("Appointment Detail"),
       ),
-      body: Expanded(
-        child: Center(
-          child: FutureBuilder<void>(
-            future: _hospitalDataFuture,
-            builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (displayDoctorMap.isEmpty) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 700,
-                        width: double.infinity,
-                        child: ListView(
-                          children: [
-                            ListTile(
-                              contentPadding: const EdgeInsets.all(12),
-                              title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      const Text("Patient Name :",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      const Spacer(),
-                                      // Add Spacer to push the text to the end of the row
-                                      Text("${widget.userData['UserName']}"),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Text("Requested date of visit :",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      const Spacer(),
-                                      // Add Spacer to push the text to the end of the row
-                                      Text(
-                                          "${widget.appointments['AppointmentDate']}"),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Text("For :",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      const Spacer(),
-                                      // Add Spacer to push the text to the end of the row
-                                      Text(
-                                          " ${widget.appointments["Disease"]}"),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Text("Request status : ",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      const Spacer(),
-                                      // Add Spacer to push the text to the end of the row
-                                      Text("${widget.appointments["Status"]}"),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Text("Patient blood group :",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      const Spacer(),
-                                      // Add Spacer to push the text to the end of the row
-                                      Text(" ${widget.userData["BloodGroup"]}"),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Text("Email :",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      const Spacer(),
-                                      // Add Spacer to push the text to the end of the row
-                                      Text(" ${widget.userData["Email"]}"),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Text(
-                                        "Contact Number :",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      const Spacer(),
-                                      // Add Spacer to push the text to the end of the row
-                                      Text(
-                                          " ${widget.userData["ContactNumber"]}"),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 25,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 20.0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 44,
-                                      decoration: const BoxDecoration(
-                                        color: Color(0xff12d3c6),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(15),
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: DropdownButton<String>(
-                                          value: selectedDoctor,
-                                          borderRadius: const BorderRadius.all(
-                                            Radius.circular(10),
-                                          ),
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                          // icon: Icon(Icons.arrow_drop_down, color: Colors.white),
-                                          items: displayDoctorMap
-                                              .map<DropdownMenuItem<String>>(
-                                            (Map<String, dynamic> doctor) {
-                                              return DropdownMenuItem<String>(
-                                                value: doctor["Key"],
-                                                child:
-                                                    Text(doctor["DoctorName"]),
-                                              );
-                                            },
-                                          ).toList(),
-                                          onChanged: (String? newValue) {
-                                            setState(() {
-                                              selectedDoctor = newValue;
-                                              newDate = selectedDoctor!;
-                                            });
-                                          },
-                                          // Adding suffixIcon here
-                                          dropdownColor:
-                                              const Color(0xff12d3c6),
-                                          underline: const SizedBox(),
-                                          // Removing the underline
-                                          iconEnabledColor: Colors.white,
-                                          iconSize: 24,
-                                          // Set the icon at the end
-                                          iconDisabledColor: Colors.white,
-                                          icon: const Icon(
-                                              Icons.arrow_drop_down,
-                                              color: Colors.white),
-                                          hint: Text(
-                                            "Select a doctor",
-                                            style: TextStyle(
-                                              color:
-                                                  Colors.white.withOpacity(0.7),
-                                            ),
-                                          ),
-                                          isExpanded: true,
-                                          // Rest of your properties...
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  GestureDetector(
-                                    child: TextFormField(
-                                      enabled: false,
-                                      controller: visitingTime,
-                                      style:
-                                          const TextStyle(color: Colors.black),
-                                      decoration: const InputDecoration(
-                                          prefixIcon: Icon(
-                                            Icons.watch_later,
-                                            color: Color(0xff12d3c6),
-                                          ),
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(25)),
-                                          )),
-                                    ),
-                                    onTap: () {
-                                      getTime();
-                                    },
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  const Text(
-                                    "*15 minutes from the time you choose will be assigned for the patients",
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        height: 44.0,
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            approveAppointment();
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            minimumSize: const Size(150, 50),
-                                            elevation: 10,
-                                            backgroundColor:
-                                                const Color(0xff12d3c6),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                            ),
-                                          ),
-                                          child: const Text(
-                                            'Approve',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      SizedBox(
-                                        height: 44.0,
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            minimumSize: const Size(150, 50),
-                                            elevation: 10,
-                                            backgroundColor:
-                                                const Color(0xff12d3c6),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                            ),
-                                          ),
-                                          onPressed: () {
-                                            if (newDate == "Select Doctor") {
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return AlertDialog(
-                                                    title: const Text(
-                                                        "Alert Message"),
-                                                    content: const Text(
-                                                        "Please select doctor for this patient."),
-                                                    actions: <Widget>[
-                                                      OutlinedButton(
-                                                        child: const Text('OK'),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      )
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            } else {
-                                              _getDate(context);
-                                            }
-                                          },
-                                          child: const Text(
-                                            'Delay',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  );
-                }
+      body: Center(
+        child: FutureBuilder<void>(
+          future: _hospitalDataFuture,
+          builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (displayDoctorMap.isEmpty) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               } else {
-                return const CircularProgressIndicator();
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: 700,
+                      width: double.infinity,
+                      child: ListView(
+                        children: [
+                          ListTile(
+                            contentPadding: const EdgeInsets.all(12),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Text("Patient Name :",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    const Spacer(),
+                                    // Add Spacer to push the text to the end of the row
+                                    Text("${widget.userData['UserName']}"),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    const Text("Requested date of visit :",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    const Spacer(),
+                                    // Add Spacer to push the text to the end of the row
+                                    Text(
+                                        "${widget.appointments['AppointmentDate']}"),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    const Text("For :",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    const Spacer(),
+                                    // Add Spacer to push the text to the end of the row
+                                    Text(" ${widget.appointments["Disease"]}"),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    const Text("Request status : ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    const Spacer(),
+                                    // Add Spacer to push the text to the end of the row
+                                    Text("${widget.appointments["Status"]}"),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    const Text("Patient blood group :",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    const Spacer(),
+                                    // Add Spacer to push the text to the end of the row
+                                    Text(" ${widget.userData["BloodGroup"]}"),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    const Text("Email :",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    const Spacer(),
+                                    // Add Spacer to push the text to the end of the row
+                                    Text(" ${widget.userData["Email"]}"),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    const Text(
+                                      "Contact Number :",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const Spacer(),
+                                    // Add Spacer to push the text to the end of the row
+                                    Text(
+                                        " ${widget.userData["ContactNumber"]}"),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 25,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 44,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0xff12d3c6),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(15),
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: DropdownButton<String>(
+                                        value: selectedDoctor,
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                        // icon: Icon(Icons.arrow_drop_down, color: Colors.white),
+                                        items: displayDoctorMap
+                                            .map<DropdownMenuItem<String>>(
+                                          (Map<String, dynamic> doctor) {
+                                            return DropdownMenuItem<String>(
+                                              value: doctor["Key"],
+                                              child: Text(doctor["DoctorName"]),
+                                            );
+                                          },
+                                        ).toList(),
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            selectedDoctor = newValue;
+                                            newDate = selectedDoctor!;
+                                          });
+                                        },
+                                        // Adding suffixIcon here
+                                        dropdownColor: const Color(0xff12d3c6),
+                                        underline: const SizedBox(),
+                                        // Removing the underline
+                                        iconEnabledColor: Colors.white,
+                                        iconSize: 24,
+                                        // Set the icon at the end
+                                        iconDisabledColor: Colors.white,
+                                        icon: const Icon(Icons.arrow_drop_down,
+                                            color: Colors.white),
+                                        hint: Text(
+                                          "Select a doctor",
+                                          style: TextStyle(
+                                            color:
+                                                Colors.white.withOpacity(0.7),
+                                          ),
+                                        ),
+                                        isExpanded: true,
+                                        // Rest of your properties...
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                GestureDetector(
+                                  child: TextFormField(
+                                    enabled: false,
+                                    controller: visitingTime,
+                                    style: const TextStyle(color: Colors.black),
+                                    decoration: const InputDecoration(
+                                        prefixIcon: Icon(
+                                          Icons.watch_later,
+                                          color: Color(0xff12d3c6),
+                                        ),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(25)),
+                                        )),
+                                  ),
+                                  onTap: () {
+                                    getTime();
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text(
+                                  "*15 minutes from the time you choose will be assigned for the patients",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      height: 44.0,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          approveAppointment();
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          minimumSize: const Size(150, 50),
+                                          elevation: 10,
+                                          backgroundColor:
+                                              const Color(0xff12d3c6),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                        ),
+                                        child: const Text(
+                                          'Approve',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    SizedBox(
+                                      height: 44.0,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          minimumSize: const Size(150, 50),
+                                          elevation: 10,
+                                          backgroundColor:
+                                              const Color(0xff12d3c6),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          if (newDate == "Select Doctor") {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title: const Text(
+                                                      "Alert Message"),
+                                                  content: const Text(
+                                                      "Please select doctor for this patient."),
+                                                  actions: <Widget>[
+                                                    OutlinedButton(
+                                                      child: const Text('OK'),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    )
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          } else {
+                                            _getDate(context);
+                                          }
+                                        },
+                                        child: const Text(
+                                          'Delay',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                );
               }
-            },
-          ),
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
         ),
       ),
     );
