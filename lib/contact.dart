@@ -41,7 +41,7 @@ class _ContactUs extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
+        backgroundColor: const Color(0xff12d3c6),
         title: const Text(
           'Contact',
           style: TextStyle(color: Colors.white),

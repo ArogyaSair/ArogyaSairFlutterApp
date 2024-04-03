@@ -14,11 +14,12 @@ class GeneralAppointmentDateSelection extends StatefulWidget {
   final String HospitalName;
   final String HospitalKey;
 
-  const GeneralAppointmentDateSelection(
-      {super.key,
-      required this.item,
-      required this.HospitalName,
-      required this.HospitalKey});
+  const GeneralAppointmentDateSelection({
+    super.key,
+    required this.item,
+    required this.HospitalName,
+    required this.HospitalKey,
+  });
 
   @override
   State<GeneralAppointmentDateSelection> createState() =>
@@ -248,9 +249,9 @@ class _GeneralAppointmentDateSelectionState
   Future<void> _getDate(BuildContext context) async {
     var datePicked = await DatePicker.showSimpleDatePicker(
       context,
-      firstDate: DateTime.now().add(const Duration(days: 2)),
-      initialDate: DateTime.now().add(const Duration(days: 2)),
-      lastDate: DateTime.now().add(const Duration(days: 9)),
+      firstDate: DateTime.now(),
+      initialDate: DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 2)),
       dateFormat: "dd-MM-yyyy",
       locale: DateTimePickerLocale.en_us,
       looping: false,

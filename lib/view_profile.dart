@@ -78,7 +78,6 @@ class _ViewProfileState extends State<ViewProfile> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -90,7 +89,7 @@ class _ViewProfileState extends State<ViewProfile> {
         } else {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.blue.shade900,
+              backgroundColor: const Color(0xff12d3c6),
               title: const Text(
                 'View Profile',
                 style: TextStyle(
@@ -110,6 +109,56 @@ class _ViewProfileState extends State<ViewProfile> {
                     },
                     icon: const FaIcon(FontAwesomeIcons.userPen))
               ],
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xff12d3c6),
+                      Color(0xff12d3c6),
+                      Color(0xff12d3c6),
+                    ],
+                  ),
+                ),
+              ),
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(130),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          imagePath,
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          height: MediaQuery.of(context).size.height * 0.06,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        controllerUsername,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        controllerMail,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
             body: SingleChildScrollView(
               child: Padding(
@@ -123,54 +172,23 @@ class _ViewProfileState extends State<ViewProfile> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(24.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors
-                                        .grey, // Change background color here
-                                  ),
-                                  child: CircleAvatar(
-                                    backgroundImage: NetworkImage(imagePath),
-                                    radius: 35, // Adjust the size of the image
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                const Text(
-                                  'Profile Information',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ],
+                            const Text(
+                              'Profile Information',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
                             ),
                             const Divider(height: 30, color: Colors.grey),
                             ListTile(
-                              leading: const Icon(Icons.person),
-                              title: const Text(
-                                'Username',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                              leading: const Icon(
+                                Icons.person,
+                                color: Color(0xff12d3c6),
                               ),
-                              subtitle: Text(controllerUsername),
-                            ),
-                            const Divider(height: 20, color: Colors.grey),
-                            ListTile(
-                              leading: const Icon(Icons.email),
-                              title: const Text(
-                                'Email',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              subtitle: Text(controllerMail),
-                            ),
-                            const Divider(height: 20, color: Colors.grey),
-                            ListTile(
-                              leading: const Icon(Icons.person),
                               title: const Text(
                                 'First Name',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -179,7 +197,10 @@ class _ViewProfileState extends State<ViewProfile> {
                             ),
                             const Divider(height: 20, color: Colors.grey),
                             ListTile(
-                              leading: const Icon(Icons.person),
+                              leading: const Icon(
+                                Icons.person,
+                                color: Color(0xff12d3c6),
+                              ),
                               title: const Text(
                                 'Last Name',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -188,7 +209,10 @@ class _ViewProfileState extends State<ViewProfile> {
                             ),
                             const Divider(height: 20, color: Colors.grey),
                             ListTile(
-                              leading: const Icon(Icons.wc),
+                              leading: const Icon(
+                                Icons.wc,
+                                color: Color(0xff12d3c6),
+                              ),
                               title: const Text(
                                 'Gender',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -197,7 +221,10 @@ class _ViewProfileState extends State<ViewProfile> {
                             ),
                             const Divider(height: 20, color: Colors.grey),
                             ListTile(
-                              leading: const Icon(Icons.favorite),
+                              leading: const Icon(
+                                Icons.favorite,
+                                color: Color(0xff12d3c6),
+                              ),
                               title: const Text(
                                 'Blood Group',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -206,7 +233,10 @@ class _ViewProfileState extends State<ViewProfile> {
                             ),
                             const Divider(height: 20, color: Colors.grey),
                             ListTile(
-                              leading: const Icon(Icons.cake),
+                              leading: const Icon(
+                                Icons.cake,
+                                color: Color(0xff12d3c6),
+                              ),
                               title: const Text(
                                 'Date of Birth',
                                 style: TextStyle(fontWeight: FontWeight.bold),

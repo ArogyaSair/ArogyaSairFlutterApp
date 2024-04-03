@@ -14,7 +14,7 @@ class _AboutUsState extends State<AboutUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
+        backgroundColor: Color(0xff12d3c6),
         title: Text(
           'Arogya Sair',
           style: TextStyle(color: Colors.white),

@@ -94,7 +94,7 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
+        backgroundColor: const Color(0xff12d3c6),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios_new,
@@ -109,17 +109,15 @@ class _PaymentPageState extends State<PaymentPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                Colors.blue.shade500,
-                Colors.green.shade400,
-              ],
+              colors: [Color(0xfff2f6f7), Color(0xfff2f6f7)],
             ),
           ),
           child: Card(
+            color: Colors.white,
             elevation: 3,
             margin: const EdgeInsets.all(10),
             child: Padding(

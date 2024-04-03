@@ -4,6 +4,7 @@ import 'package:arogyasair/EditProfile.dart';
 import 'package:arogyasair/LandingPage.dart';
 import 'package:arogyasair/UserChangePassword.dart';
 import 'package:arogyasair/about.dart';
+import 'package:arogyasair/contact.dart';
 import 'package:arogyasair/help_desk.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/view_profile.dart';
@@ -36,6 +37,8 @@ class _MyProfileState extends State<MyProfile> {
   var birthDate = "Select Birthdate";
   var selectedValue = 0;
   var selectedGender;
+  late String userFirstName;
+  late String userLastName;
 
   // late String username;
   late String userKey;
@@ -48,7 +51,17 @@ class _MyProfileState extends State<MyProfile> {
   @override
   void initState() {
     super.initState();
+    loadUser();
     _loadUserData();
+  }
+
+  Future<void> loadUser() async {
+    String? userFirstname = await getData("firstname");
+    String? userLastname = await getData("lastname");
+    setState(() {
+      userFirstName = userFirstname!;
+      userLastName = userLastname!;
+    });
   }
 
   Future<void> _loadUserData() async {
@@ -89,7 +102,7 @@ class _MyProfileState extends State<MyProfile> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        actionsIconTheme: IconThemeData(color: Colors.blue.shade900),
+        actionsIconTheme: const IconThemeData(color: Color(0xff12d3c6)),
         actions: const [],
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
@@ -273,7 +286,11 @@ class _MyProfileState extends State<MyProfile> {
           InkWell(
             onTap: () async {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AboutUs()));
+                  MaterialPageRoute(
+                      builder: (context) => ContactUs(
+                            userLastName: userLastName,
+                            userFirstName: userFirstName,
+                          )));
             },
             child: const Row(
               mainAxisSize: MainAxisSize.max,

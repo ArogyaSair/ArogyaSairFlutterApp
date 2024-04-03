@@ -5,6 +5,7 @@ import 'package:arogyasair/MyPackages.dart';
 import 'package:arogyasair/about.dart';
 import 'package:arogyasair/contact.dart';
 import 'package:arogyasair/saveSharePreferences.dart';
+import 'package:arogyasair/user_privacy_policy.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -95,7 +96,7 @@ class _DrawerCode extends State<DrawerCode> {
                         style: const TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: Color(0xff12d3c6),
                         ),
                       ),
                     ],
@@ -153,12 +154,27 @@ class _DrawerCode extends State<DrawerCode> {
             title: const Text("Contact us"),
             onTap: () {
               // Navigator.pop(context);
-              Navigator.push(context,
+              Navigator.push(
+                  context,
                   MaterialPageRoute(
                       builder: (context) => ContactUs(
                             userFirstName: userFirstName,
                             userLastName: userLastName,
                           )));
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.privacy_tip,
+              color: Colors.black,
+            ),
+            title: const Text("Privacy Policy"),
+            onTap: () {
+              // Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UserPrivacyPolicy()));
             },
           ),
           const Divider(

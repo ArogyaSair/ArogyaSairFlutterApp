@@ -119,7 +119,8 @@ class _DisplayHospitalsState extends State<DisplayHospitals> {
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
                                     imagePath,
-                                    width: 100,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
                                     fit: BoxFit.cover,
                                   ),
                                 ),

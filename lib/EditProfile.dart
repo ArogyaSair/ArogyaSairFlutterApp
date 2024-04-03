@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, non_constant_identifier_names, depend_on_referenced_packages, prefer_typing_uninitialized_variables, use_build_context_synchronously
+// ignore_for_file: file_names, non_constant_identifier_names, depend_on_referenced_packages, prefer_typing_uninitialized_variables
 
 // import 'dart:html';
 import 'dart:io';
@@ -18,7 +18,6 @@ class EditProfile extends StatefulWidget {
   @override
   State<EditProfile> createState() => _EditProfileState();
 }
-
 class _EditProfileState extends State<EditProfile> {
   var imagePath =
       "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/UserImage%2FDefaultProfileImage.png?alt=media";
@@ -64,7 +63,7 @@ class _EditProfileState extends State<EditProfile> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue.shade900,
+        backgroundColor: const Color(0xff12d3c6),
         title: const Text(
           'Edit Profile',
           style: TextStyle(color: Colors.white),
@@ -72,7 +71,7 @@ class _EditProfileState extends State<EditProfile> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Colors.grey,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -107,14 +106,17 @@ class _EditProfileState extends State<EditProfile> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(20),
                             child: _image != null
                                 ? Image.file(_image!,
                                     height: 110, width: 110, fit: BoxFit.cover)
                                 : Image.network(
                                     imagePath,
-                                    height: 110,
-                                    width: 110,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.1,
+                                    width: MediaQuery.of(context).size.height *
+                                        0.15,
+                                    fit: BoxFit.cover,
                                   ),
                           ),
                           const SizedBox(width: 10),
@@ -128,7 +130,7 @@ class _EditProfileState extends State<EditProfile> {
                               style: TextStyle(color: Colors.white),
                             ),
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue),
+                                backgroundColor: const Color(0xff12d3c6)),
                             onPressed: () {
                               getImage();
                             },
@@ -144,9 +146,8 @@ class _EditProfileState extends State<EditProfile> {
                         style: const TextStyle(color: Colors.black),
                         decoration: const InputDecoration(
                           hintText: "Username",
-                          prefixIcon: Icon(Icons.person),
-                          disabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black)),
+                          prefixIcon:
+                              Icon(Icons.person, color: Color(0xff12d3c6)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(15),
@@ -167,7 +168,8 @@ class _EditProfileState extends State<EditProfile> {
                                 controller: controllerFirstName,
                                 decoration: const InputDecoration(
                                   hintText: "First Name",
-                                  prefixIcon: Icon(Icons.person),
+                                  prefixIcon: Icon(Icons.person,
+                                      color: Color(0xff12d3c6)),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15))),
@@ -183,7 +185,8 @@ class _EditProfileState extends State<EditProfile> {
                                 controller: controllerLastName,
                                 decoration: const InputDecoration(
                                   hintText: "Last Name",
-                                  prefixIcon: Icon(Icons.person),
+                                  prefixIcon: Icon(Icons.person,
+                                      color: Color(0xff12d3c6)),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15))),
@@ -201,7 +204,8 @@ class _EditProfileState extends State<EditProfile> {
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
                           hintText: "Email Address",
-                          prefixIcon: Icon(Icons.mail),
+                          prefixIcon:
+                              Icon(Icons.mail, color: Color(0xff12d3c6)),
                           border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
@@ -271,7 +275,8 @@ class _EditProfileState extends State<EditProfile> {
                         controller: controllerBloodGroup,
                         decoration: const InputDecoration(
                           hintText: "Blood Group",
-                          prefixIcon: Icon(Icons.bloodtype),
+                          prefixIcon:
+                              Icon(Icons.bloodtype, color: Color(0xff12d3c6)),
                           border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
@@ -292,6 +297,7 @@ class _EditProfileState extends State<EditProfile> {
                             },
                             child: const Icon(
                               Icons.date_range,
+                              color: Color(0xff12d3c6),
                             ),
                           ),
                           border: const OutlineInputBorder(
@@ -309,7 +315,7 @@ class _EditProfileState extends State<EditProfile> {
                           updateData(userKey, context);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
+                          backgroundColor: const Color(0xff12d3c6),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),

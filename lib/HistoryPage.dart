@@ -77,7 +77,7 @@ class _MyHistoryState extends State<MyHistory> {
         backgroundColor: const Color(0xfff2f6f7),
         automaticallyImplyLeading: false,
         title: const Text(
-          'Arogya Sair',
+          'Appointment Updates',
           style: TextStyle(
             color: Colors.black,
           ),
@@ -164,22 +164,15 @@ class _MyHistoryState extends State<MyHistory> {
                                 ],
                               ),
                             ),
-                            Positioned(
+                            const Positioned(
                               top: 5,
                               right: 5,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.blue,
-                                ),
-                                child: const Padding(
+                              child: Padding(
                                   padding: EdgeInsets.all(5),
-                                  child: Text(
-                                    " C ",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
+                                  child: Icon(
+                                    Icons.check_circle,
+                                    color: Color(0xff12d3c6),
+                                  )),
                             ),
                           ],
                         ),

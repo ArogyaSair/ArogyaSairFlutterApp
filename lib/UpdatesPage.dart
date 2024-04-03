@@ -29,7 +29,7 @@ class _MyUpdatesState extends State<MyUpdates> {
           backgroundColor: const Color(0xfff2f6f7),
           automaticallyImplyLeading: false,
           title: const Text(
-            'Arogya Sair',
+            'Appointment Updates',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
           iconTheme: const IconThemeData(color: Color(0xff12d3c6)),

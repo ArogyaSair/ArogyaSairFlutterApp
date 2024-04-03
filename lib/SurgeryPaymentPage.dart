@@ -96,13 +96,17 @@ class _SurgeryPaymentPageState extends State<SurgeryPaymentPage> {
       )
     ];
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: const Text("Payment Page"),
+        backgroundColor: const Color(0xff12d3c6),
+        title: const Text(
+          "Payment Page",
+          style: TextStyle(color: Colors.white),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
+        titleSpacing: 1,
       ),
       body: Card(
         elevation: 3,

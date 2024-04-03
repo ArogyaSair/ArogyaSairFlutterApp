@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, non_constant_identifier_names
 
+import 'package:arogyasair/BottomNavigation.dart';
+import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
@@ -22,6 +24,21 @@ class AppointmentInformation extends StatefulWidget {
 }
 
 class _AppointmentInformationState extends State<AppointmentInformation> {
+  late String firstName;
+
+  Future<void> _loadUserData() async {
+    String? userFirstName = await getData("firstname");
+    setState(() {
+      firstName = userFirstName!;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +47,7 @@ class _AppointmentInformationState extends State<AppointmentInformation> {
           "Appointment Details",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue.shade900,
+        backgroundColor: const Color(0xff12d3c6),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -38,9 +55,25 @@ class _AppointmentInformationState extends State<AppointmentInformation> {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            if (widget.item == "General Checkup") {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const BottomBar()));
+            } else {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const BottomBar()));
+            }
           },
         ),
+        titleSpacing: 1,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -90,7 +123,8 @@ class _AppointmentInformationState extends State<AppointmentInformation> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8.0), // Add some vertical spacing
+                    const SizedBox(height: 8.0),
+                    // Add some vertical spacing
                     Row(
                       children: [
                         const Text(
@@ -115,7 +149,8 @@ class _AppointmentInformationState extends State<AppointmentInformation> {
                     Container(
                       child: Lottie.asset(
                           'assets/Animation/booking_confirmation.json',
-                          reverse: true),
+                          reverse: true,
+                          repeat: false),
                     )
                   ],
                 ),
