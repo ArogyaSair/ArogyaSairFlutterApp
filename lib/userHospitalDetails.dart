@@ -65,7 +65,7 @@ class _HospitalDetailsState extends State<HospitalDetails> {
         } else {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.blue.shade900,
+              backgroundColor: const Color(0xff12d3c6),
               title: const Text(
                 'View Hospital',
                 style: TextStyle(
@@ -115,7 +115,10 @@ class _HospitalDetailsState extends State<HospitalDetails> {
                             ),
                             const Divider(height: 20, color: Colors.grey),
                             ListTile(
-                              leading: const Icon(Icons.email),
+                              leading: const Icon(
+                                Icons.email,
+                                color: Color(0xff12d3c6),
+                              ),
                               title: const Text(
                                 'Email',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -124,7 +127,10 @@ class _HospitalDetailsState extends State<HospitalDetails> {
                             ),
                             const Divider(height: 20, color: Colors.grey),
                             ListTile(
-                              leading: const Icon(Icons.local_hospital),
+                              leading: const Icon(
+                                Icons.local_hospital,
+                                color: Color(0xff12d3c6),
+                              ),
                               title: const Text(
                                 'Name',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -133,7 +139,10 @@ class _HospitalDetailsState extends State<HospitalDetails> {
                             ),
                             const Divider(height: 20, color: Colors.grey),
                             ListTile(
-                              leading: const Icon(Icons.pin_drop),
+                              leading: const Icon(
+                                Icons.pin_drop,
+                                color: Color(0xff12d3c6),
+                              ),
                               title: const Text(
                                 'Address',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -142,7 +151,10 @@ class _HospitalDetailsState extends State<HospitalDetails> {
                             ),
                             const Divider(height: 20, color: Colors.grey),
                             ListTile(
-                              leading: const Icon(Icons.location_on),
+                              leading: const Icon(
+                                Icons.location_on,
+                                color: Color(0xff12d3c6),
+                              ),
                               title: const Text(
                                 'State',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -151,7 +163,10 @@ class _HospitalDetailsState extends State<HospitalDetails> {
                             ),
                             const Divider(height: 20, color: Colors.grey),
                             ListTile(
-                              leading: const Icon(Icons.location_city),
+                              leading: const Icon(
+                                Icons.location_city,
+                                color: Color(0xff12d3c6),
+                              ),
                               title: const Text(
                                 'City',
                                 style: TextStyle(fontWeight: FontWeight.bold),

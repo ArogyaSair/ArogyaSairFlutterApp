@@ -141,10 +141,10 @@ class _SearchPageState extends State<SearchPage>
                     itemBuilder: (context, index) {
                       Map data1 = hospitals[index];
                       var imageName = data1['Photo'] == 'noimage'
-                          ? 'noimage'
+                          ? "HospitalImage%2FArogyaSair.png"
                           : "HospitalImage%2F${data1['Photo']}";
                       var imagePath = data1['Photo'] == 'noimage'
-                          ? 'https://via.placeholder.com/150' // Placeholder image URL
+                          ? "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media" // Placeholder image URL
                           : "https://firebasestorage.googleapis.com/v0/b/arogyasair-157e8.appspot.com/o/$imageName?alt=media";
                       return ListTile(
                         onTap: () {
@@ -157,7 +157,14 @@ class _SearchPageState extends State<SearchPage>
                           );
                         },
                         contentPadding: const EdgeInsets.all(1),
-                        leading: Image.network(imagePath),
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            imagePath,
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                         title: Text(data1['HospitalName'].toString()),
                         subtitle: Text(data1['HospitalCity'].toString()),
                       );
