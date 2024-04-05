@@ -3,6 +3,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 
 import 'drawerSideNavigation.dart';
 
@@ -77,7 +78,7 @@ class _MyHistoryState extends State<MyHistory> {
         backgroundColor: const Color(0xfff2f6f7),
         automaticallyImplyLeading: false,
         title: const Text(
-          'Appointment Updates',
+          'Appointment History',
           style: TextStyle(
             color: Colors.black,
           ),
@@ -180,7 +181,26 @@ class _MyHistoryState extends State<MyHistory> {
                     },
                   );
                 } else {
-                  return const Center(child: Text('No hospitals found'));
+                  return Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Lottie.asset(
+                          'assets/Animation/no_data_found.json',
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          height: MediaQuery.of(context).size.height * 0.3,
+                          // repeat: false,
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'No history found',
+                          style: TextStyle(fontSize: 25),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  );
                 }
               } else {
                 return const Center(child: CircularProgressIndicator());

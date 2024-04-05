@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 
 import 'models/AppointmentDateSelectionModel.dart';
 import 'models/HospitalTreatmentModel.dart';
@@ -177,7 +178,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                       padding: const EdgeInsets.only(left: 10),
                                       child: TextButton(
                                         style: TextButton.styleFrom(
-                                          backgroundColor: Colors.orange,
+                                          backgroundColor: const Color(0xff12d3c6),
                                         ),
                                         onPressed: () async {
                                           var datePicked = await DatePicker
@@ -396,7 +397,7 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                           setState(() {});
                                         },
                                         style: TextButton.styleFrom(
-                                          backgroundColor: Colors.orange,
+                                          backgroundColor: const Color(0xff12d3c6),
                                         ),
                                         child: const Text(
                                           "Confirm",
@@ -432,8 +433,26 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                   },
                 );
               } else {
-                return const Center(
-                    child: Text('No delayed appointments found'));
+                return Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Lottie.asset(
+                        'assets/Animation/no_data_found.json',
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        // repeat: false,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        'No delayed appointments found',
+                        style: TextStyle(fontSize: 25),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
               }
             } else {
               return const Center(child: CircularProgressIndicator());

@@ -102,9 +102,10 @@ class _DisplayDiseaseState extends State<DisplaySurgery> {
                                 children: [
                                   Lottie.asset(
                                     'assets/Animation/searching_disease.json',
-                                    // Path to your Lottie animation file
-                                    width: 350, // Increase the width
-                                    height: 240, // Increase the height
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.8,
+                                    height:
+                                        MediaQuery.of(context).size.width * 0.8,
                                     fit: BoxFit.cover,
                                   ),
                                   const SizedBox(height: 8),

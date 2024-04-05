@@ -3,6 +3,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 
 class UserApprovedData extends StatefulWidget {
   final String userKey;
@@ -56,16 +57,18 @@ class _UserApprovedDataState extends State<UserApprovedData> {
 
     values.forEach((key, value) async {
       if (value["Status"] == "Approved") {
-        Appointments.add({
-          'HospitalName': value['HospitalId'],
-          'Key': key,
-          'AppointmentDate': value["AppointmentDate"],
-          'Disease': value["Disease"],
-          'Status': value["Status"],
-          'UserId': value["UserId"],
-        });
-        await fetchUserData(value["HospitalId"], Appointments.length - 1);
-        dataFetched = true;
+        if (value["UserId"] == widget.userKey) {
+          Appointments.add({
+            'HospitalName': value['HospitalId'],
+            'Key': key,
+            'AppointmentDate': value["AppointmentDate"],
+            'Disease': value["Disease"],
+            'Status': value["Status"],
+            'UserId': value["UserId"],
+          });
+          await fetchUserData(value["HospitalId"], Appointments.length - 1);
+          dataFetched = true;
+        }
       }
     });
     return Appointments;
@@ -157,11 +160,29 @@ class _UserApprovedDataState extends State<UserApprovedData> {
                     );
                   },
                 );
-              } else if (userMap.isEmpty) {
-                return const Center(child: CircularProgressIndicator());
-              } else {
-                return const Center(
-                    child: Text('No Approved appointments found'));
+              } else if (Appointments.isEmpty) {
+                return Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Lottie.asset(
+                        'assets/Animation/no_data_found.json',
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        // repeat: false,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        'No approved appointments found',
+                        style: TextStyle(fontSize: 25),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+              }else{
+                return const Center(child: CircularProgressIndicator(),);
               }
             } else {
               return const Center(child: CircularProgressIndicator());

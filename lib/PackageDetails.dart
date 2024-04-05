@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:arogyasair/src/fill_image_card.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,7 @@ class PackageDetails extends StatefulWidget {
   final String HospitalKey;
 
   const PackageDetails({
-    Key? key,
+    super.key,
     required this.PackageName,
     required this.Price,
     required this.HospitalName,
@@ -23,7 +25,7 @@ class PackageDetails extends StatefulWidget {
     required this.Include,
     required this.Image,
     required this.HospitalKey,
-  }) : super(key: key);
+  });
 
   @override
   State<PackageDetails> createState() => _PackageBookingDetailsState();

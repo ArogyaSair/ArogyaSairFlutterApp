@@ -4,6 +4,7 @@ import 'package:arogyasair/saveSharePreferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 
 class UserPendingData extends StatefulWidget {
   final String userKey;
@@ -176,9 +177,29 @@ class _UserPendingDataState extends State<UserPendingData> {
                     );
                   },
                 );
-              } else {
-                return const Center(
-                    child: Text('No pending appointments found'));
+              } else if(appointments.isEmpty) {
+                return Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Lottie.asset(
+                        'assets/Animation/no_data_found.json',
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        // repeat: false,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        'No pending appointments found',
+                        style: TextStyle(fontSize: 25),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+              } else{
+                return const Center(child: CircularProgressIndicator(),);
               }
             } else {
               return const Center(child: CircularProgressIndicator());
