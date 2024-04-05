@@ -177,7 +177,7 @@ class _UserPendingDataState extends State<UserPendingData> {
                     );
                   },
                 );
-              } else if(appointments.isEmpty) {
+              } else if (appointments.isEmpty) {
                 return Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -198,8 +198,10 @@ class _UserPendingDataState extends State<UserPendingData> {
                     ],
                   ),
                 );
-              } else{
-                return const Center(child: CircularProgressIndicator(),);
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               }
             } else {
               return const Center(child: CircularProgressIndicator());

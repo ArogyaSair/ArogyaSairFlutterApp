@@ -178,7 +178,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                       padding: const EdgeInsets.only(left: 10),
                                       child: TextButton(
                                         style: TextButton.styleFrom(
-                                          backgroundColor: const Color(0xff12d3c6),
+                                          backgroundColor:
+                                              const Color(0xff12d3c6),
                                         ),
                                         onPressed: () async {
                                           var datePicked = await DatePicker
@@ -397,7 +398,8 @@ class _UserDelayedDataState extends State<UserDelayedData> {
                                           setState(() {});
                                         },
                                         style: TextButton.styleFrom(
-                                          backgroundColor: const Color(0xff12d3c6),
+                                          backgroundColor:
+                                              const Color(0xff12d3c6),
                                         ),
                                         child: const Text(
                                           "Confirm",

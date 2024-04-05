@@ -181,8 +181,10 @@ class _UserApprovedDataState extends State<UserApprovedData> {
                     ],
                   ),
                 );
-              }else{
-                return const Center(child: CircularProgressIndicator(),);
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               }
             } else {
               return const Center(child: CircularProgressIndicator());
