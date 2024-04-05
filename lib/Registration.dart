@@ -294,7 +294,8 @@ class _Registration extends State<Registration> {
                                       name,
                                       lastname,
                                       DOB,
-                                      contact);
+                                      contact,
+                                      "Unspecified");
                                   dbRef2.push().set(regobj.toJson());
                                   Navigator.of(context).pop();
                                   Navigator.push(

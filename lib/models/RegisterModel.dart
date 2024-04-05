@@ -8,9 +8,10 @@ class RegisterModel {
   late String email;
   late String DOB;
   late String contact;
+  late String gender;
 
   RegisterModel(this.username, this.password, this.email, this.name,
-      this.Lastname, this.DOB, this.contact);
+      this.Lastname, this.DOB, this.contact, this.gender);
 
   Map<dynamic, dynamic> toJson() => <dynamic, dynamic>{
         'Username': username,
@@ -20,5 +21,6 @@ class RegisterModel {
         'Email': email,
         'DOB': DOB,
         'ContactNumber': contact,
+        'Gender': gender,
       };
 }
