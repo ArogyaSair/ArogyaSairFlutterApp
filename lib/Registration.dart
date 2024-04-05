@@ -288,14 +288,17 @@ class _Registration extends State<Registration> {
                                 var DOB = birthDate;
                                 var encPassword = encryptString(password);
                                 if (password == confirmPassword) {
-                                  RegisterModel regobj = RegisterModel(username,
-                                      encPassword,
-                                      email,
-                                      name,
-                                      lastname,
-                                      DOB,
-                                      contact,
-                                      "Unspecified");
+                                  RegisterModel regobj = RegisterModel(
+                                    username,
+                                    encPassword,
+                                    email,
+                                    name,
+                                    lastname,
+                                    DOB,
+                                    contact,
+                                    "Unspecified",
+                                    "Unspecified",
+                                  );
                                   dbRef2.push().set(regobj.toJson());
                                   Navigator.of(context).pop();
                                   Navigator.push(

@@ -142,7 +142,8 @@ class _HospitalAppointmentDetailState extends State<HospitalAppointmentDetail> {
                                             fontWeight: FontWeight.bold)),
                                     const Spacer(),
                                     // Add Spacer to push the text to the end of the row
-                                    Text("${widget.userData['UserName']}"),
+                                    Text(
+                                        "${widget.userData['FirstName']} ${widget.userData['LastName']}"),
                                   ],
                                 ),
                                 const SizedBox(

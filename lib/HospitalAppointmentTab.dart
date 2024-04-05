@@ -77,7 +77,8 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
     userData = userDataSnapshot.value as Map?;
     userMap[index] = {
       "Key": userDataSnapshot.key,
-      "UserName": userData!["Name"],
+      "FirstName": userData!["FirstName"],
+      "LastName": userData!["LastName"],
       "BloodGroup": userData!["BloodGroup"],
       "DateOfBirth": userData!["DOB"],
       "Gender": userData!["Gender"],
@@ -112,7 +113,8 @@ class _HospitalAppointmentTab extends State<HospitalAppointmentTab> {
                           title: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Patient Name : ${data2['UserName']}"),
+                              Text(
+                                  "Patient Name : ${data2['FirstName']} ${data2['LastName']}"),
                               const SizedBox(width: 10),
                               Text("Requested date of visit : $date"),
                               const SizedBox(width: 10),
