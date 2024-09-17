@@ -46,6 +46,44 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:230126129231:android:20726a01e8914fdcfe9a3a",
+        "android_client_info": {
+          "package_name": "com.example.flutter_developer_assessment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF8P2z1zD0M7LNoBPi9JSUBxkC3Td0sBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230126129231:android:79335cef38d0c97cfe9a3a",
+        "android_client_info": {
+          "package_name": "com.example.payment_test_demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF8P2z1zD0M7LNoBPi9JSUBxkC3Td0sBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:230126129231:android:8408651ea4344932fe9a3a",
         "android_client_info": {
           "package_name": "com.exapmle.detabsedemo2"

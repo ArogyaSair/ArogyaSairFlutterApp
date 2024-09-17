@@ -1,0 +1,25 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "arogyasair-157e8",
+          "appId": "1:230126129231:android:f68429f8b7603540fe9a3a",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "arogyasair-157e8",
+          "configurations": {
+            "android": "1:230126129231:android:f68429f8b7603540fe9a3a",
+            "ios": "1:230126129231:ios:a5c3b8fb08971154fe9a3a",
+            "macos": "1:230126129231:ios:a5c3b8fb08971154fe9a3a",
+            "web": "1:230126129231:web:6e1339a0a91fb794fe9a3a",
+            "windows": "1:230126129231:web:afe8b41d8a3155d6fe9a3a"
+          }
+        }
+      }
+    }
+  }
+}
