@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
+// Permission for notification in device
 class MessagingService {
   static String? fcmToken; // Variable to store the FCM token
 
